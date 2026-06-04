@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+    <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+    <title>Dough Hydration Calculator | Baker's Percentage Math, Free</title>
+    <meta name="description" content="Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings. Free, ad-free.">
+    <link rel="canonical" href="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Dough Hydration Calculator",
+      "url": "https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/",
+      "description": "Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings. Free, ad-free.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Built by Josh Studio LLC"
+      }
+    }
+    </script>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/">
+    <meta property="og:title" content="Dough Hydration Calculator | Baker's Percentage Math, Free">
+    <meta property="og:description" content="Master artisanal baking with precise Baker's Percentage scaling. Calculate flour, hydration, salt, and unleavened noodle configurations with built-in absorbency warnings. Ad-free utility from Tynkr Tools & Co.">
+    <meta property="og:image" content="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/og-preview.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/">
+    <meta name="twitter:title" content="Dough Hydration Calculator | Baker's Percentage Math, Free">
+    <meta name="twitter:description" content="Master artisanal baking with precise Baker's Percentage scaling. Calculate flour, hydration, salt, and unleavened noodle configurations with built-in absorbency warnings. Ad-free utility from Tynkr Tools & Co.">
+    <meta name="twitter:image" content="https://builtbyjoshstudio-cyber.github.io/dough-hydration-calculator/og-preview.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+    /* Specific utility overrides for inputs */
+    .form-input {
+      padding: 10px 14px;
+      font-family: var(--font-ui);
+      font-size: 14px;
+      background: var(--glass-bg-2);
+      border: 1px solid var(--hairline-2);
+      color: var(--text);
+      border-radius: 10px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--accent);
+    }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+    .input-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    select.form-input {
+      appearance: none;
+      cursor: pointer;
+    }
+    select.form-input option,
+    select.form-input optgroup {
+      background-color: var(--bg);
+      color: var(--text);
+    }
+    
+    /* Range Slider Overrides */
+    input[type="range"].form-input-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: var(--glass-bg-2);
+      border: 1px solid var(--hairline-2);
+      border-radius: 99px;
+      outline: none;
+      margin: 10px 0;
+    }
+    input[type="range"].form-input-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: transform 0.1s ease, background-color 0.1s ease;
+    }
+    input[type="range"].form-input-range::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    input[type="range"].form-input-range::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: transform 0.1s ease, background-color 0.1s ease;
+    }
+    input[type="range"].form-input-range::-moz-range-thumb:hover {
+      transform: scale(1.2);
+    }
+    </style>
+</head>
+<body>
+
+<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+    <h1>Dough Hydration Calculator</h1>
+    <p>Calculate safe and precise dough hydration and baker's percentages. Features flour absorbency structural warnings and interactive preset scaling.</p>
+</div>
+
+<div class="wash"></div>
+<div class="grain"></div>
+
+<main class="page" style="display: flex; gap: 32px; flex-wrap: wrap;">
+  
+  <!-- Sidebar -->
+  <aside style="width: 340px; flex-shrink: 0;">
+    <div class="glass" style="padding: 24px; position: sticky; top: 40px;">
+       <h3 style="font-family: var(--font-ui); font-size: 13px; font-weight: 600; margin-top: 0; margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft);">Featured Network</h3>
+       <div class="gear-list">
+           <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="studio-link.jpg" alt="Built By Josh Studio">
+               </div>
+               <div class="gear-info">
+                   <h4>Built By Josh Studio</h4>
+                   <p>Local-first software, CRM solutions, and technical projects.</p>
+                   <button class="affiliate-btn">Visit Website</button>
+               </div>
+           </a>
+           <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tales-link.jpg" alt="Tales of Ink & Shadows">
+               </div>
+               <div class="gear-info">
+                   <h4>Tales of Ink & Shadows</h4>
+                   <p>Historical noir documentaries and immersive storytelling.</p>
+                   <button class="affiliate-btn">Watch on YouTube</button>
+               </div>
+           </a>
+           <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tynkr-link.jpg" alt="Tynkr Tools & Co">
+               </div>
+               <div class="gear-info">
+                   <h4>Tynkr Tools & Co.</h4>
+                   <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                   <button class="affiliate-btn">Subscribe</button>
+               </div>
+           </a>
+       </div>
+    </div>
+  </aside>
+
+  <!-- Central Panel -->
+  <div style="flex: 1; min-width: 300px;">
+    <header class="glass hero">
+      <div style="flex:1; min-width: 0">
+          <div class="meta">
+            <span class="pill live">● Utilities</span>
+            <span>Tynkr Tools & Co</span>
+          </div>
+          <h1>Dough Hydration Calculator</h1>
+          <p>Calculate ingredient ratios using baker's percentages, configure presets, and intercept structural hydration warnings.</p>
+      </div>
+      <div class="theme-switch" role="tablist" aria-label="Theme">
+        <button data-set-theme="light"><span class="sw" style="background: #f7f4f2"></span>Light</button>
+        <button data-set-theme="mist"><span class="sw" style="background: #3f454c"></span>Mist</button>
+        <button data-set-theme="dark" class="on"><span class="sw" style="background: #0c0813"></span>Dark</button>
+      </div>
+    </header>
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+        <div class="tynkr-unit-toggle-wrapper glass-lite">
+            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Imperial (oz)</button>
+            <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric (g)</button>
+        </div>
+    </div>
+
+    <!-- Onboarding Panel -->
+    <div class="glass" style="margin-bottom: 24px; padding: 24px;">
+       <h3 style="font-family: var(--font-ui); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Build Your Dough:</h3>
+       <div class="onboarding-steps">
+          <div class="step-col">
+             <h4>1. Choose Your Style</h4>
+             <p>Select a Flour Type or pick a Baking Style Preset (like Sourdough or Tokyo Ramen) to instantly snap the slider to its traditional water ratio.</p>
+          </div>
+          <div class="step-col">
+             <h4>2. Set Your Yield</h4>
+             <p>Type in the exact total weight of dough your recipe or pan demands in ounces or grams.</p>
+          </div>
+          <div class="step-col">
+             <h4>3. Weigh &amp; Bake</h4>
+             <p>Read your instant, zero-guesswork ingredient list below. No loose cups or spoons—just precise kitchen scale metrics.</p>
+          </div>
+       </div>
+    </div>
+
+    <!-- Inputs Panel -->
+    <div class="glass type-card" style="margin-bottom: 24px;">
+       <div class="role">1. Recipe Configuration</div>
+       
+       <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+             <div class="input-group">
+                <span class="input-label">Flour Type</span>
+                <select id="flour-type" name="flourType" class="form-input">
+                    <optgroup label="Standard Wheat">
+                        <option value="ap-flour">All-Purpose Flour</option>
+                        <option value="bread-flour">Bread Flour</option>
+                    </optgroup>
+                    <optgroup label="Artisanal &amp; Whole Grains">
+                        <option value="whole-wheat">Whole Wheat Flour</option>
+                        <option value="rye-flour">Dark Rye Flour</option>
+                        <option value="ancient-grain">Spelt / Einkorn</option>
+                    </optgroup>
+                    <optgroup label="Pizza Specialists">
+                        <option value="tipo-00">Tipo 00 Flour (Neapolitan)</option>
+                        <option value="high-gluten">High-Gluten / NY Style Flour</option>
+                    </optgroup>
+                    <optgroup label="Noodle &amp; Pasta Specialists">
+                        <option value="buckwheat-soba">Buckwheat Flour (Soba)</option>
+                        <option value="ramen-alkaline">Ramen / Alkaline Flour</option>
+                        <option value="pasta-semolina">Semolina / Egg Pasta Flour</option>
+                    </optgroup>
+                    <optgroup label="Alternative Blends">
+                        <option value="gluten-free">Gluten-Free Baking Blend</option>
+                    </optgroup>
+                </select>
+             </div>
+             <div class="input-group">
+                <span class="input-label">Baking Style Preset</span>
+                <select id="baking-preset" class="form-input">
+                   <option value="custom">Custom Configuration</option>
+                   <option value="neapolitan">Neapolitan Pizza (60% Hydration)</option>
+                   <option value="sourdough">Sourdough Boule (72% Hydration)</option>
+                   <option value="baguette">French Baguette (65% Hydration)</option>
+                   <option value="ciabatta">Italian Ciabatta (82% Hydration)</option>
+                   <option value="tokyo-ramen">Tokyo Ramen (35% Hydration)</option>
+                   <option value="soba">100% Soba Noodles (40% Hydration)</option>
+                </select>
+             </div>
+          </div>
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+             <div class="input-group">
+                <span class="input-label">Calculation Mode</span>
+                <select id="calc-mode" class="form-input">
+                   <option value="total-dough">Target Total Dough Weight</option>
+                   <option value="flour-mass">Target Flour Mass</option>
+                </select>
+             </div>
+             <div class="input-group">
+                <span class="input-label" id="target-label">Target Dough Weight</span>
+                <input type="number" id="target-value" class="form-input" value="35.3" min="0.1" step="0.1">
+             </div>
+          </div>
+
+          <div class="input-group">
+             <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <span class="input-label">Hydration Percentage</span>
+                <span id="hydration-bubble" style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--accent);">72%</span>
+             </div>
+             <input type="range" id="hydration-slider" class="form-input-range" min="30" max="95" value="72">
+          </div>
+
+       </div>
+    </div>
+
+    <!-- Outputs Panel -->
+    <div class="glass anatomy" style="margin-bottom: 24px;">
+       <div class="anatomy-stage" style="display: flex; align-items: center; justify-content: center; padding: 24px 24px 3rem;">
+            <div style="text-align: center;">
+               <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Total Yield</div>
+               <div id="total-yield-output" style="font-family: var(--font-display); font-size: 54px; font-weight: 800; color: var(--accent); line-height: 1;">35.3 oz</div>
+            </div>
+       </div>
+
+       <div class="anatomy-labels">
+          <div class="glass-lite anatomy-row">
+            <div class="ix">🌾</div>
+            <div>
+              <h4>Flour Mass</h4>
+              <p>100% base flour</p>
+            </div>
+            <code id="flour-output">20.4 oz</code>
+          </div>
+
+          <div class="glass-lite anatomy-row">
+            <div class="ix">💧</div>
+            <div>
+              <h4>Water Mass</h4>
+              <p id="water-pct-label">72% hydration</p>
+            </div>
+            <code id="water-output">14.7 oz</code>
+          </div>
+
+          <div class="glass-lite anatomy-row">
+            <div class="ix">🧂</div>
+            <div>
+              <h4>Salt Mass</h4>
+              <p>2% base weight</p>
+            </div>
+            <code id="salt-output">0.4 oz</code>
+          </div>
+
+          <div class="glass-lite anatomy-row">
+            <div class="ix" id="yeast-icon">🍞</div>
+            <div>
+              <h4 id="yeast-label">Yeast Mass</h4>
+              <p id="yeast-pct-label">1% base weight</p>
+            </div>
+            <code id="yeast-output">0.2 oz</code>
+          </div>
+       </div>
+
+       <!-- Pasta Egg Note Container -->
+       <div id="egg-note-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; color: var(--accent); line-height: 1.5; padding: 12px; border: 1px solid var(--hairline-2); border-radius: 8px; background: var(--glass-bg-2);">
+           <!-- Injected dynamically -->
+       </div>
+
+       <!-- Absorbency Interceptor Warning Container -->
+       <div id="absorbency-warning-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 1px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: 8px; background: rgba(178, 58, 26, 0.08);">
+           <!-- Injected dynamically -->
+       </div>
+    </div>
+
+    <!-- Ecosystem Cross-Promotion Footer -->
+    <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
+        <h4 style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); margin: 0 0 12px;">Next Steps for Your Cook:</h4>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <a id="pipeline-link-pan" href="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/" target="_blank" style="color: var(--accent); text-decoration: none;">Need to scale? Adjust your dough to a specific baking pan size with the Baking Pan Swap Calculator</a>
+        </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); padding: 24px 20px; border-top: 1px solid var(--hairline-2); margin-top: 40px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <p style="margin-bottom: 12px;"><strong>Disclaimer:</strong> Hydration ratios and flour absorption rates vary depending on ambient humidity, brand processing, and milling precision. Adjust flour or water by small amounts during mixing to achieve target gluten structure.</p>
+  <p style="margin: 0;">© 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools & Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

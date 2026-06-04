@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+    <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+    <title>Universal Recipe Scaler | Ad-Free Ingredient Converter</title>
+    <meta name="description" content="Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.">
+    <link rel="canonical" href="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Universal Recipe Scaler | Ad-Free Ingredient Converter">
+    <meta property="og:description" content="Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/">
+    <meta property="og:image" content="https://builtbyjoshstudio-cyber.github.io/universal-recipe-scaler/og-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Universal Recipe Scaler",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Automatically scales recipe ingredients and seamlessly converts between Metric and Imperial units for precise cooking.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Built by Josh Studio LLC"
+      }
+    }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-top">
+                <button id="theme-toggle" class="theme-toggle-btn">Theme: Dark</button>
+            </div>
+            <h1>Universal Recipe Scaler</h1>
+            <p>Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.</p>
+        </header>
+
+        <main class="content-grid">
+            <section class="scaler-section">
+                <div class="controls-card glass-panel">
+                    <div class="scale-buttons">
+                        <button class="scale-btn" data-scale="0.5">0.5x</button>
+                        <button class="scale-btn" data-scale="1">1x</button>
+                        <button class="scale-btn" data-scale="2">2x</button>
+                        <button class="scale-btn" data-scale="3">3x</button>
+                    </div>
+                    
+                    <div class="custom-scale-wrapper" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                        <div class="custom-scale">
+                            <div class="input-group">
+                                <label for="original-servings">Original Servings</label>
+                                <input type="number" id="original-servings" value="4" min="1" step="1">
+                            </div>
+                            <div class="input-group">
+                                <label for="target-servings">Target Servings</label>
+                                <input type="number" id="target-servings" value="4" min="1" step="1">
+                            </div>
+                            <button id="apply-custom-scale" class="primary-btn">Scale</button>
+                        </div>
+                        
+                        <div class="tynkr-unit-toggle-wrapper">
+                            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">US / Imperial</button>
+                            <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recipe-workarea">
+                    <div class="input-area">
+                        <label for="recipe-input">Paste Ingredients Here</label>
+                        <textarea id="recipe-input" placeholder="Paste your ingredients here (one per line).&#10;&#10;Please omit cooking instructions to ensure accurate scaling."></textarea>
+                    </div>
+                    
+                    <div class="output-area glass-panel">
+                        <h2>Scaled Recipe (<span id="current-multiplier-display">1x</span>)</h2>
+                        <div id="recipe-output" class="scaled-results">
+                            <p class="placeholder-text">Your scaled ingredients will appear here...</p>
+                        </div>
+                        <div id="egg-tip-box" style="display: none; margin-top: 1.5rem; padding: 1.2rem; border-radius: 12px; background: rgba(128, 128, 128, 0.05); border: 1px solid var(--border-light); font-size: 0.95rem; line-height: 1.6; color: var(--text-main); height: auto; overflow: visible;">
+                            Chef's Tip for Fractional Eggs: If your scaled recipe calls for a fraction of an egg, whisk a whole egg in a small bowl. 1 whole egg equals roughly 3 Tablespoons (or 46g). For 0.5 eggs, use exactly 1.5 Tablespoons. For smaller fractions, use a single egg yolk or a splash of milk.
+                        </div>
+                        <div id="volumetric-warning-box" style="display: none; margin-top: 1rem; padding: 1.2rem; border-radius: 12px; background: rgba(128, 128, 128, 0.05); border: 1px solid var(--border-light); font-size: 0.95rem; line-height: 1.6; color: var(--text-main); height: auto; overflow: visible;">
+                            Chef's Note: Volumetric baking measurements (cups) become highly inaccurate when scaled up massively due to compaction. For bulletproof professional results, consider converting your core ingredients to weight (grams).
+                        </div>
+                        <div class="action-buttons">
+                            <button id="copy-btn" class="action-btn">Copy to Clipboard</button>
+                            <button id="print-btn" class="action-btn">Print Recipe</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tips-section glass-panel">
+                    <h2>Chef's Corner: Mastering the Pan Sauce</h2>
+                    <ul class="tips-list">
+                        <li><strong>Watch the Reduction:</strong> Scaling a pan sauce means more liquid to boil off. Keep a close eye on the reduction consistency rather than just relying on a timer.</li>
+                        <li><strong>Deglaze for Depth:</strong> When scaling up, ensure you’re still getting all the flavor from the pan. Using wine or spirits to deglaze the 'fond' is the key to a professional sauce.</li>
+                        <li><strong>The Fraction Factor:</strong> This tool handles the math, but remember that some ingredients—like salt or high-heat spices—might not need a perfect 1:1 scale-up. Taste as you go!</li>
+                        <li><strong>Monter au Beurre:</strong> For a mirror-like shine and velvety texture, whisk in chilled cubes of unsalted butter only after pulling the pan from the heat.</li>
+                        <li><strong>The Acid Correction:</strong> If a reduction feels heavy or flat, it’s usually missing acid, not salt. A few drops of fresh lemon juice or sherry vinegar at the end will brighten the flavors.</li>
+                        <li><strong>The 'Noir' Finish:</strong> For a truly professional, silky presentation, pour the finished sauce through a fine-mesh strainer (chinois) to remove spent shallots and herb stems.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <aside class="sidebar glass-panel">
+                <h2>Featured Network</h2>
+                <div class="gear-list">
+                    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
+                        <div class="gear-img-wrapper">
+                            <img src="studio-link.jpg" alt="Clean modern software development workspace with laptop and coffee">
+                        </div>
+                        <div class="gear-info">
+                            <h3>Built By Josh Studio</h3>
+                            <p>Local-first software, CRM solutions, and technical projects.</p>
+                            <button class="affiliate-btn">Visit Website</button>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
+                        <div class="gear-img-wrapper">
+                            <img src="tales-link.jpg" alt="Vintage cinematic noir aesthetic with classic film camera">
+                        </div>
+                        <div class="gear-info">
+                            <h3>Tales of Ink & Shadows</h3>
+                            <p>Historical noir documentaries and immersive storytelling.</p>
+                            <button class="affiliate-btn">Watch on YouTube</button>
+                        </div>
+                    </a>
+                    <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
+                        <div class="gear-img-wrapper">
+                            <img src="tynkr-link.jpg" alt="Organized workspace for productivity and Notion templates">
+                        </div>
+                        <div class="gear-info">
+                            <h3>Tynkr Tools & Co. Substack</h3>
+                            <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                            <button class="affiliate-btn">Subscribe</button>
+                        </div>
+                    </a>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

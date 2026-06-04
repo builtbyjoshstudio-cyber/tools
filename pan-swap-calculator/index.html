@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A free, ad-free baking utility to instantly convert cake recipes for muffin tins, Bundt pans, and standard baking sheets. Get exact multipliers with bake-time warnings.">
+<meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+<meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+<meta property="og:title" content="Pan Swap Calculator | Convert Cake, Muffin & Bundt Pans Free">
+<meta property="og:description" content="A free, ad-free baking utility to instantly convert cake recipes for muffin tins, Bundt pans, and standard baking sheets. Get exact multipliers with bake-time warnings.">
+<meta property="og:image" content="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/og-preview.jpg">
+<meta property="og:url" content="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<title>Pan Swap Calculator | Convert Cake, Muffin & Bundt Pans Free</title>
+<link rel="canonical" href="https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Pan Swap Calculator",
+  "url": "https://builtbyjoshstudio-cyber.github.io/pan-swap-calculator/",
+  "description": "Instantly convert cake recipes between round, square, muffin tin, Bundt, and sheet pans with exact multipliers and bake-time guidance. Free and ad-free.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Built by Josh Studio LLC"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* Additional specific utility overrides */
+.form-input {
+  padding: 10px 14px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  background: var(--glass-bg-2);
+  border: 1px solid var(--hairline-2);
+  color: var(--text);
+  border-radius: 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus {
+  border-color: var(--accent);
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.input-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+select.form-input {
+  appearance: none;
+  cursor: pointer;
+}
+select.form-input option {
+  background-color: var(--bg);
+  color: var(--text);
+}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+    <h1>Baking Pan Swap Calculator</h1>
+    <p>The Baking Pan Swap Calculator is a free, local-first utility designed to instantly calculate recipe scaling multipliers for 2D pan dimensions and 3D volume conversions, including 12-cup muffin tins and 10-cup Bundt pans.</p>
+</div>
+<div class="wash"></div>
+<div class="grain"></div>
+
+<main class="page" style="display: flex; gap: 32px; flex-wrap: wrap;">
+  
+  <!-- Sidebar -->
+  <aside style="width: 340px; flex-shrink: 0;">
+    <div class="glass" style="padding: 24px; position: sticky; top: 40px;">
+       <h3 style="font-family: var(--font-ui); font-size: 13px; font-weight: 600; margin-top: 0; margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft);">Featured Network</h3>
+       <div class="gear-list">
+           <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="studio-link.jpg" alt="Built By Josh Studio">
+               </div>
+               <div class="gear-info">
+                   <h4>Built By Josh Studio</h4>
+                   <p>Local-first software, CRM solutions, and technical projects.</p>
+                   <button class="affiliate-btn">Visit Website</button>
+               </div>
+           </a>
+           <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tales-link.jpg" alt="Tales of Ink & Shadows">
+               </div>
+               <div class="gear-info">
+                   <h4>Tales of Ink & Shadows</h4>
+                   <p>Historical noir documentaries and immersive storytelling.</p>
+                   <button class="affiliate-btn">Watch on YouTube</button>
+               </div>
+           </a>
+           <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tynkr-link.jpg" alt="Tynkr Tools & Co">
+               </div>
+               <div class="gear-info">
+                   <h4>Tynkr Tools & Co.</h4>
+                   <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                   <button class="affiliate-btn">Subscribe</button>
+               </div>
+           </a>
+       </div>
+    </div>
+  </aside>
+
+  <!-- Central Panel -->
+  <div style="flex: 1; min-width: 300px;">
+    <header class="glass hero">
+      <div style="flex:1; min-width: 0">
+         <div class="meta">
+           <span class="pill live">● Utilities</span>
+           <span>Tynkr Tools & Co</span>
+         </div>
+         <h1>Pan Swap Calculator</h1>
+         <p>Easily calculate recipe multipliers and adjust bake times when switching between standard pans, 12-cup muffin tins, and Bundt pans.</p>
+      </div>
+      <div class="theme-switch" role="tablist" aria-label="Theme">
+        <button data-set-theme="light"><span class="sw" style="background: #f7f4f2"></span>Light</button>
+        <button data-set-theme="mist"><span class="sw" style="background: #3f454c"></span>Mist</button>
+        <button data-set-theme="dark" class="on"><span class="sw" style="background: #0c0813"></span>Dark</button>
+      </div>
+    </header>
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+        <div class="tynkr-unit-toggle-wrapper">
+            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Inches</button>
+            <button type="button" id="unit-metric" class="tynkr-unit-btn">Centimeters</button>
+        </div>
+    </div>
+
+    <div class="glass type-card" style="margin-bottom: 24px;">
+       <div class="role">1. Original Pan</div>
+       <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+          <div class="input-group">
+            <span class="input-label">Shape</span>
+            <select id="orig-shape" class="form-input">
+              <option value="round">Round</option>
+              <option value="square">Square</option>
+              <option value="rectangular">Rectangular</option>
+              <option value="muffin">Muffin Tin (12-Cup Standard)</option>
+              <option value="bundt">Bundt/Tube Pan (10-Cup)</option>
+            </select>
+          </div>
+       </div>
+       <div id="orig-dims" style="display: flex; gap: 16px;">
+          <!-- dynamic inputs injected by JS -->
+       </div>
+    </div>
+
+    <div class="glass type-card" style="margin-bottom: 24px;">
+       <div class="role">2. Target Pan</div>
+       <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+          <div class="input-group">
+            <span class="input-label">Shape</span>
+            <select id="target-shape" class="form-input">
+              <option value="round">Round</option>
+              <option value="square">Square</option>
+              <option value="rectangular">Rectangular</option>
+              <option value="muffin">Muffin Tin (12-Cup Standard)</option>
+              <option value="bundt">Bundt/Tube Pan (10-Cup)</option>
+            </select>
+          </div>
+       </div>
+       <div id="target-dims" style="display: flex; gap: 16px;">
+          <!-- dynamic inputs injected by JS -->
+       </div>
+    </div>
+
+    <details class="glass-lite" style="margin-bottom: 24px; padding: 16px; border-radius: 14px; cursor: pointer; height: auto; overflow: visible;">
+        <summary style="font-family: var(--font-ui); font-size: 15px; font-weight: 600; color: var(--accent); outline: none; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none;">
+            <span>Standard Pan Capacities Quick-Ref</span>
+            <span style="font-size: 12px; opacity: 0.7;">▼</span>
+        </summary>
+        <div style="margin-top: 16px; cursor: default; overflow: visible; height: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-family: var(--font-ui); font-size: 13px; color: var(--text);">
+                <thead>
+                    <tr style="border-bottom: 1.5px solid var(--border-light); text-align: left;">
+                        <th style="padding: 8px 12px 8px 0; font-weight: 600; color: var(--text-soft);">Pan Type & Size</th>
+                        <th style="padding: 8px 0 8px 12px; font-weight: 600; color: var(--text-soft); text-align: right;">Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 10px 12px 10px 0;">9x13-inch Rectangular Pan</td>
+                        <td style="padding: 10px 0 10px 12px; text-align: right; font-family: var(--font-mono);">~14 Cups (3.3L)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 10px 12px 10px 0;">8x8-inch Square Pan</td>
+                        <td style="padding: 10px 0 10px 12px; text-align: right; font-family: var(--font-mono);">~8 Cups (1.9L)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 10px 12px 10px 0;">9-inch Round Cake Pan</td>
+                        <td style="padding: 10px 0 10px 12px; text-align: right; font-family: var(--font-mono);">~8 Cups (1.9L)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 10px 12px 10px 0;">Standard Loaf Pan (8.5x4.5)</td>
+                        <td style="padding: 10px 0 10px 12px; text-align: right; font-family: var(--font-mono);">~6 Cups (1.4L)</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 10px 12px 10px 0;">Standard 12-Cup Muffin Tin</td>
+                        <td style="padding: 10px 0 10px 12px; text-align: right; font-family: var(--font-mono);">~4 Cups (1.0L) total</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-light);">
+                        <td style="padding: 10px 12px 10px 0;">10-inch Bundt Pan</td>
+                        <td style="padding: 10px 0 10px 12px; text-align: right; font-family: var(--font-mono);">~12 Cups (2.8L)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+     </details>
+
+    <div class="glass anatomy" style="margin-bottom: 24px;">
+       <div class="anatomy-stage" style="display: flex; align-items: center; justify-content: center;">
+           <div style="text-align: center;">
+              <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Recipe Multiplier</div>
+              <div id="multiplier-output" style="font-family: var(--font-display); font-size: 64px; font-weight: 800; color: var(--accent); line-height: 1;">1.00x</div>
+           </div>
+       </div>
+       <div class="anatomy-labels">
+          <div class="glass-lite anatomy-row">
+            <div class="ix">∑</div>
+            <div>
+              <h4>Area Comparison</h4>
+              <p id="area-output">Original: 0.0 sq in | Target: 0.0 sq in</p>
+            </div>
+          </div>
+          <div class="glass-lite anatomy-row">
+            <div class="ix">⏱</div>
+            <div>
+              <h4>Bake Time Warning</h4>
+              <p id="time-output">Select pan dimensions to see adjustent warnings.</p>
+            </div>
+          </div>
+          <div id="depth-warning-box" class="glass-lite anatomy-row" style="display: none; border-color: var(--warn); background: rgba(224, 184, 90, 0.05); grid-template-columns: 36px minmax(0, 1fr) auto;">
+             <div class="ix" style="color: var(--warn); background: rgba(224, 184, 90, 0.1);">⚠️</div>
+             <div>
+               <h4 style="color: var(--warn); margin: 0 0 2px;">Critical Baking Warning</h4>
+               <p style="font-size: 13px; line-height: 1.5; margin: 0; color: var(--text-main);">The selected pan configuration drastically increases your batter depth. To prevent your cake from overflowing or remaining raw and gummy in the center, reduce your oven temperature by 25°F and extend the baking time by 15 to 20 minutes. Use a toothpick to verify the absolute center before pulling.</p>
+             </div>
+           </div>
+       </div>
+    </div>
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 32px;">
+      <button id="copy-btn" class="btn primary" style="font-size: 14px; padding: 12px 24px;">Copy to Clipboard</button>
+    </div>
+
+    <div class="foot">
+      <span>© 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools & Co is a brand of Built by Josh Studio LLC.</span>
+    </div>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
