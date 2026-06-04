@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tools.builtbyjoshstudio.com/sitemap.xml
