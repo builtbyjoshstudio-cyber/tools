@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.">
+<meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+<meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+<meta property="og:title" content="Brine Calculator | Free Wet & Dry Brine Salt & Time Math">
+<meta property="og:description" content="Calculate precise wet or dry brines for turkey, chicken, pork, and beef. Get exact salt-to-water ratios, salt brand density adjustments, and interactive kitchen timers.">
+<meta property="og:image" content="https://builtbyjoshstudio-cyber.github.io/brine-calculator/og-preview.jpg">
+<meta property="og:url" content="https://builtbyjoshstudio-cyber.github.io/brine-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<title>Brine Calculator | Free Wet & Dry Brine Salt & Time Math</title>
+<link rel="canonical" href="https://builtbyjoshstudio-cyber.github.io/brine-calculator/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Brine Calculator",
+  "url": "https://builtbyjoshstudio-cyber.github.io/brine-calculator/",
+  "description": "Calculate precise salt, water, and sugar ratios and brining times for wet and dry brines, by protein weight and salt density. Free, ad-free, local-first.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Built by Josh Studio LLC"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* Additional specific utility overrides */
+.form-input {
+  padding: 10px 14px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  background: var(--glass-bg-2);
+  border: 1px solid var(--hairline-2);
+  color: var(--text);
+  border-radius: 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus {
+  border-color: var(--accent);
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.input-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+select.form-input {
+  appearance: none;
+  cursor: pointer;
+}
+select.form-input option,
+select.form-input optgroup {
+  background-color: var(--bg);
+  color: var(--text);
+}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+    <h1>Brine Calculator</h1>
+    <p>The Brine Calculator is a free, local-first utility designed to calculate precise salt, water, and sugar ratios for wet and dry meat brining, factoring in protein weight and salt density.</p>
+</div>
+
+<div class="wash"></div>
+<div class="grain"></div>
+
+<main class="page" style="display: flex; gap: 32px; flex-wrap: wrap;">
+  
+  <!-- Sidebar -->
+  <aside style="width: 340px; flex-shrink: 0;">
+    <div class="glass" style="padding: 24px; position: sticky; top: 40px;">
+       <h3 style="font-family: var(--font-ui); font-size: 13px; font-weight: 600; margin-top: 0; margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft);">Featured Network</h3>
+       <div class="gear-list">
+           <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="studio-link.jpg" alt="Built By Josh Studio">
+               </div>
+               <div class="gear-info">
+                   <h4>Built By Josh Studio</h4>
+                   <p>Local-first software, CRM solutions, and technical projects.</p>
+                   <button class="affiliate-btn">Visit Website</button>
+               </div>
+           </a>
+           <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tales-link.jpg" alt="Tales of Ink & Shadows">
+               </div>
+               <div class="gear-info">
+                   <h4>Tales of Ink & Shadows</h4>
+                   <p>Historical noir documentaries and immersive storytelling.</p>
+                   <button class="affiliate-btn">Watch on YouTube</button>
+               </div>
+           </a>
+           <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tynkr-link.jpg" alt="Tynkr Tools & Co">
+               </div>
+               <div class="gear-info">
+                   <h4>Tynkr Tools & Co.</h4>
+                   <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                   <button class="affiliate-btn">Subscribe</button>
+               </div>
+           </a>
+       </div>
+    </div>
+  </aside>
+
+  <!-- Central Panel -->
+  <div style="flex: 1; min-width: 300px;">
+    <header class="glass hero">
+      <div style="flex:1; min-width: 0">
+         <div class="meta">
+           <span class="pill live">● Utilities</span>
+           <span>Tynkr Tools & Co</span>
+         </div>
+         <h1>Brine Calculator</h1>
+         <p>Calculate precise salt, water, and sugar ratios for wet and dry meat brining, factoring in protein weight and salt density.</p>
+      </div>
+      <div class="theme-switch" role="tablist" aria-label="Theme">
+        <button data-set-theme="light"><span class="sw" style="background: #f7f4f2"></span>Light</button>
+        <button data-set-theme="mist"><span class="sw" style="background: #3f454c"></span>Mist</button>
+        <button data-set-theme="dark" class="on"><span class="sw" style="background: #0c0813"></span>Dark</button>
+      </div>
+    </header>
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 24px; gap: 16px; flex-wrap: wrap;">
+        <div class="tynkr-unit-toggle-wrapper">
+            <button type="button" id="brine-type-wet" class="tynkr-unit-btn active">Wet Brine</button>
+            <button type="button" id="brine-type-dry" class="tynkr-unit-btn">Dry Brine</button>
+        </div>
+        
+        <div class="tynkr-unit-toggle-wrapper">
+            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Pounds (lbs)</button>
+            <button type="button" id="unit-metric" class="tynkr-unit-btn">Kilograms (kg)</button>
+        </div>
+        
+        <div class="tynkr-unit-toggle-wrapper">
+            <button type="button" id="volume-unit-imperial" class="tynkr-unit-btn active">Imperial</button>
+            <button type="button" id="volume-unit-metric" class="tynkr-unit-btn">Metric</button>
+        </div>
+    </div>
+
+    <div class="glass type-card" style="margin-bottom: 24px;">
+       <div class="role">Brine Inputs</div>
+       
+       <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="input-group">
+            <span class="input-label">Protein Type</span>
+            <select id="protein-type" name="proteinType" class="form-input">
+              <optgroup label="Poultry">
+                <option value="turkey">Turkey (Whole or Breast)</option>
+                <option value="chicken">Chicken (Whole or Pieces)</option>
+                <option value="duck-goose">Duck & Goose</option>
+              </optgroup>
+              <optgroup label="Beef">
+                <option value="beef-roast">Beef Roasts (Prime Rib/Tri-Tip)</option>
+                <option value="beef-brisket">Beef Brisket (Low & Slow)</option>
+                <option value="beef-steak">Steaks & Chops (Individual)</option>
+              </optgroup>
+              <optgroup label="Pork & Lamb">
+                <option value="pork-shoulder">Pork Shoulder & Hams</option>
+                <option value="lamb">Lamb Leg or Rack</option>
+              </optgroup>
+              <optgroup label="Ground, Game & Seafood">
+                <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
+                <option value="game-meat">Venison & Bison (Lean Game)</option>
+                <option value="seafood">Fish & Seafood</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <span class="input-label" id="meat-weight-label">Meat Weight</span>
+            <input type="number" id="meat-weight" class="form-input" value="10" step="0.1" min="0.1">
+          </div>
+          
+          <div id="turkey-helper-container" style="display: none; flex-direction: row; align-items: flex-start; gap: 8px; margin-top: -8px; padding-left: 4px;">
+            <input type="checkbox" id="turkey-helper-toggle" style="margin-top: 2px;">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <label for="turkey-helper-toggle" style="font-family: var(--font-ui); font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text-soft);">Is this a whole turkey?</label>
+              <div id="turkey-helper-note" style="display: none; font-size: 11px; color: var(--warn);">Chef's Tip: Subtract 1.5 lbs from your package weight to account for the neck and giblets before entering the weight above.</div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <span class="input-label">Salt Type</span>
+            <select id="salt-type" class="form-input">
+              <option value="coarse">Coarse Flaky Kosher Salt</option>
+              <option value="dense">Dense Granular Kosher Salt</option>
+              <option value="table">Table Salt</option>
+              <option value="sea">Fine Sea Salt</option>
+            </select>
+          </div>
+          <div id="salt-warning-node" style="font-size: 11px; color: var(--warn); display: none; margin-top: -8px; padding-left: 4px;"></div>
+          
+          <div class="input-group">
+            <span class="input-label">Brine Strength</span>
+            <select id="brine-strength" class="form-input">
+              <option value="standard" selected>Standard</option>
+              <option value="light">Light</option>
+              <option value="strong">Strong</option>
+            </select>
+          </div>
+          
+          <div class="input-group" id="brining-method-container">
+            <span class="input-label">Wet Brining Method</span>
+            <select id="brining-method" class="form-input">
+              <option value="standard" selected>Standard Gradient (Faster)</option>
+              <option value="eq">Equilibrium (Precise, Slower)</option>
+            </select>
+          </div>
+          
+          <div class="input-group" style="flex-direction: row; align-items: center; gap: 12px; margin-top: 8px;">
+            <input type="checkbox" id="include-sugar" style="width: 18px; height: 18px; cursor: pointer;">
+            <label for="include-sugar" style="font-family: var(--font-ui); font-size: 14px; font-weight: 500; cursor: pointer;">Include Sugar (Balances saltiness)</label>
+          </div>
+       </div>
+
+       <div style="margin-top: 24px;">
+           <button id="calculate-btn" class="glass-lite" style="width: 100%; padding: 12px; font-family: var(--font-ui); font-size: 14px; font-weight: 600; color: var(--text); border: 1px solid var(--hairline-2); border-radius: 10px; cursor: pointer; background: var(--glass-bg-2);">
+               Calculate Brine
+           </button>
+       </div>
+    </div>
+
+    <div class="glass anatomy" style="margin-bottom: 24px;">
+       <div class="anatomy-stage" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center;">
+           <div>
+              <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Salt Required</div>
+              <div id="salt-volume-output" style="font-family: var(--font-disp); font-size: 36px; font-weight: 700; color: var(--accent);">-- Tbsp</div>
+              <div id="salt-weight-output" style="font-family: var(--font-mono); font-size: 14px; color: var(--text-muted); margin-top: 4px;">-- g</div>
+           </div>
+           
+           <div id="water-section">
+               <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Water Required</div>
+               <div id="water-output" style="font-family: var(--font-disp); font-size: 24px; font-weight: 600; color: var(--text);">--</div>
+           </div>
+           
+           <div id="sugar-section" style="display: none;">
+               <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Sugar Required</div>
+               <div id="sugar-output" style="font-family: var(--font-disp); font-size: 20px; font-weight: 600; color: var(--text);">-- g</div>
+           </div>
+       </div>
+
+       <div class="anatomy-labels" style="padding-top: 16px;">
+           <div class="glass-lite anatomy-row">
+             <div class="ix">⏱</div>
+             <div>
+               <h4>Brining Time</h4>
+               <p id="time-output">Calculate to view time recommendations.</p>
+             </div>
+           </div>
+           
+           <div class="glass-lite anatomy-row" style="margin-top: 16px; border-color: color-mix(in oklab, var(--warn) 30%, transparent);">
+             <div class="ix" style="color: var(--warn); background: color-mix(in oklab, var(--warn) 15%, transparent);">!</div>
+             <div>
+               <h4>Chef's Notes</h4>
+               <p id="notes-output" style="color: var(--warn); opacity: 0.9;">Warning: Do not brine meat that is labeled as 'enhanced', 'basted', or 'pre-seasoned' (like most frozen turkeys), as it will be incredibly salty.</p>
+             </div>
+           </div>
+       </div>
+
+       <div id="timer-container" style="display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--hairline-2); text-align: center;">
+            <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Active Brine Timer</div>
+            <div id="live-timer-display" style="font-family: var(--font-disp); font-size: 32px; font-weight: 700; color: var(--text); letter-spacing: 2px;">00:00:00</div>
+            <button id="stop-timer-btn" class="glass-lite" style="margin-top: 12px; padding: 6px 12px; font-size: 11px; border-radius: 4px; border-color: var(--warn); color: var(--warn); background: transparent; cursor: pointer;">Stop Timer</button>
+       </div>
+
+       <div style="margin-top: 24px; display: flex; justify-content: center; width: 100%; gap: 12px;">
+            <button id="start-timer-btn" class="glass-lite" style="padding: 8px 16px; font-family: var(--font-ui); font-size: 12px; font-weight: 600; color: var(--accent); border: 1px solid var(--accent); border-radius: 6px; cursor: pointer; background: color-mix(in oklab, var(--accent) 10%, transparent);">
+                Start Brining Timer
+            </button>
+            <button id="copy-btn" class="glass-lite" style="padding: 8px 16px; font-family: var(--font-ui); font-size: 12px; color: var(--text); border: 1px solid var(--hairline-2); border-radius: 6px; cursor: pointer; background: var(--glass-bg-2);">
+                Copy to Clipboard
+            </button>
+       </div>
+       
+       <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--hairline-2); text-align: center;">
+           <h4 style="font-family: var(--font-ui); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-soft); margin: 0 0 12px;">Next Steps for Your Cook:</h4>
+           <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+               <a id="pipeline-link-thawing" href="https://builtbyjoshstudio.com/tools/" style="color: var(--accent); text-decoration: none;">Need to thaw it first? Use the Meat Thawing Planner</a>
+               <a id="pipeline-link-roast" href="https://builtbyjoshstudio.com/tools/" style="color: var(--accent); text-decoration: none;">Ready to cook? Find your exact target pull temperature with the Perfect Roast Pull Temp Calculator</a>
+           </div>
+       </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); padding: 24px 20px; border-top: 1px solid var(--hairline-2); margin-top: 40px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <p style="margin: 0;">Disclaimer: These measurements are guidelines. Adjust for personal taste and always verify food safety practices. © 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools & Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

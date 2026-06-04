@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.">
+<meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+<meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+<meta property="og:title" content="Perfect Roast Pull Temp Calculator | Carryover Cooking Math">
+<meta property="og:description" content="Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.">
+<meta property="og:image" content="https://builtbyjoshstudio-cyber.github.io/perfect-roast-pull-temp-calculator/og-preview.jpg">
+<meta property="og:url" content="https://builtbyjoshstudio-cyber.github.io/perfect-roast-pull-temp-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<title>Perfect Roast Pull Temp Calculator | Carryover Cooking Math</title>
+<link rel="canonical" href="https://builtbyjoshstudio-cyber.github.io/perfect-roast-pull-temp-calculator/" />
+
+<!-- JSON-LD WebApplication schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Perfect Roast Pull Temp Calculator",
+  "description": "Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Built by Josh Studio LLC"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+/* Additional specific utility overrides */
+.form-input {
+  padding: 10px 14px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  background: var(--glass-bg-2);
+  border: 1px solid var(--hairline-2);
+  color: var(--text);
+  border-radius: 10px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus {
+  border-color: var(--accent);
+}
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.input-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+select.form-input {
+  appearance: none;
+  cursor: pointer;
+}
+select.form-input option,
+select.form-input optgroup {
+  background-color: var(--bg);
+  color: var(--text);
+}
+</style>
+</head>
+<body>
+
+<div style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">
+    <h1>Perfect Roast Pull Temp Calculator</h1>
+    <p>The Perfect Roast Pull Temp Calculator is a free, local-first utility designed to calculate the precise removal temperature for meat, accounting for resting time and carryover cooking to hit the perfect final doneness.</p>
+</div>
+
+<div class="wash"></div>
+<div class="grain"></div>
+
+<main class="page" style="display: flex; gap: 32px; flex-wrap: wrap;">
+  
+  <!-- Sidebar -->
+  <aside style="width: 340px; flex-shrink: 0;">
+    <div class="glass" style="padding: 24px; position: sticky; top: 40px;">
+       <h3 style="font-family: var(--font-ui); font-size: 13px; font-weight: 600; margin-top: 0; margin-bottom: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-soft);">Featured Network</h3>
+       <div class="gear-list">
+           <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="studio-link.jpg" alt="Built By Josh Studio">
+               </div>
+               <div class="gear-info">
+                   <h4>Built By Josh Studio</h4>
+                   <p>Local-first software, CRM solutions, and technical projects.</p>
+                   <button class="affiliate-btn">Visit Website</button>
+               </div>
+           </a>
+           <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tales-link.jpg" alt="Tales of Ink & Shadows">
+               </div>
+               <div class="gear-info">
+                   <h4>Tales of Ink & Shadows</h4>
+                   <p>Historical noir documentaries and immersive storytelling.</p>
+                   <button class="affiliate-btn">Watch on YouTube</button>
+               </div>
+           </a>
+           <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
+               <div class="gear-img-wrapper">
+                   <img src="tynkr-link.jpg" alt="Tynkr Tools & Co">
+               </div>
+               <div class="gear-info">
+                   <h4>Tynkr Tools & Co.</h4>
+                   <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                   <button class="affiliate-btn">Subscribe</button>
+               </div>
+           </a>
+       </div>
+    </div>
+  </aside>
+
+  <!-- Central Panel -->
+  <div style="flex: 1; min-width: 300px;">
+    <header class="glass hero">
+      <div style="flex:1; min-width: 0">
+         <div class="meta">
+           <span class="pill live">● Utilities</span>
+           <span>Tynkr Tools & Co</span>
+         </div>
+         <h1>Perfect Roast Pull Temp Calculator</h1>
+         <p>Easily calculate the precise temperature to remove your meat from the heat, accounting for resting time and carryover cooking to hit the perfect final doneness.</p>
+      </div>
+      <div class="theme-switch" role="tablist" aria-label="Theme">
+        <button data-set-theme="light"><span class="sw" style="background: #f7f4f2"></span>Light</button>
+        <button data-set-theme="mist"><span class="sw" style="background: #3f454c"></span>Mist</button>
+        <button data-set-theme="dark" class="on"><span class="sw" style="background: #0c0813"></span>Dark</button>
+      </div>
+    </header>
+
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
+        <div class="tynkr-unit-toggle-wrapper glass-lite">
+            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Imperial (°F / lbs)</button>
+            <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric (°C / kg)</button>
+        </div>
+    </div>
+
+    <div class="glass type-card" style="margin-bottom: 24px;">
+       <div class="role">Calculator Inputs</div>
+       
+       <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="input-group">
+            <span class="input-label">Meat Type</span>
+             <select id="protein-type" name="proteinType" class="form-input">
+              <optgroup label="Poultry">
+                <option value="turkey">Turkey (Whole or Breast)</option>
+                <option value="chicken">Chicken (Whole or Pieces)</option>
+                <option value="duck-goose">Duck & Goose</option>
+              </optgroup>
+              <optgroup label="Beef">
+                <option value="beef-roast">Beef Roasts (Prime Rib/Tri-Tip)</option>
+                <option value="beef-brisket">Beef Brisket (Low & Slow)</option>
+                <option value="beef-steak">Steaks & Chops (Individual)</option>
+              </optgroup>
+              <optgroup label="Pork & Lamb">
+                <option value="pork-shoulder">Pork Shoulder & Hams</option>
+                <option value="lamb">Lamb Leg or Rack</option>
+              </optgroup>
+              <optgroup label="Ground, Game & Seafood">
+                <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
+                <option value="game-meat">Venison & Bison (Lean Game)</option>
+                <option value="seafood">Fish & Seafood</option>
+              </optgroup>
+             </select>
+          </div>
+
+          <div class="input-group">
+            <span class="input-label">Cut / Size</span>
+            <select id="cut-size" class="form-input">
+              <option value="large">Large Roast / Whole Bird</option>
+              <option value="thick">Thick Steak / Chop</option>
+              <option value="thin">Thin Cut</option>
+              <option value="brisket" id="cut-brisket" style="display: none;">Brisket</option>
+              <option value="duck_breast" id="cut-duck-breast" style="display: none;">Duck Breast</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <span class="input-label">Cooking Method / Environment</span>
+            <select id="cooking-method" class="form-input">
+              <option value="standard">Standard Baking/Pan Sear (350°F)</option>
+              <option value="high">High Heat Roasting (400°F+)</option>
+              <option value="low">Low & Slow / Smoking (225°F)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <span class="input-label">Desired Final Doneness</span>
+            <select id="final-doneness" class="form-input">
+              <option value="125">Rare</option>
+              <option value="135">Medium-Rare</option>
+              <option value="145">Medium</option>
+              <option value="150">Medium-Well</option>
+              <option value="160">Well Done</option>
+              <option value="165" style="display: none;" id="poultry-safe">Safe (165°F / 74°C)</option>
+              <option value="140" style="display: none;" id="fish-safe">Flaky/Opaque (140°F / 60°C)</option>
+              <option value="130" style="display: none;" id="duck-mr">Medium-Rare (130°F / 54°C)</option>
+              <option value="140" style="display: none;" id="duck-med">Medium (140°F / 60°C)</option>
+              <option value="200" style="display: none;" id="bbq-safe">Probe Tender (200°F - 205°F)</option>
+              <option value="203" style="display: none;" id="brisket-safe">Collagen Breakdown (203°F / 95°C)</option>
+              <option value="135" style="display: none;" id="duck-breast-mr">Medium-Rare (135°F / 57°C)</option>
+            </select>
+          </div>
+       </div>
+
+       <div style="margin-top: 24px;">
+           <button id="calculate-btn" class="glass-lite" style="width: 100%; padding: 12px; font-family: var(--font-ui); font-size: 14px; font-weight: 600; color: var(--text); border: 1px solid var(--hairline-2); border-radius: 10px; cursor: pointer; background: var(--glass-bg-2);">
+               Calculate Pull Temp
+           </button>
+       </div>
+    </div>
+
+    <div class="glass anatomy" style="margin-bottom: 24px; text-align: center;">
+       <div class="anatomy-stage" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+           <div>
+              <div style="font-family: var(--font-mono); font-size: 14px; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Pull From Heat At</div>
+              <div id="pull-temp-output" style="font-family: var(--font-disp); font-size: 42px; font-weight: 700; color: var(--accent);">--°F</div>
+           </div>
+           
+           <div>
+               <div style="font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Target Final Temp</div>
+               <div id="target-temp-output" style="font-family: var(--font-disp); font-size: 24px; font-weight: 600; color: var(--text);">--°F</div>
+           </div>
+       </div>
+
+       <div id="rest-warning" style="margin-top: 24px; font-family: var(--font-ui); font-size: 13px; color: var(--text-muted); line-height: 1.5; padding-top: 16px; border-top: 1px solid var(--hairline-2);">
+           Chef's Note: Select inputs and calculate to view resting instructions.
+       </div>
+
+       <div style="margin-top: 24px; display: flex; justify-content: center;">
+            <button id="copy-btn" class="glass-lite" style="padding: 8px 16px; font-family: var(--font-ui); font-size: 12px; color: var(--text); border: 1px solid var(--hairline-2); border-radius: 6px; cursor: pointer; background: var(--glass-bg-2);">
+                Copy to Clipboard
+            </button>
+       </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-ui); font-size: 11px; color: var(--text-muted); padding: 24px 20px; border-top: 1px solid var(--hairline-2); margin-top: 40px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+  <p style="margin-bottom: 12px;"><strong>Disclaimer:</strong> These timelines and temperatures are estimated guidelines. Actual cooking times vary significantly based on oven calibration, starting meat temperature, and resting environment. For food safety, always verify the final internal temperature of the meat with a calibrated digital thermometer before serving.</p>
+  <p style="margin: 0;">© 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools & Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

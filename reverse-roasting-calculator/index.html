@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roast Timeline Calculator | When to Start Cooking, Free</title>
+    <link rel="canonical" href="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/" />
+    <meta name="description" content="Calculate exact reverse cooking timelines for turkeys, roasts, and barbecue. Input your target dinner time and get a chronological oven schedule.">
+    <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+<meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Roast Timeline Calculator | When to Start Cooking, Free">
+    <meta property="og:description" content="Calculate exact reverse cooking timelines for turkeys, roasts, and barbecue. Input your target dinner time and get a chronological oven schedule.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/">
+    <meta property="og:image" content="https://builtbyjoshstudio-cyber.github.io/reverse-roasting-calculator/og-preview.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Reverse Roasting Timeline Calculator",
+        "description": "Automatically calculates reverse cooking timelines for roasts, barbecues, and holiday meals based on meat type and weight.",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Built by Josh Studio LLC"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="header-top">
+                <button id="theme-toggle" class="theme-toggle-btn">Theme: Dark</button>
+            </div>
+            <h1>Reverse Roasting Timeline Calculator</h1>
+            <p>Calculate exact reverse cooking timelines for turkeys, roasts, and barbecue. Input your target dinner time and get a chronological oven schedule.</p>
+        </header>
+
+        <main class="content-grid">
+            <section class="calculator-section">
+                <div class="controls-card glass-panel">
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 16px;">
+                        <div class="tynkr-unit-toggle-wrapper">
+                            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Imperial (lbs)</button>
+                            <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric (kg)</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="protein-type">Meat Selection</label>
+                        <select id="protein-type" name="proteinType">
+                            <optgroup label="Poultry">
+                                <option value="turkey">Turkey (Whole or Breast)</option>
+                                <option value="chicken">Chicken (Whole or Pieces)</option>
+                                <option value="duck-goose">Duck & Goose</option>
+                            </optgroup>
+                            <optgroup label="Beef">
+                                <option value="beef-roast">Beef Roasts (Prime Rib/Tri-Tip)</option>
+                                <option value="beef-brisket">Beef Brisket (Low & Slow)</option>
+                                <option value="beef-steak">Steaks & Chops (Individual)</option>
+                            </optgroup>
+                            <optgroup label="Pork & Lamb">
+                                <option value="pork-shoulder">Pork Shoulder & Hams</option>
+                                <option value="lamb">Lamb Leg or Rack</option>
+                            </optgroup>
+                            <optgroup label="Ground, Game & Seafood">
+                                <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
+                                <option value="game-meat">Venison & Bison (Lean Game)</option>
+                                <option value="seafood">Fish & Seafood</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="meat-weight">Weight (lbs)</label>
+                        <input type="number" id="meat-weight" value="10" min="1" step="0.1">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="target-time">Target Dinner Time</label>
+                        <input type="time" id="target-time" value="18:00">
+                    </div>
+                    
+                    <button id="generate-btn" class="primary-btn">Generate Timeline</button>
+                </div>
+
+                <div class="output-area glass-panel">
+                    <h2>Your Roasting Timeline</h2>
+                    <ul id="timeline-output" class="timeline-list">
+                        <li class="placeholder-text">Enter your details and click Generate to see your timeline.</li>
+                    </ul>
+                    <div class="action-buttons">
+                        <button id="copy-btn" class="action-btn">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar glass-panel">
+                <h2>Featured Network</h2>
+                <div class="gear-list">
+                    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
+                        <div class="gear-img-wrapper">
+                            <img src="studio-link.jpg" alt="Clean modern software development workspace with laptop and coffee">
+                        </div>
+                        <div class="gear-info">
+                            <h3>Built By Josh Studio</h3>
+                            <p>Local-first software, CRM solutions, and technical projects.</p>
+                            <button class="affiliate-btn">Visit Website</button>
+                        </div>
+                    </a>
+                    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
+                        <div class="gear-img-wrapper">
+                            <img src="tales-link.jpg" alt="Vintage cinematic noir aesthetic with classic film camera">
+                        </div>
+                        <div class="gear-info">
+                            <h3>Tales of Ink & Shadows</h3>
+                            <p>Historical noir documentaries and immersive storytelling.</p>
+                            <button class="affiliate-btn">Watch on YouTube</button>
+                        </div>
+                    </a>
+                    <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
+                        <div class="gear-img-wrapper">
+                            <img src="tynkr-link.jpg" alt="Organized workspace for productivity and Notion templates">
+                        </div>
+                        <div class="gear-info">
+                            <h3>Tynkr Tools & Co. Substack</h3>
+                            <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                            <button class="affiliate-btn">Subscribe</button>
+                        </div>
+                    </a>
+                </div>
+            </aside>
+        </main>
+        
+        <p class="disclaimer">Disclaimer: These timelines are estimated guidelines. Actual cooking times vary significantly based on oven calibration, starting meat temperature, and resting environment. For food safety, always verify the final internal temperature of the meat with a calibrated digital thermometer before serving.</p>
+        
+        <footer>
+            <p>&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools & Co is a brand of Built by Josh Studio LLC.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
