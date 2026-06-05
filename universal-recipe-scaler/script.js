@@ -1,32 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme Toggle Logic
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themes = ['dark', 'light', 'mist'];
-    let currentThemeIndex = 0;
-
-    const savedTheme = localStorage.getItem('themePref');
-    if (savedTheme && themes.includes(savedTheme)) {
-        currentThemeIndex = themes.indexOf(savedTheme);
-    }
-
-    const applyTheme = () => {
-        const newTheme = themes[currentThemeIndex];
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('themePref', newTheme);
-        
-        const capitalizedTheme = newTheme.charAt(0).toUpperCase() + newTheme.slice(1);
-        if (themeToggleBtn) {
-            themeToggleBtn.textContent = `Theme: ${capitalizedTheme}`;
-        }
-    };
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-            applyTheme();
-        });
-    }
-    applyTheme();
+    // Theme (Light / Mist / Dark) handled globally by ../kinetic.js
 
     const recipeInput = document.getElementById('recipe-input');
     const recipeOutput = document.getElementById('recipe-output');

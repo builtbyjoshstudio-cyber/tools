@@ -1,28 +1,5 @@
-// Theme Management
-const themeButtons = document.querySelectorAll('.theme-switch button');
-const htmlEl = document.documentElement;
-
-// Force initialize dark theme if no saved preference
-const savedTheme = localStorage.getItem('tynkr-theme');
-if (savedTheme) {
-  setTheme(savedTheme);
-} else {
-  setTheme('dark');
-}
-
-themeButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    setTheme(btn.getAttribute('data-set-theme'));
-  });
-});
-
-function setTheme(themeName) {
-  htmlEl.setAttribute('data-theme', themeName);
-  localStorage.setItem('tynkr-theme', themeName);
-  themeButtons.forEach(b => b.classList.remove('on'));
-  const activeBtn = document.querySelector(`[data-set-theme="${themeName}"]`);
-  if (activeBtn) activeBtn.classList.add('on');
-}
+// Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
+// — unified 3-mode switch with View-Transition wipe.
 
 // DOM Elements
 const unitImperialBtn = document.getElementById('unit-imperial');

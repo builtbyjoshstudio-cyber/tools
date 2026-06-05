@@ -2,17 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // Theme Management
     // ---------------------------------------------------------
-    const themeBtn = document.getElementById('theme-toggle');
-    const themes = ['dark', 'light', 'mist'];
-    let currentThemeIndex = 0; // Starts at dark
-
-    themeBtn.addEventListener('click', () => {
-        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-        const newTheme = themes[currentThemeIndex];
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        themeBtn.textContent = 'Theme: ' + newTheme.charAt(0).toUpperCase() + newTheme.slice(1);
-    });
+    // Theme (Light / Mist / Dark) handled globally by ../kinetic.js
 
     // ---------------------------------------------------------
     // Data Dictionary

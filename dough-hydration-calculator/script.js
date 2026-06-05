@@ -19,19 +19,7 @@ function getToolUrl(toolId, params = {}) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Theme switcher logic
-    const switchBtns = document.querySelectorAll('[data-set-theme]');
-    function setTheme(t) {
-        document.documentElement.setAttribute('data-theme', t);
-        try { localStorage.setItem('tynkr-glass-theme', t); } catch (e) {}
-        switchBtns.forEach(b => b.classList.toggle('on', b.dataset.setTheme === t));
-    }
-    switchBtns.forEach(b => b.addEventListener('click', () => setTheme(b.dataset.setTheme)));
-
-    try {
-        const stored = localStorage.getItem('tynkr-glass-theme');
-        if (stored && ['light','mist','dark'].includes(stored)) setTheme(stored);
-    } catch (e) {}
+    // Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
 
     // State Variables
     let currentUnit = 'oz'; // 'oz' (imperial) or 'g' (metric)
