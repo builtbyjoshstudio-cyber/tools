@@ -123,11 +123,14 @@
         }
         .card:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow); }
         .card-icon {
-            width: 46px; height: 46px; border-radius: 11px;
-            display: grid; place-items: center; font-size: 22px;
-            background: var(--surface-2); border: 2px solid var(--line-2);
-            margin-bottom: 16px;
+          width: 46px; height: 46px; border-radius: 11px;
+          display: grid; place-items: center;
+          background: var(--surface-2); border: 2px solid var(--line-2);
+          margin-bottom: 16px; color: var(--accent);
+          transition: background .15s var(--ease), color .15s var(--ease);
         }
+        .card-icon svg { width: 25px; height: 25px; display: block; }
+        .card:hover .card-icon { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
         .card-title {
             font-family: var(--font-display); font-weight: 700; font-size: 21px;
             letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 8px; color: var(--ink);
@@ -142,17 +145,41 @@
         .card-arrow { font-size: 16px; transition: transform .2s var(--ease); }
         .card:hover .card-arrow { transform: translateX(5px); }
 
-        .lp-foot {
-            margin-top: 72px; padding-top: 28px; border-top: 2px solid var(--line-2);
-            text-align: center; font-family: var(--font-mono); font-size: 12px;
-            color: var(--muted); line-height: 1.7;
-        }
-        .lp-foot a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent-2); padding-bottom: 1px; }
-        .lp-foot a:hover { color: var(--accent); }
+        .lp-foot { margin-top: 72px; border-top: 2px solid var(--line-2); padding-top: 36px; }
+        .lp-foot-cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 38px; }
+        .lp-foot-brand .lp-brand { margin-bottom: 14px; }
+        .lp-foot-brand p { font-size: 13.5px; color: var(--muted); line-height: 1.6; margin: 0; max-width: 30ch; }
+        .lp-foot-col h4 { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+        .lp-foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+        .lp-foot-col a { font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 500; display: inline-flex; align-items: flex-start; gap: 8px; transition: color .15s var(--ease); }
+        .lp-foot-col a::before { content: ""; width: 5px; height: 5px; background: var(--accent-2); border-radius: 1px; flex-shrink: 0; margin-top: 7px; }
+        .lp-foot-col a:hover { color: var(--accent); }
+        .lp-foot-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 22px; border-top: 2px solid var(--line); font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); line-height: 1.6; }
+        .lp-foot-bar a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent-2); padding-bottom: 1px; }
+        .lp-foot-bar a:hover { color: var(--accent); }
 
+        .lp-hero-body { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 40px; align-items: end; }
+        .lp-readout { border: 2px solid var(--line-2); border-radius: var(--r-s); background: var(--surface-2); box-shadow: 5px 5px 0 var(--shadow); padding: 20px 22px; min-width: 224px; }
+        .lp-readout-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding-bottom: 16px; margin-bottom: 4px; border-bottom: 2px solid var(--line); }
+        .lp-readout-top .lbl { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+        .lp-readout .kx-signal { height: 22px; }
+        .lp-readout .kx-signal i { width: 4px; }
+        .lp-stat { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+        .lp-stat:last-child { border-bottom: 0; padding-bottom: 0; }
+        .lp-stat .v { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+        .lp-stat:first-of-type .v { color: var(--accent); }
+        .lp-stat .k { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-align: right; }
+
+        @media (max-width: 860px) {
+          .lp-hero-body { grid-template-columns: 1fr; gap: 30px; }
+          .lp-readout { min-width: 0; }
+          .lp-foot-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
+          .lp-foot-brand { grid-column: 1 / -1; }
+        }
         @media (max-width: 600px) {
-            .lp-hero { padding: 34px 24px; }
-            .grid { grid-template-columns: 1fr; }
+          .lp-hero { padding: 34px 24px; }
+          .grid { grid-template-columns: 1fr; }
+          .lp-foot-cols { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -171,14 +198,27 @@
                     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
                 </div>
             </div>
-            <h1>Ad-free <span class="em">kitchen</span> calculators.</h1>
-            <p>Seven free, ad-free kitchen calculators — recipe scaling, brining, dough hydration, roasting timelines, and more. No signup, runs entirely in your browser.</p>
-            <div class="lp-chips">
-                <span class="lp-chip">Free forever</span>
-                <span class="lp-chip">No ads</span>
-                <span class="lp-chip">No signup</span>
-                <span class="lp-chip">Local-first</span>
-                <span class="lp-chip">Light / Mist / Dark</span>
+            <div class="lp-hero-body">
+              <div class="lp-hero-main">
+                <h1>Ad-free <span class="em">kitchen</span> calculators.</h1>
+                <p>Seven free, ad-free kitchen calculators — recipe scaling, brining, dough hydration, roasting timelines, and more. No signup, runs entirely in your browser.</p>
+                <div class="lp-chips">
+                    <span class="lp-chip">Free forever</span>
+                    <span class="lp-chip">No ads</span>
+                    <span class="lp-chip">No signup</span>
+                    <span class="lp-chip">Local-first</span>
+                    <span class="lp-chip">Light / Mist / Dark</span>
+                </div>
+              </div>
+              <aside class="lp-readout" aria-hidden="true">
+                <div class="lp-readout-top">
+                  <span class="lbl">Live</span>
+                  <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+                </div>
+                <div class="lp-stat"><span class="v">07</span><span class="k">Calculators</span></div>
+                <div class="lp-stat"><span class="v">$0</span><span class="k">Forever</span></div>
+                <div class="lp-stat"><span class="v">00</span><span class="k">Ads &middot; Signups</span></div>
+              </aside>
             </div>
         </header>
 
@@ -187,7 +227,7 @@
             <div class="grid" style="margin-bottom: 52px;">
                 <a href="reverse-roasting-calculator/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">⏱</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5V13.5l2.8 1.7"/><path d="M9 2.5h6"/><path d="M12 2.5v3.5"/></svg></span>
                         <h3 class="card-title">Reverse Roasting Timeline</h3>
                         <p class="card-desc">Input your target dinner time and get a chronological reverse timeline for thawing, prep, brining, roasting, resting, and carving.</p>
                     </div>
@@ -199,7 +239,7 @@
 
                 <a href="perfect-roast-pull-temp-calculator/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">🥩</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.6V5a2 2 0 0 0-4 0v9.6a4 4 0 1 0 4 0Z"/><path d="M12 9.5v5.2"/></svg></span>
                         <h3 class="card-title">Perfect Roast Pull Temp</h3>
                         <p class="card-desc">Calculate exact carryover cooking temperature curves. Find the perfect oven pull temperature for roasts, steaks, and turkeys.</p>
                     </div>
@@ -211,7 +251,7 @@
 
                 <a href="brine-calculator/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">🧂</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2c3 3.9 5.6 7 5.6 10a5.6 5.6 0 1 1-11.2 0c0-3 2.6-6.1 5.6-10Z"/></svg></span>
                         <h3 class="card-title">Brine Calculator</h3>
                         <p class="card-desc">Calculate precise salt, water, and sugar ratios for wet and dry brines based on meat weight, with brand-specific salt density adjustments.</p>
                     </div>
@@ -223,7 +263,7 @@
 
                 <a href="meat-thawing-planner/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">❄️</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v19"/><path d="M4.2 7 19.8 17"/><path d="M19.8 7 4.2 17"/></svg></span>
                         <h3 class="card-title">Meat Thawing Planner</h3>
                         <p class="card-desc">Estimate safe thawing times for turkeys, chickens, beef, and pork using USDA-approved refrigerator and cold-water methods.</p>
                     </div>
@@ -238,7 +278,7 @@
             <div class="grid">
                 <a href="universal-recipe-scaler/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">⚖️</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5V4h5.5"/><path d="M4 4l6.5 6.5"/><path d="M20 14.5V20h-5.5"/><path d="M20 20l-6.5-6.5"/></svg></span>
                         <h3 class="card-title">Universal Recipe Scaler</h3>
                         <p class="card-desc">Instantly scale, multiply, or divide cooking and baking recipes. Easily convert between Metric and Imperial weight and volume measurements.</p>
                     </div>
@@ -250,7 +290,7 @@
 
                 <a href="pan-swap-calculator/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">🍰</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8.5" cy="8.5" r="5"/><rect x="13" y="13" width="8.5" height="8.5" rx="1.6"/></svg></span>
                         <h3 class="card-title">Pan Swap Calculator</h3>
                         <p class="card-desc">Convert baking recipes between round, square, loaf, Bundt, and sheet pans with exact batter volume multipliers and depth adjustments.</p>
                     </div>
@@ -262,7 +302,7 @@
 
                 <a href="dough-hydration-calculator/index.html" class="card">
                     <div class="card-header">
-                        <span class="card-icon">🌾</span>
+                        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="7.5" r="2.6"/><circle cx="16.5" cy="16.5" r="2.6"/><path d="M18.5 5.5 5.5 18.5"/></svg></span>
                         <h3 class="card-title">Dough Hydration Calculator</h3>
                         <p class="card-desc">Calculate baker's percentages, flour blend absorptions, and weights for bread, pizza, and noodle doughs with custom ingredient scaling.</p>
                     </div>
@@ -275,8 +315,44 @@
         </main>
 
         <footer class="lp-foot">
-            <p><a href="https://builtbyjoshstudio.com" target="_blank">Built by Josh Studio LLC</a></p>
-            <p style="margin-top: 8px; opacity: 0.7;">© 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+          <div class="lp-foot-cols">
+            <div class="lp-foot-brand">
+              <div class="lp-brand">
+                <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+                <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+              </div>
+              <p>Free, ad-free, local-first kitchen calculators. No signup, no tracking — everything runs in your browser.</p>
+            </div>
+            <div class="lp-foot-col">
+              <h4>Cooking</h4>
+              <ul>
+                <li><a href="reverse-roasting-calculator/index.html">Reverse Roasting</a></li>
+                <li><a href="perfect-roast-pull-temp-calculator/index.html">Pull Temp</a></li>
+                <li><a href="brine-calculator/index.html">Brine</a></li>
+                <li><a href="meat-thawing-planner/index.html">Meat Thawing</a></li>
+              </ul>
+            </div>
+            <div class="lp-foot-col">
+              <h4>Baking</h4>
+              <ul>
+                <li><a href="universal-recipe-scaler/index.html">Recipe Scaler</a></li>
+                <li><a href="pan-swap-calculator/index.html">Pan Swap</a></li>
+                <li><a href="dough-hydration-calculator/index.html">Dough Hydration</a></li>
+              </ul>
+            </div>
+            <div class="lp-foot-col">
+              <h4>Network</h4>
+              <ul>
+                <li><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Josh Studio</a></li>
+                <li><a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener">Ink &amp; Shadows</a></li>
+                <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="lp-foot-bar">
+            <span><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 &middot; All rights reserved.</span>
+            <span>Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</span>
+          </div>
         </footer>
     </div>
 
