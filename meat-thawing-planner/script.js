@@ -56,16 +56,7 @@ function parseUrlParameters() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Theme switching logic
-    const themeBtns = document.querySelectorAll(".theme-switch button");
-    themeBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const theme = btn.getAttribute("data-set-theme");
-            document.documentElement.setAttribute("data-theme", theme);
-            themeBtns.forEach(b => b.classList.remove("on"));
-            btn.classList.add("on");
-        });
-    });
+    // Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
 
     // Parse incoming params
     parseUrlParameters();

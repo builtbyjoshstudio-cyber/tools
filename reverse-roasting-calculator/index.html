@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/">
     <meta property="og:image" content="https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/og-preview.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
     {
@@ -42,7 +42,11 @@
     <div class="app-container">
         <header>
             <div class="header-top">
-                <button id="theme-toggle" class="theme-toggle-btn">Theme: Dark</button>
+                <div class="theme-switch" role="tablist" aria-label="Theme">
+                    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+                    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+                    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+                </div>
             </div>
             <h1>Reverse Roasting Timeline Calculator</h1>
             <p>Calculate exact reverse cooking timelines for turkeys, roasts, and barbecue. Input your target dinner time and get a chronological oven schedule.</p>
@@ -150,5 +154,6 @@
         </footer>
     </div>
     <script src="script.js"></script>
+<script src="../kinetic.js"></script>
 </body>
 </html>
