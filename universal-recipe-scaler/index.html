@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <title>Universal Recipe Scaler | Ad-Free Ingredient Converter</title>
     <meta name="description" content="Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.">
     <link rel="canonical" href="https://tools.builtbyjoshstudio.com/universal-recipe-scaler/" />
-    
+
     <!-- Open Graph Tags -->
     <meta property="og:title" content="Universal Recipe Scaler | Ad-Free Ingredient Converter">
     <meta property="og:description" content="Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.">
@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://tools.builtbyjoshstudio.com/universal-recipe-scaler/">
     <meta property="og:image" content="https://tools.builtbyjoshstudio.com/universal-recipe-scaler/og-preview.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    
+
     <!-- Schema Markup -->
     <script type="application/ld+json">
     {
@@ -27,137 +27,160 @@
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "description": "Automatically scales recipe ingredients and seamlessly converts between Metric and Imperial units for precise cooking.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Built by Josh Studio LLC"
-      }
+      "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
     }
     </script>
 
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+      /* ---- Tynkr Kinetic tool shell (wide variant) ---- */
+      .tool-nav { max-width: 1100px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
+      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .tn-brand .name b { color: var(--ink); font-weight: 600; }
+      .page.tool-shell { max-width: 1100px; padding-top: 28px; }
+      .tool-shell .hero { padding-left: 0; padding-right: 0; }
+      .net-band { max-width: 1100px; margin: 56px auto 0; padding: 0 28px; }
+      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .net-grid .gear-img-wrapper { height: 120px; }
+      @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <div class="header-top" style="justify-content: space-between;">
-                <a class="kx-back" href="../index.html">← All calculators</a>
-                <div class="theme-switch" role="tablist" aria-label="Theme">
-                    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-                    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-                    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+
+    <nav class="tool-nav">
+      <div class="tn-left">
+        <a class="tn-back" href="../index.html">&larr; All tools</a>
+        <span class="tn-brand">
+          <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+          <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+        </span>
+      </div>
+      <div class="theme-switch" role="tablist" aria-label="Theme">
+        <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+        <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+        <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+      </div>
+    </nav>
+
+    <main class="page tool-shell">
+        <header class="hero glass">
+            <div style="flex:1; min-width:0">
+                <div class="meta">
+                    <span class="pill live">&#9679; Utilities</span>
+                    <span>Metric &amp; imperial conversion</span>
                 </div>
+                <h1>Universal Recipe Scaler</h1>
+                <p>Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.</p>
             </div>
-            <h1>Universal Recipe Scaler</h1>
-            <p>Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.</p>
         </header>
 
-        <main class="content-grid">
-            <section class="scaler-section">
-                <div class="controls-card glass-panel">
-                    <div class="scale-buttons">
-                        <button class="scale-btn" data-scale="0.5">0.5x</button>
-                        <button class="scale-btn" data-scale="1">1x</button>
-                        <button class="scale-btn" data-scale="2">2x</button>
-                        <button class="scale-btn" data-scale="3">3x</button>
-                    </div>
-                    
-                    <div class="custom-scale-wrapper" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
-                        <div class="custom-scale">
-                            <div class="input-group">
-                                <label for="original-servings">Original Servings</label>
-                                <input type="number" id="original-servings" value="4" min="1" step="1">
-                            </div>
-                            <div class="input-group">
-                                <label for="target-servings">Target Servings</label>
-                                <input type="number" id="target-servings" value="4" min="1" step="1">
-                            </div>
-                            <button id="apply-custom-scale" class="primary-btn">Scale</button>
-                        </div>
-                        
-                        <div class="tynkr-unit-toggle-wrapper">
-                            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">US / Imperial</button>
-                            <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric</button>
-                        </div>
-                    </div>
+        <section class="scaler-section">
+            <div class="controls-card glass-panel">
+                <div class="scale-buttons">
+                    <button class="scale-btn" data-scale="0.5">0.5x</button>
+                    <button class="scale-btn" data-scale="1">1x</button>
+                    <button class="scale-btn" data-scale="2">2x</button>
+                    <button class="scale-btn" data-scale="3">3x</button>
                 </div>
 
-                <div class="recipe-workarea">
-                    <div class="input-area">
-                        <label for="recipe-input">Paste Ingredients Here</label>
-                        <textarea id="recipe-input" placeholder="Paste your ingredients here (one per line).&#10;&#10;Please omit cooking instructions to ensure accurate scaling."></textarea>
+                <div class="custom-scale-wrapper" style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+                    <div class="custom-scale">
+                        <div class="input-group">
+                            <label for="original-servings">Original Servings</label>
+                            <input type="number" id="original-servings" class="form-input" value="4" min="1" step="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="target-servings">Target Servings</label>
+                            <input type="number" id="target-servings" class="form-input" value="4" min="1" step="1">
+                        </div>
+                        <button id="apply-custom-scale" class="primary-btn">Scale</button>
                     </div>
-                    
-                    <div class="output-area glass-panel">
-                        <h2>Scaled Recipe (<span id="current-multiplier-display">1x</span>)</h2>
-                        <div id="recipe-output" class="scaled-results">
-                            <p class="placeholder-text">Your scaled ingredients will appear here...</p>
-                        </div>
-                        <div id="egg-tip-box" style="display: none; margin-top: 1.5rem; padding: 1.2rem; border-radius: 12px; background: rgba(128, 128, 128, 0.05); border: 1px solid var(--border-light); font-size: 0.95rem; line-height: 1.6; color: var(--text-main); height: auto; overflow: visible;">
-                            Chef's Tip for Fractional Eggs: If your scaled recipe calls for a fraction of an egg, whisk a whole egg in a small bowl. 1 whole egg equals roughly 3 Tablespoons (or 46g). For 0.5 eggs, use exactly 1.5 Tablespoons. For smaller fractions, use a single egg yolk or a splash of milk.
-                        </div>
-                        <div id="volumetric-warning-box" style="display: none; margin-top: 1rem; padding: 1.2rem; border-radius: 12px; background: rgba(128, 128, 128, 0.05); border: 1px solid var(--border-light); font-size: 0.95rem; line-height: 1.6; color: var(--text-main); height: auto; overflow: visible;">
-                            Chef's Note: Volumetric baking measurements (cups) become highly inaccurate when scaled up massively due to compaction. For bulletproof professional results, consider converting your core ingredients to weight (grams).
-                        </div>
-                        <div class="action-buttons">
-                            <button id="copy-btn" class="action-btn">Copy to Clipboard</button>
-                            <button id="print-btn" class="action-btn">Print Recipe</button>
-                        </div>
+
+                    <div class="tynkr-unit-toggle-wrapper">
+                        <button type="button" id="unit-imperial" class="tynkr-unit-btn active">US / Imperial</button>
+                        <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric</button>
                     </div>
                 </div>
+            </div>
 
-                <div class="tips-section glass-panel">
-                    <h2>A few things I've learned scaling recipes:</h2>
-                    <p style="margin-bottom: 1rem; line-height: 1.6;">Scaling the numbers is the easy part — this tool handles that. What the math won't tell you is that some things don't scale 1:1. Salt and strong spices are the big ones: double a recipe and you usually want a little less than double the salt, then adjust at the end by tasting. Same with garlic and chili — they get louder in bulk.</p>
-                    <p style="margin-bottom: 1rem; line-height: 1.6;">Liquids and reductions are the other trap. If you scale up a sauce, you've got more liquid to cook off, so go by how it looks and coats a spoon, not by the original time. A bigger batch almost always takes longer to reduce than you'd expect.</p>
-                    <p style="margin-bottom: 1.5rem; line-height: 1.6;">And when in doubt, scale by weight instead of volume. Cups get unreliable fast when you're multiplying — a scale is the cheapest upgrade to your cooking I can think of.</p>
+            <div class="recipe-workarea">
+                <div class="input-area">
+                    <label for="recipe-input">Paste Ingredients Here</label>
+                    <textarea id="recipe-input" class="form-input" placeholder="Paste your ingredients here (one per line).&#10;&#10;Please omit cooking instructions to ensure accurate scaling."></textarea>
                 </div>
-            </section>
 
-            <aside class="sidebar glass-panel">
-                <h2>Featured Network</h2>
-                <div class="gear-list">
-                    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
-                        <div class="gear-img-wrapper">
-                            <img src="studio-link.jpg" alt="Clean modern software development workspace with laptop and coffee">
-                        </div>
-                        <div class="gear-info">
-                            <h3>Built By Josh Studio</h3>
-                            <p>Local-first software, CRM solutions, and technical projects.</p>
-                            <button class="affiliate-btn">Visit Website</button>
-                        </div>
-                    </a>
-                    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
-                        <div class="gear-img-wrapper">
-                            <img src="tales-link.jpg" alt="Vintage cinematic noir aesthetic with classic film camera">
-                        </div>
-                        <div class="gear-info">
-                            <h3>Tales of Ink & Shadows</h3>
-                            <p>Historical noir documentaries and immersive storytelling.</p>
-                            <button class="affiliate-btn">Watch on YouTube</button>
-                        </div>
-                    </a>
-                    <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
-                        <div class="gear-img-wrapper">
-                            <img src="tynkr-link.jpg" alt="Organized workspace for productivity and Notion templates">
-                        </div>
-                        <div class="gear-info">
-                            <h3>Tynkr Tools & Co. Substack</h3>
-                            <p>Deep dives into productivity, Notion templates, and studio updates.</p>
-                            <button class="affiliate-btn">Subscribe</button>
-                        </div>
-                    </a>
+                <div class="output-area glass-panel">
+                    <h2>Scaled Recipe (<span id="current-multiplier-display">1x</span>)</h2>
+                    <div id="recipe-output" class="scaled-results">
+                        <p class="placeholder-text">Your scaled ingredients will appear here...</p>
+                    </div>
+                    <div id="egg-tip-box" style="display: none; margin-top: 1.5rem; padding: 1.2rem; border-radius: var(--r-s); background: var(--surface-2); border: 2px solid var(--line-2); font-size: 0.95rem; line-height: 1.6; color: var(--ink); height: auto; overflow: visible;">
+                        Chef's Tip for Fractional Eggs: If your scaled recipe calls for a fraction of an egg, whisk a whole egg in a small bowl. 1 whole egg equals roughly 3 Tablespoons (or 46g). For 0.5 eggs, use exactly 1.5 Tablespoons. For smaller fractions, use a single egg yolk or a splash of milk.
+                    </div>
+                    <div id="volumetric-warning-box" style="display: none; margin-top: 1rem; padding: 1.2rem; border-radius: var(--r-s); background: var(--surface-2); border: 2px solid var(--line-2); font-size: 0.95rem; line-height: 1.6; color: var(--ink); height: auto; overflow: visible;">
+                        Chef's Note: Volumetric baking measurements (cups) become highly inaccurate when scaled up massively due to compaction. For bulletproof professional results, consider converting your core ingredients to weight (grams).
+                    </div>
+                    <div class="action-buttons">
+                        <button id="copy-btn" class="action-btn">Copy to Clipboard</button>
+                        <button id="print-btn" class="action-btn">Print Recipe</button>
+                    </div>
                 </div>
-            </aside>
-        </main>
-    </div>
+            </div>
+
+            <div class="tips-section glass-panel">
+                <h2>A few things I've learned scaling recipes:</h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Scaling the numbers is the easy part &mdash; this tool handles that. What the math won't tell you is that some things don't scale 1:1. Salt and strong spices are the big ones: double a recipe and you usually want a little less than double the salt, then adjust at the end by tasting. Same with garlic and chili &mdash; they get louder in bulk.</p>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Liquids and reductions are the other trap. If you scale up a sauce, you've got more liquid to cook off, so go by how it looks and coats a spoon, not by the original time. A bigger batch almost always takes longer to reduce than you'd expect.</p>
+                <p style="margin-bottom: 0; line-height: 1.6;">And when in doubt, scale by weight instead of volume. Cups get unreliable fast when you're multiplying &mdash; a scale is the cheapest upgrade to your cooking I can think of.</p>
+            </div>
+        </section>
+    </main>
+
+    <section class="net-band">
+        <h2><span class="lbl">Network</span> More from the studio</h2>
+        <div class="net-grid">
+            <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+                <div class="gear-img-wrapper"><img src="studio-link.jpg" alt="Built By Josh Studio"></div>
+                <div class="gear-info">
+                    <h3>Built By Josh Studio</h3>
+                    <p>Local-first software, CRM solutions, and technical projects.</p>
+                    <button class="affiliate-btn">Visit Website</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+                <div class="gear-img-wrapper"><img src="tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+                <div class="gear-info">
+                    <h3>Tales of Ink &amp; Shadows</h3>
+                    <p>Historical noir documentaries and immersive storytelling.</p>
+                    <button class="affiliate-btn">Watch on YouTube</button>
+                </div>
+            </a>
+            <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+                <div class="gear-img-wrapper"><img src="tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+                <div class="gear-info">
+                    <h3>Tynkr Tools &amp; Co. Substack</h3>
+                    <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                    <button class="affiliate-btn">Subscribe</button>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6;">
+        <p style="margin:0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+    </footer>
+
     <script src="script.js"></script>
-<script src="../kinetic.js"></script>
+    <script src="../kinetic.js"></script>
 </body>
 </html>
