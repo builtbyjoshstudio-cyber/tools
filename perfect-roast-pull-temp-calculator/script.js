@@ -255,7 +255,7 @@ function calculate() {
                     restTimeStr = "5 mins for steaks/chops";
                     break;
                 case 'thin':
-                    carryoverSubF = 5;
+                    carryoverSubF = 3;
                     restTimeStr = "5 mins for thin cuts";
                     break;
             }
