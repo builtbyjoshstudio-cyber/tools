@@ -26,135 +26,154 @@
         "description": "Automatically calculates reverse cooking timelines for roasts, barbecues, and holiday meals based on meat type and weight.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Built by Josh Studio LLC"
-        }
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
     }
     </script>
+
+    <style>
+      /* ---- Tynkr Kinetic tool shell ---- */
+      .tool-nav { max-width: 920px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
+      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .tn-brand .name b { color: var(--ink); font-weight: 600; }
+      .page.tool-shell { max-width: 920px; padding-top: 28px; }
+      .tool-shell .hero { padding-left: 0; padding-right: 0; }
+      .tool-controls { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+      .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
+      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .net-grid .gear-img-wrapper { height: 120px; }
+      @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <div class="header-top" style="justify-content: space-between;">
-                <a class="kx-back" href="../index.html">← All calculators</a>
-                <div class="theme-switch" role="tablist" aria-label="Theme">
-                    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-                    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-                    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+
+    <nav class="tool-nav">
+      <div class="tn-left">
+        <a class="tn-back" href="../index.html">&larr; All tools</a>
+        <span class="tn-brand">
+          <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+          <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+        </span>
+      </div>
+      <div class="theme-switch" role="tablist" aria-label="Theme">
+        <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+        <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+        <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+      </div>
+    </nav>
+
+    <main class="page tool-shell">
+        <header class="hero glass">
+            <div style="flex:1; min-width:0">
+                <div class="meta">
+                    <span class="pill live">&#9679; Utilities</span>
+                    <span>Oven &amp; prep schedule</span>
                 </div>
+                <h1>Reverse Roasting Timeline</h1>
+                <p>Calculate exact reverse cooking timelines for turkeys, roasts, and barbecue. Input your target dinner time and get a chronological oven schedule.</p>
             </div>
-            <h1>Reverse Roasting Timeline Calculator</h1>
-            <p>Calculate exact reverse cooking timelines for turkeys, roasts, and barbecue. Input your target dinner time and get a chronological oven schedule.</p>
         </header>
 
-        <main class="content-grid">
-            <section class="calculator-section">
-                <div class="controls-card glass-panel">
-                    <div style="display: flex; justify-content: flex-end; margin-bottom: 16px;">
-                        <div class="tynkr-unit-toggle-wrapper">
-                            <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Imperial (lbs)</button>
-                            <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric (kg)</button>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label for="protein-type">Meat Selection</label>
-                        <select id="protein-type" name="proteinType">
-                            <optgroup label="Poultry">
-                                <option value="turkey">Turkey (Whole or Breast)</option>
-                                <option value="chicken">Chicken (Whole or Pieces)</option>
-                                <option value="duck-goose">Duck & Goose</option>
-                            </optgroup>
-                            <optgroup label="Beef">
-                                <option value="beef-roast">Beef Roasts (Prime Rib/Tri-Tip)</option>
-                                <option value="beef-brisket">Beef Brisket (Low & Slow)</option>
-                                <option value="beef-steak">Steaks & Chops (Individual)</option>
-                            </optgroup>
-                            <optgroup label="Pork & Lamb">
-                                <option value="pork-shoulder">Pork Shoulder & Hams</option>
-                                <option value="lamb">Lamb Leg or Rack</option>
-                            </optgroup>
-                            <optgroup label="Ground, Game & Seafood">
-                                <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
-                                <option value="game-meat">Venison & Bison (Lean Game)</option>
-                                <option value="seafood">Fish & Seafood</option>
-                            </optgroup>
-                        </select>
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="meat-weight">Weight (lbs)</label>
-                        <input type="number" id="meat-weight" value="10" min="1" step="0.1">
-                    </div>
-                    
-                    <div class="input-group">
-                        <label for="target-time">Target Dinner Time</label>
-                        <input type="time" id="target-time" value="18:00">
-                    </div>
-                    
-                    <button id="generate-btn" class="primary-btn">Generate Timeline</button>
-                </div>
+        <div class="tool-controls">
+            <div class="tynkr-unit-toggle-wrapper">
+                <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Imperial (lbs)</button>
+                <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric (kg)</button>
+            </div>
+        </div>
 
-                <div class="output-area glass-panel">
-                    <h2>Your Roasting Timeline</h2>
-                    <ul id="timeline-output" class="timeline-list">
-                        <li class="placeholder-text">Enter your details and click Generate to see your timeline.</li>
-                    </ul>
-                    <div class="action-buttons">
-                        <button id="copy-btn" class="action-btn">Copy to Clipboard</button>
-                    </div>
-                </div>
-            </section>
+        <div class="controls-card glass-panel" style="margin-bottom: 24px;">
+            <div class="input-group">
+                <label for="protein-type">Meat Selection</label>
+                <select id="protein-type" name="proteinType" class="form-input">
+                    <optgroup label="Poultry">
+                        <option value="turkey">Turkey (Whole or Breast)</option>
+                        <option value="chicken">Chicken (Whole or Pieces)</option>
+                        <option value="duck-goose">Duck &amp; Goose</option>
+                    </optgroup>
+                    <optgroup label="Beef">
+                        <option value="beef-roast">Beef Roasts (Prime Rib/Tri-Tip)</option>
+                        <option value="beef-brisket">Beef Brisket (Low &amp; Slow)</option>
+                        <option value="beef-steak">Steaks &amp; Chops (Individual)</option>
+                    </optgroup>
+                    <optgroup label="Pork &amp; Lamb">
+                        <option value="pork-shoulder">Pork Shoulder &amp; Hams</option>
+                        <option value="lamb">Lamb Leg or Rack</option>
+                    </optgroup>
+                    <optgroup label="Ground, Game &amp; Seafood">
+                        <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
+                        <option value="game-meat">Venison &amp; Bison (Lean Game)</option>
+                        <option value="seafood">Fish &amp; Seafood</option>
+                    </optgroup>
+                </select>
+            </div>
 
-            <aside class="sidebar glass-panel">
-                <h2>Featured Network</h2>
-                <div class="gear-list">
-                    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" class="gear-item">
-                        <div class="gear-img-wrapper">
-                            <img src="studio-link.jpg" alt="Clean modern software development workspace with laptop and coffee">
-                        </div>
-                        <div class="gear-info">
-                            <h3>Built By Josh Studio</h3>
-                            <p>Local-first software, CRM solutions, and technical projects.</p>
-                            <button class="affiliate-btn">Visit Website</button>
-                        </div>
-                    </a>
-                    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" class="gear-item">
-                        <div class="gear-img-wrapper">
-                            <img src="tales-link.jpg" alt="Vintage cinematic noir aesthetic with classic film camera">
-                        </div>
-                        <div class="gear-info">
-                            <h3>Tales of Ink & Shadows</h3>
-                            <p>Historical noir documentaries and immersive storytelling.</p>
-                            <button class="affiliate-btn">Watch on YouTube</button>
-                        </div>
-                    </a>
-                    <a href="https://tynkrtoolsco.substack.com/" target="_blank" class="gear-item">
-                        <div class="gear-img-wrapper">
-                            <img src="tynkr-link.jpg" alt="Organized workspace for productivity and Notion templates">
-                        </div>
-                        <div class="gear-info">
-                            <h3>Tynkr Tools & Co. Substack</h3>
-                            <p>Deep dives into productivity, Notion templates, and studio updates.</p>
-                            <button class="affiliate-btn">Subscribe</button>
-                        </div>
-                    </a>
-                </div>
-            </aside>
-        </main>
-        
+            <div class="input-group">
+                <label for="meat-weight">Weight (lbs)</label>
+                <input type="number" id="meat-weight" class="form-input" value="10" min="1" step="0.1">
+            </div>
+
+            <div class="input-group">
+                <label for="target-time">Target Dinner Time</label>
+                <input type="time" id="target-time" class="form-input" value="18:00">
+            </div>
+
+            <button id="generate-btn" class="primary-btn" style="width: 100%; justify-content: center; margin-top: 4px;">Generate Timeline</button>
+        </div>
+
+        <div class="output-area glass-panel">
+            <h2>Your Roasting Timeline</h2>
+            <ul id="timeline-output" class="timeline-list">
+                <li class="placeholder-text">Enter your details and click Generate to see your timeline.</li>
+            </ul>
+            <div class="action-buttons">
+                <button id="copy-btn" class="btn">Copy to Clipboard</button>
+            </div>
+        </div>
+
         <p class="disclaimer">Disclaimer: These timelines are estimated guidelines. Actual cooking times vary significantly based on oven calibration, starting meat temperature, and resting environment. For food safety, always verify the final internal temperature of the meat with a calibrated digital thermometer before serving.</p>
-        
-        <footer>
-            <p>&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools & Co is a brand of Built by Josh Studio LLC.</p>
-        </footer>
-    </div>
+    </main>
+
+    <section class="net-band">
+        <h2><span class="lbl">Network</span> More from the studio</h2>
+        <div class="net-grid">
+            <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+                <div class="gear-img-wrapper"><img src="studio-link.jpg" alt="Built By Josh Studio"></div>
+                <div class="gear-info">
+                    <h3>Built By Josh Studio</h3>
+                    <p>Local-first software, CRM solutions, and technical projects.</p>
+                    <button class="affiliate-btn">Visit Website</button>
+                </div>
+            </a>
+            <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+                <div class="gear-img-wrapper"><img src="tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+                <div class="gear-info">
+                    <h3>Tales of Ink &amp; Shadows</h3>
+                    <p>Historical noir documentaries and immersive storytelling.</p>
+                    <button class="affiliate-btn">Watch on YouTube</button>
+                </div>
+            </a>
+            <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+                <div class="gear-img-wrapper"><img src="tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+                <div class="gear-info">
+                    <h3>Tynkr Tools &amp; Co. Substack</h3>
+                    <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+                    <button class="affiliate-btn">Subscribe</button>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6;">
+        <p style="margin:0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+    </footer>
+
     <script src="script.js"></script>
-<script src="../kinetic.js"></script>
+    <script src="../kinetic.js"></script>
 </body>
 </html>
