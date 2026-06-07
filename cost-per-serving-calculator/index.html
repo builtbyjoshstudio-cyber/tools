@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.">
+<meta property="og:title" content="Cost Per Serving Calculator | Free Recipe Pricing Utility">
+<meta property="og:description" content="Calculate total recipe cost, cost per serving, and waste buffer allowances. Features dynamic ingredients ledger, automatic unit conversions, and local-first data.">
+<meta property="og:image" content="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/og-preview.jpg">
+<meta property="og:url" content="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<title>Cost Per Serving Calculator | Free Recipe Pricing Utility</title>
+<link rel="canonical" href="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Cost Per Serving Calculator",
+  "url": "https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/",
+  "description": "Calculate total recipe costs, per-serving unit economics, and waste buffer allowances with support for mass and volume ingredient conversions. Free and local-first.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (web browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ---- Tool shell (built on Kinetic tokens; NO glass overrides) ---- */
+  .tool-nav {
+    max-width: 920px; margin: 0 auto; padding: 26px 28px 0;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .tn-back {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink);
+    text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s);
+    padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+  }
+  .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+  .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
+  .tn-brand .name {
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .tn-brand .name b { color: var(--ink); font-weight: 600; }
+
+  .page.tool-shell { max-width: 920px; padding-top: 28px; }
+  .tool-shell .hero { padding-left: 0; padding-right: 0; }
+
+  .tool-controls {
+    display: flex; justify-content: flex-start; gap: 14px;
+    flex-wrap: wrap; margin-bottom: 22px;
+  }
+
+  /* ---- Network band (demoted from sidebar to footer band) ---- */
+  .net-band { max-width: 920px; margin: 64px auto 0; padding: 0 28px; }
+  .net-band h2 {
+    font-family: var(--font-display); font-weight: 800; font-size: 20px;
+    letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px;
+    border-bottom: 2px solid var(--line-2);
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .net-band h2 .lbl {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+  }
+  .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .net-grid .gear-img-wrapper { height: 120px; }
+
+  @media (max-width: 760px) {
+    .net-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="tool-nav">
+  <div class="tn-left">
+    <a class="tn-back" href="../index.html">&larr; All tools</a>
+    <span class="tn-brand">
+      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </span>
+  </div>
+  <div class="theme-switch" role="tablist" aria-label="Theme">
+    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+  </div>
+</nav>
+
+<main class="page tool-shell">
+
+  <header class="hero glass">
+    <div style="flex:1; min-width: 0">
+      <div class="meta">
+        <span class="pill live">&#9679; Utilities</span>
+        <span>Recipe costing &amp; unit economics</span>
+      </div>
+      <h1>Cost Per Serving Calculator</h1>
+      <p>Calculate total recipe cost, cost per serving, and analyze ingredient leftovers with support for volume-to-volume and mass-to-mass conversions.</p>
+    </div>
+  </header>
+
+  <div class="glass type-card" style="margin-bottom: 24px; padding: 24px;">
+    <div class="role">Recipe Parameters</div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+      <div class="input-group">
+        <span class="input-label">Recipe Servings</span>
+        <input type="number" id="servings" class="form-input" value="4" min="1" step="1">
+      </div>
+
+      <div class="input-group">
+        <span class="input-label">Waste / Buffer: <span id="waste-val">0%</span></span>
+        <input type="range" id="waste" class="form-input-range" value="0" min="0" max="50" step="5">
+      </div>
+    </div>
+  </div>
+
+  <div class="glass type-card" style="margin-bottom: 24px; padding: 24px;">
+    <div class="role">Ingredients Ledger</div>
+
+    <div class="ledger-header">
+      <span>Ingredient Name</span>
+      <span>Amt Used</span>
+      <span>Unit</span>
+      <span>Pack Size</span>
+      <span>Unit</span>
+      <span>Pack Cost</span>
+      <span>Action</span>
+    </div>
+
+    <div id="ledger-rows" class="ledger-rows">
+      <!-- Dynamic Rows get injected here -->
+    </div>
+
+    <div class="add-row-btn-container">
+      <button type="button" id="add-ingredient-btn" class="btn">+ Add Ingredient</button>
+    </div>
+  </div>
+
+  <div class="glass anatomy" style="margin-bottom: 24px;">
+    <div class="anatomy-stage" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; padding: 32px 24px;">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Cost Per Serving</div>
+        <div id="cost-per-serving-output" style="font-family: var(--font-display); font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent);">$0.00</div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Total Recipe Cost</div>
+        <div id="total-cost-output" style="font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--ink);">$0.00</div>
+      </div>
+    </div>
+
+    <div class="anatomy-labels" style="padding-top: 16px;">
+      <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;">Cost Breakdown</div>
+      <div id="breakdown-list" style="display: flex; flex-direction: column; gap: 10px;">
+        <!-- Dynamic Breakdown Row List gets injected here -->
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<section class="net-band">
+  <h2><span class="lbl">Network</span> More from the studio</h2>
+  <div class="net-grid">
+    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/studio-link.jpg" alt="Built By Josh Studio"></div>
+      <div class="gear-info">
+        <h4>Built By Josh Studio</h4>
+        <p>Local-first software, CRM solutions, and technical projects.</p>
+        <button class="affiliate-btn">Visit Website</button>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+      <div class="gear-info">
+        <h4>Tales of Ink &amp; Shadows</h4>
+        <p>Historical noir documentaries and immersive storytelling.</p>
+        <button class="affiliate-btn">Watch on YouTube</button>
+      </div>
+    </a>
+    <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+      <div class="gear-info">
+        <h4>Tynkr Tools &amp; Co.</h4>
+        <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+        <button class="affiliate-btn">Subscribe</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
+  <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
+  <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="../kinetic.js"></script>
+</body>
+</html>
