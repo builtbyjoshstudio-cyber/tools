@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let hasFractionalEggs = false;
 
-        const unitRegex = /(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)\s*(cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|inches|inch|in\.?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b/gi;
+        const unitRegex = /(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)\s*(cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|°?c|celsius|inches|inch|in\.?|cm|centimeters?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b/gi;
         const startNumberRegex = /^(\s*)(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)(?!\s*(?:cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|inches|inch|in\.?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b)/i;
 
         lines.forEach(line => {
@@ -136,10 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let unit = unitStr.toLowerCase();
                 let isF = /^(°?f|fahrenheit)$/.test(unit);
                 let isIn = /^(inches|inch|in\.?)$/.test(unit);
+                let isC = /^(°?c|celsius)$/.test(unit);
+                let isCm = /^(centimeters?|cm\.?)$/.test(unit);
 
                 // Multiplier conditionally applied
                 let scaledNum = num;
-                if (!isF && !isIn) {
+                if (!isF && !isIn && !isC && !isCm) {
                     scaledNum = num * currentMultiplier;
                 }
 
@@ -201,10 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
                             scaledNum = Number(scaledNum.toFixed(1));
                         } else if (outUnit === 'kg') {
                             scaledNum = Number(scaledNum.toFixed(2));
-                        } else if (outUnit === 'ml' || outUnit === 'g' || outUnit === '°C') {
+                        } else if (outUnit === 'ml' || outUnit === 'g' || outUnit === '°C' || outUnit === '°F') {
                             scaledNum = Math.round(scaledNum);
                         } else {
-                            // Default fallback e.g. for cm or gal
+                            // Default fallback e.g. for cm, in, or gal
                             scaledNum = Number(scaledNum.toFixed(1));
                         }
                     }
@@ -221,6 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (isG || unit === 'kg') {
                         if (unit === 'kg') scaledNum *= 1000;
                         scaledNum /= 28.35; outUnit = 'oz';
+                    } else if (isC) {
+                        scaledNum = (scaledNum * 9 / 5) + 32;
+                        scaledNum = Math.round(scaledNum / 5) * 5;
+                        outUnit = '°F';
+                        useFraction = false;
+                    } else if (isCm) {
+                        scaledNum = scaledNum / 2.54;
+                        outUnit = 'in';
+                        useFraction = false;
                     }
                 }
 

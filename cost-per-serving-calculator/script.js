@@ -191,7 +191,7 @@ function calculate() {
             breakdownList.push({
                 name: nameDisplay,
                 mismatch: true,
-                message: 'Dimension mismatch (mass vs volume)'
+                message: `Dimension mismatch (${usedDim} vs ${packDim})`
             });
             // Visual warning on row border
             const rowEl = document.getElementById(`row-${item.id}`);

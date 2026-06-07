@@ -61,8 +61,12 @@ function updateInputs() {
 
 function getArea(shape, prefix) {
   if (shape === 'muffin') {
+    // Rounded sq-cm constants (64 sq in ≈ 412.9).
+    // Intentionally rounded; any future depth-warning logic extended to muffin must account for this rounding rather than reusing the ÷6.4516 normalization directly.
     return (unitToggle && unitToggle.checked) ? 412 : 64;
   } else if (shape === 'bundt') {
+    // Rounded sq-cm constants (117 sq in ≈ 754.8).
+    // Intentionally rounded; any future depth-warning logic extended to bundt must account for this rounding rather than reusing the ÷6.4516 normalization directly.
     return (unitToggle && unitToggle.checked) ? 754 : 117;
   }
 
