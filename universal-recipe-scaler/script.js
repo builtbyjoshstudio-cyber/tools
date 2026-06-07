@@ -16,11 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentMultiplier = 1;
 
+    function autoResizeInput() {
+        recipeInput.style.height = 'auto';
+        recipeInput.style.height = recipeInput.scrollHeight + 'px';
+    }
+
     // Load saved recipe from local storage
     const savedRecipe = localStorage.getItem('savedRecipe');
     if (savedRecipe) {
         recipeInput.value = savedRecipe;
     }
+    autoResizeInput();
 
     // Parse string to float
     function parseNumber(str) {
@@ -223,6 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (isG || unit === 'kg') {
                         if (unit === 'kg') scaledNum *= 1000;
                         scaledNum /= 28.35; outUnit = 'oz';
+                        useFraction = false;
+                        scaledNum = Number(scaledNum.toFixed(1));
                     } else if (isC) {
                         scaledNum = (scaledNum * 9 / 5) + 32;
                         scaledNum = Math.round(scaledNum / 5) * 5;
@@ -311,6 +319,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (unitImperialBtn) unitImperialBtn.addEventListener('click', () => setUnitSystem('imperial'));
     if (unitMetricBtn) unitMetricBtn.addEventListener('click', () => setUnitSystem('metric'));
     recipeInput.addEventListener('input', scaleRecipe);
+    recipeInput.addEventListener('input', autoResizeInput);
+    recipeInput.addEventListener('paste', () => {
+        setTimeout(autoResizeInput, 0);
+    });
 
     scaleButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
