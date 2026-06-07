@@ -33,6 +33,47 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you scale a recipe up or down?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply every ingredient quantity by the same factor — doubling a recipe means multiplying each amount by two. The tricky part is keeping the ratios consistent and rounding to amounts you can actually measure, which this tool handles automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert a recipe between metric and imperial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Paste a recipe in either system and switch the output toggle — the tool converts weights, volumes, temperatures, and lengths between metric and US customary units as it scales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I scale spices and salt at the same rate as everything else?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not always. Strong seasonings, salt, garlic, and leavening often don't scale linearly — doubling a recipe rarely needs exactly double the cayenne. Scale them, then taste and adjust toward the lower end."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does scaling change cooking times?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually yes for volume-dependent steps but not always proportionally. A doubled cake batter in a bigger pan bakes longer; a doubled sauce may simmer about the same. Use times as a starting point and judge by doneness."
+          }
+        }
+      ]
+    }
+    </script>
+
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
@@ -144,7 +185,30 @@
                 <p style="margin-bottom: 0; line-height: 1.6;">And when in doubt, scale by weight instead of volume. Cups get unreliable fast when you're multiplying &mdash; a scale is the cheapest upgrade to your cooking I can think of.</p>
             </div>
         </section>
-    </main>
+      <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px;">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do you scale a recipe up or down?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Multiply every ingredient quantity by the same factor — doubling a recipe means multiplying each amount by two. The tricky part is keeping the ratios consistent and rounding to amounts you can actually measure, which this tool handles automatically.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I convert a recipe between metric and imperial?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Yes. Paste a recipe in either system and switch the output toggle — the tool converts weights, volumes, temperatures, and lengths between metric and US customary units as it scales.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Should I scale spices and salt at the same rate as everything else?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Not always. Strong seasonings, salt, garlic, and leavening often don't scale linearly — doubling a recipe rarely needs exactly double the cayenne. Scale them, then taste and adjust toward the lower end.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does scaling change cooking times?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Usually yes for volume-dependent steps but not always proportionally. A doubled cake batter in a bigger pan bakes longer; a doubled sauce may simmer about the same. Use times as a starting point and judge by doneness.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
 
     <section class="net-band">
         <h2><span class="lbl">Network</span> More from the studio</h2>

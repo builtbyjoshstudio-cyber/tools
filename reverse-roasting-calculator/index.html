@@ -31,6 +31,47 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a reverse cooking timeline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Instead of working forward from when you start, you work backward from when you want to eat. You set your target dinner time and the tool schedules each step — prep, roasting, and resting — so everything finishes together."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know when to start cooking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter your protein, its weight, and your target serving time. The tool calculates total cook time from the weight, adds resting and prep buffers, and tells you the exact time to begin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should meat rest after roasting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Resting lets juices redistribute and accounts for carryover cooking."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are these cooking times exact?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures."
+          }
+        }
+      ]
+    }
+    </script>
+
     <style>
       /* ---- Tynkr Kinetic tool shell ---- */
       .tool-nav { max-width: 920px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -138,7 +179,30 @@
 
         <p class="disclaimer" style="margin-bottom: 0;">Disclaimer: These timelines are estimated guidelines. Actual cooking times vary significantly based on oven calibration, starting meat temperature, and resting environment. For food safety, always verify the final internal temperature of the meat with a calibrated digital thermometer before serving.</p>
         <p class="disclaimer" style="margin-top: 6px; margin-bottom: 0.5rem;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
-    </main>
+      <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px;">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is a reverse cooking timeline?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Instead of working forward from when you start, you work backward from when you want to eat. You set your target dinner time and the tool schedules each step — prep, roasting, and resting — so everything finishes together.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do I know when to start cooking?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Enter your protein, its weight, and your target serving time. The tool calculates total cook time from the weight, adds resting and prep buffers, and tells you the exact time to begin.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long should meat rest after roasting?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Resting lets juices redistribute and accounts for carryover cooking.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Are these cooking times exact?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
 
     <section class="net-band">
         <h2><span class="lbl">Network</span> More from the studio</h2>

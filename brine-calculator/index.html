@@ -27,6 +27,47 @@
 }
 </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the difference between a wet brine and a dry brine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A wet brine dissolves salt in water and submerges the meat; a dry brine applies salt directly to the surface. Dry brining is less messy and crisps skin better; wet brining adds the most moisture. This tool calculates both."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much salt do I need to brine a turkey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the meat's weight and your salt brand — flaky kosher salt and fine table salt have very different densities by volume. Enter your weight and salt type for an exact amount."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should I brine meat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I brine pre-seasoned or \"enhanced\" meat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for \"enhanced\" or a sodium-containing ingredient list before brining."
+          }
+        }
+      ]
+    }
+    </script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -263,6 +304,33 @@
       <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
         <a id="pipeline-link-thawing" href="../meat-thawing-planner/index.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to thaw it first? Use the Meat Thawing Planner &rarr;</a>
         <a id="pipeline-link-roast" href="../perfect-roast-pull-temp-calculator/index.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Ready to cook? Find your exact target pull temperature &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">Why brining works</h2>
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Brining seasons meat all the way through and helps it hold on to moisture during cooking, so a lean turkey breast or pork chop comes out juicier and more evenly seasoned. A wet brine submerges the meat in saltwater; a dry brine rubs salt directly onto the surface and lets it draw moisture in over time.</p>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Both rely on getting the salt ratio right for the weight of meat — too little does nothing, too much makes it inedibly salty. This calculator works out the salt, water, and optional sugar for your protein and weight, and adjusts for the fact that different salt brands have very different densities by volume.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What's the difference between a wet brine and a dry brine?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">A wet brine dissolves salt in water and submerges the meat; a dry brine applies salt directly to the surface. Dry brining is less messy and crisps skin better; wet brining adds the most moisture. This tool calculates both.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How much salt do I need to brine a turkey?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">It depends on the meat's weight and your salt brand — flaky kosher salt and fine table salt have very different densities by volume. Enter your weight and salt type for an exact amount.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long should I brine meat?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I brine pre-seasoned or "enhanced" meat?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for "enhanced" or a sodium-containing ingredient list before brining.</p>
       </div>
     </div>
   </div>

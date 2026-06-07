@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Instantly convert cake recipes between muffin tins, Bundt pans, and baking sheets. Get exact multipliers and bake-time warnings. Free and ad-free.">
+<meta name="description" content="Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings. Free and ad-free.">
 <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
 <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
-<meta property="og:title" content="Pan Swap Calculator | Convert Cake, Muffin &amp; Bundt Pans Free">
-<meta property="og:description" content="Instantly convert cake recipes between muffin tins, Bundt pans, and baking sheets. Get exact multipliers and bake-time warnings. Free and ad-free.">
+<meta property="og:title" content="Pan Swap Calculator | Convert Muffin, Bundt, Round, Square &amp; Rectangular Pans Free">
+<meta property="og:description" content="Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings. Free and ad-free.">
 <meta property="og:image" content="https://tools.builtbyjoshstudio.com/pan-swap-calculator/og-preview.jpg">
 <meta property="og:url" content="https://tools.builtbyjoshstudio.com/pan-swap-calculator/">
 <meta name="twitter:card" content="summary_large_image">
-<title>Pan Swap Calculator | Convert Cake, Muffin &amp; Bundt Pans Free</title>
+<title>Pan Swap Calculator | Convert Muffin, Bundt, Round, Square &amp; Rectangular Pans Free</title>
 <link rel="canonical" href="https://tools.builtbyjoshstudio.com/pan-swap-calculator/" />
 <script type="application/ld+json">
 {
@@ -19,13 +19,54 @@
   "@type": "WebApplication",
   "name": "Pan Swap Calculator",
   "url": "https://tools.builtbyjoshstudio.com/pan-swap-calculator/",
-  "description": "Instantly convert cake recipes between round, square, muffin tin, Bundt, and sheet pans with exact multipliers and bake-time guidance. Free and ad-free.",
+  "description": "Instantly convert cake recipes between round, square, rectangular, muffin tin, and Bundt pans with exact multipliers and bake-time guidance. Free and ad-free.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any (web browser)",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
 }
 </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert a recipe to a different pan size?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Compare the surface area of the two pans — the ratio tells you how to scale the batter. A pan with twice the area needs roughly twice the batter. This tool calculates the exact multiplier for you."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does pan area matter more than volume?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most cakes and bars, batter depth drives bake time and texture. Matching surface area keeps the depth similar, so the bake behaves predictably. A much deeper or shallower pan changes timing and can leave the center under- or over-baked."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What pan shapes can I convert between?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Round, square, rectangular, Bundt, and muffin pans."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the baking time change when I swap pans?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Often, yes. A shallower pan bakes faster, a deeper one slower. The tool flags when a swap pushes batter into a notably deeper or shallower setup so you know to check doneness early or extend the time."
+          }
+        }
+      ]
+    }
+    </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -182,6 +223,29 @@
 
   <div style="display: flex; justify-content: flex-end; margin-bottom: 8px;">
     <button id="copy-btn" class="btn primary">Copy to Clipboard</button>
+  </div>
+
+  <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px;">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do I convert a recipe to a different pan size?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Compare the surface area of the two pans — the ratio tells you how to scale the batter. A pan with twice the area needs roughly twice the batter. This tool calculates the exact multiplier for you.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Why does pan area matter more than volume?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">For most cakes and bars, batter depth drives bake time and texture. Matching surface area keeps the depth similar, so the bake behaves predictably. A much deeper or shallower pan changes timing and can leave the center under- or over-baked.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What pan shapes can I convert between?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Round, square, rectangular, Bundt, and muffin pans.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Will the baking time change when I swap pans?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Often, yes. A shallower pan bakes faster, a deeper one slower. The tool flags when a swap pushes batter into a notably deeper or shallower setup so you know to check doneness early or extend the time.</p>
+      </div>
+    </div>
   </div>
 
 </main>
