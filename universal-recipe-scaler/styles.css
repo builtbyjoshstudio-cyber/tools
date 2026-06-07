@@ -5,3 +5,11 @@
    Old per-tool glass styles intentionally replaced.
    ========================================================= */
 @import url("../kinetic.css");
+
+#recipe-input {
+  min-height: 400px;
+  height: auto;
+  overflow-y: hidden;
+  resize: vertical;
+}
+
