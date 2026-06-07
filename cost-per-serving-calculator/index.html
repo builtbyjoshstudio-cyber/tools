@@ -25,6 +25,47 @@
 }
 </script>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you calculate cost per serving?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add up the cost of the exact portion of each ingredient you used, then divide the total by the number of servings the recipe makes. The tricky part is converting from the package you bought to the amount you used, which this calculator does automatically."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a waste allowance and why does it matter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A waste allowance is a percentage buffer added to your ingredient costs to account for trim, peelings, spoilage, and spills. Most kitchens use somewhere between 5% and 15%, depending on how much prep loss a recipe involves."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I mix weights and volumes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can use any unit for an ingredient, but the amount you used and the package size for that same ingredient must be the same type — both by weight or both by volume. The calculator flags a mismatch if you try to compare a weight against a volume."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this calculator save my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -167,6 +208,33 @@
       <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px;">Cost Breakdown</div>
       <div id="breakdown-list" style="display: flex; flex-direction: column; gap: 10px;">
         <!-- Dynamic Breakdown Row List gets injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">How to actually price a recipe</h2>
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Knowing what a dish costs to make is the difference between guessing at a menu price and setting one with confidence. The math is simple in principle — divide the cost of every ingredient you used by the number of servings — but it gets fiddly fast, because you rarely use a whole package of anything. You buy a five-pound bag of flour and use 300 grams of it; you buy a dozen eggs and use three.</p>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">This calculator handles that proportion for you. For each ingredient you enter how much you used, the size and price of the package you bought it in, and it works out the true cost of just the portion that went into the dish. Add a waste allowance to account for trim, spoilage, and spills, and you get a total recipe cost and a per-serving figure you can actually build a price around. Everything stays in your browser — no accounts, no data leaving your device.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do you calculate cost per serving?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Add up the cost of the exact portion of each ingredient you used, then divide the total by the number of servings the recipe makes. The tricky part is converting from the package you bought to the amount you used, which this calculator does automatically.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is a waste allowance and why does it matter?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">A waste allowance is a percentage buffer added to your ingredient costs to account for trim, peelings, spoilage, and spills. Most kitchens use somewhere between 5% and 15%, depending on how much prep loss a recipe involves.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I mix weights and volumes?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">You can use any unit for an ingredient, but the amount you used and the package size for that same ingredient must be the same type — both by weight or both by volume. The calculator flags a mismatch if you try to compare a weight against a volume.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does this calculator save my data?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server.</p>
       </div>
     </div>
   </div>

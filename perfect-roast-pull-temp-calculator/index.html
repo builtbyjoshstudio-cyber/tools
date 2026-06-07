@@ -28,7 +28,48 @@
 }
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is carryover cooking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Carryover cooking is the continued rise in a roast's internal temperature after it's removed from the heat, caused by residual heat moving from the hot outer layers toward the cooler center. It typically adds 2–15°F depending on the cut's size and the cooking temperature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How many degrees does meat rise while resting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A thin cut cooked at moderate heat may rise only 2–3°F, while a large roast cooked at high heat can climb 10–15°F. Bigger cuts and hotter ovens store more heat and carry over more."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What temperature should I pull a steak for medium-rare?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a medium-rare final temperature of about 135°F, pull a steak roughly 3–6°F early depending on thickness and method, then rest it. This calculator gives the exact pull temperature for your inputs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does carryover cooking apply to poultry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but poultry must still reach a safe final internal temperature of 165°F. The calculator enforces that minimum rather than letting carryover bring you below it."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -182,6 +223,33 @@
 
     <div style="margin-top: 24px; display: flex; justify-content: center;">
       <button id="copy-btn" class="btn">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">Why you pull meat before it hits the target temperature</h2>
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Meat keeps cooking after it leaves the oven. The outer layers are hotter than the center, and that stored heat keeps migrating inward while the roast rests — a process called carryover cooking. Depending on the size of the cut and how hot you cooked it, the internal temperature can climb anywhere from 2°F to 15°F after you pull it. If you wait until the thermometer reads your target, you'll overshoot it by the time you carve.</p>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">This calculator works backward from that. You tell it the final doneness you want, the cut size, and the cooking method, and it gives you the temperature to pull at so the meat coasts up to your target during the rest. Larger cuts and high-heat methods carry over more; thin cuts and low-and-slow methods carry over less. Always confirm the final number with a calibrated thermometer, and follow USDA minimums for poultry, ground meat, and pork.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is carryover cooking?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Carryover cooking is the continued rise in a roast's internal temperature after it's removed from the heat, caused by residual heat moving from the hot outer layers toward the cooler center. It typically adds 2–15°F depending on the cut's size and the cooking temperature.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How many degrees does meat rise while resting?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">A thin cut cooked at moderate heat may rise only 2–3°F, while a large roast cooked at high heat can climb 10–15°F. Bigger cuts and hotter ovens store more heat and carry over more.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What temperature should I pull a steak for medium-rare?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">For a medium-rare final temperature of about 135°F, pull a steak roughly 3–6°F early depending on thickness and method, then rest it. This calculator gives the exact pull temperature for your inputs.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does carryover cooking apply to poultry?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Yes, but poultry must still reach a safe final internal temperature of 165°F. The calculator enforces that minimum rather than letting carryover bring you below it.</p>
+      </div>
     </div>
   </div>
 
