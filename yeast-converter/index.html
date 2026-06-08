@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+    <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+    <title>Yeast Converter | Active Dry, Instant, &amp; Fresh Yeast Ratios</title>
+    <meta name="description" content="Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.">
+    <link rel="canonical" href="https://tools.builtbyjoshstudio.com/yeast-converter/">
+    
+    <!-- JSON-LD WebApplication schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Yeast Converter",
+      "url": "https://tools.builtbyjoshstudio.com/yeast-converter/",
+      "description": "Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+    }
+    </script>
+
+    <!-- JSON-LD FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the difference between active dry, instant, and fresh yeast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "They're the same organism at different moisture levels. Instant yeast is the most concentrated and finely milled, active dry has more moisture and slightly less potency by weight, and fresh (or \"cake\") yeast is mostly water — so you need progressively more of each to get the same rise. That's why you can't swap them one-for-one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I substitute instant yeast for active dry?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use about 75% of the weight — if a recipe calls for 10g of active dry, use roughly 7.5g of instant. Going the other way, use about 1.33 times as much active dry as instant. Instant can be mixed straight into the dry ingredients, while active dry is often dissolved in warm (not cold) liquid first, especially in a cool kitchen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much fresh yeast equals a packet of dry yeast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard 7g packet of active dry yeast is roughly 17.5g of fresh yeast (about 2.5×); a 7g packet of instant is roughly 21g of fresh (about 3×). Fresh yeast is always measured by weight, never by teaspoon, since it's a moist solid rather than a dry granule — this converter keeps fresh yeast in grams and ounces for that reason."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will my dough rise the same after converting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The amounts are matched for equivalent rising power, but the timing can differ — instant yeast tends to get going faster than active dry, often shaving time off the rise. Treat the converted amount as a reliable starting point and watch the dough rather than the clock: it's ready when it's roughly doubled, not when a timer says so."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Open Graph Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tools.builtbyjoshstudio.com/yeast-converter/">
+    <meta property="og:title" content="Yeast Converter | Active Dry, Instant, &amp; Fresh Yeast Ratios">
+    <meta property="og:description" content="Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.">
+    <meta property="og:image" content="https://tools.builtbyjoshstudio.com/yeast-converter/og-preview.jpg">
+
+    <!-- Twitter Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/yeast-converter/">
+    <meta name="twitter:title" content="Yeast Converter | Active Dry, Instant, &amp; Fresh Yeast Ratios">
+    <meta name="twitter:description" content="Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.">
+    <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/yeast-converter/og-preview.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+      /* ---- Tynkr Kinetic tool shell ---- */
+      .tool-nav { max-width: 920px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
+      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .tn-brand .name b { color: var(--ink); font-weight: 600; }
+      .page.tool-shell { max-width: 920px; padding-top: 28px; }
+      .tool-shell .hero { padding-left: 0; padding-right: 0; }
+      .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
+      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .net-grid .gear-img-wrapper { height: 120px; }
+
+      /* onboarding steps */
+      .onboarding-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
+      .step-col p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+      @media (max-width: 760px) {
+        .net-grid { grid-template-columns: 1fr; }
+        .onboarding-steps { grid-template-columns: 1fr; gap: 16px; }
+      }
+    </style>
+</head>
+<body>
+
+<nav class="tool-nav">
+  <div class="tn-left">
+    <a class="tn-back" href="../index.html">&larr; All tools</a>
+    <span class="tn-brand">
+      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </span>
+  </div>
+  <div class="theme-switch" role="tablist" aria-label="Theme">
+    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+  </div>
+</nav>
+
+<main class="page tool-shell">
+
+  <header class="hero glass">
+    <div style="flex:1; min-width: 0">
+      <div class="meta">
+        <span class="pill live">&#9679; Utilities</span>
+        <span>Kitchen Conversions</span>
+      </div>
+      <h1>Yeast Converter</h1>
+      <p>Swap any yeast for any other. Enter what your recipe calls for — or what you have in the fridge — and get the equivalent amount in the other two types, by weight. The three yeasts aren't interchangeable gram-for-gram: instant is more concentrated than active dry, and fresh yeast is mostly water, so each needs a different quantity to do the same job. Free, ad-free, runs in your browser.</p>
+    </div>
+  </header>
+
+  <!-- HOW TO CONVERT -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px;">
+    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Convert Yeast</h3>
+    <div class="onboarding-steps">
+      <div class="step-col">
+        <h4>1. Enter Yeast Amount</h4>
+        <p>Type in the quantity of yeast specified in your recipe or baking formula.</p>
+      </div>
+      <div class="step-col">
+        <h4>2. Choose Type &amp; Unit</h4>
+        <p>Select your starting yeast type and unit. Fresh yeast is locked to weight (grams or ounces) for baking precision.</p>
+      </div>
+      <div class="step-col">
+        <h4>3. Read Converted Ratios</h4>
+        <p>View the exact equivalents for the other two yeast styles below in both weight and dry volume measures.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVERSIONS CONFIGURATION -->
+  <div class="glass type-card" style="margin-bottom: 24px;">
+    <div class="role">1. Yeast Configuration</div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+        <!-- Input Amount -->
+        <div class="input-group" style="flex: 1; min-width: 140px;">
+          <span class="input-label">Amount</span>
+          <input type="number" id="input-amount" class="form-input" value="7" min="0" step="any">
+        </div>
+        
+        <!-- From Yeast Type -->
+        <div class="input-group" style="flex: 1.5; min-width: 180px;">
+          <span class="input-label">From Yeast Type</span>
+          <select id="yeast-from" class="form-input">
+            <option value="active-dry">Active Dry Yeast</option>
+            <option value="instant">Instant Yeast</option>
+            <option value="fresh">Fresh Yeast</option>
+          </select>
+        </div>
+
+        <!-- Input Unit -->
+        <div class="input-group" style="flex: 1.5; min-width: 180px;">
+          <span class="input-label">Unit</span>
+          <select id="input-unit" class="form-input">
+            <option value="g">Grams (g)</option>
+            <option value="oz">Ounces (oz)</option>
+            <option value="tsp">Teaspoons (tsp)</option>
+            <option value="packet">Packets (7g)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVERSION RESULTS SECTION -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px;">
+    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">Conversion Results</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+        
+        <!-- Result Card 1 -->
+        <div class="glass-lite" style="padding: 20px; border-radius: var(--r-s);">
+            <h4 id="result-title-1" style="font-family: var(--font-display); font-size: 18px; margin: 0 0 10px; color: var(--ink);">Instant Yeast</h4>
+            <div style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 8px;">
+                <span id="result-weight-1">0 g / 0.00 oz</span>
+            </div>
+            <div id="result-volume-container-1" style="font-family: var(--font-mono); font-size: 11px; color: var(--muted);">
+                <span id="result-volume-1">approx. 0 tsp or 0 packets</span>
+            </div>
+        </div>
+        
+        <!-- Result Card 2 -->
+        <div class="glass-lite" style="padding: 20px; border-radius: var(--r-s);">
+            <h4 id="result-title-2" style="font-family: var(--font-display); font-size: 18px; margin: 0 0 10px; color: var(--ink);">Fresh Yeast</h4>
+            <div style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 8px;">
+                <span id="result-weight-2">0 g / 0.00 oz</span>
+            </div>
+            <div id="result-volume-container-2" style="font-family: var(--font-mono); font-size: 11px; color: var(--muted); display: none;">
+                <span id="result-volume-2"></span>
+            </div>
+        </div>
+        
+    </div>
+  </div>
+
+  <!-- EXPLANATORY PROSE & FAQ SECTION -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px;">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What's the difference between active dry, instant, and fresh yeast?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">They're the same organism at different moisture levels. Instant yeast is the most concentrated and finely milled, active dry has more moisture and slightly less potency by weight, and fresh (or "cake") yeast is mostly water — so you need progressively more of each to get the same rise. That's why you can't swap them one-for-one.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do I substitute instant yeast for active dry?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Use about 75% of the weight — if a recipe calls for 10g of active dry, use roughly 7.5g of instant. Going the other way, use about 1.33 times as much active dry as instant. Instant can be mixed straight into the dry ingredients, while active dry is often dissolved in warm (not cold) liquid first, especially in a cool kitchen.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How much fresh yeast equals a packet of dry yeast?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">A standard 7g packet of active dry yeast is roughly 17.5g of fresh yeast (about 2.5&times;); a 7g packet of instant is roughly 21g of fresh (about 3&times;). Fresh yeast is always measured by weight, never by teaspoon, since it's a moist solid rather than a dry granule — this converter keeps fresh yeast in grams and ounces for that reason.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Will my dough rise the same after converting?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">The amounts are matched for equivalent rising power, but the timing can differ — instant yeast tends to get going faster than active dry, often shaving time off the rise. Treat the converted amount as a reliable starting point and watch the dough rather than the clock: it's ready when it's roughly doubled, not when a timer says so.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<section class="net-band">
+  <h2><span class="lbl">Network</span> More from the studio</h2>
+  <div class="net-grid">
+    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="studio-link.jpg" alt="Built By Josh Studio"></div>
+      <div class="gear-info">
+        <h4>Built By Josh Studio</h4>
+        <p>Local-first software, CRM solutions, and technical projects.</p>
+        <button class="affiliate-btn">Visit Website</button>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+      <div class="gear-info">
+        <h4>Tales of Ink &amp; Shadows</h4>
+        <p>Historical noir documentaries and immersive storytelling.</p>
+        <button class="affiliate-btn">Watch on YouTube</button>
+      </div>
+    </a>
+    <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+      <div class="gear-info">
+        <h4>Tynkr Tools &amp; Co.</h4>
+        <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+        <button class="affiliate-btn">Subscribe</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
+  <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> Yeast activity and conversion ratios vary depending on brand processing, freshness, and ambient temperature. Adjust recipe rise times or liquid temperatures accordingly.</p>
+  <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
+  <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="../kinetic.js"></script>
+</body>
+</html>

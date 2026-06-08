@@ -1,0 +1,6 @@
+/* =========================================================
+   Tynkr Kinetic theme — this tool inherits the shared
+   site stylesheet. All design tokens, components, themes
+   (Light / Mist / Dark) and motion live in ../kinetic.css.
+   ========================================================= */
+@import url("../kinetic.css");

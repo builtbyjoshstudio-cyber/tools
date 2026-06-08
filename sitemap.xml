@@ -54,4 +54,10 @@
       <changefreq>monthly</changefreq>
       <priority>1.0</priority>
    </url>
+   <url>
+      <loc>https://tools.builtbyjoshstudio.com/yeast-converter/</loc>
+      <lastmod>2026-06-07</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
+   </url>
 </urlset>
