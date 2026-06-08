@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        let clipboardText = "Reverse Roasting Timeline\n-------------------------\n";
+        let clipboardText = "Cooking Timeline\n----------------\n";
         items.forEach(item => {
             const step = item.querySelector('.timeline-step').innerText;
             const time = item.querySelector('.timeline-time').innerText;
