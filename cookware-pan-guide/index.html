@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines. Free, ad-free, local-first.">
+    <meta property="og:title" content="Cookware & Pan Guide | Free Kitchen Utility">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Find the ideal pan shape and material for your recipe. Explores thermal profiles, acid safety, and induction compatibility for cast iron, stainless, copper, and more.">
+    <meta property="og:image" content="https://tools.builtbyjoshstudio.com/cookware-pan-guide/og-preview.jpg">
+    <meta property="og:url" content="https://tools.builtbyjoshstudio.com/cookware-pan-guide/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/cookware-pan-guide/">
+    <meta name="twitter:title" content="Cookware & Pan Guide | Free Kitchen Utility">
+    <meta name="twitter:description" content="Find the ideal pan shape and material for your recipe. Explores thermal profiles, acid safety, and induction compatibility for cast iron, stainless, copper, and more.">
+    <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/cookware-pan-guide/og-preview.jpg">
+    <title>Cookware &amp; Pan Guide | Free Kitchen Utility</title>
+    <link rel="canonical" href="https://tools.builtbyjoshstudio.com/cookware-pan-guide/" />
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Cookware & Pan Guide",
+      "url": "https://tools.builtbyjoshstudio.com/cookware-pan-guide/",
+      "description": "Choose the best cookware material and pan shape for any cooking task. Explore thermal performance, reactivity, and care.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../kinetic.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+      /* ---- Tool shell modifications ---- */
+      .tool-nav { max-width: 1000px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
+      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .tn-brand .name b { color: var(--ink); font-weight: 600; }
+      .page.tool-shell { max-width: 1000px; padding-top: 28px; }
+      .tool-shell .hero { padding-left: 0; padding-right: 0; }
+      .net-band { max-width: 1000px; margin: 56px auto 0; padding: 0 28px; }
+      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .net-grid .gear-img-wrapper { height: 120px; }
+      @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<nav class="tool-nav">
+  <div class="tn-left">
+    <a class="tn-back" href="../index.html">&larr; All tools</a>
+    <span class="tn-brand">
+      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </span>
+  </div>
+  <div class="theme-switch" role="tablist" aria-label="Theme">
+    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+  </div>
+</nav>
+
+<main class="page tool-shell">
+
+  <header class="hero glass">
+    <div style="flex:1; min-width: 0">
+      <div class="meta">
+        <span class="pill live">&#9679; Cookware Guide</span>
+        <span>Thermal Profiles &amp; Pan Selection</span>
+      </div>
+      <h1>Cookware &amp; Pan Guide</h1>
+      <p>Choose the optimal cookware material and pan shape for any recipe. Compare thermal performance, food reactivity, and maintenance requirements.</p>
+    </div>
+  </header>
+
+  <!-- Interactive Navigation Tabs -->
+  <div class="tab-controls-wrapper">
+    <div class="tab-controls" role="tablist">
+      <button type="button" id="tab-btn-advisor" class="tab-btn active" role="tab" aria-selected="true" aria-controls="view-advisor">Cookware Advisor</button>
+      <button type="button" id="tab-btn-explorer" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-explorer">Materials Explorer</button>
+      <button type="button" id="tab-btn-matrix" class="tab-btn" role="tab" aria-selected="false" aria-controls="view-matrix">Comparison Matrix</button>
+    </div>
+  </div>
+
+  <!-- VIEW 1: COOKWARE ADVISOR (Active by default) -->
+  <div id="view-advisor" class="tab-view active">
+    
+    <!-- First screen interactive block -->
+    <div class="glass type-card selector-card" style="margin-bottom: 24px; padding: 22px;">
+      <div class="role" style="margin-bottom: 14px;">Select Cooking Task</div>
+      
+      <div class="input-group">
+        <label for="task-select" class="input-label">What are you cooking?</label>
+        <select id="task-select" class="form-input" style="font-size: 15px; font-weight: 500;">
+          <option value="" disabled selected>-- Select a cooking task --</option>
+          <option value="searing-steak">Searing Steak / Chops (High Heat)</option>
+          <option value="tomato-sauce">Simmering Tomato Sauce / Wine Reductions</option>
+          <option value="eggs">Frying Eggs / Omelets (Low/Med Heat)</option>
+          <option value="stir-fry">Stir-Frying (High Heat, Fast)</option>
+          <option value="delicate-fish">Searing Delicate Fish Fillets</option>
+          <option value="pan-sauce">Pan Sauce After Searing (Deglazing)</option>
+          <option value="pancakes">Pancakes / Crepes / Tortillas</option>
+          <option value="boiling-water">Boiling Water (Pasta, Steaming)</option>
+          <option value="stewing-braising">Stewing / Braising / Dutch Oven Stews</option>
+          <option value="sauteing-veggies">Sautéing Vegetables (Medium-High Heat)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Recommendations Result Display (Appears dynamically) -->
+    <div id="advisor-results" style="display: none;">
+      
+      <!-- Primary / Recommended section -->
+      <div class="results-grid">
+        
+        <div class="glass type-card primary-rec-card">
+          <div class="badge-role recommended">Recommended Material</div>
+          <h2 id="rec-material-name" class="rec-title">Stainless Steel</h2>
+          
+          <div class="details-section">
+            <span class="sec-label">Best Pan Shape</span>
+            <div id="rec-pan-shape" class="badge-accent">10" or 12" Skillet</div>
+          </div>
+
+          <div class="details-section">
+            <span class="sec-label">Target Heat Level</span>
+            <div id="rec-heat-level" class="badge-neutral">Medium-High</div>
+          </div>
+        </div>
+
+        <div class="glass type-card explanation-card">
+          <div class="role">Why It Works</div>
+          <p id="rec-explanation" style="line-height: 1.6; font-size: 14.5px; margin: 0; color: var(--ink);"></p>
+        </div>
+
+      </div>
+
+      <!-- Quick stats comparison of recommended material -->
+      <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
+        <div class="role" style="margin-bottom: 14px;">Recommended Material Profile</div>
+        <div class="spec-matrix-grid">
+          <div class="spec-cell">
+            <span class="lbl">Heat Retention</span>
+            <span id="spec-retention" class="val">--</span>
+          </div>
+          <div class="spec-cell">
+            <span class="lbl">Responsiveness</span>
+            <span id="spec-responsiveness" class="val">--</span>
+          </div>
+          <div class="spec-cell">
+            <span class="lbl">Stick Resistance</span>
+            <span id="spec-stick" class="val">--</span>
+          </div>
+          <div class="spec-cell">
+            <span class="lbl">Acid Reactivity</span>
+            <span id="spec-acid" class="val">--</span>
+          </div>
+          <div class="spec-cell">
+            <span class="lbl">Induction Friendly</span>
+            <span id="spec-induction" class="val">--</span>
+          </div>
+          <div class="spec-cell">
+            <span class="lbl">Oven Safety</span>
+            <span id="spec-oven" class="val">--</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alternatives / Avoid / Care cards -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;" class="split-col-grid">
+        
+        <div class="glass type-card" style="padding: 20px;">
+          <div class="role" style="margin-bottom: 12px;">Alternative Options</div>
+          <div id="rec-alternatives" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+
+        <div class="glass type-card" style="padding: 20px; border-color: color-mix(in oklab, var(--neg) 15%, var(--line-2));">
+          <div class="role" style="color: var(--neg); margin-bottom: 12px;">Materials to Avoid</div>
+          <div id="rec-avoid" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+
+      </div>
+
+      <!-- Alerts / Cleanup notes -->
+      <div id="advisor-alerts-container" style="display: none; margin-bottom: 24px;"></div>
+
+      <div class="glass type-card" style="margin-bottom: 24px; padding: 20px; border-left: 4px solid var(--accent);">
+        <div class="role" style="color: var(--accent); margin-bottom: 8px;">Cleanup &amp; Maintenance for this Task</div>
+        <p id="rec-cleanup" style="margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--muted);"></p>
+      </div>
+
+    </div>
+
+    <!-- Default Prompt before Selection -->
+    <div id="advisor-placeholder" class="glass" style="padding: 40px; text-align: center; color: var(--muted); margin-bottom: 24px;">
+      <span style="font-size: 36px; display: block; margin-bottom: 14px;">🍳</span>
+      <p style="font-size: 15px; margin: 0;">Select a cooking task from the dropdown above to view recommended pan shapes, materials, heat control tips, and safety warnings.</p>
+    </div>
+
+  </div>
+
+  <!-- VIEW 2: MATERIALS EXPLORER -->
+  <div id="view-explorer" class="tab-view">
+    <div class="materials-explorer-grid" id="materials-explorer-list">
+      <!-- Generated via script.js -->
+    </div>
+  </div>
+
+  <!-- VIEW 3: COMPARISON MATRIX -->
+  <div id="view-matrix" class="tab-view">
+    <div class="glass type-card" style="padding: 20px; margin-bottom: 24px; overflow-x: auto;">
+      <div class="role" style="margin-bottom: 14px;">Material Comparison Matrix</div>
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Material</th>
+            <th>Heat Retention</th>
+            <th>Responsiveness</th>
+            <th>Stick Resistance</th>
+            <th>Acid-Safe</th>
+            <th>Weight</th>
+            <th>Maintenance</th>
+            <th>Induction-Friendly</th>
+            <th>Best Uses</th>
+          </tr>
+        </thead>
+        <tbody id="matrix-tbody">
+          <!-- Filled dynamically via script.js -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Next Steps for Your Cook -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
+    <h4 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h4>
+    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
+      <a id="pipeline-link-pan" href="../pan-swap-calculator/index.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to swap pan sizes or adjust scaling? Try the Pan Swap Calculator &rarr;</a>
+      <a id="pipeline-link-scale" href="../universal-recipe-scaler/index.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to scale ingredient weights? Use the Universal Recipe Scaler &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Explanatory Prose Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">Understanding heat transfer and cookware materials</h2>
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Choosing cookware is one of the most effective ways to control heat transfer in your kitchen. Different metals behave according to unique physical laws. High-density, high-mass materials like Cast Iron store large amounts of thermal energy (heat capacity), but respond very slowly to burner changes. Light, highly conductive metals like Copper transfer heat almost instantly (thermal responsiveness) but empty their energy reserves the moment cold food hits the surface.</p>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Matching your pan material to your cooking task makes execution much easier: stainless steel excels at building fond for pan sauces, seasoned carbon steel provides naturally slick surfaces for high-heat stir-frying, and nonstick allows low-fat delicate cooking. Treat these recommendations as practical guidelines rather than absolute rules—fine culinary results can be achieved on any cookware with proper heat management and technique.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Why does acid safety matter in pan selection?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Acidic foods like tomatoes, wine, lemon juice, or vinegar dissolve tiny amounts of reactive metals. In bare cast iron or carbon steel, long contact strips the polymerized seasoning layer and introduces metallic off-flavors to the food. Stainless steel and enameled cast iron are non-reactive (inert) and are always safe for acidic cooking.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do I know if my stainless steel is induction compatible?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Induction cooktops rely on electromagnetism. A pan must contain a magnetic material at the base to heat up. While cast iron is inherently magnetic, stainless steel is only compatible if the manufacturer clad a magnetic alloy (430 stainless) onto the bottom. You can check this easily by testing if a common refrigerator magnet sticks firmly to the bottom of the pan.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I use aerosol cooking sprays on nonstick pans?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">It is highly recommended to avoid commercial aerosol sprays. They contain propellants and emulsifiers (like lecithin) that carbonize at moderate temperatures, bonding chemically to the nonstick surface. This forms a sticky, burnt residue that cannot be washed off, permanently ruining the pan's release properties. Use small amounts of butter or high-smoke-point liquid oils instead.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<section class="net-band">
+  <h2><span class="lbl">Network</span> More from the studio</h2>
+  <div class="net-grid">
+    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/studio-link.jpg" alt="Built By Josh Studio"></div>
+      <div class="gear-info">
+        <h4>Built By Josh Studio</h4>
+        <p>Local-first software, CRM solutions, and technical projects.</p>
+        <button class="affiliate-btn">Visit Website</button>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+      <div class="gear-info">
+        <h4>Tales of Ink &amp; Shadows</h4>
+        <p>Historical noir documentaries and immersive storytelling.</p>
+        <button class="affiliate-btn">Watch on YouTube</button>
+      </div>
+    </a>
+    <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+      <div class="gear-info">
+        <h4>Tynkr Tools &amp; Co.</h4>
+        <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+        <button class="affiliate-btn">Subscribe</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
+  <p style="margin-bottom: 12px;">These tools provide cooking guidance and estimates. Performance will vary depending on stove burner types, material thicknesses, and cookware manufacturers.</p>
+  <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="script.js"></script>
+<script src="../kinetic.js"></script>
+</body>
+</html>
