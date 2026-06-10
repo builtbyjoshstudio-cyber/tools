@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentUnit = 'imperial';
     const copyBtn = document.getElementById('copy-btn');
     const printBtn = document.getElementById('print-btn');
+    const useDensityCheckbox = document.getElementById('use-density');
 
     let currentMultiplier = 1;
 
@@ -115,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const convertToMetric = (currentUnit === 'metric');
+        const useDensity = useDensityCheckbox ? useDensityCheckbox.checked : false;
         const lines = text.split('\n');
         
         recipeOutput.innerHTML = ''; // Clear previous output
@@ -133,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let processedLine = line;
             const isEggLine = /\beggs?\b/i.test(line);
             let lineHasFraction = false;
+            const densityMatch = useDensity ? findIngredientDensity(line) : null;
 
             // Globally replace all quantities with known units
             processedLine = processedLine.replace(unitRegex, (match, originalNumStr, unitStr) => {
@@ -175,71 +178,150 @@ document.addEventListener('DOMContentLoaded', () => {
                 let isG = /^(grams?|g\.?)$/.test(unit);
                 let isMl = /^(milliliters?|ml\.?)$/.test(unit);
 
-                if (convertToMetric) {
-                    if (isTsp) { scaledNum *= 5; outUnit = 'ml'; useFraction = false; }
-                    else if (isTbsp) { scaledNum *= 15; outUnit = 'ml'; useFraction = false; }
-                    else if (isFlOz) { scaledNum *= 30; outUnit = 'ml'; useFraction = false; }
-                    else if (isCup) { scaledNum *= 240; outUnit = 'ml'; useFraction = false; }
-                    else if (isPt) { scaledNum *= 475; outUnit = 'ml'; useFraction = false; }
-                    else if (isQt) { scaledNum *= 950; outUnit = 'ml'; useFraction = false; }
-                    else if (isGal) { scaledNum *= 3.8; outUnit = 'L'; useFraction = false; }
-                    else if (isOz) { scaledNum *= 28; outUnit = 'g'; useFraction = false; }
-                    else if (isLb) { scaledNum *= 454; outUnit = 'g'; useFraction = false; }
-                    else if (isIn) { scaledNum *= 2.5; outUnit = 'cm'; useFraction = false; }
-                    else if (isF) {
-                        scaledNum = (scaledNum - 32) * 5 / 9;
-                        scaledNum = Math.round(scaledNum / 10) * 10;
-                        outUnit = '°C';
-                        useFraction = false;
-                    }
-                    
-                    if (!useFraction) {
-                        // Smart Formatting Rollovers
-                        if (outUnit === 'ml' && scaledNum >= 1000) {
-                            scaledNum /= 1000;
-                            outUnit = 'L';
-                        }
-                        if (outUnit === 'g' && scaledNum >= 1000) {
-                            scaledNum /= 1000;
-                            outUnit = 'kg';
-                        }
+                if (densityMatch && (isTsp || isTbsp || isFlOz || isCup || isPt || isQt || isGal || isOz || isLb || isG || isMl || unit === 'l' || unit === 'kg')) {
+                    const density = densityMatch.density;
+                    if (convertToMetric) {
+                        // Volume to Weight
+                        let volumeMl = 0;
+                        if (isTsp) volumeMl = scaledNum * 4.92892;
+                        else if (isTbsp) volumeMl = scaledNum * 14.7868;
+                        else if (isFlOz) volumeMl = scaledNum * 29.5735;
+                        else if (isCup) volumeMl = scaledNum * 240;
+                        else if (isPt) volumeMl = scaledNum * 473.176;
+                        else if (isQt) volumeMl = scaledNum * 946.353;
+                        else if (isGal) volumeMl = scaledNum * 3785.41;
+                        else if (isMl) volumeMl = scaledNum;
+                        else if (unit === 'l') volumeMl = scaledNum * 1000;
 
-                        // Decimal strictness
-                        if (outUnit === 'L') {
-                            scaledNum = Number(scaledNum.toFixed(1));
-                        } else if (outUnit === 'kg') {
-                            scaledNum = Number(scaledNum.toFixed(2));
-                        } else if (outUnit === 'ml' || outUnit === 'g' || outUnit === '°C' || outUnit === '°F') {
+                        if (volumeMl > 0) {
+                            scaledNum = volumeMl * density;
+                            outUnit = 'g';
+                            useFraction = false;
                             scaledNum = Math.round(scaledNum);
+                            if (scaledNum >= 1000) {
+                                scaledNum /= 1000;
+                                outUnit = 'kg';
+                                scaledNum = Number(scaledNum.toFixed(2));
+                            }
                         } else {
-                            // Default fallback e.g. for cm, in, or gal
-                            scaledNum = Number(scaledNum.toFixed(1));
+                            // Weight to Weight (just use normal logic)
+                            if (isOz) { scaledNum *= 28.3495; outUnit = 'g'; useFraction = false; }
+                            else if (isLb) { scaledNum *= 453.592; outUnit = 'g'; useFraction = false; }
+                            if (scaledNum >= 1000) {
+                                scaledNum /= 1000;
+                                outUnit = 'kg';
+                                scaledNum = Number(scaledNum.toFixed(2));
+                            } else {
+                                scaledNum = Math.round(scaledNum);
+                            }
+                        }
+                    } else {
+                        // Weight to Volume
+                        let weightG = 0;
+                        if (isG) weightG = scaledNum;
+                        else if (unit === 'kg') weightG = scaledNum * 1000;
+                        else if (isOz) weightG = scaledNum * 28.3495;
+                        else if (isLb) weightG = scaledNum * 453.592;
+
+                        if (weightG > 0) {
+                            let volumeMl = weightG / density;
+                            let cups = volumeMl / 240;
+                            if (cups >= 0.25) {
+                                scaledNum = cups;
+                                outUnit = scaledNum <= 1 ? 'cup' : 'cups';
+                            } else {
+                                let tbsp = volumeMl / 14.7868;
+                                if (tbsp >= 0.5) {
+                                    scaledNum = tbsp;
+                                    outUnit = 'tbsp';
+                                } else {
+                                    scaledNum = volumeMl / 4.92892;
+                                    outUnit = 'tsp';
+                                }
+                            }
+                            useFraction = true;
+                        } else {
+                            // Volume to Volume (just use normal logic)
+                            if (isMl) {
+                                let cups = scaledNum / 240;
+                                if (cups >= 0.25) { scaledNum = cups; outUnit = scaledNum <= 1 ? 'cup' : 'cups'; }
+                                else {
+                                    let tbsp = scaledNum / 15;
+                                    if (tbsp >= 0.5) { scaledNum = tbsp; outUnit = 'tbsp'; }
+                                    else { scaledNum = scaledNum / 5; outUnit = 'tsp'; }
+                                }
+                                useFraction = true;
+                            }
                         }
                     }
                 } else {
-                    // Metric to US Customary
-                    if (isMl) {
-                        let cups = scaledNum / 240;
-                        if (cups >= 0.25) { scaledNum = cups; outUnit = scaledNum <= 1 ? 'cup' : 'cups'; }
-                        else {
-                            let tbsp = scaledNum / 15;
-                            if (tbsp >= 0.5) { scaledNum = tbsp; outUnit = 'tbsp'; }
-                            else { scaledNum = scaledNum / 5; outUnit = 'tsp'; }
+                    // Original non-density logic
+                    if (convertToMetric) {
+                        if (isTsp) { scaledNum *= 5; outUnit = 'ml'; useFraction = false; }
+                        else if (isTbsp) { scaledNum *= 15; outUnit = 'ml'; useFraction = false; }
+                        else if (isFlOz) { scaledNum *= 30; outUnit = 'ml'; useFraction = false; }
+                        else if (isCup) { scaledNum *= 240; outUnit = 'ml'; useFraction = false; }
+                        else if (isPt) { scaledNum *= 475; outUnit = 'ml'; useFraction = false; }
+                        else if (isQt) { scaledNum *= 950; outUnit = 'ml'; useFraction = false; }
+                        else if (isGal) { scaledNum *= 3.8; outUnit = 'L'; useFraction = false; }
+                        else if (isOz) { scaledNum *= 28; outUnit = 'g'; useFraction = false; }
+                        else if (isLb) { scaledNum *= 454; outUnit = 'g'; useFraction = false; }
+                        else if (isIn) { scaledNum *= 2.5; outUnit = 'cm'; useFraction = false; }
+                        else if (isF) {
+                            scaledNum = (scaledNum - 32) * 5 / 9;
+                            scaledNum = Math.round(scaledNum / 10) * 10;
+                            outUnit = '°C';
+                            useFraction = false;
                         }
-                    } else if (isG || unit === 'kg') {
-                        if (unit === 'kg') scaledNum *= 1000;
-                        scaledNum /= 28.35; outUnit = 'oz';
-                        useFraction = false;
-                        scaledNum = Number(scaledNum.toFixed(1));
-                    } else if (isC) {
-                        scaledNum = (scaledNum * 9 / 5) + 32;
-                        scaledNum = Math.round(scaledNum / 5) * 5;
-                        outUnit = '°F';
-                        useFraction = false;
-                    } else if (isCm) {
-                        scaledNum = scaledNum / 2.54;
-                        outUnit = 'in';
-                        useFraction = false;
+                        
+                        if (!useFraction) {
+                            // Smart Formatting Rollovers
+                            if (outUnit === 'ml' && scaledNum >= 1000) {
+                                scaledNum /= 1000;
+                                outUnit = 'L';
+                            }
+                            if (outUnit === 'g' && scaledNum >= 1000) {
+                                scaledNum /= 1000;
+                                outUnit = 'kg';
+                            }
+
+                            // Decimal strictness
+                            if (outUnit === 'L') {
+                                scaledNum = Number(scaledNum.toFixed(1));
+                            } else if (outUnit === 'kg') {
+                                scaledNum = Number(scaledNum.toFixed(2));
+                            } else if (outUnit === 'ml' || outUnit === 'g' || outUnit === '°C' || outUnit === '°F') {
+                                scaledNum = Math.round(scaledNum);
+                            } else {
+                                // Default fallback e.g. for cm, in, or gal
+                                scaledNum = Number(scaledNum.toFixed(1));
+                            }
+                        }
+                    } else {
+                        // Metric to US Customary
+                        if (isMl) {
+                            let cups = scaledNum / 240;
+                            if (cups >= 0.25) { scaledNum = cups; outUnit = scaledNum <= 1 ? 'cup' : 'cups'; }
+                            else {
+                                let tbsp = scaledNum / 15;
+                                if (tbsp >= 0.5) { scaledNum = tbsp; outUnit = 'tbsp'; }
+                                else { scaledNum = scaledNum / 5; outUnit = 'tsp'; }
+                            }
+                        } else if (isG || unit === 'kg') {
+                            if (unit === 'kg') scaledNum *= 1000;
+                            scaledNum /= 28.35; outUnit = 'oz';
+                            useFraction = false;
+                            scaledNum = Number(scaledNum.toFixed(1));
+                        } else if (isC) {
+                            scaledNum = (scaledNum * 9 / 5) + 32;
+                            scaledNum = Math.round(scaledNum / 5) * 5;
+                            outUnit = '°F';
+                            useFraction = false;
+                        } else if (isCm) {
+                            scaledNum = scaledNum / 2.54;
+                            outUnit = 'in';
+                            useFraction = false;
+                        }
                     }
                 }
 
@@ -318,6 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (unitImperialBtn) unitImperialBtn.addEventListener('click', () => setUnitSystem('imperial'));
     if (unitMetricBtn) unitMetricBtn.addEventListener('click', () => setUnitSystem('metric'));
+    if (useDensityCheckbox) useDensityCheckbox.addEventListener('change', scaleRecipe);
     recipeInput.addEventListener('input', scaleRecipe);
     recipeInput.addEventListener('input', autoResizeInput);
     recipeInput.addEventListener('paste', () => {
