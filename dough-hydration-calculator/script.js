@@ -198,11 +198,48 @@ document.addEventListener("DOMContentLoaded", () => {
         const unitSuffix = ` ${currentUnit}`;
         const decimals = currentUnit === 'g' ? 0 : 1;
 
+        // Helper to format volume in ml to standard kitchen measures
+        function formatVolumeMl(ml, isMicro = false) {
+            if (ml <= 0) return '';
+            if (isMicro) {
+                const tsp = ml / 4.92892;
+                if (tsp >= 3) {
+                    const tbsp = tsp / 3;
+                    return `approx. ${tbsp.toFixed(1).replace(/\.0$/, '')} tbsp`;
+                }
+                return `approx. ${tsp.toFixed(1).replace(/\.0$/, '')} tsp`;
+            } else {
+                const cups = ml / 240;
+                if (cups >= 0.25) {
+                    return `approx. ${cups.toFixed(1).replace(/\.0$/, '')} cup${cups > 1.05 ? 's' : ''}`;
+                }
+                const tbsp = ml / 14.7868;
+                return `approx. ${tbsp.toFixed(1).replace(/\.0$/, '')} tbsp`;
+            }
+        }
+
+        // Density-aware volumetric conversions
+        const flourText = flourType.options[flourType.selectedIndex].text;
+        const flourDensityMatch = findIngredientDensity(flourText);
+        const flourDensity = flourDensityMatch ? flourDensityMatch.density : 0.51;
+
+        const toG = (val) => currentUnit === 'oz' ? val * 28.3495 : val;
+
+        const flourG = toG(flourMass);
+        const waterG = toG(waterMass);
+        const saltG = toG(saltMass);
+        const yeastG = toG(yeastMass);
+
+        const flourVolStr = formatVolumeMl(flourG / flourDensity, false);
+        const waterVolStr = formatVolumeMl(waterG / 1.0, false);
+        const saltVolStr = formatVolumeMl(saltG / 1.15, true);
+        const yeastVolStr = formatVolumeMl(yeastG / 0.64, true);
+
         totalYieldOutput.textContent = formatVal(totalDoughWeight, decimals) + unitSuffix;
-        flourOutput.textContent = formatVal(flourMass, decimals) + unitSuffix;
-        waterOutput.textContent = formatVal(waterMass, decimals) + unitSuffix;
-        saltOutput.textContent = formatVal(saltMass, decimals) + unitSuffix;
-        yeastOutput.textContent = formatVal(yeastMass, decimals) + unitSuffix;
+        flourOutput.textContent = formatVal(flourMass, decimals) + unitSuffix + (flourVolStr ? ` (${flourVolStr})` : '');
+        waterOutput.textContent = formatVal(waterMass, decimals) + unitSuffix + (waterVolStr ? ` (${waterVolStr})` : '');
+        saltOutput.textContent = formatVal(saltMass, decimals) + unitSuffix + (saltVolStr ? ` (${saltVolStr})` : '');
+        yeastOutput.textContent = formatVal(yeastMass, decimals) + unitSuffix + (yeastVolStr ? ` (${yeastVolStr})` : '');
         waterPctLabel.textContent = `${hydration}% hydration`;
 
         // Yeast Mass Visibility Toggle (Hidden for unleavened buckwheat-soba and pasta-semolina)

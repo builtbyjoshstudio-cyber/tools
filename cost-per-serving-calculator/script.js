@@ -34,6 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const wasteValueDisplay = document.getElementById('waste-val');
     const addIngredientBtn = document.getElementById('add-ingredient-btn');
     
+    // Populate ingredients datalist for auto-complete
+    const datalist = document.getElementById('ingredients-list');
+    if (datalist && typeof INGREDIENT_DENSITIES !== 'undefined') {
+        Object.keys(INGREDIENT_DENSITIES).sort().forEach(ing => {
+            const option = document.createElement('option');
+            option.value = ing.charAt(0).toUpperCase() + ing.slice(1);
+            datalist.appendChild(option);
+        });
+    }
+
     // Wire global settings
     servingsInput.addEventListener('input', calculate);
     wasteSlider.addEventListener('input', (e) => {
@@ -75,7 +85,7 @@ function addIngredientRow() {
     rowEl.innerHTML = `
         <div class="input-group col-span-mobile">
             <span class="input-label" style="display:none">Ingredient Name</span>
-            <input type="text" placeholder="Ingredient Name (e.g. Flour)" class="form-input ing-name">
+            <input type="text" placeholder="Ingredient Name (e.g. Flour)" class="form-input ing-name" list="ingredients-list">
         </div>
         <div class="input-group">
             <span class="input-label" style="display:none">Amount Used</span>
@@ -184,19 +194,27 @@ function calculate() {
         const nameDisplay = item.name || 'Unnamed Ingredient';
         
         // Mismatch check
-        const usedDim = dimensionGroups[item.usedUnit];
-        const packDim = dimensionGroups[item.packUnit];
+        let usedDim = dimensionGroups[item.usedUnit];
+        let packDim = dimensionGroups[item.packUnit];
+        
+        let densityMatch = null;
+        let isDensityConverted = false;
         
         if (usedDim !== packDim) {
-            breakdownList.push({
-                name: nameDisplay,
-                mismatch: true,
-                message: `Dimension mismatch (${usedDim} vs ${packDim})`
-            });
-            // Visual warning on row border
-            const rowEl = document.getElementById(`row-${item.id}`);
-            if (rowEl) rowEl.style.borderColor = 'var(--warn)';
-            return;
+            densityMatch = findIngredientDensity(item.name);
+            if (densityMatch && ((usedDim === 'volume' && packDim === 'mass') || (usedDim === 'mass' && packDim === 'volume'))) {
+                isDensityConverted = true;
+            } else {
+                breakdownList.push({
+                    name: nameDisplay,
+                    mismatch: true,
+                    message: `Dimension mismatch (${usedDim} vs ${packDim})`
+                });
+                // Visual warning on row border
+                const rowEl = document.getElementById(`row-${item.id}`);
+                if (rowEl) rowEl.style.borderColor = 'var(--warn)';
+                return;
+            }
         }
         
         // Clear visual warning
@@ -204,11 +222,29 @@ function calculate() {
         if (rowEl) rowEl.style.borderColor = '';
         
         if (item.usedVal > 0 && item.packVal > 0 && item.packCost > 0) {
-            const usedFactor = factors[item.usedUnit];
             const packFactor = factors[item.packUnit];
-            
-            const usedBase = item.usedVal * usedFactor * (1 + waste / 100);
             const packBase = item.packVal * packFactor;
+            
+            let usedBase = 0;
+            if (isDensityConverted) {
+                const density = densityMatch.density;
+                const usedFactor = factors[item.usedUnit];
+                
+                if (usedDim === 'volume' && packDim === 'mass') {
+                    // Used volume (ml) -> mass (grams)
+                    const usedMl = item.usedVal * usedFactor;
+                    const usedGrams = usedMl * density;
+                    usedBase = usedGrams * (1 + waste / 100);
+                } else {
+                    // Used mass (grams) -> volume (ml)
+                    const usedGrams = item.usedVal * usedFactor;
+                    const usedMl = usedGrams / density;
+                    usedBase = usedMl * (1 + waste / 100);
+                }
+            } else {
+                const usedFactor = factors[item.usedUnit];
+                usedBase = item.usedVal * usedFactor * (1 + waste / 100);
+            }
             
             const itemCost = item.packCost * (usedBase / packBase);
             totalCost += itemCost;
@@ -227,11 +263,13 @@ function calculate() {
                 leftoverStr = `0 ${item.packUnit} left (0% left)`;
             }
             
+            let conversionNote = isDensityConverted ? ` (via ${densityMatch.name})` : '';
+            
             breakdownList.push({
                 name: nameDisplay,
                 mismatch: false,
                 cost: itemCost,
-                leftover: leftoverStr
+                leftover: leftoverStr + conversionNote
             });
         } else {
             // Partially filled but not ready

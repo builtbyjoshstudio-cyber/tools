@@ -295,7 +295,25 @@ document.addEventListener("DOMContentLoaded", () => {
         // Render Sugar
         if (hasSugar) {
             const sugarGrams = saltGrams * 0.5;
-            sugarOutput.textContent = `${sugarGrams.toFixed(1)} g`;
+            
+            // Sugar density is 0.84 g/ml (1 cup = ~200g, 1 Tbsp = ~12.5g)
+            const sugarMl = sugarGrams / 0.84;
+            let sugarVolStr = '';
+            
+            if (sugarMl >= 60) { // More than 1/4 cup (~60ml)
+                const cups = sugarMl / 240;
+                sugarVolStr = `approx. ${cups.toFixed(1).replace(/\.0$/, '')} cup${cups > 1.05 ? 's' : ''}`;
+            } else {
+                const tbsp = sugarMl / 14.7868;
+                if (tbsp >= 0.5) {
+                    sugarVolStr = `approx. ${tbsp.toFixed(1).replace(/\.0$/, '')} Tbsp`;
+                } else {
+                    const tsp = sugarMl / 4.92892;
+                    sugarVolStr = `approx. ${tsp.toFixed(1).replace(/\.0$/, '')} tsp`;
+                }
+            }
+            
+            sugarOutput.textContent = `${sugarGrams.toFixed(1)} g (${sugarVolStr})`;
         }
 
         // Render Time
