@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label. Free, ad-free, local-first.">
+    <meta property="og:title" content="Recipe Nutrition Calculator | Free Meal Planning Utility">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Estimate recipe calories and macros. Features dynamic ingredient parsing, custom overrides, unmatched item review, and a local-first browser layout.">
+    <meta property="og:image" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/og-preview.jpg">
+    <meta property="og:url" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/">
+    <meta name="twitter:title" content="Recipe Nutrition Calculator | Free Meal Planning Utility">
+    <meta name="twitter:description" content="Estimate recipe calories and macros. Features dynamic ingredient parsing, custom overrides, unmatched item review, and a local-first browser layout.">
+    <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/og-preview.jpg">
+    <title>Recipe Nutrition Calculator | Free Meal Planning Utility</title>
+    <link rel="canonical" href="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Recipe Nutrition Calculator",
+      "url": "https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/",
+      "description": "Calculate recipe calories and macronutrients from pasted text. Features custom ingredient overrides, unmatched ingredient reviews, and macro breakdowns. Free and local-first.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../kinetic.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+      /* ---- Tool shell modifications ---- */
+      .tool-nav { max-width: 1100px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
+      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
+      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+      .tn-brand .name b { color: var(--ink); font-weight: 600; }
+      .page.tool-shell { max-width: 1100px; padding-top: 28px; }
+      .tool-shell .hero { padding-left: 0; padding-right: 0; }
+      .net-band { max-width: 1100px; margin: 56px auto 0; padding: 0 28px; }
+      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .net-grid .gear-img-wrapper { height: 120px; }
+      @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<nav class="tool-nav">
+  <div class="tn-left">
+    <a class="tn-back" href="../index.html">&larr; All tools</a>
+    <span class="tn-brand">
+      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </span>
+  </div>
+  <div class="theme-switch" role="tablist" aria-label="Theme">
+    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+  </div>
+</nav>
+
+<main class="page tool-shell">
+
+  <header class="hero glass">
+    <div style="flex:1; min-width: 0">
+      <div class="meta">
+        <span class="pill live">&#9679; Utilities</span>
+        <span>Recipe analysis &amp; macro estimates</span>
+      </div>
+      <h1>Recipe Nutrition Calculator</h1>
+      <p>Estimate per-serving calories, macro splits, and review ingredient matching gaps in real time. Local-first and entirely offline.</p>
+    </div>
+  </header>
+
+  <div class="disclaimer-banner glass">
+    <span class="icon">⚠️</span>
+    <p><b>Estimated Nutrition:</b> Calculations are estimates based on standard databases. Variances in ingredient brands, preparation (raw vs. cooked) states, and cooking moisture loss will impact final nutritional densities.</p>
+  </div>
+
+  <div class="recipe-workarea">
+    
+    <!-- LEFT PANEL: INPUTS -->
+    <div class="input-side">
+      
+      <!-- Text Area Card -->
+      <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
+        <div class="role" style="margin-bottom: 12px;">Paste Ingredients</div>
+        <textarea id="recipe-input" class="form-input" style="min-height: 180px; font-family: var(--font-ui); font-size: 14px; line-height: 1.6;" placeholder="Paste your recipe here (one item per line). E.g.&#10;500g chicken breast raw&#10;200g jasmine rice cooked&#10;1 tbsp olive oil"></textarea>
+        
+        <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end;">
+          <div class="input-group">
+            <span class="input-label">Recipe Servings</span>
+            <input type="number" id="servings" class="form-input" value="4" min="1" step="1">
+          </div>
+          <div class="tynkr-unit-toggle-wrapper" style="height: 42px; display: flex; align-items: center; justify-content: flex-end;">
+            <button type="button" id="display-mode-serving" class="tynkr-unit-btn active" style="font-size: 11px;">Per Serving</button>
+            <button type="button" id="display-mode-total" class="tynkr-unit-btn" style="font-size: 11px;">Total Recipe</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Ingredients Input Drawer -->
+      <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
+        <div class="role" style="margin-bottom: 12px;">Add Custom Ingredient</div>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="input-group">
+            <span class="input-label">Ingredient Name</span>
+            <input type="text" id="custom-name" class="form-input" placeholder="E.g. Raw Tofu">
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="input-group">
+              <span class="input-label">Weight (grams)</span>
+              <input type="number" id="custom-weight" class="form-input" min="1" placeholder="E.g. 300">
+            </div>
+            <div class="input-group">
+              <span class="input-label">Macro Entry Mode</span>
+              <select id="custom-mode" class="form-input">
+                <option value="per-100g">Values Per 100g</option>
+                <option value="total">Values for Full Weight</option>
+              </select>
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <div class="input-group">
+              <span class="input-label">Calories</span>
+              <input type="number" id="custom-cal" class="form-input" min="0" placeholder="kcal">
+            </div>
+            <div class="input-group">
+              <span class="input-label">Protein (g)</span>
+              <input type="number" id="custom-protein" class="form-input" min="0" step="0.1" placeholder="g">
+            </div>
+            <div class="input-group">
+              <span class="input-label">Carbs (g)</span>
+              <input type="number" id="custom-carbs" class="form-input" min="0" step="0.1" placeholder="g">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <div class="input-group">
+              <span class="input-label">Fat (g)</span>
+              <input type="number" id="custom-fat" class="form-input" min="0" step="0.1" placeholder="g">
+            </div>
+            <div class="input-group">
+              <span class="input-label">Fiber (g)</span>
+              <input type="number" id="custom-fiber" class="form-input" min="0" step="0.1" placeholder="g">
+            </div>
+            <div class="input-group">
+              <span class="input-label">Sodium (mg)</span>
+              <input type="number" id="custom-sodium" class="form-input" min="0" placeholder="mg">
+            </div>
+          </div>
+          
+          <button type="button" id="add-custom-btn" class="primary-btn" style="justify-content: center; margin-top: 6px;">Add Custom Ingredient</button>
+        </div>
+
+        <!-- Custom Active List -->
+        <div id="custom-active-container" style="display: none; margin-top: 18px; padding-top: 14px; border-top: 2px solid var(--line);">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px;">Active Custom Ingredients</div>
+          <div id="custom-active-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+      </div>
+
+      <!-- Ingredient Ambiguity Warnings & Unmatched list -->
+      <div id="warning-card" class="glass type-card" style="display: none; padding: 20px; margin-bottom: 24px;">
+        <div class="role" style="color: var(--warn); margin-bottom: 12px;">Ingredient Review Required</div>
+        <div id="ambiguous-warnings" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;"></div>
+        
+        <div id="unmatched-container" style="display: none;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px;">Unmatched Lines (Not Calculated)</div>
+          <ul id="unmatched-list" style="padding-left: 18px; font-size: 13px; line-height: 1.5; color: var(--muted); margin: 0;"></ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- RIGHT PANEL: OUTPUTS -->
+    <div class="output-side">
+      
+      <!-- Summarized Stats & Macro Calorie Splits -->
+      <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
+        <div class="role" style="margin-bottom: 14px;">Nutrition Summary (<span id="summary-mode-title">Per Serving</span>)</div>
+        
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid var(--line);">
+          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Estimated Calories</div>
+          <div id="stat-calories" style="font-family: var(--font-display); font-size: 42px; font-weight: 800; color: var(--accent); line-height: 1;">0</div>
+        </div>
+
+        <div style="font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">Macro Calorie Splits (4-4-9 kcal/g)</div>
+        
+        <div class="macro-chart-container">
+          <div class="macro-ratio-bar">
+            <div id="bar-protein" class="ratio-segment protein" style="width: 0%" title="Protein"></div>
+            <div id="bar-carbs" class="ratio-segment carbs" style="width: 0%" title="Carbs"></div>
+            <div id="bar-fat" class="ratio-segment fat" style="width: 0%" title="Fat"></div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px;">
+            <div style="border-left: 3px solid #3b82f6; padding-left: 8px;">
+              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase;">Protein</div>
+              <div id="label-protein-kcal" style="font-size: 15px; font-weight: 700;">0 kcal (0%)</div>
+            </div>
+            <div style="border-left: 3px solid #10b981; padding-left: 8px;">
+              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase;">Carbs</div>
+              <div id="label-carbs-kcal" style="font-size: 15px; font-weight: 700;">0 kcal (0%)</div>
+            </div>
+            <div style="border-left: 3px solid #f59e0b; padding-left: 8px;">
+              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase;">Fat</div>
+              <div id="label-fat-kcal" style="font-size: 15px; font-weight: 700;">0 kcal (0%)</div>
+            </div>
+          </div>
+          <p style="font-size: 11px; color: var(--muted); margin: 12px 0 0; line-height: 1.5; font-family: var(--font-ui);">
+            * Calorie split ratio utilizes 4-4-9 system. The ratio calculation may not equal the direct database total calories due to source databases using specific ingredient combustive values or fiber deductions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Estimated Nutrition Facts Card -->
+      <div class="glass label-card" style="padding: 24px; margin-bottom: 24px;">
+        <div class="label-wrapper">
+          <div class="label-header">
+            <h2>Estimated Nutrition Facts</h2>
+            <div class="sub">Calculated recipe estimates</div>
+          </div>
+          
+          <div class="label-servings">
+            <div>Servings Per Container: <b id="lbl-servings">4</b></div>
+            <div>Serving Size: <b id="lbl-serving-size">--</b></div>
+          </div>
+          
+          <div class="label-calories">
+            <div class="title">Amount Per Serving</div>
+            <div class="row">
+              <div class="name">Calories</div>
+              <div class="val" id="lbl-calories">0</div>
+            </div>
+          </div>
+          
+          <div class="label-table">
+            <div class="dv-header">% Daily Value *</div>
+            
+            <div class="label-row">
+              <span class="name"><b>Total Fat</b> <span id="lbl-fat">0g</span></span>
+              <span class="dv" id="lbl-fat-dv">0%</span>
+            </div>
+            <div class="label-row">
+              <span class="name"><b>Sodium</b> <span id="lbl-sodium">0mg</span></span>
+              <span class="dv" id="lbl-sodium-dv">0%</span>
+            </div>
+            <div class="label-row">
+              <span class="name"><b>Total Carbohydrate</b> <span id="lbl-carbs">0g</span></span>
+              <span class="dv" id="lbl-carbs-dv">0%</span>
+            </div>
+            <div class="label-row indent">
+              <span class="name">Dietary Fiber <span id="lbl-fiber">0g</span></span>
+              <span class="dv" id="lbl-fiber-dv">0%</span>
+            </div>
+            <div class="label-row last">
+              <span class="name"><b>Protein</b> <span id="lbl-protein">0g</span></span>
+              <span class="dv">--</span>
+            </div>
+          </div>
+          
+          <div class="label-footer">
+            * The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet of 2,000 calories. Standard daily reference values used: Fat 78g, Sodium 2,300mg, Carbohydrate 275g, Dietary Fiber 28g.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
+    <h4 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h4>
+    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
+      <a id="pipeline-link-scaler" href="../universal-recipe-scaler/index.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want to convert weights or change portions? Use the Universal Recipe Scaler &rarr;</a>
+      <a id="pipeline-link-cost" href="../cost-per-serving-calculator/index.html" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want to price your recipe? Calculate unit economics with the Cost Per Serving Calculator &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Explanatory Prose & FAQ Section -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">Understanding recipe macro estimations</h2>
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Calculating recipe nutrition is an essential tool for meal prepping and recipe formulation, but it's important to treat the outputs as estimates. Whole foods vary significantly in calorie density depending on soil conditions, climate, brand processing variations, and moisture level changes during cooking. For example, raw grains double or triple in weight when cooked because they absorb water, which has zero calories but dilutes the nutrient density per gram.</p>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">To ensure the best possible calculations, always specify whether you are measuring dry ingredients or cooked ingredients (such as dry rice vs cooked rice), and make sure that you parse line weights correctly. Unmatched items should be manually entered using custom inputs to capture brand-specific nutrition labels correctly.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Why does raw vs cooked state matter for rice and meats?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Ingredients undergo massive moisture changes when cooked. 100g of dry jasmine rice absorbs water and expands to become roughly 250g of cooked rice. If you enter '100g rice' but cook it, the dry rice will yield nearly triple the calories of cooked rice for the same weight. Be specific with 'cooked' or 'dry' in your entries.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How are macro calorie splits calculated?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">We use the standard 4-4-9 kcal/g conversion rules: 4 calories per gram of protein, 4 calories per gram of carbohydrates, and 9 calories per gram of fat. Summing these values gives a macro-based calorie split, which might differ slightly from direct database totals that account for organic acids, alcohol, or dietary fiber adjustments.</p>
+      </div>
+      <div>
+        <h4 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does this calculator check for food regulations?</h4>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">No. This calculator is strictly for home cooks, meal planning, and testing estimates. It is not compliant with official FDA labeling regulations and should not be used to produce commercial labels.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<section class="net-band">
+  <h2><span class="lbl">Network</span> More from the studio</h2>
+  <div class="net-grid">
+    <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/studio-link.jpg" alt="Built By Josh Studio"></div>
+      <div class="gear-info">
+        <h4>Built By Josh Studio</h4>
+        <p>Local-first software, CRM solutions, and technical projects.</p>
+        <button class="affiliate-btn">Visit Website</button>
+      </div>
+    </a>
+    <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+      <div class="gear-info">
+        <h4>Tales of Ink &amp; Shadows</h4>
+        <p>Historical noir documentaries and immersive storytelling.</p>
+        <button class="affiliate-btn">Watch on YouTube</button>
+      </div>
+    </a>
+    <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+      <div class="gear-img-wrapper"><img src="../brine-calculator/tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+      <div class="gear-info">
+        <h4>Tynkr Tools &amp; Co.</h4>
+        <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+        <button class="affiliate-btn">Subscribe</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
+  <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
+  <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+</footer>
+
+<script src="../ingredients-db.js"></script>
+<script src="script.js"></script>
+<script src="../kinetic.js"></script>
+</body>
+</html>
