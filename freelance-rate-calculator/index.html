@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Freelance Rate Calculator | Hourly Rate &amp; Take-Home Math, Free</title>
+  <meta name="description" content="Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, business expenses, and non-billable time. See your real take-home. Free, ad-free.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/freelance-rate-calculator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Freelance Rate Calculator",
+    "url": "https://tools.builtbyjoshstudio.com/freelance-rate-calculator/",
+    "description": "Calculate the freelance hourly rate you need to reach your target income after self-employment tax, business expenses, and non-billable time, and see your real take-home pay.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate my freelance hourly rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with your target take-home income, add self-employment tax (about 15.3%) and your annual business expenses, then divide the total by your realistic billable hours per year. Billable hours are lower than working hours because admin, marketing, and downtime aren't billable. This calculator does all of that and shows the floor rate you need to charge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my freelance rate higher than an equivalent salary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "As a freelancer you cover costs an employer normally pays: the full 15.3% self-employment tax, health insurance, retirement, software, and unpaid time off. You also can't bill every working hour. Once those are factored in, the rate needed to match a given take-home is typically 25-50% higher than the equivalent W-2 hourly wage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What percentage of my hours are actually billable?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most freelancers bill only 60-70% of their working hours. The rest goes to invoicing, proposals, marketing, email, and admin. If you work 40 hours a week, plan on roughly 25-28 billable hours. This tool lets you set your own billable percentage so the rate reflects reality."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this freelance rate calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/freelance-rate-calculator/">
+  <meta property="og:title" content="Freelance Rate Calculator | Hourly Rate &amp; Take-Home Math, Free">
+  <meta property="og:description" content="Find the hourly rate you need after self-employment tax, expenses, and non-billable time — and see your real take-home. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/freelance-rate-calculator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/freelance-rate-calculator/">
+  <meta name="twitter:title" content="Freelance Rate Calculator | Hourly Rate &amp; Take-Home Math, Free">
+  <meta name="twitter:description" content="Find the hourly rate you need after self-employment tax, expenses, and non-billable time — and see your real take-home. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/freelance-rate-calculator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors the kitchen tools' inline shell) ===== */
+    .tool-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      max-width: 920px; margin: 0 auto; padding: 22px 24px 0;
+    }
+    .tn-left { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .tn-back {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--ink); text-decoration: none;
+      border: 2px solid var(--line-2); border-radius: var(--r-s);
+      padding: 8px 12px; background: var(--surface);
+      box-shadow: 3px 3px 0 var(--shadow); transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+    }
+    .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
+    .tn-brand { display: inline-flex; align-items: center; gap: 9px; }
+    .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); }
+    .tn-brand .name b { color: var(--ink); }
+
+    .page.tool-shell { max-width: 920px; margin: 0 auto; padding: 24px; }
+
+    .hero.glass { display: flex; gap: 24px; align-items: flex-start; }
+    .hero .meta {
+      display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .hero .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 2px solid var(--line-2); border-radius: 999px;
+      padding: 4px 10px; color: var(--ink);
+    }
+    .hero .pill.live { color: var(--accent); }
+    .hero h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.02; margin: 0 0 10px; }
+    .hero p { color: var(--muted); margin: 0; max-width: 60ch; }
+
+    .tool-controls { margin: 22px 0 8px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+    .role {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+
+    .anatomy-stage {
+      display: flex; flex-direction: column; gap: 4px;
+      padding-bottom: 18px; margin-bottom: 18px;
+      border-bottom: 2px solid var(--line);
+    }
+    .anatomy-stage .stage-label {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .anatomy-stage .stage-value {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(40px, 8vw, 64px); line-height: 1; color: var(--accent);
+    }
+    .anatomy-stage .stage-sub { font-size: 14px; color: var(--muted); }
+
+    .anatomy-labels { display: flex; flex-direction: column; gap: 10px; }
+    .anatomy-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 14px;
+    }
+    .anatomy-row .ix {
+      flex: 0 0 auto; width: 34px; height: 34px; border-radius: var(--r-s);
+      display: grid; place-items: center;
+      border: 2px solid var(--line-2); color: var(--ink);
+      font-family: var(--font-mono); font-size: 13px;
+    }
+    .anatomy-row .lbl { flex: 1 1 auto; min-width: 0; }
+    .anatomy-row .lbl h4 { margin: 0; font-size: 15px; }
+    .anatomy-row .lbl p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+    .anatomy-row code {
+      font-family: var(--font-mono); font-size: 16px; color: var(--ink);
+      white-space: nowrap;
+    }
+    .anatomy-row.is-accent code { color: var(--accent); }
+    .anatomy-row.is-pos code { color: var(--pos); }
+
+    .note {
+      font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.5;
+    }
+
+    /* ===== Funnel CTA → paid product on the main domain ===== */
+    .funnel {
+      margin-top: 22px; display: block; text-decoration: none;
+      border: 2px solid var(--line-2); border-radius: var(--r);
+      background: var(--surface-2); padding: 20px 22px;
+      box-shadow: 6px 6px 0 var(--shadow);
+      transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+    }
+    .funnel:hover { transform: translate(3px,3px); box-shadow: 2px 2px 0 var(--shadow); }
+    .funnel .eyebrow {
+      font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+    }
+    .funnel h3 { margin: 0 0 6px; font-size: 21px; color: var(--ink); }
+    .funnel p { margin: 0; color: var(--muted); font-size: 14.5px; max-width: 60ch; }
+    .funnel .go {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+      font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--ink);
+    }
+
+    .prose { margin-top: 40px; }
+    .prose h2 { font-size: clamp(24px, 4vw, 32px); margin: 0 0 12px; }
+    .prose h3 { font-size: 18px; margin: 26px 0 6px; }
+    .prose p { color: var(--muted); line-height: 1.6; margin: 0 0 12px; max-width: 70ch; }
+
+    .faq { margin-top: 30px; }
+    .faq details {
+      border-bottom: 2px solid var(--line); padding: 14px 0;
+    }
+    .faq summary {
+      cursor: pointer; font-family: var(--font-display); font-weight: 700;
+      font-size: 17px; color: var(--ink); list-style: none;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; float: right; color: var(--muted); font-family: var(--font-mono); }
+    .faq details[open] summary::after { content: "–"; }
+    .faq p { color: var(--muted); line-height: 1.6; margin: 10px 0 0; max-width: 70ch; }
+
+    .net-band { max-width: 920px; margin: 48px auto 0; padding: 0 24px; }
+    .footer {
+      max-width: 920px; margin: 30px auto 0; padding: 24px;
+      font-size: 12.5px; color: var(--muted); line-height: 1.6;
+    }
+    .footer a { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../index.html">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Business</span>
+          <span>Rate &amp; take-home math</span>
+        </div>
+        <h1>Freelance Rate Calculator</h1>
+        <p>Find the hourly rate you need to hit your income goal — after self-employment tax, business expenses, and the hours you can't bill. Then see what each rate actually leaves you.</p>
+      </div>
+    </header>
+
+    <!-- INPUT CARD -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Your numbers</div>
+      <div class="grid-2">
+        <div class="input-group">
+          <span class="input-label">Target take-home income (per year)</span>
+          <input type="number" id="target-income" class="form-input" value="60000" min="0" step="1000" inputmode="numeric">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Annual business expenses</span>
+          <input type="number" id="expenses" class="form-input" value="6000" min="0" step="500" inputmode="numeric">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Self-employment tax rate</span>
+          <span id="tax-bubble">15.3%</span>
+          <input type="range" id="tax-rate" class="form-input-range" min="0" max="40" value="15.3" step="0.1">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Billable hours per week</span>
+          <input type="number" id="billable-hours" class="form-input" value="25" min="1" max="80" step="1" inputmode="numeric">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Working weeks per year</span>
+          <input type="number" id="weeks" class="form-input" value="48" min="1" max="52" step="1" inputmode="numeric">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Compare: a rate you're considering</span>
+          <input type="number" id="compare-rate" class="form-input" value="75" min="0" step="5" inputmode="numeric">
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="glass anatomy" style="margin-top:18px;">
+      <div class="anatomy-stage">
+        <span class="stage-label">Minimum rate you need to charge</span>
+        <span class="stage-value" id="rate-output">$71/hr</span>
+        <span class="stage-sub" id="rate-sub">to net your target after tax, expenses, and non-billable time</span>
+      </div>
+      <div class="anatomy-labels">
+        <div class="glass-lite anatomy-row">
+          <div class="ix">1</div>
+          <div class="lbl"><h4>Gross revenue required</h4><p>Income + expenses + tax</p></div>
+          <code id="gross-output">$77,922</code>
+        </div>
+        <div class="glass-lite anatomy-row">
+          <div class="ix">2</div>
+          <div class="lbl"><h4>Self-employment tax</h4><p>What you set aside</p></div>
+          <code id="tax-output">$11,922</code>
+        </div>
+        <div class="glass-lite anatomy-row">
+          <div class="ix">3</div>
+          <div class="lbl"><h4>Billable hours per year</h4><p>Hours you can actually invoice</p></div>
+          <code id="hours-output">1,200 hrs</code>
+        </div>
+        <div class="glass-lite anatomy-row is-pos">
+          <div class="ix">4</div>
+          <div class="lbl"><h4>At your compare rate <span id="compare-echo">$75/hr</span></h4><p>Annual take-home after tax &amp; expenses</p></div>
+          <code id="compare-output">$63,360</code>
+        </div>
+      </div>
+      <p class="note" id="verdict">Charging $75/hr clears your $60,000 goal with room to spare.</p>
+    </div>
+
+    <!-- FUNNEL CTA → Business OS on the main domain -->
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/creator-business-os.html" target="_blank" rel="noopener">
+      <div class="eyebrow">Run the business behind the rate</div>
+      <h3>Creator Business OS</h3>
+      <p>Knowing your rate is step one. Business OS is the Notion command center for tracking clients, projects, invoices, and income so you actually hit the number you just calculated.</p>
+      <span class="go">See Business OS &rarr;</span>
+    </a>
+
+    <!-- PROSE EXPLAINER -->
+    <section class="prose">
+      <h2>How to set your freelance rate</h2>
+      <p>Most rate calculators hand you a single number and stop. The problem is that number usually ignores the three things that quietly eat a freelancer's income: self-employment tax, business expenses, and the hours you work but can't bill. This tool builds your rate up from your real take-home goal instead.</p>
+
+      <h3>Start with take-home, not revenue</h3>
+      <p>Decide what you want to actually keep in a year. Everything else gets added on top of that, so the rate you land on is the rate that leaves you with your goal — not the rate that looks good before tax season arrives.</p>
+
+      <h3>Add self-employment tax</h3>
+      <p>Freelancers pay both halves of Social Security and Medicare, roughly 15.3% on net earnings, plus income tax. The slider lets you raise it to a blended rate that matches your bracket so nothing surprises you in April.</p>
+
+      <h3>Only bill the hours you can bill</h3>
+      <p>A 40-hour week is rarely 40 billable hours. Invoicing, proposals, marketing, and admin are unpaid. Setting billable hours to 25–28 for a full-time week is realistic, and it's the single biggest reason freelance rates run higher than an equivalent salary.</p>
+    </section>
+
+    <!-- FAQ (mirrors FAQPage JSON-LD) -->
+    <section class="faq">
+      <details>
+        <summary>How do I calculate my freelance hourly rate?</summary>
+        <p>Start with your target take-home income, add self-employment tax (about 15.3%) and your annual business expenses, then divide by your realistic billable hours per year. This calculator does all of that and shows the floor rate you need to charge.</p>
+      </details>
+      <details>
+        <summary>Why is my freelance rate higher than an equivalent salary?</summary>
+        <p>You cover costs an employer normally pays — the full 15.3% self-employment tax, health insurance, retirement, software, and unpaid time off — and you can't bill every working hour. Matching a given take-home usually needs a rate 25–50% higher than the equivalent W-2 wage.</p>
+      </details>
+      <details>
+        <summary>What percentage of my hours are actually billable?</summary>
+        <p>Most freelancers bill only 60–70% of their working hours. If you work 40 hours a week, plan on roughly 25–28 billable hours. This tool lets you set your own number so the rate reflects reality.</p>
+      </details>
+      <details>
+        <summary>Is this freelance rate calculator free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div class="grid-2" style="margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This calculator is for general informational and educational purposes only and is not financial, tax, or accounting advice. Tax rates and rules vary by location and situation — confirm your numbers with a qualified professional before making decisions. Estimates only.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
