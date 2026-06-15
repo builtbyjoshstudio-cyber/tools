@@ -209,12 +209,22 @@
     .faq details[open] summary::after { content: "–"; }
     .faq p { color: var(--muted); line-height: 1.6; margin: 10px 0 0; max-width: 70ch; }
 
-    .net-band { max-width: 920px; margin: 48px auto 0; padding: 0 24px; }
-    .footer {
-      max-width: 920px; margin: 30px auto 0; padding: 24px;
-      font-size: 12.5px; color: var(--muted); line-height: 1.6;
+    .net-band { max-width: 920px; margin: 64px auto 0; padding: 0 28px; }
+    .net-band h2 {
+      font-family: var(--font-display); font-weight: 800; font-size: 20px;
+      letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px;
+      border-bottom: 2px solid var(--line-2);
+      display: flex; align-items: baseline; gap: 12px;
     }
-    .footer a { color: var(--ink); }
+    .net-band h2 .lbl {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    }
+    .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .net-grid .gear-img-wrapper { height: 120px; }
+    @media (max-width: 760px) {
+      .net-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -312,11 +322,11 @@
     </div>
 
     <!-- FUNNEL CTA → Business OS on the main domain -->
-    <a class="funnel" href="https://builtbyjoshstudio.com/products/creator-business-os.html" target="_blank" rel="noopener">
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/creator-finance-os.html" target="_blank" rel="noopener">
       <div class="eyebrow">Run the business behind the rate</div>
-      <h3>Creator Business OS</h3>
-      <p>Knowing your rate is step one. Business OS is the Notion command center for tracking clients, projects, invoices, and income so you actually hit the number you just calculated.</p>
-      <span class="go">See Business OS &rarr;</span>
+      <h3>Creator Finance OS</h3>
+      <p>Knowing your rate is step one. Finance OS is the Notion command center for tracking clients, projects, invoices, and income so you actually hit the number you just calculated.</p>
+      <span class="go">See Finance OS &rarr;</span>
     </a>
 
     <!-- PROSE EXPLAINER -->
@@ -357,24 +367,38 @@
   </main>
 
   <section class="net-band">
-    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
-    <div class="grid-2" style="margin-top:16px;">
-      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
-        <div class="ix">JS</div>
-        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
-        <code>&rarr;</code>
+    <h2><span class="lbl">Network</span> More from the studio</h2>
+    <div class="net-grid">
+      <a href="https://builtbyjoshstudio.com/index.html" target="_blank" rel="noopener" class="gear-item">
+        <div class="gear-img-wrapper"><img src="../brine-calculator/studio-link.jpg" alt="Built By Josh Studio"></div>
+        <div class="gear-info">
+          <h4>Built By Josh Studio</h4>
+          <p>Local-first software, CRM solutions, and technical projects.</p>
+          <button class="affiliate-btn">Visit Website</button>
+        </div>
       </a>
-      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
-        <div class="ix">SS</div>
-        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
-        <code>&rarr;</code>
+      <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
+        <div class="gear-img-wrapper"><img src="../brine-calculator/tales-link.jpg" alt="Tales of Ink &amp; Shadows"></div>
+        <div class="gear-info">
+          <h4>Tales of Ink &amp; Shadows</h4>
+          <p>Historical noir documentaries and immersive storytelling.</p>
+          <button class="affiliate-btn">Watch on YouTube</button>
+        </div>
+      </a>
+      <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
+        <div class="gear-img-wrapper"><img src="../brine-calculator/tynkr-link.jpg" alt="Tynkr Tools &amp; Co"></div>
+        <div class="gear-info">
+          <h4>Tynkr Tools &amp; Co.</h4>
+          <p>Deep dives into productivity, Notion templates, and studio updates.</p>
+          <button class="affiliate-btn">Subscribe</button>
+        </div>
       </a>
     </div>
   </section>
 
-  <footer class="footer">
-    <p>This calculator is for general informational and educational purposes only and is not financial, tax, or accounting advice. Tax rates and rules vary by location and situation — confirm your numbers with a qualified professional before making decisions. Estimates only.</p>
-    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+  <footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
+    <p style="margin-bottom: 12px;">This calculator is for general informational and educational purposes only and is not financial, tax, or accounting advice. Tax rates and rules vary by location and situation — confirm your numbers with a qualified professional before making decisions. Estimates only.</p>
+    <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
   </footer>
 
   <script src="script.js"></script>
