@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Debt Payoff Calculator | Snowball vs Avalanche, Free</title>
+  <meta name="description" content="See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side. Watch how an extra payment changes everything. Free, ad-free, no signup.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/debt-payoff-calculator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Debt Payoff Calculator",
+    "url": "https://tools.builtbyjoshstudio.com/debt-payoff-calculator/",
+    "description": "Compare debt snowball, avalanche, and hybrid payoff strategies side by side. See your debt-free date, total interest, and how much an extra monthly payment saves.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's the difference between the debt snowball and avalanche methods?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The snowball method pays off your smallest balance first for quick psychological wins. The avalanche method pays off your highest interest rate first to save the most money. Both make minimum payments on everything else, then roll each cleared debt's payment into the next. This calculator runs both, plus a hybrid, so you can see the exact dollar and time difference for your debts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which debt payoff method is best?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Avalanche always saves the most interest mathematically. But for many people the difference is small, and snowball's early wins make it easier to stick with to the finish. The best method is the one you'll actually complete. The calculator shows the gap so you can decide whether the savings are worth it for your situation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much faster will an extra payment make me debt-free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every extra dollar goes straight to principal on your target debt, so even a small extra payment can cut months or years off your timeline and save thousands in interest. Use the extra-payment slider to see exactly how your debt-free date and total interest change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this debt payoff calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/debt-payoff-calculator/">
+  <meta property="og:title" content="Debt Payoff Calculator | Snowball vs Avalanche, Free">
+  <meta property="og:description" content="Compare snowball, avalanche, and hybrid side by side. See your debt-free date and how much an extra payment saves. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/debt-payoff-calculator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/debt-payoff-calculator/">
+  <meta name="twitter:title" content="Debt Payoff Calculator | Snowball vs Avalanche, Free">
+  <meta name="twitter:description" content="Compare snowball, avalanche, and hybrid side by side. See your debt-free date and how much an extra payment saves. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/debt-payoff-calculator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    /* debt rows */
+    .debt-head, .debt-row { display:grid; grid-template-columns: 1.4fr 1fr .8fr 1fr 34px; gap:10px; align-items:center; }
+    .debt-head { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; padding:0 2px; }
+    .debt-row { margin-bottom:10px; }
+    .debt-row .form-input { width:100%; }
+    .d-remove { width:34px; height:38px; border:2px solid var(--line-2); border-radius:var(--r-s); background:var(--surface-2); color:var(--muted); font-size:18px; line-height:1; cursor:pointer; transition:color .15s var(--ease), border-color .15s var(--ease); }
+    .d-remove:hover { color:var(--neg); border-color:var(--neg); }
+    #add-debt { margin-top:6px; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); background:var(--surface-2); border:2px dashed var(--line-2); border-radius:var(--r-s); padding:11px 16px; cursor:pointer; width:100%; transition:border-color .15s var(--ease); }
+    #add-debt:hover:not(:disabled) { border-color:var(--accent); color:var(--accent); }
+    #add-debt:disabled { opacity:.5; cursor:not-allowed; }
+    @media (max-width:620px){
+      .debt-head { display:none; }
+      .debt-row { grid-template-columns:1fr 1fr; grid-auto-rows:auto; }
+      .debt-row .d-name { grid-column:1 / 3; }
+      .d-remove { grid-column:2; justify-self:end; }
+    }
+
+    .controls-2 { display:grid; grid-template-columns:1fr; gap:18px; margin-top:18px; }
+    @media (min-width:620px){ .controls-2 { grid-template-columns:1.3fr 1fr; } }
+
+    /* hero readout */
+    .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(40px,8vw,64px); line-height:1; color:var(--accent); }
+    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); max-width:62ch; }
+
+    .stat-trio { display:grid; grid-template-columns:1fr; gap:10px; }
+    @media (min-width:560px){ .stat-trio { grid-template-columns:repeat(3,1fr); } }
+    .stat-cell { padding:14px 16px; }
+    .stat-cell .k { font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
+    .stat-cell .v { font-family:var(--font-display); font-weight:800; font-size:22px; }
+    .stat-cell.pos .v { color:var(--pos); }
+
+    /* chart */
+    .chart-wrap { margin-top:18px; }
+    #chart { width:100%; height:240px; border:2px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); overflow:hidden; }
+    #chart svg { width:100%; height:100%; display:block; }
+    .chart-primary { stroke: #9d7bff; stroke: var(--accent); }
+    .chart-baseline { stroke: #8c8c97; stroke: var(--muted); }
+    .chart-legend { display:flex; gap:18px; margin-top:10px; font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+    .chart-legend span { display:inline-flex; align-items:center; gap:7px; }
+    .swatch { width:16px; height:0; border-top:3px solid var(--accent); }
+    .swatch.base { border-top:2px dashed var(--muted); }
+
+    .anatomy-labels { display:flex; flex-direction:column; gap:10px; }
+    .anatomy-row { display:flex; align-items:center; gap:14px; padding:12px 14px; }
+    .anatomy-row .ix { flex:0 0 auto; width:34px; height:34px; border-radius:var(--r-s); display:grid; place-items:center; border:2px solid var(--line-2); color:var(--ink); font-family:var(--font-mono); font-size:13px; }
+    .anatomy-row .lbl { flex:1 1 auto; min-width:0; }
+    .anatomy-row .lbl h4 { margin:0; font-size:15px; }
+    .anatomy-row .lbl p { margin:2px 0 0; font-size:12.5px; color:var(--muted); }
+    .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
+
+    /* comparison table */
+    .cmp-row { display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:12px; align-items:center; padding:14px; border:2px solid var(--line); border-radius:var(--r-s); margin-bottom:10px; background:var(--surface-2); }
+    .cmp-row.is-current { border-color:var(--accent); }
+    .cmp-method strong { font-family:var(--font-display); font-size:16px; }
+    .cmp-tag { display:inline-block; margin-left:8px; font-family:var(--font-mono); font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent); padding:2px 7px; border-radius:999px; }
+    .cmp-note { display:block; font-size:12px; color:var(--muted); margin-top:3px; }
+    .cmp-val { font-family:var(--font-mono); font-size:15px; }
+    .cmp-val .cmp-k { display:block; font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+    @media (max-width:560px){ .cmp-row { grid-template-columns:1fr 1fr; } .cmp-method { grid-column:1 / 3; } }
+
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    /* funnel CTA */
+    .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
+    .funnel .eyebrow { font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .funnel h3 { margin:0 0 6px; font-size:21px; color:var(--ink); }
+    .funnel p { margin:0; color:var(--muted); font-size:14.5px; max-width:60ch; }
+    .funnel .go { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../index.html">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Finance</span>
+          <span>Snowball vs avalanche</span>
+        </div>
+        <h1>Debt Payoff Calculator</h1>
+        <p>List your debts, set what extra you can throw at them, and watch your debt-free date move. Snowball, avalanche, and hybrid — compared side by side with your real numbers.</p>
+      </div>
+    </header>
+
+    <!-- INPUT CARD -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Your debts</div>
+      <div class="debt-head">
+        <span>Name</span><span>Balance</span><span>APR %</span><span>Min / mo</span><span></span>
+      </div>
+      <div id="debt-rows"></div>
+      <button type="button" id="add-debt">+ Add a debt</button>
+
+      <div class="controls-2">
+        <div class="input-group">
+          <span class="input-label">Extra payment per month <span id="extra-bubble" style="color:var(--accent); font-family:var(--font-mono);">$300/mo extra</span></span>
+          <input type="range" id="extra-payment" class="form-input-range" min="0" max="2000" value="150" step="25">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Strategy shown below</span>
+          <select id="strategy" class="form-input">
+            <option value="avalanche">Avalanche — highest interest first</option>
+            <option value="snowball">Snowball — smallest balance first</option>
+            <option value="hybrid">Hybrid — snowball start, then avalanche</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="glass anatomy" style="margin-top:18px;">
+      <div class="anatomy-stage">
+        <span class="stage-label">Debt-free in</span>
+        <span class="stage-value" id="hero-months">3 yrs 0 mo</span>
+        <span class="stage-sub" id="hero-sub">Debt-free sooner and less interest than paying minimums only.</span>
+      </div>
+
+      <div class="stat-trio">
+        <div class="glass-lite stat-cell"><span class="k">Debt-free date</span><span class="v" id="freedate-output">—</span></div>
+        <div class="glass-lite stat-cell"><span class="k">Total interest</span><span class="v" id="interest-output">—</span></div>
+        <div class="glass-lite stat-cell pos"><span class="k">Interest saved vs minimums</span><span class="v" id="saved-output">—</span></div>
+      </div>
+
+      <div class="chart-wrap">
+        <div id="chart"></div>
+        <div class="chart-legend">
+          <span><span class="swatch"></span>Your plan</span>
+          <span><span class="swatch base"></span>Minimum payments only</span>
+        </div>
+      </div>
+
+      <div class="role" style="margin-top:22px;">Payoff order</div>
+      <div class="anatomy-labels" id="payoff-order"></div>
+    </div>
+
+    <!-- COMPARISON -->
+    <div class="glass" style="margin-top:18px;">
+      <div class="role">2. Compare all three strategies</div>
+      <div id="compare-body"></div>
+      <p class="note" id="verdict"></p>
+    </div>
+
+    <!-- FUNNEL CTA → Ultimate Budget Workbook (interim; swap to a Debt Payoff Workbook later) -->
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html" target="_blank" rel="noopener">
+      <div class="eyebrow">Find the extra payment first</div>
+      <h3>Ultimate Budget Workbook</h3>
+      <p>The extra payment that powers all of this has to come from somewhere. The budget workbook helps you find that money each month and keep the plan on track until the last debt clears.</p>
+      <span class="go">See the Budget Workbook &rarr;</span>
+    </a>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>How to pay off debt faster</h2>
+      <p>Paying off multiple debts comes down to two levers: the extra you can put toward them each month, and the order you attack them in. This calculator models both, then runs the snowball, avalanche, and hybrid methods on your real balances so you can see the actual difference instead of guessing.</p>
+
+      <h3>Snowball: smallest balance first</h3>
+      <p>You pay minimums on everything, then throw every extra dollar at your smallest balance. When it clears, its payment rolls into the next-smallest. The early wins come fast, which is why a lot of people who try snowball actually finish.</p>
+
+      <h3>Avalanche: highest interest first</h3>
+      <p>Same mechanics, different order — you target the highest APR first. This always costs the least interest mathematically. The catch is the first win can take a while if your highest-rate debt also has a big balance.</p>
+
+      <h3>Hybrid: momentum, then math</h3>
+      <p>Start with snowball for the first few months to bank a quick win, then switch to avalanche to capture most of the interest savings. A reasonable middle path if you want some early motivation without giving up much money.</p>
+
+      <h3>The extra payment is the real lever</h3>
+      <p>Notice what happens when you move the extra-payment slider. Because every extra dollar goes straight to principal on your target debt, even a modest increase can pull your debt-free date in by months or years and cut your total interest dramatically.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>What's the difference between the snowball and avalanche methods?</summary>
+        <p>Snowball pays the smallest balance first for quick wins; avalanche pays the highest interest rate first to save the most money. Both pay minimums on everything else and roll each cleared debt's payment into the next. This tool runs both, plus a hybrid, so you see the exact difference for your debts.</p>
+      </details>
+      <details>
+        <summary>Which debt payoff method is best?</summary>
+        <p>Avalanche always saves the most interest mathematically. But the difference is often small, and snowball's early wins make it easier to stick with. The best method is the one you'll actually finish — the comparison above shows the gap so you can decide.</p>
+      </details>
+      <details>
+        <summary>How much faster will an extra payment make me debt-free?</summary>
+        <p>Every extra dollar goes straight to principal on your target debt, so even a small extra payment can cut months or years off your timeline and save thousands in interest. Move the extra-payment slider to see exactly how your date and total interest change.</p>
+      </details>
+      <details>
+        <summary>Is this debt payoff calculator free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This calculator is for general informational and educational purposes only and is not financial advice. It uses standard monthly amortization and assumes consistent on-time payments; real results vary with missed payments, fees, rate changes, and new charges. Confirm your numbers against your actual statements, and consider speaking with a qualified professional if you're struggling with debt. Estimates only.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
