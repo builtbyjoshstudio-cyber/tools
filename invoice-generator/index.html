@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Free Invoice Generator | Add Your Letterhead, No Signup</title>
+  <meta name="description" content="Create a professional invoice in your browser — add a 16:9 letterhead image or just your business name, list your line items, add tax, and print or save as PDF. No signup, nothing uploaded. Free, ad-free.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/invoice-generator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Invoice Generator",
+    "url": "https://tools.builtbyjoshstudio.com/invoice-generator/",
+    "description": "Create and print a professional invoice with your own letterhead image or business name, line items, tax, discount, and shipping. Runs entirely in your browser with nothing uploaded.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@type": "Organization", "name": "Built by Josh Studio LLC" }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this invoice generator really free with no signup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. There's no account, no signup, and no email required. You fill in the invoice and print or save it as a PDF directly from your browser. It's completely free and ad-free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my letterhead image or invoice data get uploaded anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Everything happens in your browser. The letterhead image you choose is read locally and never sent to a server, and none of your invoice details are stored or transmitted. When you close the tab, it's gone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What size should my letterhead image be?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use a 16:9 image (for example 1600x900 pixels) for the cleanest banner across the top of the invoice. If you don't have an image, just type your business name and it will be used as the header instead."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I save the invoice as a PDF?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click Print, then choose 'Save as PDF' as the destination in your browser's print dialog. The form controls are hidden automatically so only the clean invoice prints."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/invoice-generator/">
+  <meta property="og:title" content="Free Invoice Generator | Add Your Letterhead, No Signup">
+  <meta property="og:description" content="Make a professional invoice in your browser — your own 16:9 letterhead or business name, line items, tax, print or save as PDF. No signup, nothing uploaded.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/invoice-generator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/invoice-generator/">
+  <meta name="twitter:title" content="Free Invoice Generator | Add Your Letterhead, No Signup">
+  <meta name="twitter:description" content="Make a professional invoice in your browser — your own 16:9 letterhead or business name, line items, tax, print or save as PDF. No signup, nothing uploaded.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/invoice-generator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:1180px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:1180px; margin:0 auto; padding:24px; }
+
+    .hero.glass { margin-top:22px; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:64ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    /* two-column layout: editor + preview */
+    .layout { display:grid; grid-template-columns:1fr; gap:18px; margin-top:18px; align-items:start; }
+    @media (min-width:980px){ .layout { grid-template-columns:minmax(0,420px) minmax(0,1fr); } }
+
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .grid-2 .input-group { margin-bottom:8px; }
+
+    /* logo upload */
+    .logo-drop { border:2px dashed var(--line-2); border-radius:var(--r-s); padding:14px; text-align:center; background:var(--surface-2); }
+    .logo-drop label { display:inline-block; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); cursor:pointer; padding:8px 14px; border:2px solid var(--accent); border-radius:var(--r-s); }
+    .logo-drop input[type=file] { position:absolute; width:1px; height:1px; opacity:0; }
+    .logo-meta { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; }
+    #logo-status { font-family:var(--font-mono); font-size:10.5px; color:var(--muted); line-height:1.4; text-align:left; }
+    #logo-clear { display:none; flex:0 0 auto; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; color:var(--neg); background:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:5px 9px; cursor:pointer; }
+
+    /* line items */
+    .item-head, .item-row { display:grid; grid-template-columns:1fr 56px 80px 78px 30px; gap:8px; align-items:center; }
+    .item-head { font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; padding:0 2px; }
+    .item-row { margin-bottom:8px; }
+    .item-row .form-input { width:100%; }
+    .it-amt { font-family:var(--font-mono); font-size:12px; color:var(--ink); text-align:right; }
+    .it-remove { width:30px; height:36px; border:2px solid var(--line-2); border-radius:var(--r-s); background:var(--surface-2); color:var(--muted); font-size:16px; cursor:pointer; }
+    .it-remove:hover { color:var(--neg); border-color:var(--neg); }
+    #add-item { margin-top:4px; width:100%; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); background:var(--surface-2); border:2px dashed var(--line-2); border-radius:var(--r-s); padding:10px; cursor:pointer; }
+    #add-item:hover { border-color:var(--accent); color:var(--accent); }
+    @media (max-width:480px){ .item-head { display:none; } .item-row { grid-template-columns:1fr 1fr 1fr 30px; } .item-row .it-desc { grid-column:1 / 4; } }
+
+    .print-btn { margin-top:14px; width:100%; font-family:var(--font-mono); font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent); border:2px solid var(--accent); border-radius:var(--r-s); padding:14px; cursor:pointer; box-shadow:4px 4px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .print-btn:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--shadow); }
+
+    /* ===== INVOICE PREVIEW (this is what prints) ===== */
+    .invoice-wrap { position:sticky; top:18px; }
+    .invoice {
+      background:#ffffff; color:#1a1a1a; border:2px solid var(--line-2);
+      border-radius:var(--r-s); overflow:hidden; box-shadow:6px 6px 0 var(--shadow);
+      font-family:var(--font-ui);
+    }
+    .inv-head { padding:0; }
+    .inv-head.has-logo { }
+    #pv-logo { display:none; width:100%; aspect-ratio:16/9; object-fit:cover; }
+    #pv-biz-name { font-family:var(--font-display); font-weight:800; font-size:26px; color:#1a1a1a; padding:28px 32px 0; }
+    .inv-body { padding:24px 32px 32px; }
+    .inv-meta-top { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-bottom:24px; }
+    .inv-biz-details { font-size:12.5px; color:#555; line-height:1.5; max-width:40ch; }
+    .inv-title { text-align:right; }
+    .inv-title h2 { font-family:var(--font-display); font-weight:800; font-size:30px; margin:0 0 6px; color:#1a1a1a; letter-spacing:.02em; }
+    .inv-title .meta-line { font-size:12px; color:#555; }
+    .inv-title .meta-line b { color:#1a1a1a; }
+    .inv-parties { margin-bottom:20px; }
+    .inv-parties .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#999; margin-bottom:4px; }
+    .inv-parties .who { font-weight:700; color:#1a1a1a; font-size:14px; }
+    .inv-parties .who-details { font-size:12.5px; color:#555; line-height:1.5; margin-top:2px; }
+    table.inv-table { width:100%; border-collapse:collapse; margin-bottom:18px; }
+    table.inv-table th { text-align:left; font-family:var(--font-mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:#999; border-bottom:2px solid #1a1a1a; padding:0 0 8px; }
+    table.inv-table th.r, table.inv-table td.r { text-align:right; }
+    table.inv-table td { padding:9px 0; border-bottom:1px solid #e5e5e5; font-size:13px; color:#1a1a1a; vertical-align:top; }
+    .inv-totals { margin-left:auto; width:min(280px,100%); }
+    .inv-totals .row { display:flex; justify-content:space-between; padding:5px 0; font-size:13px; color:#444; }
+    .inv-totals .row.grand { border-top:2px solid #1a1a1a; margin-top:6px; padding-top:10px; font-family:var(--font-display); font-weight:800; font-size:18px; color:#1a1a1a; }
+    .inv-notes { margin-top:22px; padding-top:16px; border-top:1px solid #e5e5e5; }
+    .inv-notes .lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#999; margin-bottom:5px; }
+    .inv-notes .body { font-size:12.5px; color:#555; line-height:1.5; }
+
+    .funnel { margin-top:18px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
+    .funnel .eyebrow { font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .funnel h3 { margin:0 0 6px; font-size:21px; color:var(--ink); }
+    .funnel p { margin:0; color:var(--muted); font-size:14.5px; max-width:64ch; }
+    .funnel .go { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    .prose { margin-top:40px; max-width:760px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; }
+
+    .faq { margin-top:30px; max-width:760px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:1180px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:1180px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+
+    /* ===== PRINT: show only the invoice ===== */
+    @media print {
+      @page { margin:0; }
+      body { background:#fff !important; }
+      .tool-nav, .editor, .hero, .funnel, .prose, .faq, .net-band, .footer, .print-btn { display:none !important; }
+      .page.tool-shell { max-width:none; margin:0; padding:0; }
+      .layout { display:block; margin:0; }
+      .invoice-wrap { position:static; }
+      .invoice { border:none; border-radius:0; box-shadow:none; }
+      .inv-body { padding:32px 40px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../index.html">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div class="meta">
+        <span class="pill live">&#9679; Business</span>
+        <span>Letterhead &middot; line items &middot; print</span>
+      </div>
+      <h1>Invoice Generator</h1>
+      <p>Build a clean, professional invoice in your browser. Add your own 16:9 letterhead image — or just your business name — list your work, and print or save as PDF. No signup, and nothing you type or upload ever leaves your device.</p>
+    </header>
+
+    <div class="layout">
+
+      <!-- EDITOR (screen only) -->
+      <div class="editor">
+        <div class="glass type-card">
+          <div class="role">Letterhead</div>
+          <div class="logo-drop">
+            <label for="logo-input">Choose 16:9 image</label>
+            <input type="file" id="logo-input" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml">
+            <div class="logo-meta">
+              <span id="logo-status">No letterhead — your business name will be used instead.</span>
+              <button type="button" id="logo-clear">Remove</button>
+            </div>
+          </div>
+
+          <div class="role" style="margin-top:20px;">Your business</div>
+          <div class="input-group"><span class="input-label">Business name (used if no image)</span>
+            <input type="text" id="biz-name" class="form-input" placeholder="Your Business Name"></div>
+          <div class="input-group"><span class="input-label">Your details (address, email, phone)</span>
+            <textarea id="biz-details" class="form-input" rows="3" placeholder="123 Main St&#10;hello@yourbiz.com&#10;(555) 123-4567"></textarea></div>
+
+          <div class="role" style="margin-top:20px;">Bill to</div>
+          <div class="input-group"><span class="input-label">Client name</span>
+            <input type="text" id="client-name" class="form-input" placeholder="Client or company"></div>
+          <div class="input-group"><span class="input-label">Client details</span>
+            <textarea id="client-details" class="form-input" rows="3" placeholder="Client address&#10;email"></textarea></div>
+
+          <div class="role" style="margin-top:20px;">Invoice details</div>
+          <div class="grid-2">
+            <div class="input-group"><span class="input-label">Invoice #</span><input type="text" id="inv-no" class="form-input"></div>
+            <div class="input-group"><span class="input-label">Currency</span>
+              <select id="currency" class="form-input">
+                <option value="USD">USD $</option><option value="EUR">EUR €</option>
+                <option value="GBP">GBP £</option><option value="CAD">CAD C$</option>
+                <option value="AUD">AUD A$</option><option value="JPY">JPY ¥</option>
+              </select></div>
+            <div class="input-group"><span class="input-label">Invoice date</span><input type="date" id="inv-date" class="form-input"></div>
+            <div class="input-group"><span class="input-label">Due date</span><input type="date" id="due-date" class="form-input"></div>
+          </div>
+
+          <div class="role" style="margin-top:20px;">Line items</div>
+          <div class="item-head"><span>Description</span><span>Qty</span><span>Rate</span><span>Amount</span><span></span></div>
+          <div id="item-rows"></div>
+          <button type="button" id="add-item">+ Add line item</button>
+
+          <div class="role" style="margin-top:20px;">Adjustments</div>
+          <div class="grid-2">
+            <div class="input-group"><span class="input-label">Tax %</span><input type="number" id="tax-rate" class="form-input" value="0" min="0" step="0.1"></div>
+            <div class="input-group"><span class="input-label">Discount %</span><input type="number" id="discount" class="form-input" value="0" min="0" step="0.1"></div>
+            <div class="input-group"><span class="input-label">Shipping / fee</span><input type="number" id="shipping" class="form-input" value="0" min="0" step="0.01"></div>
+          </div>
+
+          <div class="role" style="margin-top:20px;">Notes / payment terms</div>
+          <div class="input-group">
+            <textarea id="notes" class="form-input" rows="3" placeholder="Payment due within 14 days. Bank transfer to…"></textarea></div>
+
+          <button type="button" class="print-btn" id="print-btn">Print / Save as PDF</button>
+        </div>
+      </div>
+
+      <!-- INVOICE PREVIEW (this prints) -->
+      <div class="invoice-wrap">
+        <div class="invoice" id="invoice">
+          <div class="inv-head" id="pv-head">
+            <img id="pv-logo" alt="Business letterhead">
+            <div id="pv-biz-name">Your Business Name</div>
+          </div>
+          <div class="inv-body">
+            <div class="inv-meta-top">
+              <div class="inv-biz-details" id="pv-biz-details"></div>
+              <div class="inv-title">
+                <h2>INVOICE</h2>
+                <div class="meta-line"># <b id="pv-inv-no">—</b></div>
+                <div class="meta-line">Date: <b id="pv-inv-date">—</b></div>
+                <div class="meta-line">Due: <b id="pv-due-date">—</b></div>
+              </div>
+            </div>
+
+            <div class="inv-parties">
+              <div class="lbl">Bill to</div>
+              <div class="who" id="pv-client-name">Client name</div>
+              <div class="who-details" id="pv-client-details"></div>
+            </div>
+
+            <table class="inv-table">
+              <thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead>
+              <tbody id="pv-items"></tbody>
+            </table>
+
+            <div class="inv-totals">
+              <div class="row"><span>Subtotal</span><span id="pv-subtotal">$0.00</span></div>
+              <div class="row" id="pv-discount-row"><span>Discount</span><span id="pv-discount">$0.00</span></div>
+              <div class="row" id="pv-tax-row"><span>Tax</span><span id="pv-tax">$0.00</span></div>
+              <div class="row" id="pv-ship-row"><span>Shipping / fee</span><span id="pv-ship">$0.00</span></div>
+              <div class="row grand"><span>Total</span><span id="pv-total">$0.00</span></div>
+            </div>
+
+            <div class="inv-notes" id="pv-notes-wrap">
+              <div class="lbl">Notes</div>
+              <div class="body" id="pv-notes"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FUNNEL → Business OS -->
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/creator-business-os.html" target="_blank" rel="noopener">
+      <div class="eyebrow">After you send it</div>
+      <h3>Creator Business OS</h3>
+      <p>This makes the invoice. Business OS runs everything around it — track which clients you've billed, what's been paid, and the projects behind each invoice, all in one Notion command center built for people running a business solo.</p>
+      <span class="go">See Business OS &rarr;</span>
+    </a>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>How to make an invoice</h2>
+      <p>A good invoice does three jobs: it makes clear who's billing whom, it itemizes the work so there are no surprises, and it states exactly what's owed and by when. This tool covers all three, and lets you brand it with your own letterhead so it looks like it came from your business — not a generic template.</p>
+
+      <h3>Add your letterhead (or just your name)</h3>
+      <p>Upload a 16:9 image — a banner version of your logo works best — and it sits across the top of the invoice. No image? Type your business name and it becomes a clean text header instead. Either way you get a professional result.</p>
+
+      <h3>List the work</h3>
+      <p>Add a line for each item with a description, quantity, and rate. The amounts and subtotal update as you type, and you can add tax, a discount, and a shipping or service fee if you need them.</p>
+
+      <h3>Print or save as PDF</h3>
+      <p>When it looks right, hit Print and choose "Save as PDF." The editor disappears and only the clean invoice prints, ready to email to your client.</p>
+
+      <h3>Nothing leaves your device</h3>
+      <p>Every part of this runs in your browser. Your letterhead image is read locally and never uploaded, and none of your invoice details are stored or sent anywhere. It's the same privacy-first, local approach we believe business tools should take.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>Is this invoice generator really free with no signup?</summary>
+        <p>Yes — no account, no signup, no email. Fill it in and print or save as PDF straight from your browser. Free and ad-free.</p>
+      </details>
+      <details>
+        <summary>Does my letterhead image or invoice data get uploaded anywhere?</summary>
+        <p>No. Everything happens in your browser. The image is read locally and never sent to a server, and no invoice details are stored or transmitted. Close the tab and it's gone.</p>
+      </details>
+      <details>
+        <summary>What size should my letterhead image be?</summary>
+        <p>A 16:9 image (e.g. 1600×900) gives the cleanest banner. No image? Type your business name and it's used as the header instead.</p>
+      </details>
+      <details>
+        <summary>How do I save the invoice as a PDF?</summary>
+        <p>Click Print, then choose "Save as PDF" as the destination. The form controls hide automatically so only the invoice prints.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none; display:flex; align-items:center; gap:14px; padding:12px 14px;">
+        <span style="font-family:var(--font-mono); border:2px solid var(--line-2); border-radius:var(--r-s); width:34px; height:34px; display:grid; place-items:center;">JS</span>
+        <span style="flex:1;"><strong style="display:block;">Josh Studio</strong><span style="font-size:12.5px; color:var(--muted);">Workbooks, templates &amp; the Creator OS line</span></span>
+        <code style="font-family:var(--font-mono);">&rarr;</code>
+      </a>
+      <a class="glass-lite" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none; display:flex; align-items:center; gap:14px; padding:12px 14px;">
+        <span style="font-family:var(--font-mono); border:2px solid var(--line-2); border-radius:var(--r-s); width:34px; height:34px; display:grid; place-items:center;">SS</span>
+        <span style="flex:1;"><strong style="display:block;">Substack</strong><span style="font-size:12.5px; color:var(--muted);">Notes on tools, money &amp; building solo</span></span>
+        <code style="font-family:var(--font-mono);">&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This invoice generator is provided for general business use and is not legal, tax, or accounting advice. You're responsible for the accuracy of the invoices you create and for meeting the tax and invoicing requirements that apply to your business and location. Everything runs locally in your browser; nothing is uploaded or stored.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
