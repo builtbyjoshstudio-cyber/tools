@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Loan Payment Calculator | Auto &amp; Personal Loans, Free</title>
+  <meta name="description" content="See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves. Free, ad-free, no signup.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/loan-payment-calculator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Loan Payment Calculator",
+    "url": "https://tools.builtbyjoshstudio.com/loan-payment-calculator/",
+    "description": "Calculate the monthly payment, total interest, and payoff date for an auto, personal, or other fixed-rate loan — and see how much paying extra each month saves.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built By Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is a monthly loan payment calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fixed-rate loans use standard amortization: payment = principal × monthly rate ÷ (1 − (1 + monthly rate)^−months). Early payments are mostly interest; later payments are mostly principal. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, and payoff date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does paying extra on a loan actually save?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every extra dollar goes straight to principal, which shrinks the balance that interest is charged on. Even a small extra monthly payment can cut months off the loan and save a meaningful amount of interest. Move the extra-payment slider to see your exact savings and new payoff date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this work for auto loans, personal loans, and other loans?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — it models any fixed-rate, fixed-term loan with monthly payments: auto loans, personal loans, boat or RV loans, and similar. It doesn't model credit cards (revolving balances) or loans with variable rates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this loan payment calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/loan-payment-calculator/">
+  <meta property="og:title" content="Loan Payment Calculator | Auto &amp; Personal Loans, Free">
+  <meta property="og:description" content="Monthly payment, total interest, and payoff date for any fixed-rate loan — plus what paying extra saves. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/loan-payment-calculator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/loan-payment-calculator/">
+  <meta name="twitter:title" content="Loan Payment Calculator | Auto &amp; Personal Loans, Free">
+  <meta name="twitter:description" content="Monthly payment, total interest, and payoff date for any fixed-rate loan — plus what paying extra saves. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/loan-payment-calculator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    .controls-3 { display:grid; grid-template-columns:1fr; gap:18px; }
+    @media (min-width:620px){ .controls-3 { grid-template-columns:repeat(3,1fr); } }
+    .controls-extra { margin-top:18px; }
+
+    /* hero readout */
+    .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(40px,8vw,64px); line-height:1; color:var(--accent); }
+    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); max-width:62ch; }
+
+    .stat-trio { display:grid; grid-template-columns:1fr; gap:10px; }
+    @media (min-width:560px){ .stat-trio { grid-template-columns:repeat(3,1fr); } }
+    .stat-cell { padding:14px 16px; }
+    .stat-cell .k { font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
+    .stat-cell .v { font-family:var(--font-display); font-weight:800; font-size:22px; }
+    .stat-cell.pos .v { color:var(--pos); }
+
+    /* chart */
+    .chart-wrap { margin-top:18px; }
+    #chart { width:100%; height:240px; border:2px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); overflow:hidden; }
+    #chart svg { width:100%; height:100%; display:block; }
+    .chart-primary { stroke: #9d7bff; stroke: var(--accent); }
+    .chart-baseline { stroke: #8c8c97; stroke: var(--muted); }
+    .chart-legend { display:flex; gap:18px; margin-top:10px; font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); }
+    .chart-legend span { display:inline-flex; align-items:center; gap:7px; }
+    .swatch { width:16px; height:0; border-top:3px solid var(--accent); }
+    .swatch.base { border-top:2px dashed var(--muted); }
+
+    .anatomy-labels { display:flex; flex-direction:column; gap:10px; }
+    .anatomy-row { display:flex; align-items:center; gap:14px; padding:12px 14px; }
+    .anatomy-row .ix { flex:0 0 auto; width:34px; height:34px; border-radius:var(--r-s); display:grid; place-items:center; border:2px solid var(--line-2); color:var(--ink); font-family:var(--font-mono); font-size:13px; }
+    .anatomy-row .lbl { flex:1 1 auto; min-width:0; }
+    .anatomy-row .lbl h4 { margin:0; font-size:15px; }
+    .anatomy-row .lbl p { margin:2px 0 0; font-size:12.5px; color:var(--muted); }
+    .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
+
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    /* funnel CTA */
+    .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
+    .funnel .eyebrow { font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .funnel h3 { margin:0 0 6px; font-size:21px; color:var(--ink); }
+    .funnel p { margin:0; color:var(--muted); font-size:14.5px; max-width:60ch; }
+    .funnel .go { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../money/index.html">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Finance</span>
+          <span>Payment &amp; payoff math</span>
+        </div>
+        <h1>Loan Payment Calculator</h1>
+        <p>Enter the loan, the rate, and the term — get your monthly payment, total interest, and payoff date. Then move the extra-payment slider and watch what a few more dollars a month actually does.</p>
+      </div>
+    </header>
+
+    <!-- INPUT CARD -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Your loan</div>
+      <div class="controls-3">
+        <div class="input-group">
+          <span class="input-label">Loan amount</span>
+          <input type="number" id="loan-amount" class="form-input" value="25000" min="0" step="500" inputmode="numeric">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Interest rate (APR %)</span>
+          <input type="number" id="loan-apr" class="form-input" value="7.5" min="0" max="60" step="0.1" inputmode="decimal">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Term (months)</span>
+          <select id="loan-term" class="form-input">
+            <option value="24">24 months (2 yrs)</option>
+            <option value="36">36 months (3 yrs)</option>
+            <option value="48">48 months (4 yrs)</option>
+            <option value="60" selected>60 months (5 yrs)</option>
+            <option value="72">72 months (6 yrs)</option>
+            <option value="84">84 months (7 yrs)</option>
+            <option value="120">120 months (10 yrs)</option>
+            <option value="180">180 months (15 yrs)</option>
+            <option value="240">240 months (20 yrs)</option>
+            <option value="360">360 months (30 yrs)</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group controls-extra">
+        <span class="input-label">Extra payment per month <span id="extra-bubble" style="color:var(--accent); font-family:var(--font-mono);">$0/mo extra</span></span>
+        <input type="range" id="extra-payment" class="form-input-range" min="0" max="1000" value="0" step="25">
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="glass anatomy" style="margin-top:18px;">
+      <div class="anatomy-stage">
+        <span class="stage-label">Monthly payment</span>
+        <span class="stage-value" id="hero-payment">$0</span>
+        <span class="stage-sub" id="hero-sub">Standard amortized payment for this loan.</span>
+      </div>
+
+      <div class="stat-trio">
+        <div class="glass-lite stat-cell"><span class="k">Payoff date</span><span class="v" id="payoff-output">—</span></div>
+        <div class="glass-lite stat-cell"><span class="k">Total interest</span><span class="v" id="interest-output">—</span></div>
+        <div class="glass-lite stat-cell pos"><span class="k">Saved by paying extra</span><span class="v" id="saved-output">—</span></div>
+      </div>
+
+      <div class="chart-wrap">
+        <div id="chart"></div>
+        <div class="chart-legend">
+          <span><span class="swatch"></span>With extra payment</span>
+          <span><span class="swatch base"></span>Scheduled payments only</span>
+        </div>
+      </div>
+
+      <div class="role" style="margin-top:22px;">Where the money goes</div>
+      <div class="anatomy-labels" id="breakdown"></div>
+      <p class="note">Assumes a fixed rate and on-time monthly payments, with any extra applied straight to principal. Taxes, fees, and insurance aren't included.</p>
+      <a class="xlink" href="../debt-payoff-calculator/index.html"
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                text-transform:uppercase; color:var(--accent); text-decoration:none;">
+        Juggling several debts, not just one loan? Compare payoff strategies &rarr;
+      </a>
+    </div>
+
+    <!-- FUNNEL CTA → Ultimate Budget Workbook -->
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html" target="_blank" rel="noopener">
+      <div class="eyebrow">Make room for the payment</div>
+      <h3>Ultimate Budget Workbook</h3>
+      <p>A loan payment only works if it fits your month. The budget workbook shows you exactly what fits — and where the extra payment that shortens this loan can come from.</p>
+      <span class="go">See the Budget Workbook &rarr;</span>
+    </a>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>How loan payments actually work</h2>
+      <p>Every fixed-rate loan — auto, personal, boat, RV — uses the same amortization math. Your payment is fixed, but what's inside it changes every month: at the start it's mostly interest, and by the end it's mostly principal. That's why extra payments early in the loan save so much more than the same dollars later.</p>
+
+      <h3>The payment formula</h3>
+      <p>Payment = principal &times; monthly rate &divide; (1 &minus; (1 + monthly rate)<sup>&minus;months</sup>). The monthly rate is your APR divided by 12. This calculator runs that formula live on your numbers, so you can test a shorter term or a lower rate and see the payment move instantly.</p>
+
+      <h3>Rate vs. term: the two levers</h3>
+      <p>A lower rate saves interest without changing your payment much; a shorter term raises the payment but cuts total interest dramatically. Comparing a 48-month and a 72-month version of the same loan side by side is usually eye-opening — the longer loan feels cheaper monthly and costs far more overall.</p>
+
+      <h3>Why extra payments punch above their weight</h3>
+      <p>Every extra dollar skips interest entirely and goes straight to principal. That shrinks the balance interest is charged on for every remaining month of the loan. Even $25–$50 extra per month on a typical auto loan can knock months off the term — the slider above shows your exact number.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>How is a monthly loan payment calculated?</summary>
+        <p>Fixed-rate loans use standard amortization: payment = principal &times; monthly rate &divide; (1 &minus; (1 + monthly rate)^&minus;months). Early payments are mostly interest; later payments are mostly principal. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, and payoff date.</p>
+      </details>
+      <details>
+        <summary>How much does paying extra on a loan actually save?</summary>
+        <p>Every extra dollar goes straight to principal, which shrinks the balance that interest is charged on. Even a small extra monthly payment can cut months off the loan and save a meaningful amount of interest. Move the extra-payment slider to see your exact savings and new payoff date.</p>
+      </details>
+      <details>
+        <summary>Does this work for auto loans, personal loans, and other loans?</summary>
+        <p>Yes — it models any fixed-rate, fixed-term loan with monthly payments: auto loans, personal loans, boat or RV loans, and similar. It doesn't model credit cards (revolving balances) or loans with variable rates.</p>
+      </details>
+      <details>
+        <summary>Is this loan payment calculator free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This calculator is for general informational and educational purposes only and is not financial advice. It uses standard monthly amortization for a fixed-rate loan and assumes consistent on-time payments; real results vary with fees, rate changes, and lender-specific terms. Taxes, insurance, and origination fees are not included. Confirm your numbers against an actual loan offer or statement. Estimates only.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
