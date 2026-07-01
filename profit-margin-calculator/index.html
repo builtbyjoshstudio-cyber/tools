@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Profit Margin Calculator for Sellers | Price It Right, Free</title>
+  <meta name="description" content="See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin. Free, ad-free, no signup.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/profit-margin-calculator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Profit Margin Calculator",
+    "url": "https://tools.builtbyjoshstudio.com/profit-margin-calculator/",
+    "description": "Calculate real profit per sale for handmade and online sellers — profit margin and markup after platform fees, break-even price, and the exact price needed to hit a target margin.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built By Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What's the difference between margin and markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Margin is profit as a share of the selling price; markup is profit as a share of your cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows both so nothing gets lost in translation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What profit margin should handmade sellers aim for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Many handmade and print-on-demand sellers target a 50–70% margin after fees, because that has to cover your time beyond labor, marketing, returns, and slow seasons — not just materials. Below about 30% after fees, most product businesses struggle to pay their owner. Use the target-margin slider to see the price that actually supports your goal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do platform fees change my price so much?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because percentage fees scale with the price itself. If fees take 9% of the sale, raising your margin target means the fee grows too, so the price needed rises faster than you'd guess. The required-price formula divides by (1 − fees − margin), which is why high fee rates plus high margin targets push prices up sharply."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this profit margin calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/profit-margin-calculator/">
+  <meta property="og:title" content="Profit Margin Calculator for Sellers | Price It Right, Free">
+  <meta property="og:description" content="Real profit per sale after platform fees — margin, markup, break-even, and the price for your target margin. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/profit-margin-calculator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/profit-margin-calculator/">
+  <meta name="twitter:title" content="Profit Margin Calculator for Sellers | Price It Right, Free">
+  <meta name="twitter:description" content="Real profit per sale after platform fees — margin, markup, break-even, and the price for your target margin. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/profit-margin-calculator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    .controls-4 { display:grid; grid-template-columns:1fr; gap:18px; }
+    @media (min-width:620px){ .controls-4 { grid-template-columns:repeat(2,1fr); } }
+    @media (min-width:860px){ .controls-4 { grid-template-columns:repeat(4,1fr); } }
+    .controls-extra { margin-top:18px; }
+
+    /* hero readout */
+    .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(40px,8vw,64px); line-height:1; color:var(--accent); }
+    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); max-width:62ch; }
+
+    .stat-trio { display:grid; grid-template-columns:1fr; gap:10px; }
+    @media (min-width:560px){ .stat-trio { grid-template-columns:repeat(3,1fr); } }
+    .stat-cell { padding:14px 16px; }
+    .stat-cell .k { font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
+    .stat-cell .v { font-family:var(--font-display); font-weight:800; font-size:22px; }
+    .stat-cell.pos .v { color:var(--pos); }
+    .stat-cell.neg .v { color:var(--neg); }
+
+    .anatomy-labels { display:flex; flex-direction:column; gap:10px; }
+    .anatomy-row { display:flex; align-items:center; gap:14px; padding:12px 14px; }
+    .anatomy-row .ix { flex:0 0 auto; width:34px; height:34px; border-radius:var(--r-s); display:grid; place-items:center; border:2px solid var(--line-2); color:var(--ink); font-family:var(--font-mono); font-size:13px; }
+    .anatomy-row .lbl { flex:1 1 auto; min-width:0; }
+    .anatomy-row .lbl h4 { margin:0; font-size:15px; }
+    .anatomy-row .lbl p { margin:2px 0 0; font-size:12.5px; color:var(--muted); }
+    .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
+
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    /* funnel CTA */
+    .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
+    .funnel .eyebrow { font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .funnel h3 { margin:0 0 6px; font-size:21px; color:var(--ink); }
+    .funnel p { margin:0; color:var(--muted); font-size:14.5px; max-width:60ch; }
+    .funnel .go { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../money/index.html">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Business</span>
+          <span>Margin &middot; fees &middot; price</span>
+        </div>
+        <h1>Profit Margin Calculator</h1>
+        <p>For Etsy shops, print-on-demand, and anyone selling a thing: see what a sale really leaves you after platform fees — and the exact price that hits the margin you actually want.</p>
+      </div>
+    </header>
+
+    <!-- INPUT CARD -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Your product</div>
+      <div class="controls-4">
+        <div class="input-group">
+          <span class="input-label">Cost per unit</span>
+          <input type="number" id="unit-cost" class="form-input" value="12" min="0" step="0.5" inputmode="decimal">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Selling price</span>
+          <input type="number" id="price" class="form-input" value="34" min="0" step="0.5" inputmode="decimal">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Platform fees (% of price)</span>
+          <input type="number" id="fee-pct" class="form-input" value="9.5" min="0" max="50" step="0.1" inputmode="decimal">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Fixed fee per sale</span>
+          <input type="number" id="fee-fixed" class="form-input" value="0.45" min="0" step="0.05" inputmode="decimal">
+        </div>
+      </div>
+      <div class="input-group controls-extra">
+        <span class="input-label">Target margin <span id="target-bubble" style="color:var(--accent); font-family:var(--font-mono);">60%</span></span>
+        <input type="range" id="target-margin" class="form-input-range" min="10" max="85" value="60" step="5">
+      </div>
+      <p class="note" style="margin-top:14px;">Cost per unit = materials + your labor + packaging. Fees vary by platform — listing, transaction, and payment fees combined often land between 8% and 13% plus a small fixed amount.</p>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="glass anatomy" style="margin-top:18px;">
+      <div class="anatomy-stage">
+        <span class="stage-label">Profit per sale</span>
+        <span class="stage-value" id="hero-profit">$0</span>
+        <span class="stage-sub" id="hero-sub">What's left after cost and fees at your current price.</span>
+      </div>
+
+      <div class="stat-trio">
+        <div class="glass-lite stat-cell"><span class="k">Profit margin</span><span class="v" id="margin-output">—</span></div>
+        <div class="glass-lite stat-cell"><span class="k">Markup on cost</span><span class="v" id="markup-output">—</span></div>
+        <div class="glass-lite stat-cell"><span class="k">Break-even price</span><span class="v" id="breakeven-output">—</span></div>
+      </div>
+
+      <div class="role" style="margin-top:22px;">Where the price goes</div>
+      <div class="anatomy-labels" id="split-rows"></div>
+
+      <div class="role" style="margin-top:22px;">Price for your target</div>
+      <div class="anatomy-labels" id="target-rows"></div>
+      <p class="note">Required price = (cost + fixed fee) &divide; (1 &minus; fee% &minus; target margin%). Percentage fees scale with price, which is why the required price climbs faster than the margin target.</p>
+      <a class="xlink" href="../invoice-generator/index.html"
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                text-transform:uppercase; color:var(--accent); text-decoration:none;">
+        Selling custom work? Bill it with the invoice generator &rarr;
+      </a>
+    </div>
+
+    <!-- FUNNEL CTA → Creator Business OS -->
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/creator-business-os.html" target="_blank" rel="noopener">
+      <div class="eyebrow">Run the whole shop, not just one price</div>
+      <h3>Creator Business OS</h3>
+      <p>Pricing one product is a calculator's job. Tracking every product's costs, margins, orders, and what's actually worth restocking — that's what Business OS is built for.</p>
+      <span class="go">See Creator Business OS &rarr;</span>
+    </a>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>Pricing that survives contact with fees</h2>
+      <p>Most underpriced products aren't underpriced because the seller can't do math — it's because the math skipped a step. The sticker price isn't yours: the platform takes its percentage off the top, a fixed fee comes out of every order, and what's left has to cover materials, your time, and profit. This calculator makes each of those visible.</p>
+
+      <h3>Cost per unit means all of it</h3>
+      <p>Materials are the easy part. Add your labor at a real hourly rate — even a modest one — plus packaging and shipping supplies. If your labor isn't in the cost, your "profit" is just an unpaid paycheck moving between pockets.</p>
+
+      <h3>Margin, markup, and which to use</h3>
+      <p>Margin is profit over price; markup is profit over cost. Both describe the same dollars from different angles, and mixing them up is how a "100% markup" ends up being a disappointing 50% margin. The tool reports both so your pricing formula and your bookkeeping agree.</p>
+
+      <h3>Work backwards from the margin you need</h3>
+      <p>Instead of picking a price and hoping, pick the margin your business needs — for most handmade sellers that's 50–70% after fees — and let the target rows tell you the price. If that price feels too high for the market, the answer is usually cutting unit cost or changing the product, not silently accepting a margin that can't pay you.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>What's the difference between margin and markup?</summary>
+        <p>Margin is profit as a share of the selling price; markup is profit as a share of your cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows both so nothing gets lost in translation.</p>
+      </details>
+      <details>
+        <summary>What profit margin should handmade sellers aim for?</summary>
+        <p>Many handmade and print-on-demand sellers target a 50–70% margin after fees, because that has to cover your time beyond labor, marketing, returns, and slow seasons — not just materials. Below about 30% after fees, most product businesses struggle to pay their owner. Use the target-margin slider to see the price that actually supports your goal.</p>
+      </details>
+      <details>
+        <summary>Why do platform fees change my price so much?</summary>
+        <p>Because percentage fees scale with the price itself. If fees take 9% of the sale, raising your margin target means the fee grows too, so the price needed rises faster than you'd guess. The required-price formula divides by (1 &minus; fees &minus; margin), which is why high fee rates plus high margin targets push prices up sharply.</p>
+      </details>
+      <details>
+        <summary>Is this profit margin calculator free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This calculator is for general informational and educational purposes only and is not financial, pricing, or tax advice. Platform fees vary by marketplace, plan, and payment method, and taxes on your profit are not included. Confirm fee rates against your platform's current fee schedule. Estimates only.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
