@@ -1,0 +1,5 @@
+
+# graphify (local-only, not published)
+graphify-out/
+.claude/
+/CLAUDE.md
