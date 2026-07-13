@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Take-Home Pay Calculator | Salary to Net Paycheck, Free</title>
+  <meta name="description" content="See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month. Free, ad-free, no signup.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/take-home-pay-calculator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Take-Home Pay Calculator",
+    "url": "https://tools.builtbyjoshstudio.com/take-home-pay-calculator/",
+    "description": "Convert a salary to real take-home pay — federal income tax, Social Security, Medicare, 401(k), and optional state tax, broken down per paycheck and per month.",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built By Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is take-home pay calculated from salary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with gross pay, subtract pre-tax retirement contributions, then subtract federal income tax (2025 brackets after the standard deduction), Social Security (6.2% up to the annual wage cap), Medicare (1.45%, plus 0.9% on wages over $200,000), and any state income tax. What's left is your net — this calculator shows it per paycheck and per month."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my paycheck so much smaller than my salary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three quiet subtractions: FICA taxes (7.65% for most people, covering Social Security and Medicare), federal income tax withholding, and in most states, state income tax. Together they commonly take 20–30% of gross pay for middle incomes. Retirement and health contributions reduce the check further — but that money is still yours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does contributing to a 401(k) lower my paycheck dollar-for-dollar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — traditional 401(k) contributions come out before federal income tax, so a $100 contribution typically shrinks your check by only $75–$90 depending on your bracket. The rest is tax you didn't pay. Move the contribution slider and compare the net change to the contribution amount to see your own discount."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is this take-home pay calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It uses 2025 federal figures — brackets, standard deduction, and FICA rates and caps — and treats state tax as a simple flat rate you enter. It doesn't model health premiums, HSA/FSA, local taxes, credits, or W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this take-home pay calculator free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/take-home-pay-calculator/">
+  <meta property="og:title" content="Take-Home Pay Calculator | Salary to Net Paycheck, Free">
+  <meta property="og:description" content="What your salary actually pays after taxes and 401(k) — per paycheck and per month. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/take-home-pay-calculator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/take-home-pay-calculator/">
+  <meta name="twitter:title" content="Take-Home Pay Calculator | Salary to Net Paycheck, Free">
+  <meta name="twitter:description" content="What your salary actually pays after taxes and 401(k) — per paycheck and per month. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/take-home-pay-calculator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    .controls-4 { display:grid; grid-template-columns:1fr; gap:18px; }
+    @media (min-width:620px){ .controls-4 { grid-template-columns:repeat(2,1fr); } }
+    @media (min-width:860px){ .controls-4 { grid-template-columns:repeat(4,1fr); } }
+    .controls-extra { margin-top:18px; }
+
+    /* hero readout */
+    .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(40px,8vw,64px); line-height:1; color:var(--accent); }
+    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); max-width:62ch; }
+
+    .stat-trio { display:grid; grid-template-columns:1fr; gap:10px; }
+    @media (min-width:560px){ .stat-trio { grid-template-columns:repeat(3,1fr); } }
+    .stat-cell { padding:14px 16px; }
+    .stat-cell .k { font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
+    .stat-cell .v { font-family:var(--font-display); font-weight:800; font-size:22px; }
+    .stat-cell.pos .v { color:var(--pos); }
+
+    .anatomy-labels { display:flex; flex-direction:column; gap:10px; }
+    .anatomy-row { display:flex; align-items:center; gap:14px; padding:12px 14px; }
+    .anatomy-row .ix { flex:0 0 auto; width:34px; height:34px; border-radius:var(--r-s); display:grid; place-items:center; border:2px solid var(--line-2); color:var(--ink); font-family:var(--font-mono); font-size:13px; }
+    .anatomy-row .lbl { flex:1 1 auto; min-width:0; }
+    .anatomy-row .lbl h4 { margin:0; font-size:15px; }
+    .anatomy-row .lbl p { margin:2px 0 0; font-size:12.5px; color:var(--muted); }
+    .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
+    .anatomy-row.is-net { border:2px solid var(--accent); border-radius:var(--r-s); }
+
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    /* funnel CTA */
+    .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
+    .funnel .eyebrow { font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+    .funnel h3 { margin:0 0 6px; font-size:21px; color:var(--ink); }
+    .funnel p { margin:0; color:var(--muted); font-size:14.5px; max-width:60ch; }
+    .funnel .go { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../money/">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Finance</span>
+          <span>What you actually keep</span>
+        </div>
+        <h1>Take-Home Pay Calculator</h1>
+        <p>Your salary is a before-taxes number — your life runs on the after. See what actually lands in your account each paycheck once federal tax, Social Security, Medicare, and your 401(k) take their share.</p>
+      </div>
+    </header>
+
+    <!-- INPUT CARD -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Your pay</div>
+      <div class="controls-4">
+        <div class="input-group">
+          <span class="input-label">Annual salary (gross)</span>
+          <input type="number" id="salary" class="form-input" value="60000" min="0" step="1000" inputmode="numeric">
+        </div>
+        <div class="input-group">
+          <span class="input-label">Filing status</span>
+          <select id="filing-status" class="form-input">
+            <option value="single" selected>Single</option>
+            <option value="mfj">Married filing jointly</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <span class="input-label">Paid how often?</span>
+          <select id="frequency" class="form-input">
+            <option value="52">Weekly (52/yr)</option>
+            <option value="26" selected>Every two weeks (26/yr)</option>
+            <option value="24">Twice a month (24/yr)</option>
+            <option value="12">Monthly (12/yr)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <span class="input-label">State income tax (%, optional)</span>
+          <input type="number" id="state-rate" class="form-input" value="0" min="0" max="15" step="0.1" inputmode="decimal">
+        </div>
+      </div>
+      <div class="input-group controls-extra">
+        <span class="input-label">Traditional 401(k) contribution <span id="k401-bubble" style="color:var(--accent); font-family:var(--font-mono);">5% of gross</span></span>
+        <input type="range" id="k401" class="form-input-range" min="0" max="25" value="5" step="1">
+      </div>
+      <p class="note" style="margin-top:14px;">Uses 2025 federal figures with the standard deduction and no other income. Health premiums, HSA/FSA, local taxes, and W-4 extras aren't modeled — your real stub will differ a little.</p>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="glass anatomy" style="margin-top:18px;">
+      <div class="anatomy-stage">
+        <span class="stage-label" id="stage-label">Take-home every two weeks</span>
+        <span class="stage-value" id="hero-net">$0</span>
+        <span class="stage-sub" id="hero-sub">After federal tax, FICA, and your 401(k) contribution.</span>
+      </div>
+
+      <div class="stat-trio">
+        <div class="glass-lite stat-cell"><span class="k">Monthly take-home</span><span class="v" id="monthly-output">—</span></div>
+        <div class="glass-lite stat-cell"><span class="k">Effective tax rate</span><span class="v" id="rate-output">—</span></div>
+        <div class="glass-lite stat-cell pos"><span class="k">Annual take-home</span><span class="v" id="annual-output">—</span></div>
+      </div>
+
+      <div class="role" style="margin-top:22px;">Where each paycheck goes</div>
+      <div class="anatomy-labels" id="paycheck-split"></div>
+      <p class="note">FICA runs on gross wages; federal income tax runs on what's left after your 401(k) and the standard deduction. That's why pre-tax saving shrinks your check by less than the contribution.</p>
+      <a class="xlink" href="../budget-calculator/"
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                text-transform:uppercase; color:var(--accent); text-decoration:none;">
+        Now put the monthly number to work — build your budget on it &rarr;
+      </a>
+    </div>
+
+    <!-- FUNNEL CTA → Ultimate Budget Workbook -->
+    <a class="funnel" href="https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html" target="_blank" rel="noopener">
+      <div class="eyebrow">Budget the real number</div>
+      <h3>Ultimate Budget Workbook</h3>
+      <p>Most budgets fail because they're built on the salary, not the paycheck. The workbook starts from your actual take-home and gives every dollar of it a job.</p>
+      <span class="go">See the Budget Workbook &rarr;</span>
+    </a>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>From salary to what actually lands</h2>
+      <p>A $60,000 salary is not $5,000 a month — and the gap surprises almost everyone's first budget. Between FICA, federal withholding, state tax, and retirement contributions, the number on your offer letter and the number in your bank account are different currencies. This calculator converts between them.</p>
+
+      <h3>The three quiet subtractions</h3>
+      <p>Social Security takes 6.2% (up to an annual wage cap), Medicare takes 1.45% (plus 0.9% on very high wages), and federal income tax takes its bracket-by-bracket share of what remains after the standard deduction. Most states add their own slice on top — enter yours as a flat rate to get close.</p>
+
+      <h3>The 401(k) discount</h3>
+      <p>Traditional 401(k) money leaves your check before federal tax is calculated, so contributing $100 typically costs you $75–$90 of take-home, depending on your bracket. Slide the contribution up and watch the net change lag the contribution — that gap is tax you simply never pay. It's the closest thing personal finance has to a coupon.</p>
+
+      <h3>Budget on the paycheck, not the salary</h3>
+      <p>Every budgeting mistake gets easier to make when you start from gross. The monthly take-home number this tool gives you is the honest input for a 50/30/20 split, a debt payoff plan, or a savings goal — it's the amount that actually shows up.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>How is take-home pay calculated from salary?</summary>
+        <p>Start with gross pay, subtract pre-tax retirement contributions, then subtract federal income tax (2025 brackets after the standard deduction), Social Security (6.2% up to the annual wage cap), Medicare (1.45%, plus 0.9% on wages over $200,000), and any state income tax. What's left is your net — this calculator shows it per paycheck and per month.</p>
+      </details>
+      <details>
+        <summary>Why is my paycheck so much smaller than my salary?</summary>
+        <p>Three quiet subtractions: FICA taxes (7.65% for most people, covering Social Security and Medicare), federal income tax withholding, and in most states, state income tax. Together they commonly take 20–30% of gross pay for middle incomes. Retirement and health contributions reduce the check further — but that money is still yours.</p>
+      </details>
+      <details>
+        <summary>Does contributing to a 401(k) lower my paycheck dollar-for-dollar?</summary>
+        <p>No — traditional 401(k) contributions come out before federal income tax, so a $100 contribution typically shrinks your check by only $75–$90 depending on your bracket. The rest is tax you didn't pay. Move the contribution slider and compare the net change to the contribution amount to see your own discount.</p>
+      </details>
+      <details>
+        <summary>How accurate is this take-home pay calculator?</summary>
+        <p>It uses 2025 federal figures — brackets, standard deduction, and FICA rates and caps — and treats state tax as a simple flat rate you enter. It doesn't model health premiums, HSA/FSA, local taxes, credits, or W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.</p>
+      </details>
+      <details>
+        <summary>Is this take-home pay calculator free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This calculator is for general informational and educational purposes only and is not tax or financial advice. It uses 2025 federal figures (brackets, standard deduction, FICA rates and wage caps) with salary as your only income; state tax is a flat optional rate, and health premiums, HSA/FSA, local taxes, credits, and W-4 adjustments are not modeled. Actual withholding on your paycheck follows your employer's payroll rules and your W-4. Confirm your numbers against a real pay stub or a tax professional. Estimates only.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co is a brand of Built by Josh Studio LLC.</p>
+    <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
+    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.6;">More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
+  </nav>
+</footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
