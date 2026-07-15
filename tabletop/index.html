@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Free Tabletop RPG Tools | Built by Josh Studio</title>
+    <meta name="description" content="Two free, ad-free tabletop tools — an initiative tracker that saves your encounter and a dice roller with full notation. No signup, runs in your browser.">
+    <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+    <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+    <link rel="canonical" href="https://tools.builtbyjoshstudio.com/tabletop/" />
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Free Tabletop RPG Tools | Built by Josh Studio">
+    <meta property="og:description" content="Two free, ad-free tabletop tools — an initiative tracker that saves your encounter and a dice roller with full notation. No signup, runs in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tools.builtbyjoshstudio.com/tabletop/">
+    <meta property="og:image" content="https://tools.builtbyjoshstudio.com/tabletop/og-preview.jpg">
+
+    <!-- Twitter Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Tabletop RPG Tools | Built by Josh Studio">
+    <meta name="twitter:description" content="Two free, ad-free tabletop tools — an initiative tracker that saves your encounter and a dice roller with full notation. No signup, runs in your browser.">
+    <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/tabletop/og-preview.jpg">
+    <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/tabletop/">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD WebApplication schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Tynkr Tools Tabletop Suite",
+      "url": "https://tools.builtbyjoshstudio.com/tabletop/",
+      "description": "Two free, ad-free tabletop RPG tools — an initiative tracker that remembers your encounter and a dice roller with full notation support. System-agnostic, no signup, runs in your browser.",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Any (web browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://builtbyjoshstudio.com/#organization",
+        "name": "Built by Josh Studio LLC",
+        "legalName": "Built by Josh Studio LLC",
+        "alternateName": [
+          "BBJ Studio",
+          "Built By Josh Studio"
+        ],
+        "url": "https://builtbyjoshstudio.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "sameAs": [
+          "https://linktr.ee/builtbyjoshstudio",
+          "https://tynkrtoolsco.substack.com/",
+          "https://www.youtube.com/@TalesofInkShadowsStudio",
+          "https://tynkrtoolsandco.etsy.com",
+          "https://www.etsy.com/shop/BuiltByJoshStudio"
+        ],
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "Kansas Business ID",
+            "value": "10076138"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- Shared Kinetic design system -->
+    <link rel="stylesheet" href="../kinetic.css">
+
+    <style>
+        /* ---- Landing-only components (built on Kinetic tokens from kinetic.css) ---- */
+        .lp-hero {
+            background: var(--surface);
+            border: 2px solid var(--line-2);
+            border-radius: var(--r);
+            box-shadow: 8px 8px 0 var(--shadow);
+            padding: 52px 48px;
+            margin-bottom: 52px;
+        }
+        .lp-hero-top {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            gap: 24px; flex-wrap: wrap; margin-bottom: 30px;
+        }
+        .lp-brand { display: inline-flex; align-items: center; gap: 12px; }
+        .lp-brand .name {
+            font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em;
+            text-transform: uppercase; color: var(--muted);
+        }
+        .lp-brand .name b { color: var(--ink); font-weight: 600; }
+        .lp-hero h1 {
+            font-family: var(--font-display); font-weight: 800;
+            font-size: clamp(40px, 7vw, 78px); line-height: 0.92;
+            letter-spacing: -0.04em; margin: 0 0 20px; text-wrap: balance; max-width: 16ch;
+        }
+        .lp-hero h1 .em { color: var(--accent); }
+        .lp-hero p {
+            font-size: clamp(16px, 2vw, 19px); color: var(--muted);
+            max-width: 58ch; margin: 0; font-weight: 500; line-height: 1.55;
+        }
+        .lp-hero-body {
+            display: grid; grid-template-columns: minmax(0,1fr) auto;
+            gap: 40px; align-items: end;
+        }
+        .lp-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
+        .lp-chip {
+            font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+            color: var(--ink); background: var(--surface-2);
+            border: 2px solid var(--line-2); padding: 6px 12px; border-radius: 7px;
+        }
+
+        /* ---- Hero instrument readout (anchor) ---- */
+        .lp-readout {
+            border: 2px solid var(--line-2); border-radius: var(--r-s);
+            background: var(--surface-2); box-shadow: 5px 5px 0 var(--shadow);
+            padding: 20px 22px; min-width: 224px;
+        }
+        .lp-readout-top {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 14px; padding-bottom: 16px; margin-bottom: 4px;
+            border-bottom: 2px solid var(--line);
+        }
+        .lp-readout-top .lbl {
+            font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+            letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
+        }
+        .lp-readout .kx-signal { height: 22px; }
+        .lp-readout .kx-signal i { width: 4px; }
+        .lp-stat {
+            display: flex; align-items: baseline; justify-content: space-between;
+            gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line);
+        }
+        .lp-stat:last-child { border-bottom: 0; padding-bottom: 0; }
+        .lp-stat .v {
+            font-family: var(--font-display); font-weight: 800; font-size: 30px;
+            line-height: 1; letter-spacing: -0.03em; color: var(--ink);
+            font-variant-numeric: tabular-nums;
+        }
+        .lp-stat:first-of-type .v { color: var(--accent); }
+        .lp-stat .k {
+            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+            text-align: right;
+        }
+
+        .section-title {
+            font-family: var(--font-display); font-weight: 800;
+            font-size: clamp(24px, 4vw, 36px); letter-spacing: -0.03em; line-height: 1;
+            color: var(--ink); margin: 8px 0 26px;
+            display: flex; align-items: baseline; gap: 14px;
+        }
+        .section-title .num {
+            font-family: var(--font-mono); font-size: 14px; font-weight: 600;
+            color: var(--accent); letter-spacing: 0.1em;
+        }
+        .section-title .rule {
+            flex: 1; height: 0; border-top: 2px solid var(--line-2);
+            position: relative; top: -6px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 22px;
+        }
+        .card {
+            position: relative;
+            background: var(--surface);
+            border: 2px solid var(--line-2);
+            border-radius: var(--r);
+            box-shadow: 6px 6px 0 var(--shadow);
+            padding: 26px 26px 22px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            text-decoration: none; color: inherit;
+            transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+        }
+        .card:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow); }
+        .card-icon {
+            width: 46px; height: 46px; border-radius: 11px;
+            display: grid; place-items: center;
+            background: var(--surface-2); border: 2px solid var(--line-2);
+            margin-bottom: 16px; color: var(--accent);
+            transition: background .15s var(--ease), color .15s var(--ease);
+        }
+        .card-icon svg { width: 25px; height: 25px; display: block; }
+        .card:hover .card-icon { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+        .card-title {
+            font-family: var(--font-display); font-weight: 700; font-size: 21px;
+            letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 8px; color: var(--ink);
+        }
+        .card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
+        .card-footer {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-top: 20px; padding-top: 14px; border-top: 2px solid var(--line);
+            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
+        }
+        .card-arrow { font-size: 16px; transition: transform .2s var(--ease); }
+        .card:hover .card-arrow { transform: translateX(5px); }
+
+        .lp-foot {
+            margin-top: 72px; border-top: 2px solid var(--line-2); padding-top: 36px;
+        }
+        .lp-foot-cols {
+            display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 32px;
+            margin-bottom: 38px;
+        }
+        .lp-foot-brand .lp-brand { margin-bottom: 14px; }
+        .lp-foot-brand p {
+            font-size: 13.5px; color: var(--muted); line-height: 1.6; margin: 0; max-width: 30ch;
+        }
+        .lp-foot-col h4 {
+            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+            letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+            margin: 0 0 14px;
+        }
+        .lp-foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+        .lp-foot-col a {
+            font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 500;
+            display: inline-flex; align-items: flex-start; gap: 8px;
+            transition: color .15s var(--ease);
+        }
+        .lp-foot-col a::before {
+            content: ""; width: 5px; height: 5px; background: var(--accent-2);
+            border-radius: 1px; flex-shrink: 0; margin-top: 7px;
+        }
+        .lp-foot-col a:hover { color: var(--accent); }
+        .lp-foot-bar {
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            flex-wrap: wrap; padding-top: 22px; border-top: 2px solid var(--line);
+            font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); line-height: 1.6;
+        }
+        .lp-foot-bar a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent-2); padding-bottom: 1px; }
+        .lp-foot-bar a:hover { color: var(--accent); }
+
+        @media (max-width: 860px) {
+            .lp-hero-body { grid-template-columns: 1fr; gap: 30px; }
+            .lp-readout { min-width: 0; }
+            .lp-foot-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
+            .lp-foot-brand { grid-column: 1 / -1; }
+        }
+        @media (max-width: 600px) {
+            .lp-hero { padding: 34px 24px; }
+            .grid { grid-template-columns: 1fr; }
+            .lp-foot-cols { grid-template-columns: 1fr; }
+        }
+    </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+    <div class="page">
+        <header class="lp-hero">
+            <div class="lp-hero-top">
+                <div class="lp-brand">
+                    <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+                    <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+                </div>
+                <div class="theme-switch" role="tablist" aria-label="Theme">
+                    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+                    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+                    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+                </div>
+            </div>
+            <div class="lp-hero-body">
+                <div class="lp-hero-main">
+                    <h1>Ad-free <span class="em">tabletop</span> tools.</h1>
+                    <p>Two free, ad-free tools for the game table — an initiative tracker that remembers your encounter between sessions and a dice roller that speaks full notation. Works with any system. No signup, runs entirely in your browser.</p>
+                    <div class="lp-chips">
+                        <span class="lp-chip">Free forever</span>
+                        <span class="lp-chip">No ads</span>
+                        <span class="lp-chip">No signup</span>
+                        <span class="lp-chip">Local-first</span>
+                        <span class="lp-chip">System-agnostic</span>
+                    </div>
+                </div>
+                <aside class="lp-readout" aria-hidden="true">
+                    <div class="lp-readout-top">
+                        <span class="lbl">Live</span>
+                        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+                    </div>
+                    <div class="lp-stat"><span class="v">2</span><span class="k">Tools</span></div>
+                    <div class="lp-stat"><span class="v">$0</span><span class="k">Forever</span></div>
+                    <div class="lp-stat"><span class="v">00</span><span class="k">Ads &middot; Signups</span></div>
+                </aside>
+            </div>
+        </header>
+
+        <main>
+            <h2 class="section-title"><span class="num">01</span>Tabletop &amp; RPG<span class="rule"></span></h2>
+            <div class="grid">
+                <a href="../initiative-tracker/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="10" y1="6" x2="21" y2="6"></line>
+                                <line x1="10" y1="12" x2="21" y2="12"></line>
+                                <line x1="10" y1="18" x2="21" y2="18"></line>
+                                <path d="M3 4l4 2-4 2z"></path>
+                            </svg>
+                        </span>
+                        <h3 class="card-title">Initiative Tracker</h3>
+                        <p class="card-desc">Run combat from one screen — turn order, rounds, HP, and conditions for every combatant. Your encounter saves itself in the browser, so it's still there next session.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>Turns &middot; Rounds &middot; Conditions</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+                <a href="../dice-roller/" class="card">
+                    <div class="card-header">
+                        <span class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+                                <circle cx="8.2" cy="8.2" r="1"></circle>
+                                <circle cx="15.8" cy="8.2" r="1"></circle>
+                                <circle cx="12" cy="12" r="1"></circle>
+                                <circle cx="8.2" cy="15.8" r="1"></circle>
+                                <circle cx="15.8" cy="15.8" r="1"></circle>
+                            </svg>
+                        </span>
+                        <h3 class="card-title">Dice Roller</h3>
+                        <p class="card-desc">Every die from d4 to d100, full notation like 3d6+2 and 4d6 keep-highest-3, advantage and disadvantage one tap away, and a roll history that survives the session.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span>Notation &middot; Adv/Dis &middot; History</span>
+                        <span class="card-arrow">→</span>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+        <footer class="lp-foot">
+            <div class="lp-foot-cols">
+                <div class="lp-foot-brand">
+                    <div class="lp-brand">
+                        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+                        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+                    </div>
+                    <p>Free, ad-free, local-first tabletop tools. No signup, no tracking — everything runs in your browser.</p>
+                </div>
+                <div class="lp-foot-col">
+                    <h4>Tabletop &amp; RPG</h4>
+                    <ul>
+                        <li><a href="../initiative-tracker/">Initiative Tracker</a></li>
+                        <li><a href="../dice-roller/">Dice Roller</a></li>
+                    </ul>
+                </div>
+                <div class="lp-foot-col">
+                    <h4>Kitchen</h4>
+                    <ul>
+                        <li><a href="../">All cooking tools</a></li>
+                        <li><a href="../dough-hydration-calculator/">Dough Hydration</a></li>
+                        <li><a href="../brine-calculator/">Brine</a></li>
+                        <li><a href="../universal-recipe-scaler/">Recipe Scaler</a></li>
+                    </ul>
+                </div>
+                <div class="lp-foot-col">
+                    <h4>Money &amp; Business</h4>
+                    <ul>
+                        <li><a href="../money/">All money tools</a></li>
+                        <li><a href="../budget-calculator/">Budget Calculator</a></li>
+                        <li><a href="../debt-payoff-calculator/">Debt Payoff</a></li>
+                        <li><a href="../take-home-pay-calculator/">Take-Home Pay</a></li>
+                    </ul>
+                </div>
+                <div class="lp-foot-col">
+                    <h4>Network</h4>
+                    <ul>
+                        <li><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Josh Studio</a></li>
+                        <li><a href="https://tynkr.builtbyjoshstudio.com/" target="_blank" rel="noopener">Tynkr Apps</a></li>
+                        <li><a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener">Ink &amp; Shadows</a></li>
+                        <li><a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">Substack</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lp-foot-bar">
+                <span><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 &middot; All rights reserved.</span>
+                <span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../kinetic.js"></script>
+</body>
+</html>
