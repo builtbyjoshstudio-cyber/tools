@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Initiative Tracker | Free TTRPG Combat Tracker, Any System</title>
+  <meta name="description" content="Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&amp;D, Pathfinder, or any system. Saves between sessions. Free, ad-free, no signup.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/initiative-tracker/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Initiative Tracker",
+    "url": "https://tools.builtbyjoshstudio.com/initiative-tracker/",
+    "description": "Track turn order, rounds, HP, and conditions for tabletop RPG combat in any system. Your encounter saves itself in the browser between sessions.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built By Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this initiative tracker work for games other than D&D?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. It tracks names, initiative values, hit points, rounds, and conditions — the pieces almost every tabletop RPG shares — without assuming any ruleset. Use it for D&D, Pathfinder, Call of Cthulhu, or any homebrew system."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Will my encounter still be here if I close the tab?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The encounter saves itself in your browser's local storage on every change, so you can close the tab mid-session and pick up exactly where you left off — same combatants, same round, same turn. It stays on this device and browser; nothing is uploaded anywhere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are ties in initiative handled?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Combatants with the same initiative keep the order you added them in. If your table breaks ties differently, nudge one combatant's initiative by a decimal — 15.5 sorts above 15."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this initiative tracker free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere; your encounter is stored only on your own device."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/initiative-tracker/">
+  <meta property="og:title" content="Initiative Tracker | Free TTRPG Combat Tracker, Any System">
+  <meta property="og:description" content="Turn order, rounds, HP, and conditions for any tabletop RPG. Saves between sessions. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/initiative-tracker/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/initiative-tracker/">
+  <meta name="twitter:title" content="Initiative Tracker | Free TTRPG Combat Tracker, Any System">
+  <meta name="twitter:description" content="Turn order, rounds, HP, and conditions for any tabletop RPG. Saves between sessions. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/initiative-tracker/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    /* add-combatant form */
+    .add-grid { display:grid; grid-template-columns:1.6fr .8fr .8fr 1fr auto; gap:10px; align-items:end; }
+    .add-grid .input-group { gap:6px; }
+    #add-combatant { font-family:var(--font-display); font-weight:700; font-size:14px; background:var(--accent); color:var(--accent-ink); border:2px solid var(--accent); border-radius:var(--r-s); padding:11px 18px; cursor:pointer; box-shadow:4px 4px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); white-space:nowrap; }
+    #add-combatant:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--shadow); }
+    .add-hint { font-family:var(--font-mono); font-size:11px; color:var(--muted); margin-top:12px; }
+    @media (max-width:680px){
+      .add-grid { grid-template-columns:1fr 1fr; }
+      .add-grid .ag-name { grid-column:1 / 3; }
+      #add-combatant { grid-column:1 / 3; }
+    }
+
+    /* round / turn stage */
+    .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding:18px 20px; margin-bottom:18px; }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(34px,7vw,54px); line-height:1.05; color:var(--accent); overflow-wrap:anywhere; }
+    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); max-width:62ch; }
+
+    .turn-controls { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+    .turn-controls .btn { flex:0 0 auto; }
+    #next-turn { font-size:16px; padding:14px 26px; }
+    .tc-spacer { flex:1 1 auto; }
+    .btn.danger:hover { border-color:var(--neg); color:var(--neg); background:var(--surface); }
+
+    /* combatant rows */
+    .combatant { display:grid; grid-template-columns:44px minmax(0,1.4fr) minmax(0,1.6fr) auto; gap:12px; align-items:center; padding:12px 14px; border:2px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); margin-bottom:10px; transition:border-color .15s var(--ease), transform .15s var(--ease); }
+    .combatant.active { border-color:var(--accent); transform:translateX(4px); box-shadow:4px 4px 0 var(--shadow); }
+    .combatant.down { opacity:.55; }
+    .combatant .init { width:44px; height:44px; border-radius:var(--r-s); display:grid; place-items:center; background:var(--surface); border:2px solid var(--line-2); font-family:var(--font-mono); font-size:15px; font-weight:600; color:var(--ink); }
+    .combatant.active .init { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+    .combatant .who { min-width:0; }
+    .combatant .who .nm { font-family:var(--font-display); font-weight:700; font-size:16px; color:var(--ink); overflow-wrap:anywhere; }
+    .combatant.down .who .nm { text-decoration:line-through; }
+    .combatant .who .tp { font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .combatant .who .tp.pc { color:var(--pos); }
+    .combatant .who .tp.enemy { color:var(--neg); }
+
+    .c-mid { display:flex; flex-direction:column; gap:8px; min-width:0; }
+    .hp-line { display:flex; align-items:center; gap:6px; }
+    .hp-line .hp-lbl { font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-right:2px; }
+    .hp-line input.hp { width:58px; text-align:center; font-family:var(--font-mono); font-size:14px; font-weight:600; background:var(--surface); color:var(--ink); border:2px solid var(--line-2); border-radius:8px; padding:5px 4px; outline:none; }
+    .hp-line input.hp:focus { border-color:var(--accent); }
+    .hp-line .hp-max { font-family:var(--font-mono); font-size:12px; color:var(--muted); }
+    .hp-btn { width:30px; height:30px; border:2px solid var(--line-2); border-radius:8px; background:var(--surface); color:var(--ink); font-family:var(--font-mono); font-size:14px; font-weight:600; line-height:1; cursor:pointer; transition:background .15s var(--ease), color .15s var(--ease); }
+    .hp-btn:hover { background:var(--ink); color:var(--canvas); }
+    .no-hp { font-family:var(--font-mono); font-size:11px; color:var(--muted); }
+
+    .cond-line { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .cond { display:inline-flex; align-items:center; gap:5px; font-family:var(--font-mono); font-size:10.5px; font-weight:600; letter-spacing:.03em; text-transform:uppercase; color:var(--warn); border:1.5px solid var(--warn); border-radius:999px; padding:3px 8px; }
+    .cond button { border:0; background:none; color:inherit; font-size:12px; line-height:1; cursor:pointer; padding:0; }
+    input.cond-add { width:110px; font-family:var(--font-mono); font-size:11px; background:var(--surface); color:var(--ink); border:1.5px dashed var(--line-2); border-radius:999px; padding:4px 10px; outline:none; }
+    input.cond-add:focus { border-color:var(--accent); border-style:solid; }
+    input.cond-add::placeholder { color:var(--muted); }
+
+    .c-remove { width:32px; height:32px; border:2px solid var(--line-2); border-radius:var(--r-s); background:var(--surface); color:var(--muted); font-size:16px; line-height:1; cursor:pointer; transition:color .15s var(--ease), border-color .15s var(--ease); }
+    .c-remove:hover { color:var(--neg); border-color:var(--neg); }
+
+    .empty-note { border:2px dashed var(--line); border-radius:var(--r-s); padding:22px; text-align:center; color:var(--muted); font-size:14px; }
+
+    @media (max-width:620px){
+      .combatant { grid-template-columns:44px minmax(0,1fr) auto; }
+      .c-mid { grid-column:1 / 4; }
+    }
+
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../tabletop/">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Tabletop</span>
+          <span>Any system &middot; Saves itself</span>
+        </div>
+        <h1>Initiative Tracker</h1>
+        <p>Run the whole fight from one screen — turn order, rounds, HP, and conditions. Your encounter saves itself in this browser, so you can set it up before the session and it'll still be here at the table.</p>
+      </div>
+    </header>
+
+    <!-- ADD COMBATANTS -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Add combatants</div>
+      <div class="add-grid">
+        <div class="input-group ag-name">
+          <label class="input-label" for="c-name">Name</label>
+          <input type="text" id="c-name" class="form-input" placeholder="Goblin, Bandit, Wolf&hellip;" maxlength="40">
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="c-init">Initiative</label>
+          <input type="number" id="c-init" class="form-input" placeholder="14" step="0.5">
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="c-hp">HP <span style="text-transform:none;letter-spacing:0;">(optional)</span></label>
+          <input type="number" id="c-hp" class="form-input" placeholder="22" min="0">
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="c-type">Side</label>
+          <select id="c-type" class="form-input">
+            <option value="pc">Player</option>
+            <option value="ally">Ally / NPC</option>
+            <option value="enemy" selected>Enemy</option>
+          </select>
+        </div>
+        <button type="button" id="add-combatant">+ Add</button>
+      </div>
+      <p class="add-hint">Enter adds too. Same name twice? It auto-numbers — Goblin, Goblin 2, Goblin 3.</p>
+    </div>
+
+    <!-- TRACKER -->
+    <div class="glass" style="margin-top:18px;">
+      <div class="anatomy-stage glass-lite" aria-live="polite">
+        <span class="stage-label" id="round-label">Round 1</span>
+        <span class="stage-value" id="current-name">Add combatants to start</span>
+        <span class="stage-sub" id="on-deck"></span>
+      </div>
+
+      <div class="turn-controls">
+        <button type="button" class="btn primary" id="next-turn">Next turn &rarr;</button>
+        <button type="button" class="btn" id="prev-turn">&larr; Back</button>
+        <span class="tc-spacer"></span>
+        <button type="button" class="btn danger" id="reset-encounter" title="Back to round 1, turn 1 — keeps combatants">Reset rounds</button>
+        <button type="button" class="btn danger" id="clear-encounter" title="Remove every combatant">Clear all</button>
+      </div>
+
+      <div class="role">Turn order</div>
+      <div id="combatant-list"></div>
+      <p class="note">Ties keep the order you added them in — nudge with a decimal (15.5 beats 15) if your table rules differently. Everything here stays on this device.</p>
+      <a class="xlink" href="../dice-roller/"
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                text-transform:uppercase; color:var(--accent); text-decoration:none;">
+        Need to roll initiative first? Open the dice roller &rarr;
+      </a>
+    </div>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>Run combat faster at the table</h2>
+      <p>Most combat slowdown isn't rules — it's bookkeeping. Whose turn is it, what round are we on, how hurt is the ogre, and wasn't somebody poisoned? This tracker keeps all four answers on one screen so the game master can spend the pause between turns describing the fight instead of reconstructing it.</p>
+
+      <h3>Set up before the session</h3>
+      <p>Add your players and the monsters for tonight's encounter ahead of time — the tracker saves itself in your browser, so it's still loaded when the fight actually starts. When initiative is rolled, type the values in and the order sorts itself.</p>
+
+      <h3>Conditions are the thing everyone forgets</h3>
+      <p>Poisoned, prone, frightened, concentrating — the effects that quietly fall off the table's collective memory two rounds after they land. Tag them on the combatant and they stay visible every time that turn comes around.</p>
+
+      <h3>Works with whatever you play</h3>
+      <p>Names, initiative values, hit points, rounds, and free-text conditions are the common core of nearly every tabletop RPG. Nothing here assumes a specific ruleset, so the same tracker works for your fantasy campaign, your horror one-shot, and the homebrew system your group half-invented.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>Does this initiative tracker work for games other than D&amp;D?</summary>
+        <p>Yes. It tracks names, initiative values, hit points, rounds, and conditions — the pieces almost every tabletop RPG shares — without assuming any ruleset. Use it for D&amp;D, Pathfinder, Call of Cthulhu, or any homebrew system.</p>
+      </details>
+      <details>
+        <summary>Will my encounter still be here if I close the tab?</summary>
+        <p>Yes. The encounter saves itself in your browser's local storage on every change, so you can close the tab mid-session and pick up exactly where you left off — same combatants, same round, same turn. It stays on this device and browser; nothing is uploaded anywhere.</p>
+      </details>
+      <details>
+        <summary>How are ties in initiative handled?</summary>
+        <p>Combatants with the same initiative keep the order you added them in. If your table breaks ties differently, nudge one combatant's initiative by a decimal — 15.5 sorts above 15.</p>
+      </details>
+      <details>
+        <summary>Is this initiative tracker free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere; your encounter is stored only on your own device.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This tracker is system-agnostic and is not affiliated with, endorsed by, or associated with any game publisher. Game names are mentioned only to describe compatibility; all trademarks are the property of their respective owners. Nothing you enter is sent anywhere — your encounter is stored only in your own browser.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
+    <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
+    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.6;">More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  </nav>
+</footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
