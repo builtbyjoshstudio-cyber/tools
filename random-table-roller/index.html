@@ -143,8 +143,14 @@
 
     .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
 
+    /* roll bar */
+    .roll-bar { display:grid; grid-template-columns:minmax(0,1.4fr) auto auto; gap:12px; align-items:end; }
+    .roll-bar .btn { padding:12px 22px; }
+    .roll-bar .btn.primary { font-size:16px; padding:12px 30px; }
+    @media (max-width:680px){ .roll-bar { grid-template-columns:1fr 1fr; } .roll-bar .input-group { grid-column:1 / 3; } }
+
     /* library bar */
-    .lib-grid { display:grid; grid-template-columns:1.4fr 1.2fr auto; gap:12px; align-items:end; }
+    .lib-grid { display:grid; grid-template-columns:1.4fr auto 1fr; gap:12px; align-items:end; }
     @media (max-width:680px){ .lib-grid { grid-template-columns:1fr; } }
     .lib-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
     .lib-actions .btn { font-size:13px; padding:10px 14px; }
@@ -244,65 +250,67 @@
       </div>
     </header>
 
-    <!-- LIBRARY -->
+    <!-- ROLL (the point of the tool — first) -->
     <div class="glass type-card" style="margin-top:22px;">
-      <div class="role">1. Your tables</div>
-      <div class="lib-grid">
+      <div class="role">1. Pick a table &amp; roll</div>
+      <div class="roll-bar">
         <div class="input-group">
-          <label class="input-label" for="table-select">Current table</label>
+          <label class="input-label" for="table-select">Table</label>
           <select id="table-select" class="form-input"></select>
         </div>
-        <div class="input-group">
-          <label class="input-label" for="new-table-name">Start a new one</label>
-          <input type="text" id="new-table-name" class="form-input" placeholder="Tavern events, weird loot&hellip;" maxlength="60">
-        </div>
-        <button type="button" id="new-table-btn">+ New table</button>
-      </div>
-      <div class="lib-actions">
-        <button type="button" class="btn" id="export-btn" title="Download this table as numbered plain text">Export table (.txt)</button>
-        <button type="button" class="btn danger" id="delete-table" title="Delete this table and its entries">Delete table</button>
-      </div>
-    </div>
-
-    <!-- ENTRIES -->
-    <div class="glass" style="margin-top:18px;">
-      <div class="role">2. Table entries</div>
-      <label class="input-label" for="paste-box" style="display:block; margin-bottom:8px;">Paste a list — plain lines, numbered lines, or ranges like <span style="text-transform:none; letter-spacing:0; font-family:var(--font-mono);">01-05: nothing happens</span></label>
-      <textarea id="paste-box" spellcheck="false" placeholder="A hooded stranger buys a round for the house&#10;7: the fireplace spits green sparks&#10;01-05: nothing happens&hellip;"></textarea>
-      <div class="entry-actions">
-        <button type="button" class="btn primary" id="parse-btn">Add entries from paste</button>
-        <button type="button" class="btn danger" id="clear-entries" title="Remove every entry — keeps the table name">Clear entries</button>
-      </div>
-      <div class="add-one">
-        <div class="input-group">
-          <label class="input-label" for="one-entry">Or add one entry</label>
-          <input type="text" id="one-entry" class="form-input" placeholder="The bard knows exactly one song&hellip;" maxlength="200">
-        </div>
-        <button type="button" class="add-btn" id="one-add" style="align-self:end;">+ Add</button>
-      </div>
-      <p class="die-note" id="die-note">Empty table</p>
-      <div id="entry-list"></div>
-    </div>
-
-    <!-- ROLL -->
-    <div class="glass" style="margin-top:18px;">
-      <div class="anatomy-stage glass-lite" aria-live="polite">
-        <span class="stage-label" id="result-label">Result</span>
-        <span class="stage-value" id="result-text">Add some entries, then roll.</span>
-        <span class="stage-sub" id="result-sub"></span>
-      </div>
-      <div class="roll-controls">
         <button type="button" class="btn primary" id="roll-one">Roll</button>
         <button type="button" class="btn" id="roll-three" title="Three distinct results — great for encounters and loot batches">Roll 3, no repeats</button>
+      </div>
+      <div class="anatomy-stage glass-lite" style="margin-top:16px; margin-bottom:0;" aria-live="polite">
+        <span class="stage-label" id="result-label">Result</span>
+        <span class="stage-value" id="result-text">Pick a table and hit Roll.</span>
+        <span class="stage-sub" id="result-sub"></span>
       </div>
       <div class="hist-head">
         <div class="role">Recent rolls</div>
         <button type="button" id="clear-history">Clear</button>
       </div>
       <div class="hist-strip" id="history"></div>
-      <p class="note">Rolls use the same unbiased crypto randomness as the dice roller. Your tables never leave this device — export them as plain text to share or back up.</p>
+    </div>
+
+    <!-- BUILD -->
+    <div class="glass" style="margin-top:18px;">
+      <div class="role">2. Build your own table</div>
+      <label class="input-label" for="paste-box" style="display:block; margin-bottom:8px;">Paste any list — one result per line. Numbers optional: <span style="text-transform:none; letter-spacing:0; font-family:var(--font-mono);">7: text</span> keeps its number, <span style="text-transform:none; letter-spacing:0; font-family:var(--font-mono);">01-05: text</span> makes a weighted range</label>
+      <textarea id="paste-box" spellcheck="false" placeholder="A hooded stranger buys a round for the house&#10;Two farmers argue over a pig neither of them owns&#10;01-05: nothing happens&hellip;"></textarea>
+      <div class="entry-actions">
+        <button type="button" class="btn primary" id="parse-btn">Add to table</button>
+        <button type="button" class="btn danger" id="clear-entries" title="Remove every entry — keeps the table name">Clear entries</button>
+      </div>
+      <div class="add-one">
+        <div class="input-group">
+          <label class="input-label" for="one-entry">Or add one line at a time</label>
+          <input type="text" id="one-entry" class="form-input" placeholder="The bard knows exactly one song&hellip;" maxlength="200">
+        </div>
+        <button type="button" class="add-btn" id="one-add" style="align-self:end;">+ Add</button>
+      </div>
+      <p class="die-note" id="die-note">Empty table</p>
+      <div id="entry-list"></div>
+      <p class="note">Everything above lands in whichever table is selected up top. Rolls use the same unbiased crypto randomness as the dice roller, and your tables never leave this device.</p>
+    </div>
+
+    <!-- MANAGE -->
+    <div class="glass" style="margin-top:18px;">
+      <div class="role">3. More tables</div>
+      <div class="lib-grid">
+        <div class="input-group">
+          <label class="input-label" for="new-table-name">Name a new table</label>
+          <input type="text" id="new-table-name" class="form-input" placeholder="Weird loot, wilderness events&hellip;" maxlength="60">
+        </div>
+        <button type="button" id="new-table-btn">+ New table</button>
+        <span></span>
+      </div>
+      <div class="lib-actions">
+        <button type="button" class="btn" id="export-btn" title="Download the selected table as numbered plain text">Export selected table (.txt)</button>
+        <button type="button" class="btn danger" id="delete-table" title="Delete the selected table and its entries">Delete selected table</button>
+      </div>
       <a class="xlink" href="../session-notes/"
-         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:16px;
                 font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
                 text-transform:uppercase; color:var(--accent); text-decoration:none;">
         Rolled something worth keeping? Log it in your session notes &rarr;
