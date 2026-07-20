@@ -10,7 +10,8 @@ var TYNKR_REGISTRY = {
   "initiative-tracker": "../initiative-tracker/index.html",
   "dice-roller": "../dice-roller/index.html",
   "session-notes": "../session-notes/index.html",
-  "wargame-score-tracker": "../wargame-score-tracker/index.html"
+  "wargame-score-tracker": "../wargame-score-tracker/index.html",
+  "random-table-roller": "../random-table-roller/index.html"
 };
 
 document.addEventListener("DOMContentLoaded", function () {

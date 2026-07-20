@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Random Table Roller | Roll on Your Own Custom TTRPG Tables</title>
+  <meta name="description" content="Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables. Free, ad-free, no signup.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/random-table-roller/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Random Table Roller",
+    "url": "https://tools.builtbyjoshstudio.com/random-table-roller/",
+    "description": "Build or paste your own random tables and roll on them with one tap — weighted ranges, multi-roll without repeats, a table library saved in your browser, and plain-text export.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built By Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What format can I paste tables in?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost anything line-based. Plain lines get auto-numbered in order (twenty lines becomes a d20 table). Lines that start with a number ('7: a broken cart') keep that number, and ranges ('01-05: nothing happens') become weighted entries — the wider the range, the more likely the result. You can mix all three styles in one paste."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do weighted entries work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The roller rolls a die as big as your table's highest number and finds the entry whose range covers the roll. An entry spanning 1-5 is five times likelier than one covering a single number. If your ranges leave gaps, a roll landing in a gap says so honestly instead of pretending."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where are my tables stored, and can I share them?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tables live in your browser's local storage — no account, nothing uploaded. The export button turns a table into plain numbered text you can save, send to a friend, or paste right back in on another device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this table roller free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Your tables stay on your own device."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/random-table-roller/">
+  <meta property="og:title" content="Random Table Roller | Roll on Your Own Custom TTRPG Tables">
+  <meta property="og:description" content="Paste any list, get a rollable table — weighted ranges, no-repeat multi-rolls, and a saved library. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/random-table-roller/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/random-table-roller/">
+  <meta name="twitter:title" content="Random Table Roller | Roll on Your Own Custom TTRPG Tables">
+  <meta name="twitter:description" content="Paste any list, get a rollable table — weighted ranges, no-repeat multi-rolls, and a saved library. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/random-table-roller/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    /* library bar */
+    .lib-grid { display:grid; grid-template-columns:1.4fr 1.2fr auto; gap:12px; align-items:end; }
+    @media (max-width:680px){ .lib-grid { grid-template-columns:1fr; } }
+    .lib-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+    .lib-actions .btn { font-size:13px; padding:10px 14px; }
+    .btn.danger:hover { border-color:var(--neg); color:var(--neg); background:var(--surface); }
+    #new-table-btn { font-family:var(--font-display); font-weight:700; font-size:14px; background:var(--accent); color:var(--accent-ink); border:2px solid var(--accent); border-radius:var(--r-s); padding:11px 18px; cursor:pointer; box-shadow:4px 4px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); white-space:nowrap; }
+    #new-table-btn:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--shadow); }
+
+    /* entries */
+    #paste-box { width:100%; min-height:120px; resize:vertical; font-family:var(--font-mono); font-size:13px; line-height:1.6; background:var(--surface-2); color:var(--ink); border:2px solid var(--line-2); border-radius:var(--r-s); padding:11px 14px; outline:none; height:auto; }
+    #paste-box:focus { border-color:var(--accent); }
+    .entry-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .entry-actions .btn { font-size:13px; padding:10px 14px; }
+    .add-one { display:grid; grid-template-columns:1fr auto; gap:10px; margin-top:16px; }
+    .add-one .add-btn { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); background:var(--surface-2); border:2px dashed var(--line-2); border-radius:var(--r-s); padding:11px 16px; cursor:pointer; transition:border-color .15s var(--ease), color .15s var(--ease); white-space:nowrap; }
+    .add-one .add-btn:hover { border-color:var(--accent); color:var(--accent); }
+    @media (max-width:620px){ .add-one { grid-template-columns:1fr; } }
+
+    .die-note { font-family:var(--font-mono); font-size:12px; color:var(--accent); margin:16px 0 10px; letter-spacing:.04em; text-transform:uppercase; }
+    .entry-row { display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; padding:8px 12px; border:1.5px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); margin-bottom:7px; }
+    .entry-row .rng { font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--ink); background:var(--surface); border:1.5px solid var(--line-2); border-radius:7px; padding:4px 9px; white-space:nowrap; }
+    .entry-row .txt { font-size:13.5px; color:var(--ink); overflow-wrap:anywhere; }
+    .x-remove { width:30px; height:30px; border:2px solid var(--line-2); border-radius:var(--r-s); background:var(--surface); color:var(--muted); font-size:15px; line-height:1; cursor:pointer; transition:color .15s var(--ease), border-color .15s var(--ease); flex:0 0 auto; }
+    .x-remove:hover { color:var(--neg); border-color:var(--neg); }
+    .empty-note { border:2px dashed var(--line); border-radius:var(--r-s); padding:16px; text-align:center; color:var(--muted); font-size:13px; }
+
+    /* roll stage */
+    .anatomy-stage { display:flex; flex-direction:column; gap:6px; padding:20px 22px; margin-bottom:18px; }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(24px,4.5vw,38px); line-height:1.2; color:var(--ink); overflow-wrap:anywhere; }
+    .anatomy-stage .stage-value .num { color:var(--accent); font-variant-numeric:tabular-nums; }
+    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); }
+
+    .roll-controls { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }
+    #roll-one { font-size:16px; padding:14px 28px; }
+    .hist-strip { display:flex; flex-direction:column; gap:6px; }
+    .hist-item { display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:baseline; padding:8px 12px; border:1.5px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); font-size:13px; }
+    .hist-item .hn { font-family:var(--font-mono); font-weight:600; color:var(--accent); white-space:nowrap; }
+    .hist-item .ht { color:var(--ink); overflow-wrap:anywhere; }
+    .hist-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:18px 0 10px; }
+    .hist-head .role { margin-bottom:0; }
+    #clear-history { font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); background:none; border:0; cursor:pointer; }
+    #clear-history:hover { color:var(--neg); }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+    .prose code { font-family:var(--font-mono); font-size:13px; color:var(--ink); background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:1px 6px; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../tabletop/">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Tabletop</span>
+          <span>Your tables &middot; Weighted ranges &middot; Saves itself</span>
+        </div>
+        <h1>Random Table Roller</h1>
+        <p>Every game master hoards random tables — tavern events, weird loot, what's in the goblin's pockets. Paste any list here and it becomes a rollable table with one big button. Weighted ranges, no-repeat batches, and a library that's still here next session.</p>
+      </div>
+    </header>
+
+    <!-- LIBRARY -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Your tables</div>
+      <div class="lib-grid">
+        <div class="input-group">
+          <label class="input-label" for="table-select">Current table</label>
+          <select id="table-select" class="form-input"></select>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="new-table-name">Start a new one</label>
+          <input type="text" id="new-table-name" class="form-input" placeholder="Tavern events, weird loot&hellip;" maxlength="60">
+        </div>
+        <button type="button" id="new-table-btn">+ New table</button>
+      </div>
+      <div class="lib-actions">
+        <button type="button" class="btn" id="export-btn" title="Download this table as numbered plain text">Export table (.txt)</button>
+        <button type="button" class="btn danger" id="delete-table" title="Delete this table and its entries">Delete table</button>
+      </div>
+    </div>
+
+    <!-- ENTRIES -->
+    <div class="glass" style="margin-top:18px;">
+      <div class="role">2. Table entries</div>
+      <label class="input-label" for="paste-box" style="display:block; margin-bottom:8px;">Paste a list — plain lines, numbered lines, or ranges like <span style="text-transform:none; letter-spacing:0; font-family:var(--font-mono);">01-05: nothing happens</span></label>
+      <textarea id="paste-box" spellcheck="false" placeholder="A hooded stranger buys a round for the house&#10;7: the fireplace spits green sparks&#10;01-05: nothing happens&hellip;"></textarea>
+      <div class="entry-actions">
+        <button type="button" class="btn primary" id="parse-btn">Add entries from paste</button>
+        <button type="button" class="btn danger" id="clear-entries" title="Remove every entry — keeps the table name">Clear entries</button>
+      </div>
+      <div class="add-one">
+        <div class="input-group">
+          <label class="input-label" for="one-entry">Or add one entry</label>
+          <input type="text" id="one-entry" class="form-input" placeholder="The bard knows exactly one song&hellip;" maxlength="200">
+        </div>
+        <button type="button" class="add-btn" id="one-add" style="align-self:end;">+ Add</button>
+      </div>
+      <p class="die-note" id="die-note">Empty table</p>
+      <div id="entry-list"></div>
+    </div>
+
+    <!-- ROLL -->
+    <div class="glass" style="margin-top:18px;">
+      <div class="anatomy-stage glass-lite" aria-live="polite">
+        <span class="stage-label" id="result-label">Result</span>
+        <span class="stage-value" id="result-text">Add some entries, then roll.</span>
+        <span class="stage-sub" id="result-sub"></span>
+      </div>
+      <div class="roll-controls">
+        <button type="button" class="btn primary" id="roll-one">Roll</button>
+        <button type="button" class="btn" id="roll-three" title="Three distinct results — great for encounters and loot batches">Roll 3, no repeats</button>
+      </div>
+      <div class="hist-head">
+        <div class="role">Recent rolls</div>
+        <button type="button" id="clear-history">Clear</button>
+      </div>
+      <div class="hist-strip" id="history"></div>
+      <p class="note">Rolls use the same unbiased crypto randomness as the dice roller. Your tables never leave this device — export them as plain text to share or back up.</p>
+      <a class="xlink" href="../session-notes/"
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                text-transform:uppercase; color:var(--accent); text-decoration:none;">
+        Rolled something worth keeping? Log it in your session notes &rarr;
+      </a>
+    </div>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>Your tables deserve better than a bookmark</h2>
+      <p>Random tables are the great shared hobby of game masters — collected from books, blogs, forums, and 2 a.m. bursts of inspiration, then lost across screenshots and notebooks precisely when the party walks into the tavern. This tool is the machine half of the bargain: you bring the tables, it makes them rollable, findable, and permanent.</p>
+
+      <h3>Paste anything line-shaped</h3>
+      <p>Twenty plain lines become a d20 table, numbered automatically. Lines that carry their own numbers — <code>7: the fireplace spits green sparks</code> — keep them, and ranges like <code>01-05: nothing happens</code> become weighted entries, five times likelier than a single number. Mix all three in one paste; the parser sorts it out.</p>
+
+      <h3>Weighted the way published tables are</h3>
+      <p>The d100 tables in your favorite books lean hard on ranges — common results span ten numbers, the dragon gets exactly one. The roller respects that math: it rolls a die as big as your table's highest number and lands where the ranges say. And if your homemade table has a gap, a roll that falls in it tells you so instead of quietly rerolling — that's your cue to finish the table.</p>
+
+      <h3>Batches without repeats</h3>
+      <p>"Roll 3, no repeats" is for the moments a single result isn't enough — stocking a ruin, three rumors at the tavern, a fistful of trinkets. Distinct entries, one tap, no re-rolling the same goblin twice.</p>
+
+      <h3>A library, not a session</h3>
+      <p>Tables save themselves in your browser and stack up into a collection over time — the same quiet accumulation as the campaign journal next door. The plain-text export means nothing is trapped here: send a table you wrote to a friend, or paste it back in on another machine.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>What format can I paste tables in?</summary>
+        <p>Almost anything line-based. Plain lines get auto-numbered in order (twenty lines becomes a d20 table). Lines that start with a number ('7: a broken cart') keep that number, and ranges ('01-05: nothing happens') become weighted entries — the wider the range, the more likely the result. You can mix all three styles in one paste.</p>
+      </details>
+      <details>
+        <summary>How do weighted entries work?</summary>
+        <p>The roller rolls a die as big as your table's highest number and finds the entry whose range covers the roll. An entry spanning 1-5 is five times likelier than one covering a single number. If your ranges leave gaps, a roll landing in a gap says so honestly instead of pretending.</p>
+      </details>
+      <details>
+        <summary>Where are my tables stored, and can I share them?</summary>
+        <p>Tables live in your browser's local storage — no account, nothing uploaded. The export button turns a table into plain numbered text you can save, send to a friend, or paste right back in on another device.</p>
+      </details>
+      <details>
+        <summary>Is this table roller free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Your tables stay on your own device.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This roller is system-agnostic and is not affiliated with, endorsed by, or associated with any game publisher. The tables you create are your own content; respect the copyright of published material you paste for personal use. Nothing you enter is sent anywhere — your tables are stored only in your own browser.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
+    <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
+    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.6;">More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  </nav>
+</footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
