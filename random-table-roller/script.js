@@ -68,8 +68,28 @@ document.addEventListener("DOMContentLoaded", function () {
   function blankTable(name, seq) {
     return { id: "t" + seq, name: String(name || "My Table").slice(0, MAX_NAME), entries: [] };
   }
+  // First visit ships a working example — roll instantly, learn the format by seeing it.
+  // (Lines live inside the function: blank() runs during the hoisted load() call,
+  // before any top-level var assignments in this scope would have executed.)
   function blank() {
-    return { tables: [blankTable("My Table", 1)], active: "t1", seq: 2, history: [] };
+    var lines = [
+      "A hooded stranger buys a round and asks one question too many",
+      "The bard knows exactly one song, and it's about the party",
+      "Two farmers argue over a pig neither of them owns",
+      "The fireplace spits green sparks; the regulars don't react",
+      "A wanted poster looks suspiciously like one of you",
+      "The cook is out of everything except stew. It is always stew",
+      "The dice game in the corner is absolutely rigged",
+      "Someone's pet raven keeps stealing spoons",
+      "The barkeep quietly waters down a dangerous patron's drink",
+      "A courier bursts in looking for someone who just left"
+    ];
+    var t = blankTable("Tavern Moments (example)", 1);
+    var seq = 2;
+    lines.forEach(function (text, i) {
+      t.entries.push({ id: "e" + seq++, min: i + 1, max: i + 1, text: text });
+    });
+    return { tables: [t], active: "t1", seq: seq, history: [] };
   }
   function load() {
     try {
