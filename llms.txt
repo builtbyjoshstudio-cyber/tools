@@ -42,6 +42,7 @@
 
 - [Dice Roller](https://tools.builtbyjoshstudio.com/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included.
 - [Initiative Tracker](https://tools.builtbyjoshstudio.com/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions.
+- [Random Table Roller](https://tools.builtbyjoshstudio.com/random-table-roller/): Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables.
 - [Session Notes & NPC Log](https://tools.builtbyjoshstudio.com/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown.
 - [Wargame Score Tracker](https://tools.builtbyjoshstudio.com/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game.
 
