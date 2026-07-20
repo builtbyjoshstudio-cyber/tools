@@ -1,0 +1,35 @@
+name: IndexNow
+
+# Tells Bing/Yandex/Seznam/Naver about pages changed by a push, so they recrawl
+# in hours instead of weeks. Google does NOT use IndexNow.
+# The key is public by design (served at /<key>.txt) - no repo secrets needed.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Wait for GitHub Pages to publish
+        run: sleep 60
+
+      - name: Submit changed URLs to IndexNow
+        env:
+          INDEXNOW_HOST: tools.builtbyjoshstudio.com
+          INDEXNOW_KEY: 8f0b6b574090115771be348b5d74bffa
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: python3 .github/indexnow_ci.py
