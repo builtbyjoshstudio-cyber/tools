@@ -1,0 +1,52 @@
+# Tynkr Tools & Co - Free Browser Tools
+
+> Free, local-first browser tools by [Built by Josh Studio](https://builtbyjoshstudio.com/) under the Tynkr Tools & Co brand. Every tool runs entirely in the browser - no signup, no email, no ads, no data collection. Three hubs: kitchen & cooking, money & business, tabletop & RPG.
+
+## Hubs
+
+- [Kitchen & cooking tools](https://tools.builtbyjoshstudio.com/): All kitchen calculators.
+- [Money & business tools](https://tools.builtbyjoshstudio.com/money/): All personal-finance and small-business calculators.
+- [Tabletop & RPG tools](https://tools.builtbyjoshstudio.com/tabletop/): All game-night tools.
+
+## Kitchen & cooking
+
+- [Air Fryer Conversion Calculator](https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/): Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius.
+- [Brine Calculator](https://tools.builtbyjoshstudio.com/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
+- [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines.
+- [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
+- [Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings.
+- [Meat Thawing Time Calculator](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings.
+- [Pan Swap Calculator](https://tools.builtbyjoshstudio.com/pan-swap-calculator/): Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings.
+- [Perfect Roast Pull Temp Calculator](https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
+- [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label.
+- [Pork Roast Cooking Time Calculator](https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
+- [Universal Recipe Scaler](https://tools.builtbyjoshstudio.com/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
+- [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards.
+
+## Money & business
+
+- [Budget Calculator](https://tools.builtbyjoshstudio.com/budget-calculator/): A 50/30/20 budget calculator comparing the ideal split to what you actually spend — see where you're over and what to fix.
+- [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year.
+- [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side.
+- [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded.
+- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, expenses, and non-billable time.
+- [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
+- [Free Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded.
+- [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves.
+- [Profit Margin Calculator for Sellers](https://tools.builtbyjoshstudio.com/profit-margin-calculator/): See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin.
+- [Quarterly Tax Estimator for Freelancers](https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/): Estimate your quarterly self-employment tax payments — SE tax plus federal income tax from your expected profit, with all four due dates.
+- [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years.
+- [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month.
+
+## Tabletop & RPG
+
+- [Dice Roller](https://tools.builtbyjoshstudio.com/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included.
+- [Initiative Tracker](https://tools.builtbyjoshstudio.com/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions.
+- [Session Notes & NPC Log](https://tools.builtbyjoshstudio.com/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown.
+- [Wargame Score Tracker](https://tools.builtbyjoshstudio.com/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game.
+
+## Beyond the tools
+
+- [Built by Josh Studio](https://builtbyjoshstudio.com/): The parent studio - Notion templates, spreadsheet workbooks, guided planners, zodiac art.
+- [Tynkr desktop apps](https://tynkr.builtbyjoshstudio.com/): Privacy-first Windows desktop apps (coming soon).
+- [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables.
