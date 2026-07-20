@@ -8,7 +8,8 @@ var TYNKR_REGISTRY = {
   hub: "../tabletop/index.html",
   "initiative-tracker": "../initiative-tracker/index.html",
   "dice-roller": "../dice-roller/index.html",
-  "session-notes": "../session-notes/index.html"
+  "session-notes": "../session-notes/index.html",
+  "wargame-score-tracker": "../wargame-score-tracker/index.html"
 };
 
 document.addEventListener("DOMContentLoaded", function () {
