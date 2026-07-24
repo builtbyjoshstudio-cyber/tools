@@ -49,5 +49,6 @@
 ## Beyond the tools
 
 - [Built by Josh Studio](https://builtbyjoshstudio.com/): The parent studio - Notion templates, spreadsheet workbooks, guided planners, zodiac art.
+- [Nước Mắm — A Vietnamese Family Cookbook](https://builtbyjoshstudio.com/nuoc-mam-cookbook.html): A 56-page Vietnamese family cookbook by the same cook behind the kitchen tools — $3.99 ebook (EPUB + PDF) or Kindle.
 - [Tynkr desktop apps](https://tynkr.builtbyjoshstudio.com/): Privacy-first Windows desktop apps (coming soon).
 - [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables.
