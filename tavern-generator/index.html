@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDSPBB7S9J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QDSPBB7S9J');
+    </script>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
+  <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
+  <title>Tavern Generator | Name, Patrons, Rumor &amp; Menu, Free</title>
+  <meta name="description" content="Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and what's on the menu. Free, ad-free.">
+  <link rel="canonical" href="https://tools.builtbyjoshstudio.com/tavern-generator/">
+
+  <!-- JSON-LD #1: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tavern Generator",
+    "url": "https://tools.builtbyjoshstudio.com/tavern-generator/",
+    "description": "Generates a complete fantasy tavern in one click — original name, atmosphere, a notable patron, tonight's rumor, and the house special.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Any (web browser)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://builtbyjoshstudio.com/#organization",
+      "name": "Built by Josh Studio LLC",
+      "legalName": "Built by Josh Studio LLC",
+      "alternateName": [
+        "BBJ Studio",
+        "Built By Josh Studio"
+      ],
+      "url": "https://builtbyjoshstudio.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+        "width": 512,
+        "height": 512
+      },
+      "image": "https://builtbyjoshstudio.com/images/logo/logo.webp",
+      "sameAs": [
+        "https://linktr.ee/builtbyjoshstudio",
+        "https://tynkrtoolsco.substack.com/",
+        "https://www.youtube.com/@TalesofInkShadowsStudio",
+        "https://tynkrtoolsandco.etsy.com",
+        "https://www.etsy.com/shop/BuiltByJoshStudio"
+      ],
+      "identifier": [
+        {
+          "@type": "PropertyValue",
+          "propertyID": "Kansas Business ID",
+          "value": "10076138"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- JSON-LD #2: FAQPage (mirrors the on-page FAQ) -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are these tavern names and rumors from published adventures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — every name, patron, rumor, and menu line is original invented content written for this generator. Nothing is drawn from any publisher's adventures or settings, so nothing will collide with your campaign's canon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I keep a tavern for my campaign?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — hit Keep and the full tavern (name to menu) is saved in your browser's keep list until you clear it. Pair it with the Session Notes tool to give it a permanent home in your campaign log."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this tavern generator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Kept taverns are stored only on your own device."
+      }
+    }
+  ]
+}
+  </script>
+
+  <!-- Open Graph + Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tools.builtbyjoshstudio.com/tavern-generator/">
+  <meta property="og:title" content="Tavern Generator | Name, Patrons, Rumor &amp; Menu, Free">
+  <meta property="og:description" content="A whole tavern in one click — name, atmosphere, patron, rumor, and the menu. Free, ad-free.">
+  <meta property="og:image" content="https://tools.builtbyjoshstudio.com/tavern-generator/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/tavern-generator/">
+  <meta name="twitter:title" content="Tavern Generator | Name, Patrons, Rumor &amp; Menu, Free">
+  <meta name="twitter:description" content="A whole tavern in one click — name, atmosphere, patron, rumor, and the menu. Free, ad-free.">
+  <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/tavern-generator/og-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ===== Tool-local shell (mirrors house tools) ===== */
+    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
+    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
+    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
+    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
+    .tn-brand .name b { color:var(--ink); }
+
+    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+
+    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
+    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
+    .hero .pill.live { color:var(--accent); }
+    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+    .hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+    /* generate bar */
+    .gen-bar { display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom:16px; }
+    .gen-bar .input-group { flex:0 1 260px; }
+    #generate { font-family:var(--font-display); font-weight:800; font-size:16px; background:var(--accent); color:var(--accent-ink); border:2px solid var(--accent); border-radius:var(--r-s); padding:12px 28px; cursor:pointer; box-shadow:4px 4px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+    #generate:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--shadow); }
+
+    .anatomy-stage { display:flex; flex-direction:column; gap:10px; padding:20px 22px; margin-bottom:16px; }
+    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .result-line { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:8px 0; border-bottom:1px solid var(--line); }
+    .result-line:last-child { border-bottom:0; }
+    .result-line .rk { font-family:var(--font-mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); flex:0 0 92px; }
+    .result-line .rv { font-size:16px; color:var(--ink); line-height:1.5; overflow-wrap:anywhere; }
+    .result-line .rv.big { font-family:var(--font-display); font-weight:800; font-size:clamp(24px,4.5vw,36px); line-height:1.15; }
+    .result-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
+    .result-actions .btn { font-size:13px; padding:10px 16px; }
+    .copied { color:var(--pos) !important; border-color:var(--pos) !important; }
+
+    /* kept list */
+    .kept-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:18px 0 10px; }
+    .kept-head .role { margin-bottom:0; }
+    #clear-kept { font-family:var(--font-mono); font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); background:none; border:0; cursor:pointer;padding:8px 10px; margin:-8px -10px; }
+    #clear-kept:hover { color:var(--neg); }
+    .kept-item { display:grid; grid-template-columns:1fr auto auto; gap:10px; align-items:center; padding:9px 12px; border:1.5px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); margin-bottom:7px; font-size:13.5px; }
+    .kept-item .kt { color:var(--ink); overflow-wrap:anywhere; }
+    .k-btn { width:30px; height:30px; border:2px solid var(--line-2); border-radius:var(--r-s); background:var(--surface); color:var(--muted); font-size:13px; line-height:1; cursor:pointer; transition:color .15s var(--ease), border-color .15s var(--ease); }
+    .k-btn:hover { color:var(--accent); border-color:var(--accent); }
+    .k-btn.x:hover { color:var(--neg); border-color:var(--neg); }
+    .empty-note { border:2px dashed var(--line); border-radius:var(--r-s); padding:14px; text-align:center; color:var(--muted); font-size:12.5px; }
+
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    .prose { margin-top:40px; }
+    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
+    .prose h3 { font-size:18px; margin:26px 0 6px; }
+    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
+
+    .faq { margin-top:30px; }
+    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
+    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
+    .faq summary::-webkit-details-marker { display:none; }
+    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
+    .faq details[open] summary::after { content:"–"; }
+    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
+
+    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
+    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
+    .footer a { color:var(--ink); }
+  </style>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+</head>
+<body>
+
+  <nav class="tool-nav">
+    <div class="tn-left">
+      <a class="tn-back" href="../tabletop/">&larr; All tools</a>
+      <span class="tn-brand">
+        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
+        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </span>
+    </div>
+    <div class="theme-switch" role="tablist" aria-label="Theme">
+      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
+      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
+      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    </div>
+  </nav>
+
+  <main class="page tool-shell">
+
+    <header class="hero glass">
+      <div style="flex:1; min-width:0">
+        <div class="meta">
+          <span class="pill live">&#9679; Tabletop</span>
+          <span>One click &middot; Name to menu &middot; All invented</span>
+        </div>
+        <h1>Tavern Generator</h1>
+        <p>The party always goes to the tavern. One click gives you the whole establishment — a name for the sign, the feel of the room, one patron worth talking to, the rumor doing laps tonight, and what the cook is serving whether you like it or not.</p>
+      </div>
+    </header>
+
+    <!-- GENERATE (the point of the tool — first, pre-rolled on load) -->
+    <div class="glass type-card" style="margin-top:22px;">
+      <div class="role">1. Generate a tavern</div>
+      <div class="gen-bar">
+        <button type="button" id="generate">Generate another</button>
+      </div>
+      <div class="anatomy-stage glass-lite" id="result-stage" aria-live="polite"></div>
+      <div class="result-actions">
+        <button type="button" class="btn" id="copy-btn">Copy</button>
+        <button type="button" class="btn" id="keep-btn">Keep this one</button>
+      </div>
+      <div class="kept-head">
+        <div class="role">Kept</div>
+        <button type="button" id="clear-kept">Clear</button>
+      </div>
+      <div id="kept-list"></div>
+      <p class="note">Everything is generated in your browser from original, invented content — nothing from any publisher, nothing sent anywhere. Kept items stay on this device.</p>
+      <a class="xlink" href="../random-table-roller/"
+         style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
+                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                text-transform:uppercase; color:var(--accent); text-decoration:none;">
+        Want your own tavern-events table? Build one in the table roller &rarr;
+      </a>
+    </div>
+
+    <!-- PROSE -->
+    <section class="prose">
+      <h2>The tavern is never optional</h2>
+      <p>You can prep the dungeon, the villain, and the weather, and the party will still spend forty minutes in a tavern you invented one syllable at a time. This generator hands you the whole room at once, so the improvisation starts from something instead of nothing.</p>
+      <h3>Five parts, one place</h3>
+      <p>A tavern becomes real through specifics: the name on the sign, what the room feels like when the door opens, one person worth noticing, one rumor worth chasing, and food that tells the party what kind of place they're in. Roll until one feels inhabited, keep it, and it's yours for the whole campaign.</p>
+      <h3>Rumors are free adventure hooks</h3>
+      <p>Every rumor generated here is deliberately half-finished — true, false, or exaggerated is your call at the table. The good ones become next week's session; the rest become the texture that makes your world feel like it keeps moving when the party isn't looking.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <details>
+        <summary>Are these tavern names and rumors from published adventures?</summary>
+        <p>No — every name, patron, rumor, and menu line is original invented content written for this generator. Nothing is drawn from any publisher's adventures or settings, so nothing will collide with your campaign's canon.</p>
+      </details>
+      <details>
+        <summary>Can I keep a tavern for my campaign?</summary>
+        <p>Yes — hit Keep and the full tavern (name to menu) is saved in your browser's keep list until you clear it. Pair it with the Session Notes tool to give it a permanent home in your campaign log.</p>
+      </details>
+      <details>
+        <summary>Is this tavern generator free?</summary>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Kept taverns are stored only on your own device.</p>
+      </details>
+    </section>
+
+  </main>
+
+  <section class="net-band">
+    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">JS</div>
+        <div class="lbl"><h4>Josh Studio</h4><p>Workbooks, templates &amp; the Creator OS line</p></div>
+        <code>&rarr;</code>
+      </a>
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+        <div class="ix">SS</div>
+        <div class="lbl"><h4>Substack</h4><p>Notes on tools, money &amp; building solo</p></div>
+        <code>&rarr;</code>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This generator is system-agnostic and is not affiliated with, endorsed by, or associated with any game publisher. Every name, phrase, and result it produces is original invented content — use it freely at your table. Nothing is sent anywhere; kept items are stored only in your own browser.</p>
+    <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
+    <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
+    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.6;">More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  </nav>
+</footer>
+
+  <script src="script.js"></script>
+  <script src="../kinetic.js"></script>
+</body>
+</html>
