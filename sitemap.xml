@@ -14,7 +14,7 @@
    </url>
    <url>
       <loc>https://tools.builtbyjoshstudio.com/tabletop/</loc>
-      <lastmod>2026-07-20</lastmod>
+      <lastmod>2026-07-26</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
    </url>
@@ -189,6 +189,36 @@
    <url>
       <loc>https://tools.builtbyjoshstudio.com/random-table-roller/</loc>
       <lastmod>2026-07-20</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://tools.builtbyjoshstudio.com/character-name-generator/</loc>
+      <lastmod>2026-07-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://tools.builtbyjoshstudio.com/npc-generator/</loc>
+      <lastmod>2026-07-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://tools.builtbyjoshstudio.com/tavern-generator/</loc>
+      <lastmod>2026-07-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://tools.builtbyjoshstudio.com/plot-hook-generator/</loc>
+      <lastmod>2026-07-26</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://tools.builtbyjoshstudio.com/loot-generator/</loc>
+      <lastmod>2026-07-26</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>

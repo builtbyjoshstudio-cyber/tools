@@ -11,7 +11,12 @@ var TYNKR_REGISTRY = {
   "dice-roller": "../dice-roller/index.html",
   "session-notes": "../session-notes/index.html",
   "wargame-score-tracker": "../wargame-score-tracker/index.html",
-  "random-table-roller": "../random-table-roller/index.html"
+  "random-table-roller": "../random-table-roller/index.html",
+  "character-name-generator": "../character-name-generator/index.html",
+  "npc-generator": "../npc-generator/index.html",
+  "tavern-generator": "../tavern-generator/index.html",
+  "plot-hook-generator": "../plot-hook-generator/index.html",
+  "loot-generator": "../loot-generator/index.html"
 };
 
 document.addEventListener("DOMContentLoaded", function () {
