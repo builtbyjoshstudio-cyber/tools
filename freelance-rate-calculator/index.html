@@ -210,7 +210,7 @@
       font-family: var(--font-mono); font-size: 13px;
     }
     .anatomy-row .lbl { flex: 1 1 auto; min-width: 0; }
-    .anatomy-row .lbl h4 { margin: 0; font-size: 15px; }
+    .anatomy-row .lbl h3, .anatomy-row .lbl h4 { margin: 0; font-size: 15px; }
     .anatomy-row .lbl p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
     .anatomy-row code {
       font-family: var(--font-mono); font-size: 16px; color: var(--ink);
@@ -308,6 +308,7 @@
         <div class="meta">
           <span class="pill live">&#9679; Business</span>
           <span>Rate &amp; take-home math</span>
+          <span class="updated-date">Updated August 2026</span>
         </div>
         <h1>Freelance Rate Calculator</h1>
         <p>Find the hourly rate you need to hit your income goal — after self-employment tax, business expenses, and the hours you can't bill. Then see what each rate actually leaves you.</p>
@@ -372,22 +373,22 @@
       <div class="anatomy-labels">
         <div class="glass-lite anatomy-row">
           <div class="ix">1</div>
-          <div class="lbl"><h4>Gross revenue required</h4><p>Income + expenses + tax</p></div>
+          <div class="lbl"><h3>Gross revenue required</h3><p>Income + expenses + tax</p></div>
           <code id="gross-output">$77,922</code>
         </div>
         <div class="glass-lite anatomy-row">
           <div class="ix">2</div>
-          <div class="lbl"><h4>Self-employment tax</h4><p>What you set aside</p></div>
+          <div class="lbl"><h3>Self-employment tax</h3><p>What you set aside</p></div>
           <code id="tax-output">$11,922</code>
         </div>
         <div class="glass-lite anatomy-row">
           <div class="ix">3</div>
-          <div class="lbl"><h4>Billable hours per year</h4><p>Hours you can actually invoice</p></div>
+          <div class="lbl"><h3>Billable hours per year</h3><p>Hours you can actually invoice</p></div>
           <code id="hours-output">1,200 hrs</code>
         </div>
         <div class="glass-lite anatomy-row is-pos">
           <div class="ix">4</div>
-          <div class="lbl"><h4>At your compare rate <span id="compare-echo">$75/hr</span></h4><p>Annual take-home after tax &amp; expenses</p></div>
+          <div class="lbl"><h3>At your compare rate <span id="compare-echo">$75/hr</span></h3><p>Annual take-home after tax &amp; expenses</p></div>
           <code id="compare-output">$63,360</code>
         </div>
       </div>
@@ -445,7 +446,7 @@
       <a href="https://builtbyjoshstudio.com/" target="_blank" rel="noopener" class="gear-item">
         <div class="gear-img-wrapper"><img src="/studio-link.webp" alt="Built by Josh Studio" width="600" height="299" loading="lazy"></div>
         <div class="gear-info">
-          <h4>Built by Josh Studio</h4>
+          <h3>Built by Josh Studio</h3>
           <p>Local-first software, CRM solutions, and technical projects.</p>
           <button class="affiliate-btn">Visit Website</button>
         </div>
@@ -453,7 +454,7 @@
       <a href="https://www.youtube.com/@TalesofInkShadowsStudio" target="_blank" rel="noopener" class="gear-item">
         <div class="gear-img-wrapper"><img src="/tales-link.webp" alt="Tales of Ink &amp; Shadows" width="600" height="299" loading="lazy"></div>
         <div class="gear-info">
-          <h4>Tales of Ink &amp; Shadows</h4>
+          <h3>Tales of Ink &amp; Shadows</h3>
           <p>Historical noir documentaries and immersive storytelling.</p>
           <button class="affiliate-btn">Watch on YouTube</button>
         </div>
@@ -461,7 +462,7 @@
       <a href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" class="gear-item">
         <div class="gear-img-wrapper"><img src="/tynkr-link.webp" alt="Tynkr Tools &amp; Co" width="600" height="298" loading="lazy"></div>
         <div class="gear-info">
-          <h4>Tynkr Tools &amp; Co.</h4>
+          <h3>Tynkr Tools &amp; Co.</h3>
           <p>Deep dives into productivity, Notion templates, and studio updates.</p>
           <button class="affiliate-btn">Subscribe</button>
         </div>
@@ -473,7 +474,7 @@
     <p style="margin-bottom: 12px;">This calculator is for general informational and educational purposes only and is not financial, tax, or accounting advice. Tax rates and rules vary by location and situation — confirm your numbers with a qualified professional before making decisions. Estimates only.</p>
     <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
     <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.6;">More from the studio:</span>
+    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
     <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
     <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
     <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
