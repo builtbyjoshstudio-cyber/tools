@@ -1,0 +1,481 @@
+# Tynkr Tools & Co - Free Browser Tools
+
+> Free, local-first browser tools by [Built by Josh Studio](https://builtbyjoshstudio.com/) under the Tynkr Tools & Co brand. Every tool runs entirely in the browser - no signup, no email, no ads, no data collection. Three hubs: kitchen & cooking, money & business, tabletop & RPG.
+
+## Hubs
+
+- [Kitchen & cooking tools](https://tools.builtbyjoshstudio.com/): All kitchen calculators.
+- [Money & business tools](https://tools.builtbyjoshstudio.com/money/): All personal-finance and small-business calculators.
+- [Tabletop & RPG tools](https://tools.builtbyjoshstudio.com/tabletop/): All game-night tools.
+
+## Kitchen & cooking
+
+- [Air Fryer Conversion Calculator](https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/): Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius.
+- [Brine Calculator](https://tools.builtbyjoshstudio.com/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
+- [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines.
+- [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
+- [Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings.
+- [Meat Thawing Time Calculator](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings.
+- [Pan Swap Calculator](https://tools.builtbyjoshstudio.com/pan-swap-calculator/): Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings.
+- [Perfect Roast Pull Temp Calculator](https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
+- [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label.
+- [Pork Roast Cooking Time Calculator](https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
+- [Universal Recipe Scaler](https://tools.builtbyjoshstudio.com/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
+- [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards.
+
+## Money & business
+
+- [Budget Calculator](https://tools.builtbyjoshstudio.com/budget-calculator/): A 50/30/20 budget calculator comparing the ideal split to what you actually spend — see where you're over and what to fix.
+- [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year.
+- [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side.
+- [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded.
+- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, expenses, and non-billable time.
+- [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
+- [Free Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded.
+- [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves.
+- [Profit Margin Calculator for Sellers](https://tools.builtbyjoshstudio.com/profit-margin-calculator/): See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin.
+- [Quarterly Tax Estimator for Freelancers](https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/): Estimate your quarterly self-employment tax payments — SE tax plus federal income tax from your expected profit, with all four due dates.
+- [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years.
+- [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month.
+
+## Tabletop & RPG
+
+- [Character Name Generator](https://tools.builtbyjoshstudio.com/character-name-generator/): Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click.
+- [Dice Roller](https://tools.builtbyjoshstudio.com/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included.
+- [Initiative Tracker](https://tools.builtbyjoshstudio.com/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions.
+- [Loot Generator](https://tools.builtbyjoshstudio.com/loot-generator/): Generate flavorful, system-free treasure — objects with texture and history, no rules text.
+- [NPC Generator](https://tools.builtbyjoshstudio.com/npc-generator/): Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes.
+- [Plot Hook Generator](https://tools.builtbyjoshstudio.com/plot-hook-generator/): Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG.
+- [Random Table Roller](https://tools.builtbyjoshstudio.com/random-table-roller/): Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables.
+- [Session Notes & NPC Log](https://tools.builtbyjoshstudio.com/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown.
+- [Tavern Generator](https://tools.builtbyjoshstudio.com/tavern-generator/): Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and the menu.
+- [Wargame Score Tracker](https://tools.builtbyjoshstudio.com/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game.
+
+## Beyond the tools
+
+- [Built by Josh Studio](https://builtbyjoshstudio.com/): The parent studio - Notion templates, spreadsheet workbooks, guided planners, zodiac art.
+- [Nước Mắm — A Vietnamese Family Cookbook](https://builtbyjoshstudio.com/nuoc-mam-cookbook.html): A 56-page Vietnamese family cookbook by the same cook behind the kitchen tools — $3.99 ebook (EPUB + PDF) or Kindle; $7.99 paperback on Amazon.
+- [Tynkr desktop apps](https://tynkr.builtbyjoshstudio.com/): Privacy-first Windows desktop apps (coming soon).
+- [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables.
+
+
+## Tool details and FAQs
+
+Every tool is free, ad-free, runs entirely in the browser (local-first; nothing is uploaded), needs no signup, and keeps state in the browser's local storage where it saves anything. Published by Built by Josh Studio LLC under the Tynkr Tools & Co brand; questions to josh@builtbyjoshstudio.com.
+
+
+## Kitchen & cooking
+
+### Air Fryer Conversion Calculator
+URL: https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/
+What it does: Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius. Free, ad-free, no signup.
+Q: How do I convert an oven recipe to an air fryer?
+A: The standard rule: lower the temperature by about 25°F (15°C) and cut the cook time by about 20%. So a recipe that calls for 400°F for 30 minutes becomes roughly 375°F for 24 minutes in the air fryer. Different foods deviate from the rule a little — frozen foods and vegetables finish faster, large roasts need gentler heat — which is what this calculator adjusts for.
+Q: Why do air fryers cook faster than ovens?
+A: An air fryer is a small, powerful convection oven. The fan drives hot air over the food at high speed in a tight space, so heat transfers faster and moisture evaporates quicker — that's also where the crisping comes from. Faster heat transfer means the same browning happens at a lower set temperature in less time.
+Q: Do I need to preheat an air fryer?
+A: Usually just 2–3 minutes, and many models don't need it at all. Preheating matters most for foods that benefit from an immediate sear — steaks, smash-style patties, anything thin you want crisp. For frozen foods and vegetables you can typically start cold and add a minute.
+Q: What foods don't convert well to an air fryer?
+A: Wet batters (they drip through the basket before setting), large roasts that don't fit with air space around them, anything you'd cook covered or in liquid (braises, casseroles), and delicate leafy greens that just blow around. Foods with a breading, a marinade, or a dry rub convert beautifully.
+Q: Why should I check air fryer food before the timer ends?
+A: Air fryers vary far more than ovens — basket size, wattage, and how full the basket is all change cook time. The converted time is a strong estimate, but checking at about two-thirds of the time (and shaking or flipping while you're there) is how you land it perfectly on your machine the first try.
+Q: Is this air fryer conversion calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Brine Calculator
+URL: https://tools.builtbyjoshstudio.com/brine-calculator/
+What it does: Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
+Q: What's the difference between a wet brine and a dry brine?
+A: A wet brine dissolves salt in water and submerges the meat; a dry brine applies salt directly to the surface. Dry brining is less messy and crisps skin better; wet brining adds the most moisture. This tool calculates both.
+Q: How much salt do I need to brine a turkey?
+A: It depends on the meat's weight and your salt brand — flaky kosher salt and fine table salt have very different densities by volume. Enter your weight and salt type for an exact amount.
+Q: How long should I brine meat?
+A: Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight.
+Q: Can I brine pre-seasoned or "enhanced" meat?
+A: It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for "enhanced" or a sodium-containing ingredient list before brining.
+
+### Cookware & Pan Guide
+URL: https://tools.builtbyjoshstudio.com/cookware-pan-guide/
+What it does: Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines. Free, ad-free, local-first.
+Q: Why does acid safety matter in pan selection?
+A: Acidic foods like tomatoes, wine, lemon juice, or vinegar dissolve tiny amounts of reactive metals. In bare cast iron or carbon steel, long contact strips the polymerized seasoning layer and introduces metallic off-flavors to the food. Stainless steel and enameled cast iron are non-reactive (inert) and are always safe for acidic cooking.
+Q: How do I know if my stainless steel is induction compatible?
+A: Induction cooktops rely on electromagnetism. A pan must contain a magnetic material at the base to heat up. While cast iron is inherently magnetic, stainless steel is only compatible if the manufacturer clad a magnetic alloy (430 stainless) onto the bottom. You can check this easily by testing if a common refrigerator magnet sticks firmly to the bottom of the pan.
+Q: Can I use aerosol cooking sprays on nonstick pans?
+A: It is highly recommended to avoid commercial aerosol sprays. They contain propellants and emulsifiers (like lecithin) that carbonize at moderate temperatures, bonding chemically to the nonstick surface. This forms a sticky, burnt residue that cannot be washed off, permanently ruining the pan's release properties. Use small amounts of butter or high-smoke-point liquid oils instead.
+
+### Cost Per Serving Calculator
+URL: https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/
+What it does: Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
+Q: How do you calculate cost per serving?
+A: Add up the cost of the exact portion of each ingredient you used, then divide the total by the number of servings the recipe makes. The tricky part is converting from the package you bought to the amount you used, which this calculator does automatically.
+Q: What is a waste allowance and why does it matter?
+A: A waste allowance is a percentage buffer added to your ingredient costs to account for trim, peelings, spoilage, and spills. Most kitchens use somewhere between 5% and 15%, depending on how much prep loss a recipe involves.
+Q: Can I mix weights and volumes?
+A: You can use any unit for an ingredient, but the amount you used and the package size for that same ingredient must be the same type — both by weight or both by volume. The calculator flags a mismatch if you try to compare a weight against a volume.
+Q: Does this calculator save my data?
+A: All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server.
+
+### Dough Hydration Calculator
+URL: https://tools.builtbyjoshstudio.com/dough-hydration-calculator/
+What it does: Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings. Free, ad-free.
+Q: What is dough hydration?
+A: Hydration is the weight of water in a dough expressed as a percentage of the flour weight. A 70% hydration dough has 700g of water for every 1000g of flour. Higher hydration generally means a more open, airy crumb.
+Q: What is baker's percentage?
+A: Baker's percentage expresses every ingredient as a percentage of the total flour weight, which is always 100%. It lets you scale a formula to any batch size while keeping the ratios identical.
+Q: How much hydration does my bread need?
+A: It depends on the style — pizza and bagels run lower, ciabatta and rustic sourdough run much higher. This tool includes presets for common styles, such as Neapolitan at 60%, baguette at 65%, sourdough at 72%, and ciabatta at 82%, as starting points.
+Q: Why does my high-hydration dough feel too sticky?
+A: Different flours absorb different amounts of water. If a dough is unmanageable, the flour may be near its absorption ceiling — the tool flags when your target exceeds what a given flour typically handles.
+
+### Meat Thawing Planner
+URL: https://tools.builtbyjoshstudio.com/meat-thawing-planner/
+What it does: Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings. Free and ad-free.
+Q: How long does it take to thaw meat in the refrigerator?
+A: Roughly 24 hours per 4–5 pounds for whole cuts and birds, though it varies by density and shape. Refrigerator thawing is the safest method because the meat stays at a safe temperature the whole time.
+Q: Is cold-water thawing safe?
+A: Yes, if done correctly — submerged in cold water that's changed regularly, and cooked immediately after. For large cuts that would sit in water too long, refrigerator thawing is the safer choice.
+Q: Can I thaw meat on the counter?
+A: No. Leaving meat at room temperature lets the outer surface enter the bacterial danger zone of 40–140°F while the inside is still frozen. Always thaw in the refrigerator, in cold water, or in the microwave if cooking immediately.
+Q: How do I know thawing times for my specific cut?
+A: Enter the weight and protein type and the tool estimates both refrigerator and cold-water times, adjusting for how different proteins thaw — fish and seafood thaw faster than dense whole birds.
+Q: How long does cold-water thawing take?
+A: About 30 minutes per pound in cold tap water changed every 30 minutes, so a 1-pound package thaws in roughly half an hour and a 3–4 pound roast in about two hours. The calculator estimates this from the weight and flags anything that would sit in water beyond about 6 hours, where refrigerator thawing becomes the safer choice.
+Q: Can you refreeze meat after thawing?
+A: Meat thawed in the refrigerator can be refrozen without cooking first, though the texture may suffer a little. Meat thawed in cold water or the microwave should be cooked before it goes back in the freezer, because those methods can let the surface warm up. This follows the USDA's Big Thaw guidance.
+Q: What is the danger zone for thawing meat?
+A: 40°F to 140°F — the temperature range where bacteria multiply fastest. Meat should never sit in that range while thawing, which is why counter thawing isn't safe and cold water has to stay cold and be changed regularly. Refrigerator thawing keeps the meat below it the whole time.
+
+### Pan Swap Calculator
+URL: https://tools.builtbyjoshstudio.com/pan-swap-calculator/
+What it does: Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings. Free and ad-free.
+Q: How do I convert a recipe to a different pan size?
+A: Compare the surface area of the two pans — the ratio tells you how to scale the batter. A pan with twice the area needs roughly twice the batter. This tool calculates the exact multiplier for you.
+Q: Why does pan area matter more than volume?
+A: For most cakes and bars, batter depth drives bake time and texture. Matching surface area keeps the depth similar, so the bake behaves predictably. A much deeper or shallower pan changes timing and can leave the center under- or over-baked.
+Q: What pan shapes can I convert between?
+A: Round, square, rectangular, Bundt, and muffin pans.
+Q: Will the baking time change when I swap pans?
+A: Often, yes. A shallower pan bakes faster, a deeper one slower. The tool flags when a swap pushes batter into a notably deeper or shallower setup so you know to check doneness early or extend the time.
+
+### Perfect Roast Pull Temp
+URL: https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/
+What it does: Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
+Q: What is carryover cooking?
+A: Carryover cooking is the continued rise in a roast's internal temperature after it's removed from the heat, caused by residual heat moving from the hot outer layers toward the cooler center. It typically adds 2–15°F depending on the cut's size and the cooking temperature.
+Q: How many degrees does meat rise while resting?
+A: A thin cut cooked at moderate heat may rise only 2–3°F, while a large roast cooked at high heat can climb 10–15°F. Bigger cuts and hotter ovens store more heat and carry over more.
+Q: What temperature should I pull a steak for medium-rare?
+A: For a medium-rare final temperature of about 135°F, pull a steak roughly 3–6°F early depending on thickness and method, then rest it. This calculator gives the exact pull temperature for your inputs.
+Q: Does carryover cooking apply to poultry?
+A: Yes, but poultry must still reach a safe final internal temperature of 165°F. The calculator enforces that minimum rather than letting carryover bring you below it.
+
+### Recipe Nutrition Calculator
+URL: https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/
+What it does: Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label. Free, ad-free, local-first.
+Q: Why does raw vs cooked state matter for rice and meats?
+A: Ingredients undergo massive moisture changes when cooked. 100g of dry jasmine rice absorbs water and expands to become roughly 250g of cooked rice. If you enter '100g rice' but cook it, the dry rice will yield nearly triple the calories of cooked rice for the same weight. Be specific with 'cooked' or 'dry' in your entries.
+Q: How are macro calorie splits calculated?
+A: We use the standard 4-4-9 kcal/g conversion rules: 4 calories per gram of protein, 4 calories per gram of carbohydrates, and 9 calories per gram of fat. Summing these values gives a macro-based calorie split, which might differ slightly from direct database totals that account for organic acids, alcohol, or dietary fiber adjustments.
+Q: Does this calculator check for food regulations?
+A: No. This calculator is strictly for home cooks, meal planning, and testing estimates. It is not compliant with official FDA labeling regulations and should not be used to produce commercial labels.
+
+### Pork Roast Cooking Time Calculator
+URL: https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/
+What it does: Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
+Q: What is a reverse cooking timeline?
+A: Instead of working forward from when you start, you work backward from when you want to eat. You set your target dinner time and the tool schedules each step — prep, roasting, and resting — so everything finishes together.
+Q: How do I know when to start cooking?
+A: Enter your protein, its weight, and your target serving time. The tool calculates total cook time from the weight, adds resting and prep buffers, and tells you the exact time to begin.
+Q: How long should meat rest after roasting?
+A: It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Resting lets juices redistribute and accounts for carryover cooking.
+Q: Are these cooking times exact?
+A: They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures.
+
+### Universal Recipe Scaler
+URL: https://tools.builtbyjoshstudio.com/universal-recipe-scaler/
+What it does: Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
+Q: How do you scale a recipe up or down?
+A: Multiply every ingredient quantity by the same factor — doubling a recipe means multiplying each amount by two. The tricky part is keeping the ratios consistent and rounding to amounts you can actually measure, which this tool handles automatically.
+Q: Can I convert a recipe between metric and imperial?
+A: Yes. Paste a recipe in either system and switch the output toggle — the tool converts weights, volumes, temperatures, and lengths between metric and US customary units as it scales.
+Q: Should I scale spices and salt at the same rate as everything else?
+A: Not always. Strong seasonings, salt, garlic, and leavening often don't scale linearly — doubling a recipe rarely needs exactly double the cayenne. Scale them, then taste and adjust toward the lower end.
+Q: Does scaling change cooking times?
+A: Usually yes for volume-dependent steps but not always proportionally. A doubled cake batter in a bigger pan bakes longer; a doubled sauce may simmer about the same. Use times as a starting point and judge by doneness.
+
+### Yeast Converter
+URL: https://tools.builtbyjoshstudio.com/yeast-converter/
+What it does: Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.
+Q: What's the difference between active dry, instant, and fresh yeast?
+A: They're the same organism at different moisture levels. Instant yeast is the most concentrated and finely milled, active dry has more moisture and slightly less potency by weight, and fresh (or "cake") yeast is mostly water — so you need progressively more of each to get the same rise. That's why you can't swap them one-for-one.
+Q: How do I substitute instant yeast for active dry?
+A: Use about 75% of the weight — if a recipe calls for 10g of active dry, use roughly 7.5g of instant. Going the other way, use about 1.33 times as much active dry as instant. Instant can be mixed straight into the dry ingredients, while active dry is often dissolved in warm (not cold) liquid first, especially in a cool kitchen.
+Q: How much fresh yeast equals a packet of dry yeast?
+A: A standard 7g packet of active dry yeast is roughly 17.5g of fresh yeast (about 2.5×); a 7g packet of instant is roughly 21g of fresh (about 3×). Fresh yeast is always measured by weight, never by teaspoon, since it's a moist solid rather than a dry granule — this converter keeps fresh yeast in grams and ounces for that reason.
+Q: Will my dough rise the same after converting?
+A: The amounts are matched for equivalent rising power, but the timing can differ — instant yeast tends to get going faster than active dry, often shaving time off the rise. Treat the converted amount as a reliable starting point and watch the dough rather than the clock: it's ready when it's roughly doubled, not when a timer says so.
+
+
+## Money & business
+
+### Budget Calculator
+URL: https://tools.builtbyjoshstudio.com/budget-calculator/
+What it does: A 50/30/20 budget calculator comparing the ideal split to what you actually spend — see where you're over and what to fix. Free, ad-free, no signup.
+Q: What is the 50/30/20 budget rule?
+A: The 50/30/20 rule splits your after-tax income into 50% for needs, 30% for wants, and 20% for savings and debt repayment. It was popularized by Elizabeth Warren in the 2005 book All Your Worth. It's a starting framework, not a law — this calculator lets you adjust the percentages to fit your situation.
+Q: How is this different from other 50/30/20 calculators?
+A: Most calculators just split your income into the three buckets and stop. This one also takes what you actually spend and shows the gap — how many percentage points you're over on needs or wants, or under on savings — so you know exactly what to fix instead of only seeing the ideal.
+Q: What if 50/30/20 doesn't fit my cost of living?
+A: If you live somewhere expensive, 50% for needs can be unrealistic. The target percentages are adjustable, so you can model a split like 60/30/10 that matches your reality and still track your spending against it.
+Q: Should debt payments go in needs or savings?
+A: Minimum required debt payments are needs — you have to make them. Extra payments above the minimum count toward the savings-and-debt bucket, since paying down debt faster is a form of building wealth. If you're focused on debt payoff, the debt payoff calculator shows how fast your extra payment clears it.
+Q: Is this budget calculator free?
+A: Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Compound Interest Calculator
+URL: https://tools.builtbyjoshstudio.com/compound-interest-calculator/
+What it does: See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year. Free, ad-free, no signup.
+Q: How does compound interest work?
+A: Compound interest means you earn returns on your returns. Each period, growth is calculated on the whole balance — original money plus everything it has already earned. Early on the effect looks small; over decades it becomes the majority of the balance. The chart above shows exactly when growth overtakes your own contributions.
+Q: What return rate should I use?
+A: It depends on what you're modeling. Long-run U.S. stock market averages are often cited around 7–10% before inflation, high-yield savings accounts are far lower, and no rate is guaranteed. Try a conservative and an optimistic rate and treat the range — not either single number — as your planning picture.
+Q: How often does this calculator compound?
+A: Monthly. Your annual rate is divided by 12 and applied each month, and monthly contributions are added at the end of each month. That matches how most people actually invest — a recurring monthly deposit.
+Q: Is this compound interest calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Debt Payoff Calculator
+URL: https://tools.builtbyjoshstudio.com/debt-payoff-calculator/
+What it does: See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side. Free, ad-free, no signup.
+Q: What's the difference between the snowball and avalanche methods?
+A: Snowball pays the smallest balance first for quick wins; avalanche pays the highest interest rate first to save the most money. Both pay minimums on everything else and roll each cleared debt's payment into the next. This tool runs both, plus a hybrid, so you see the exact difference for your debts.
+Q: Which debt payoff method is best?
+A: Avalanche always saves the most interest mathematically. But the difference is often small, and snowball's early wins make it easier to stick with. The best method is the one you'll actually finish — the comparison above shows the gap so you can decide.
+Q: How much faster will an extra payment make me debt-free?
+A: Every extra dollar goes straight to principal on your target debt, so even a small extra payment can cut months or years off your timeline and save thousands in interest. Move the extra-payment slider to see exactly how your date and total interest change.
+Q: Is this debt payoff calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Emergency Fund Calculator
+URL: https://tools.builtbyjoshstudio.com/emergency-fund-calculator/
+What it does: Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded. Free, ad-free, no signup.
+Q: How big should my emergency fund be?
+A: The standard advice is 3–6 months of essential expenses — rent or mortgage, food, utilities, insurance, minimum debt payments. Lean toward 3 if you have a stable job and a second household income; lean toward 6 or more if your income is variable, you're self-employed, or one income supports the household. This calculator uses your real expenses, not a generic rule of thumb.
+Q: Should I count all my spending or just essentials?
+A: Just essentials. An emergency fund covers survival mode — housing, food, utilities, transport, insurance, minimum payments — not your normal lifestyle. In a real emergency you'd cut subscriptions and dining out anyway, so sizing the fund on essential spending keeps the target realistic and reachable.
+Q: Where should I keep my emergency fund?
+A: Somewhere safe and instantly reachable — a high-yield savings account is the usual answer. Not invested in stocks (it might be down exactly when you need it) and not locked up in CDs or retirement accounts. This calculator doesn't assume any interest, so anything a savings account earns just gets you there a little sooner.
+Q: Is this emergency fund calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Freelance Rate Calculator
+URL: https://tools.builtbyjoshstudio.com/freelance-rate-calculator/
+What it does: Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, expenses, and non-billable time. Free, ad-free.
+Q: How do I calculate my freelance hourly rate?
+A: Start with your target take-home income, add self-employment tax (about 15.3%) and your annual business expenses, then divide the total by your realistic billable hours per year. Billable hours are lower than working hours because admin, marketing, and downtime aren't billable. This calculator does all of that and shows the floor rate you need to charge.
+Q: Why is my freelance rate higher than an equivalent salary?
+A: As a freelancer you cover costs an employer normally pays: the full 15.3% self-employment tax, health insurance, retirement, software, and unpaid time off. You also can't bill every working hour. Once those are factored in, the rate needed to match a given take-home is typically 25-50% higher than the equivalent W-2 hourly wage.
+Q: What percentage of my hours are actually billable?
+A: Most freelancers bill only 60-70% of their working hours. The rest goes to invoicing, proposals, marketing, email, and admin. If you work 40 hours a week, plan on roughly 25-28 billable hours. This tool lets you set your own billable percentage so the rate reflects reality.
+Q: Is this freelance rate calculator free?
+A: Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Home Affordability Calculator
+URL: https://tools.builtbyjoshstudio.com/home-affordability-calculator/
+What it does: See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges. Free, ad-free, no signup.
+Q: How much house can I afford on my salary?
+A: A common lender guideline is the 28/36 rule: your housing payment (mortgage plus taxes and insurance) should stay under about 28% of gross monthly income, and all debt payments together under about 36%. This calculator applies both limits to your real numbers — income, existing debts, down payment, and rate — and turns them into a price range instead of a single overconfident number.
+Q: What is the 28/36 rule?
+A: It's the classic debt-to-income guideline lenders use: no more than 28% of gross monthly income on housing (the front-end ratio), and no more than 36% on housing plus every other debt payment — cars, cards, student loans (the back-end ratio). Whichever limit you hit first is the one that caps your budget, which is why existing debt payments shrink how much house you can afford.
+Q: How does my down payment change what I can afford?
+A: Dollar for dollar, the down payment adds straight onto your price range — it's the part of the house you don't have to finance. It also helps indirectly: a bigger down payment can mean better rates and, at 20% or more, no private mortgage insurance. This calculator adds your down payment on top of the loan your monthly budget supports.
+Q: Is this home affordability calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Invoice Generator
+URL: https://tools.builtbyjoshstudio.com/invoice-generator/
+What it does: Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded. Free, ad-free.
+Q: Is this invoice generator really free with no signup?
+A: Yes. There's no account, no signup, and no email required. You fill in the invoice and print or save it as a PDF directly from your browser. It's completely free and ad-free.
+Q: Does my letterhead image or invoice data get uploaded anywhere?
+A: No. Everything happens in your browser. The letterhead image you choose is read locally and never sent to a server, and none of your invoice details are stored or transmitted. When you close the tab, it's gone.
+Q: What size should my letterhead image be?
+A: Use a 16:9 image (for example 1600x900 pixels) for the cleanest banner across the top of the invoice. If you don't have an image, just type your business name and it will be used as the header instead.
+Q: How do I save the invoice as a PDF?
+A: Click Print, then choose 'Save as PDF' as the destination in your browser's print dialog. The form controls are hidden automatically so only the clean invoice prints.
+
+### Loan Payment Calculator
+URL: https://tools.builtbyjoshstudio.com/loan-payment-calculator/
+What it does: See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves. Free, ad-free, no signup.
+Q: How is a monthly loan payment calculated?
+A: Fixed-rate loans use standard amortization: payment = principal × monthly rate ÷ (1 − (1 + monthly rate)^−months). Early payments are mostly interest; later payments are mostly principal. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, and payoff date.
+Q: How much does paying extra on a loan actually save?
+A: Every extra dollar goes straight to principal, which shrinks the balance that interest is charged on. Even a small extra monthly payment can cut months off the loan and save a meaningful amount of interest. Move the extra-payment slider to see your exact savings and new payoff date.
+Q: Does this work for auto loans, personal loans, and other loans?
+A: Yes — it models any fixed-rate, fixed-term loan with monthly payments: auto loans, personal loans, boat or RV loans, and similar. It doesn't model credit cards (revolving balances) or loans with variable rates.
+Q: Is this loan payment calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Profit Margin Calculator
+URL: https://tools.builtbyjoshstudio.com/profit-margin-calculator/
+What it does: See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin. Free, ad-free, no signup.
+Q: What's the difference between margin and markup?
+A: Margin is profit as a share of the selling price; markup is profit as a share of your cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows both so nothing gets lost in translation.
+Q: What profit margin should handmade sellers aim for?
+A: Many handmade and print-on-demand sellers target a 50–70% margin after fees, because that has to cover your time beyond labor, marketing, returns, and slow seasons — not just materials. Below about 30% after fees, most product businesses struggle to pay their owner. Use the target-margin slider to see the price that actually supports your goal.
+Q: Why do platform fees change my price so much?
+A: Because percentage fees scale with the price itself. If fees take 9% of the sale, raising your margin target means the fee grows too, so the price needed rises faster than you'd guess. The required-price formula divides by (1 − fees − margin), which is why high fee rates plus high margin targets push prices up sharply.
+Q: Is this profit margin calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Quarterly Tax Estimator
+URL: https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/
+What it does: Estimate your quarterly self-employment tax payments — SE tax plus federal income tax from your expected profit, with all four due dates. Free, ad-free, no signup.
+Q: Who has to pay quarterly estimated taxes?
+A: Generally, anyone who expects to owe $1,000 or more in tax on income that isn't withheld — freelancers, contractors, Etsy and online sellers, landlords, and other self-employed people. Instead of an employer withholding each paycheck, you send the IRS four payments a year yourself.
+Q: When are quarterly taxes due?
+A: The usual federal due dates are April 15, June 15, and September 15 of the tax year, and January 15 of the following year. If a date lands on a weekend or holiday it shifts to the next business day. Note the quarters aren't even — the second covers only two months.
+Q: What is the safe harbor rule for estimated taxes?
+A: You generally avoid an underpayment penalty if you pay at least 90% of this year's tax or 100% of last year's tax (110% if your prior-year adjusted gross income was over $150,000), spread evenly across the quarters. If your income is hard to predict, paying to the prior-year safe harbor is the low-stress strategy.
+Q: Is this quarterly tax estimator accurate?
+A: It's an estimate built on 2025 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, and the ordinary income brackets. It doesn't know your credits, other income, retirement contributions, or QBI deduction, so treat it as a planning number and confirm with a tax professional.
+
+### Savings Goal Calculator
+URL: https://tools.builtbyjoshstudio.com/savings-goal-calculator/
+What it does: See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years. Free, ad-free, no signup.
+Q: How do I figure out how much to save each month for a goal?
+A: Divide what you still need by the months until your deadline, then adjust slightly down for any interest your savings earns. This calculator does it precisely — enter your goal and see the required monthly amount for 1, 2, and 3-year timelines, or set your own monthly pace and get the exact date you'll arrive.
+Q: Does savings account interest really matter for a goal?
+A: For short goals, a little; for long goals, more than you'd think. At a typical high-yield savings rate, interest can shave a month or two off a multi-year goal or quietly cover the last few hundred dollars. This calculator compounds monthly at the APY you enter, so the date it gives you includes that help.
+Q: Should savings goals be in a separate account?
+A: It helps. A dedicated account (or a bank that supports savings buckets) keeps goal money from blending into spending money, makes progress visible, and earns interest while it waits. Many people run one high-yield account with named buckets per goal — the math in this calculator works either way.
+Q: Is this savings goal calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+### Take-Home Pay Calculator
+URL: https://tools.builtbyjoshstudio.com/take-home-pay-calculator/
+What it does: See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month. Free, ad-free, no signup.
+Q: How is take-home pay calculated from salary?
+A: Start with gross pay, subtract pre-tax retirement contributions, then subtract federal income tax (2025 brackets after the standard deduction), Social Security (6.2% up to the annual wage cap), Medicare (1.45%, plus 0.9% on wages over $200,000), and any state income tax. What's left is your net — this calculator shows it per paycheck and per month.
+Q: Why is my paycheck so much smaller than my salary?
+A: Three quiet subtractions: FICA taxes (7.65% for most people, covering Social Security and Medicare), federal income tax withholding, and in most states, state income tax. Together they commonly take 20–30% of gross pay for middle incomes. Retirement and health contributions reduce the check further — but that money is still yours.
+Q: Does contributing to a 401(k) lower my paycheck dollar-for-dollar?
+A: No — traditional 401(k) contributions come out before federal income tax, so a $100 contribution typically shrinks your check by only $75–$90 depending on your bracket. The rest is tax you didn't pay. Move the contribution slider and compare the net change to the contribution amount to see your own discount.
+Q: How accurate is this take-home pay calculator?
+A: It uses 2025 federal figures — brackets, standard deduction, and FICA rates and caps — and treats state tax as a simple flat rate you enter. It doesn't model health premiums, HSA/FSA, local taxes, credits, or W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.
+Q: Is this take-home pay calculator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+
+
+## Tabletop & RPG
+
+### Character Name Generator
+URL: https://tools.builtbyjoshstudio.com/character-name-generator/
+What it does: Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click, keep the good ones. Free, ad-free.
+Q: Are these names from any published game or setting?
+A: No. Every name is assembled on the spot from invented syllable pools written for this tool — nothing is drawn from any publisher's setting, novel, or name list. If a generated name resembles an existing character, it's coincidence.
+Q: Can I use the generated names in my campaign or published work?
+A: Yes. The names are procedurally generated original combinations — use them freely at your table or in your own writing.
+Q: Is this name generator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your kept names are stored only on your own device.
+
+### Dice Roller
+URL: https://tools.builtbyjoshstudio.com/dice-roller/
+What it does: Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included. Free, ad-free, no signup.
+Q: What dice notation does this roller support?
+A: Standard tabletop notation: NdX for dice (3d6), modifiers (+2, -1), multiple terms (2d6+1d8+3), and keep-highest or keep-lowest (4d6kh3, 2d20kl1). The quick buttons build the same expressions for you, so you never have to type if you don't want to.
+Q: How do I roll with advantage or disadvantage?
+A: Use the Advantage or Disadvantage button — it rolls two d20s and keeps the higher (advantage) or lower (disadvantage), then adds your modifier. That's the same as typing 2d20kh1 or 2d20kl1.
+Q: Are the rolls fair?
+A: Yes. Rolls use your browser's cryptographically secure random number generator when available, with an unbiased mapping to each die's faces — every face is equally likely, every roll is independent, and nothing is weighted.
+Q: Is this dice roller free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your roll history is stored only on your own device.
+
+### Initiative Tracker
+URL: https://tools.builtbyjoshstudio.com/initiative-tracker/
+What it does: Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions. Free, ad-free, no signup.
+Q: Does this initiative tracker work for games other than D&D?
+A: Yes. It tracks names, initiative values, hit points, rounds, and conditions — the pieces almost every tabletop RPG shares — without assuming any ruleset. Use it for D&D, Pathfinder, Call of Cthulhu, or any homebrew system.
+Q: Will my encounter still be here if I close the tab?
+A: Yes. The encounter saves itself in your browser's local storage on every change, so you can close the tab mid-session and pick up exactly where you left off — same combatants, same round, same turn. It stays on this device and browser; nothing is uploaded anywhere.
+Q: How are ties in initiative handled?
+A: Combatants with the same initiative keep the order you added them in. If your table breaks ties differently, nudge one combatant's initiative by a decimal — 15.5 sorts above 15.
+Q: Is this initiative tracker free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere; your encounter is stored only on your own device.
+
+### Loot Generator
+URL: https://tools.builtbyjoshstudio.com/loot-generator/
+What it does: Generate flavorful, system-free treasure in one click — objects with texture and history, no rules text. Perfect for any tabletop RPG. Free, ad-free.
+Q: Why doesn't the loot have stats or prices?
+A: Deliberately — every table and system prices treasure differently, and rules text belongs to your rulebook. The generator handles description, texture, and history; you assign the mechanics your game needs, if any.
+Q: Is this loot from any published game's treasure tables?
+A: No — every object, detail, and history line is original invented content written for this generator. Use anything it produces freely at your table.
+Q: Is this loot generator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept loot is stored only on your own device.
+
+### NPC Generator
+URL: https://tools.builtbyjoshstudio.com/npc-generator/
+What it does: Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes. Free, ad-free, any system.
+Q: Does this work with D&D, Pathfinder, or other systems?
+A: Yes — the NPCs are system-free: no stats, no rules text, just character. They drop into D&D, Pathfinder, Call of Cthulhu, or any homebrew game unchanged. Game names are mentioned here only to describe compatibility.
+Q: What does "Add to Session Notes" do?
+A: It saves the generated NPC's name and description line into the NPC log of the Session Notes tool on this site — both tools store data in the same browser, so nothing is uploaded anywhere. Open Session Notes afterward and the NPC is waiting in the log.
+Q: Is this NPC generator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept NPCs are stored only on your own device.
+
+### Plot Hook Generator
+URL: https://tools.builtbyjoshstudio.com/plot-hook-generator/
+What it does: Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG. One click, keep the good ones. Free, ad-free.
+Q: Are these hooks from published adventures?
+A: No — every hook and twist is original invented content written for this generator. If one resembles a published adventure, that's coincidence; the combinations are assembled randomly in your browser.
+Q: How should I use the twist line?
+A: However your table likes. Reveal it mid-session, hold it for the finale, or discard it and let the hook play straight — the twist is a suggestion for where the story bends, not a requirement.
+Q: Is this plot hook generator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept hooks are stored only on your own device.
+
+### Random Table Roller
+URL: https://tools.builtbyjoshstudio.com/random-table-roller/
+What it does: Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables. Free, ad-free, no signup.
+Q: What format can I paste tables in?
+A: Almost anything line-based. Plain lines get auto-numbered in order (twenty lines becomes a d20 table). Lines that start with a number ('7: a broken cart') keep that number, and ranges ('01-05: nothing happens') become weighted entries — the wider the range, the more likely the result. You can mix all three styles in one paste.
+Q: How do weighted entries work?
+A: The roller rolls a die as big as your table's highest number and finds the entry whose range covers the roll. An entry spanning 1-5 is five times likelier than one covering a single number. If your ranges leave gaps, a roll landing in a gap says so honestly instead of pretending.
+Q: Where are my tables stored, and can I share them?
+A: Tables live in your browser's local storage — no account, nothing uploaded. The export button turns a table into plain numbered text you can save, send to a friend, or paste right back in on another device.
+Q: Is this table roller free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your tables stay on your own device.
+
+### Session Notes & NPC Log
+URL: https://tools.builtbyjoshstudio.com/session-notes/
+What it does: Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown. Free, ad-free, no signup.
+Q: Where are my campaign notes stored?
+A: In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use the Markdown export now and then to keep a copy you own.
+Q: Can I keep notes for more than one campaign?
+A: Yes. Create as many campaigns as you like and switch between them from the campaign picker — each keeps its own session log, NPC list, and loot list.
+Q: Can I get my notes out of the tool?
+A: Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document.
+Q: Is this campaign journal free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your notes stay on your own device.
+
+### Tavern Generator
+URL: https://tools.builtbyjoshstudio.com/tavern-generator/
+What it does: Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and what's on the menu. Free, ad-free.
+Q: Are these tavern names and rumors from published adventures?
+A: No — every name, patron, rumor, and menu line is original invented content written for this generator. Nothing is drawn from any publisher's adventures or settings, so nothing will collide with your campaign's canon.
+Q: Can I keep a tavern for my campaign?
+A: Yes — hit Keep and the full tavern (name to menu) is saved in your browser's keep list until you clear it. Pair it with the Session Notes tool to give it a permanent home in your campaign log.
+Q: Is this tavern generator free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept taverns are stored only on your own device.
+
+### Wargame Score Tracker
+URL: https://tools.builtbyjoshstudio.com/wargame-score-tracker/
+What it does: Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game. Free, ad-free, no signup.
+Q: Does this work for Warhammer 40,000, Age of Sigmar, or other miniature games?
+A: Yes — it's system-agnostic. It tracks the numbers nearly every miniature wargame shares: victory points by battle round, named secondary objectives you type yourself, command points, and a round counter. Nothing is tied to any publisher's missions or rules, so it works for any game, edition, or homebrew scenario.
+Q: Will the score survive if the tab closes mid-game?
+A: Yes. Every change saves to your browser's local storage instantly, so a closed tab, a dead battery, or a lunch break mid-tournament round doesn't lose the score — reopen the page and the match is exactly where you left it. It stays on this device; nothing is uploaded.
+Q: How do secondary objectives work?
+A: Type each player's secondaries in as free text — whatever your mission pack or scenario calls them — and update their points as you score. Each secondary's points feed straight into that player's total alongside the per-round primary scores.
+Q: Is this score tracker free?
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. The score stays on your own device.
