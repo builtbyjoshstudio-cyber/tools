@@ -138,6 +138,16 @@
     setTimeout(function () { nodes.forEach(function (el) { if (!el.classList.contains('kx-in')) reveal(el); }); }, 1400);
   }
 
+  /* ---- service worker (offline support; secure contexts only) ---- */
+  function registerSW() {
+    if (!('serviceWorker' in navigator)) return;
+    var h = location.hostname;
+    var local = h === 'localhost' || h === '127.0.0.1' || h === '[::1]';
+    if (location.protocol !== 'https:' && !local) return;
+    navigator.serviceWorker.register('/sw.js', { scope: '/', updateViaCache: 'none' })
+      .catch(function () {});
+  }
+
   function init() {
     injectMarquee();
     applyTheme(savedTheme());
@@ -147,4 +157,8 @@
 
   if (doc.readyState === 'loading') doc.addEventListener('DOMContentLoaded', init);
   else init();
+
+  // register after load so the SW never competes with first-paint assets
+  if (doc.readyState === 'complete') registerSW();
+  else window.addEventListener('load', registerSW);
 })();
