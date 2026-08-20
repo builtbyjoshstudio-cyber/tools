@@ -155,7 +155,7 @@
       <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
     </span>
   </div>
-  <div class="theme-switch" role="tablist" aria-label="Theme">
+  <div class="theme-switch" role="group" aria-label="Theme">
     <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
     <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -204,12 +204,12 @@
       
       <!-- Text Area Card -->
       <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
-        <div class="role" style="margin-bottom: 12px;">Paste Ingredients</div>
-        <textarea id="recipe-input" class="form-input" style="min-height: 180px; font-family: var(--font-ui); font-size: 14px; line-height: 1.6;" placeholder="Paste your recipe here (one item per line). E.g.&#10;500g chicken breast raw&#10;200g jasmine rice cooked&#10;1 tbsp olive oil"></textarea>
+        <div class="role" style="margin-bottom: 12px;" id="recipe-input-label">Paste Ingredients</div>
+        <textarea id="recipe-input" aria-labelledby="recipe-input-label" class="form-input" style="min-height: 180px; font-family: var(--font-ui); font-size: 14px; line-height: 1.6;" placeholder="Paste your recipe here (one item per line). E.g.&#10;500g chicken breast raw&#10;200g jasmine rice cooked&#10;1 tbsp olive oil"></textarea>
         
         <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end;">
           <div class="input-group">
-            <span class="input-label">Recipe Servings</span>
+            <label class="input-label" for="servings">Recipe Servings</label>
             <input type="number" id="servings" class="form-input" value="4" min="1" step="1">
           </div>
           <div class="tynkr-unit-toggle-wrapper" style="height: 42px; display: flex; align-items: center; justify-content: flex-end;">
@@ -225,17 +225,17 @@
         
         <div style="display: flex; flex-direction: column; gap: 12px;">
           <div class="input-group">
-            <span class="input-label">Ingredient Name</span>
+            <label class="input-label" for="custom-name">Ingredient Name</label>
             <input type="text" id="custom-name" class="form-input" placeholder="E.g. Raw Tofu">
           </div>
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
             <div class="input-group">
-              <span class="input-label">Weight (grams)</span>
+              <label class="input-label" for="custom-weight">Weight (grams)</label>
               <input type="number" id="custom-weight" class="form-input" min="1" placeholder="E.g. 300">
             </div>
             <div class="input-group">
-              <span class="input-label">Macro Entry Mode</span>
+              <label class="input-label" for="custom-mode">Macro Entry Mode</label>
               <select id="custom-mode" class="form-input">
                 <option value="per-100g">Values Per 100g</option>
                 <option value="total">Values for Full Weight</option>
@@ -245,30 +245,30 @@
           
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
             <div class="input-group">
-              <span class="input-label">Calories</span>
+              <label class="input-label" for="custom-cal">Calories</label>
               <input type="number" id="custom-cal" class="form-input" min="0" placeholder="kcal">
             </div>
             <div class="input-group">
-              <span class="input-label">Protein (g)</span>
+              <label class="input-label" for="custom-protein">Protein (g)</label>
               <input type="number" id="custom-protein" class="form-input" min="0" step="0.1" placeholder="g">
             </div>
             <div class="input-group">
-              <span class="input-label">Carbs (g)</span>
+              <label class="input-label" for="custom-carbs">Carbs (g)</label>
               <input type="number" id="custom-carbs" class="form-input" min="0" step="0.1" placeholder="g">
             </div>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
             <div class="input-group">
-              <span class="input-label">Fat (g)</span>
+              <label class="input-label" for="custom-fat">Fat (g)</label>
               <input type="number" id="custom-fat" class="form-input" min="0" step="0.1" placeholder="g">
             </div>
             <div class="input-group">
-              <span class="input-label">Fiber (g)</span>
+              <label class="input-label" for="custom-fiber">Fiber (g)</label>
               <input type="number" id="custom-fiber" class="form-input" min="0" step="0.1" placeholder="g">
             </div>
             <div class="input-group">
-              <span class="input-label">Sodium (mg)</span>
+              <label class="input-label" for="custom-sodium">Sodium (mg)</label>
               <input type="number" id="custom-sodium" class="form-input" min="0" placeholder="mg">
             </div>
           </div>

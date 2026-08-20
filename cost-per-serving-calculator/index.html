@@ -195,7 +195,7 @@
       <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
     </span>
   </div>
-  <div class="theme-switch" role="tablist" aria-label="Theme">
+  <div class="theme-switch" role="group" aria-label="Theme">
     <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
     <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -237,12 +237,12 @@
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
       <div class="input-group">
-        <span class="input-label">Recipe Servings</span>
+        <label class="input-label" for="servings">Recipe Servings</label>
         <input type="number" id="servings" class="form-input" value="4" min="1" step="1">
       </div>
 
       <div class="input-group">
-        <span class="input-label">Waste / Buffer: <span id="waste-val">0%</span></span>
+        <label class="input-label" for="waste">Waste / Buffer: <span id="waste-val">0%</span></label>
         <input type="range" id="waste" class="form-input-range" value="0" min="0" max="50" step="5">
       </div>
     </div>

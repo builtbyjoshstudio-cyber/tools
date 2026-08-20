@@ -224,7 +224,7 @@
         <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
       </span>
     </div>
-    <div class="theme-switch" role="tablist" aria-label="Theme">
+    <div class="theme-switch" role="group" aria-label="Theme">
       <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
       <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
       <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -266,18 +266,18 @@
       <div class="role">1. Your year</div>
       <div class="controls-3">
         <div class="input-group">
-          <span class="input-label">Expected annual net profit</span>
+          <label class="input-label" for="net-profit">Expected annual net profit</label>
           <input type="number" id="net-profit" class="form-input" value="80000" min="0" step="1000" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Filing status</span>
+          <label class="input-label" for="filing-status">Filing status</label>
           <select id="filing-status" class="form-input">
             <option value="single" selected>Single</option>
             <option value="mfj">Married filing jointly</option>
           </select>
         </div>
         <div class="input-group">
-          <span class="input-label">State income tax (%, optional)</span>
+          <label class="input-label" for="state-rate">State income tax (%, optional)</label>
           <input type="number" id="state-rate" class="form-input" value="0" min="0" max="15" step="0.1" inputmode="decimal">
         </div>
       </div>

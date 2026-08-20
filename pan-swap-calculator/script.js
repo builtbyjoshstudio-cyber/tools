@@ -25,23 +25,23 @@ function getInputsHtml(shape, prefix) {
   } else if (shape === 'round') {
     return `
       <div class="input-group">
-        <span class="input-label">Diameter ${unitStr}</span>
+        <label class="input-label" for="${prefix}-dim1">Diameter ${unitStr}</label>
         <input type="number" id="${prefix}-dim1" class="form-input" value="8" min="1" step="0.5">
       </div>`;
   } else if (shape === 'square') {
     return `
       <div class="input-group">
-        <span class="input-label">Side ${unitStr}</span>
+        <label class="input-label" for="${prefix}-dim1">Side ${unitStr}</label>
         <input type="number" id="${prefix}-dim1" class="form-input" value="8" min="1" step="0.5">
       </div>`;
   } else if (shape === 'rectangular') {
     return `
       <div class="input-group">
-        <span class="input-label">Length ${unitStr}</span>
+        <label class="input-label" for="${prefix}-dim1">Length ${unitStr}</label>
         <input type="number" id="${prefix}-dim1" class="form-input" value="13" min="1" step="0.5">
       </div>
       <div class="input-group">
-        <span class="input-label">Width ${unitStr}</span>
+        <label class="input-label" for="${prefix}-dim2">Width ${unitStr}</label>
         <input type="number" id="${prefix}-dim2" class="form-input" value="9" min="1" step="0.5">
       </div>`;
   }

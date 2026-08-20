@@ -181,7 +181,7 @@
       <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
     </span>
   </div>
-  <div class="theme-switch" role="tablist" aria-label="Theme">
+  <div class="theme-switch" role="group" aria-label="Theme">
     <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
     <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -245,13 +245,13 @@
       <div style="display: flex; gap: 16px; flex-wrap: wrap;">
         <!-- Input Amount -->
         <div class="input-group" style="flex: 1; min-width: 140px;">
-          <span class="input-label">Amount</span>
+          <label class="input-label" for="input-amount">Amount</label>
           <input type="number" id="input-amount" class="form-input" value="7" min="0" step="any">
         </div>
         
         <!-- From Yeast Type -->
         <div class="input-group" style="flex: 1.5; min-width: 180px;">
-          <span class="input-label">From Yeast Type</span>
+          <label class="input-label" for="yeast-from">From Yeast Type</label>
           <select id="yeast-from" class="form-input">
             <option value="active-dry">Active Dry Yeast</option>
             <option value="instant">Instant Yeast</option>
@@ -261,7 +261,7 @@
 
         <!-- Input Unit -->
         <div class="input-group" style="flex: 1.5; min-width: 180px;">
-          <span class="input-label">Unit</span>
+          <label class="input-label" for="input-unit">Unit</label>
           <select id="input-unit" class="form-input">
             <option value="g">Grams (g)</option>
             <option value="oz">Ounces (oz)</option>

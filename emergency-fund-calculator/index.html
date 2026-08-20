@@ -236,7 +236,7 @@
         <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
       </span>
     </div>
-    <div class="theme-switch" role="tablist" aria-label="Theme">
+    <div class="theme-switch" role="group" aria-label="Theme">
       <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
       <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
       <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -278,20 +278,20 @@
       <div class="role">1. Your numbers</div>
       <div class="controls-3">
         <div class="input-group">
-          <span class="input-label">Essential expenses per month</span>
+          <label class="input-label" for="expenses">Essential expenses per month</label>
           <input type="number" id="expenses" class="form-input" value="3500" min="0" step="100" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Saved for emergencies so far</span>
+          <label class="input-label" for="current-savings">Saved for emergencies so far</label>
           <input type="number" id="current-savings" class="form-input" value="1000" min="0" step="100" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">You can save per month</span>
+          <label class="input-label" for="monthly-saving">You can save per month</label>
           <input type="number" id="monthly-saving" class="form-input" value="300" min="0" step="25" inputmode="numeric">
         </div>
       </div>
       <div class="input-group controls-extra">
-        <span class="input-label">Months of coverage <span id="months-bubble" style="color:var(--accent); font-family:var(--font-mono);">3 months</span></span>
+        <label class="input-label" for="coverage-months">Months of coverage <span id="months-bubble" style="color:var(--accent); font-family:var(--font-mono);">3 months</span></label>
         <input type="range" id="coverage-months" class="form-input-range" min="1" max="12" value="3" step="1">
       </div>
     </div>

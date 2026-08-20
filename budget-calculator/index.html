@@ -246,7 +246,7 @@
         <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
       </span>
     </div>
-    <div class="theme-switch" role="tablist" aria-label="Theme">
+    <div class="theme-switch" role="group" aria-label="Theme">
       <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
       <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
       <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -288,15 +288,15 @@
       <div class="role">1. Your income &amp; targets</div>
       <div class="grid-2">
         <div class="input-group">
-          <span class="input-label">Monthly take-home income (after tax)</span>
+          <label class="input-label" for="income">Monthly take-home income (after tax)</label>
           <input type="number" id="income" class="form-input" value="4000" min="0" step="100" inputmode="numeric">
         </div>
         <div>
           <span class="input-label">Target split (%) — adjust for your cost of living</span>
           <div class="targets">
-            <div class="input-group"><span class="input-label">Needs</span><input type="number" id="t-needs" class="form-input" value="50" min="0" max="100" step="1"></div>
-            <div class="input-group"><span class="input-label">Wants</span><input type="number" id="t-wants" class="form-input" value="30" min="0" max="100" step="1"></div>
-            <div class="input-group"><span class="input-label">Savings</span><input type="number" id="t-savings" class="form-input" value="20" min="0" max="100" step="1"></div>
+            <div class="input-group"><label class="input-label" for="t-needs">Needs</label><input type="number" id="t-needs" class="form-input" value="50" min="0" max="100" step="1"></div>
+            <div class="input-group"><label class="input-label" for="t-wants">Wants</label><input type="number" id="t-wants" class="form-input" value="30" min="0" max="100" step="1"></div>
+            <div class="input-group"><label class="input-label" for="t-savings">Savings</label><input type="number" id="t-savings" class="form-input" value="20" min="0" max="100" step="1"></div>
           </div>
           <div class="target-note" id="target-sum-note">Targets total 100%.</div>
         </div>
@@ -305,15 +305,15 @@
       <div class="role" style="margin-top:22px;">2. What you actually spend each month</div>
       <div class="grid-2">
         <div class="input-group">
-          <span class="input-label">Needs ($/mo)</span>
+          <label class="input-label" for="a-needs">Needs ($/mo)</label>
           <input type="number" id="a-needs" class="form-input" value="2480" min="0" step="50" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Wants ($/mo)</span>
+          <label class="input-label" for="a-wants">Wants ($/mo)</label>
           <input type="number" id="a-wants" class="form-input" value="1080" min="0" step="50" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Savings &amp; extra debt ($/mo)</span>
+          <label class="input-label" for="a-savings">Savings &amp; extra debt ($/mo)</label>
           <input type="number" id="a-savings" class="form-input" value="320" min="0" step="50" inputmode="numeric">
         </div>
       </div>

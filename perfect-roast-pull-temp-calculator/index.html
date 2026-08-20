@@ -166,7 +166,7 @@
       <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
     </span>
   </div>
-  <div class="theme-switch" role="tablist" aria-label="Theme">
+  <div class="theme-switch" role="group" aria-label="Theme">
     <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
     <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -215,7 +215,7 @@
 
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <div class="input-group">
-        <span class="input-label">Meat Type</span>
+        <label class="input-label" for="protein-type">Meat Type</label>
         <select id="protein-type" name="proteinType" class="form-input">
           <optgroup label="Poultry">
             <option value="turkey">Turkey (Whole or Breast)</option>
@@ -240,7 +240,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-label">Cut / Size</span>
+        <label class="input-label" for="cut-size">Cut / Size</label>
         <select id="cut-size" class="form-input">
           <option value="large">Large Roast / Whole Bird</option>
           <option value="thick">Thick Steak / Chop</option>
@@ -251,7 +251,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-label">Cooking Method / Environment</span>
+        <label class="input-label" for="cooking-method">Cooking Method / Environment</label>
         <select id="cooking-method" class="form-input">
           <option value="standard">Standard Baking/Pan Sear (350&deg;F)</option>
           <option value="high">High Heat Roasting (400&deg;F+)</option>
@@ -260,7 +260,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-label">Desired Final Doneness</span>
+        <label class="input-label" for="final-doneness">Desired Final Doneness</label>
         <select id="final-doneness" class="form-input">
           <option value="125">Rare</option>
           <option value="135">Medium-Rare</option>

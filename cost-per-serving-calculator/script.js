@@ -85,15 +85,15 @@ function addIngredientRow() {
     rowEl.innerHTML = `
         <div class="input-group col-span-mobile">
             <span class="input-label" style="display:none">Ingredient Name</span>
-            <input type="text" placeholder="Ingredient Name (e.g. Flour)" class="form-input ing-name" list="ingredients-list">
+            <input type="text" aria-label="Ingredient Name" placeholder="Ingredient Name (e.g. Flour)" class="form-input ing-name" list="ingredients-list">
         </div>
         <div class="input-group">
             <span class="input-label" style="display:none">Amount Used</span>
-            <input type="number" placeholder="Used" step="any" min="0" class="form-input ing-used">
+            <input type="number" aria-label="Amount Used" placeholder="Used" step="any" min="0" class="form-input ing-used">
         </div>
         <div class="input-group">
             <span class="input-label" style="display:none">Used Unit</span>
-            <select class="form-input ing-used-unit">
+            <select aria-label="Used Unit" class="form-input ing-used-unit">
                 <optgroup label="Mass">
                     <option value="g" selected>g</option>
                     <option value="kg">kg</option>
@@ -114,11 +114,11 @@ function addIngredientRow() {
         </div>
         <div class="input-group">
             <span class="input-label" style="display:none">Pack Size</span>
-            <input type="number" placeholder="Pack" step="any" min="0" class="form-input ing-pack">
+            <input type="number" aria-label="Pack Size" placeholder="Pack" step="any" min="0" class="form-input ing-pack">
         </div>
         <div class="input-group">
             <span class="input-label" style="display:none">Pack Unit</span>
-            <select class="form-input ing-pack-unit">
+            <select aria-label="Pack Unit" class="form-input ing-pack-unit">
                 <optgroup label="Mass">
                     <option value="g" selected>g</option>
                     <option value="kg">kg</option>
@@ -140,7 +140,7 @@ function addIngredientRow() {
         <div class="input-group">
             <span class="input-label" style="display:none">Pack Cost</span>
             <div class="currency-input-wrapper">
-                <input type="number" placeholder="Cost" step="0.01" min="0" class="form-input ing-cost">
+                <input type="number" aria-label="Pack Cost" placeholder="Cost" step="0.01" min="0" class="form-input ing-cost">
             </div>
         </div>
         <div>

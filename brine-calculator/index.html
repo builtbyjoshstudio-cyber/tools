@@ -197,7 +197,7 @@
       <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
     </span>
   </div>
-  <div class="theme-switch" role="tablist" aria-label="Theme">
+  <div class="theme-switch" role="group" aria-label="Theme">
     <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
     <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -253,7 +253,7 @@
 
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <div class="input-group">
-        <span class="input-label">Protein Type</span>
+        <label class="input-label" for="protein-type">Protein Type</label>
         <select id="protein-type" name="proteinType" class="form-input">
           <optgroup label="Poultry">
             <option value="turkey">Turkey (Whole or Breast)</option>
@@ -278,7 +278,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-label" id="meat-weight-label">Meat Weight</span>
+        <label class="input-label" id="meat-weight-label" for="meat-weight">Meat Weight</label>
         <input type="number" id="meat-weight" class="form-input" value="10" step="0.1" min="0.1">
       </div>
 
@@ -291,7 +291,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-label">Salt Type</span>
+        <label class="input-label" for="salt-type">Salt Type</label>
         <select id="salt-type" class="form-input">
           <option value="coarse">Coarse Flaky Kosher Salt</option>
           <option value="dense">Dense Granular Kosher Salt</option>
@@ -302,7 +302,7 @@
       <div id="salt-warning-node" style="font-size: 11px; color: var(--warn); display: none; margin-top: -8px; padding-left: 4px;"></div>
 
       <div class="input-group">
-        <span class="input-label">Brine Strength</span>
+        <label class="input-label" for="brine-strength">Brine Strength</label>
         <select id="brine-strength" class="form-input">
           <option value="standard" selected>Standard</option>
           <option value="light">Light</option>
@@ -311,7 +311,7 @@
       </div>
 
       <div class="input-group" id="brining-method-container">
-        <span class="input-label">Wet Brining Method</span>
+        <label class="input-label" for="brining-method">Wet Brining Method</label>
         <select id="brining-method" class="form-input">
           <option value="standard" selected>Standard Gradient (Faster)</option>
           <option value="eq">Equilibrium (Precise, Slower)</option>
