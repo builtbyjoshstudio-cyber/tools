@@ -28,7 +28,9 @@
   function syncButtons(theme) {
     // .theme-switch / generic [data-set-theme]
     doc.querySelectorAll('[data-set-theme]').forEach(function (b) {
-      b.classList.toggle('on', b.getAttribute('data-set-theme') === theme);
+      var on = b.getAttribute('data-set-theme') === theme;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     // .modes style [data-m]
     doc.querySelectorAll('[data-m]').forEach(function (b) {

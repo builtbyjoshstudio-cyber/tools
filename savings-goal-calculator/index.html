@@ -236,7 +236,7 @@
         <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
       </span>
     </div>
-    <div class="theme-switch" role="tablist" aria-label="Theme">
+    <div class="theme-switch" role="group" aria-label="Theme">
       <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
       <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
       <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -278,20 +278,20 @@
       <div class="role">1. Your goal</div>
       <div class="controls-3">
         <div class="input-group">
-          <span class="input-label">Goal amount</span>
+          <label class="input-label" for="goal-amount">Goal amount</label>
           <input type="number" id="goal-amount" class="form-input" value="10000" min="0" step="250" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Already saved</span>
+          <label class="input-label" for="already-saved">Already saved</label>
           <input type="number" id="already-saved" class="form-input" value="500" min="0" step="100" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Savings APY (%)</span>
+          <label class="input-label" for="apy">Savings APY (%)</label>
           <input type="number" id="apy" class="form-input" value="4" min="0" max="15" step="0.1" inputmode="decimal">
         </div>
       </div>
       <div class="input-group controls-extra">
-        <span class="input-label">Monthly contribution <span id="monthly-bubble" style="color:var(--accent); font-family:var(--font-mono);">$250/mo</span></span>
+        <label class="input-label" for="monthly-contrib">Monthly contribution <span id="monthly-bubble" style="color:var(--accent); font-family:var(--font-mono);">$250/mo</span></label>
         <input type="range" id="monthly-contrib" class="form-input-range" min="25" max="2000" value="250" step="25">
       </div>
     </div>

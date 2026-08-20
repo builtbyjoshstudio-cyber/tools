@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var row = document.createElement("div");
     row.className = "debt-row";
     row.innerHTML =
-      '<input type="text"   class="form-input d-name" placeholder="Debt name" value="' + (name || "") + '">' +
-      '<input type="number" class="form-input d-bal"  placeholder="Balance" min="0" step="100" inputmode="numeric" value="' + (balance != null ? balance : "") + '">' +
-      '<input type="number" class="form-input d-apr"  placeholder="APR %"   min="0" step="0.1" inputmode="decimal" value="' + (apr != null ? apr : "") + '">' +
-      '<input type="number" class="form-input d-min"  placeholder="Min/mo"  min="0" step="10" inputmode="numeric" value="' + (min != null ? min : "") + '">' +
+      '<input type="text"   class="form-input d-name" aria-label="Debt name" placeholder="Debt name" value="' + (name || "") + '">' +
+      '<input type="number" class="form-input d-bal"  aria-label="Balance" placeholder="Balance" min="0" step="100" inputmode="numeric" value="' + (balance != null ? balance : "") + '">' +
+      '<input type="number" class="form-input d-apr"  aria-label="APR %" placeholder="APR %"   min="0" step="0.1" inputmode="decimal" value="' + (apr != null ? apr : "") + '">' +
+      '<input type="number" class="form-input d-min"  aria-label="Min/mo" placeholder="Min/mo"  min="0" step="10" inputmode="numeric" value="' + (min != null ? min : "") + '">' +
       '<button type="button" class="d-remove" aria-label="Remove debt">&times;</button>';
     rowsEl.appendChild(row);
     row.querySelector(".d-remove").addEventListener("click", function () {

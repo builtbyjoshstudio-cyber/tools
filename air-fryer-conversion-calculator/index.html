@@ -198,7 +198,7 @@
       <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
     </span>
   </div>
-  <div class="theme-switch" role="tablist" aria-label="Theme">
+  <div class="theme-switch" role="group" aria-label="Theme">
     <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
     <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
     <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -247,7 +247,7 @@
 
     <div style="display: flex; flex-direction: column; gap: 16px;">
       <div class="input-group">
-        <span class="input-label">What are you cooking?</span>
+        <label class="input-label" for="food-type">What are you cooking?</label>
         <select id="food-type" class="form-input">
           <option value="general" selected>General rule (anything not listed)</option>
           <optgroup label="Frozen &amp; convenience">
@@ -267,11 +267,11 @@
 
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
         <div class="input-group">
-          <span class="input-label" id="temp-label">Oven temperature (&deg;F)</span>
+          <label class="input-label" id="temp-label" for="oven-temp">Oven temperature (&deg;F)</label>
           <input type="number" id="oven-temp" class="form-input" value="400" min="150" max="550" step="5" inputmode="numeric">
         </div>
         <div class="input-group">
-          <span class="input-label">Oven time (minutes)</span>
+          <label class="input-label" for="oven-time">Oven time (minutes)</label>
           <input type="number" id="oven-time" class="form-input" value="30" min="1" max="600" step="1" inputmode="numeric">
         </div>
       </div>

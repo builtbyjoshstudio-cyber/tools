@@ -262,7 +262,7 @@
         <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
       </span>
     </div>
-    <div class="theme-switch" role="tablist" aria-label="Theme">
+    <div class="theme-switch" role="group" aria-label="Theme">
       <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
       <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
       <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
@@ -310,11 +310,11 @@
 
       <div class="controls-2">
         <div class="input-group">
-          <span class="input-label">Extra payment per month <span id="extra-bubble" style="color:var(--accent); font-family:var(--font-mono);">$300/mo extra</span></span>
+          <label class="input-label" for="extra-payment">Extra payment per month <span id="extra-bubble" style="color:var(--accent); font-family:var(--font-mono);">$300/mo extra</span></label>
           <input type="range" id="extra-payment" class="form-input-range" min="0" max="2000" value="150" step="25">
         </div>
         <div class="input-group">
-          <span class="input-label">Strategy shown below</span>
+          <label class="input-label" for="strategy">Strategy shown below</label>
           <select id="strategy" class="form-input">
             <option value="avalanche">Avalanche — highest interest first</option>
             <option value="snowball">Snowball — smallest balance first</option>

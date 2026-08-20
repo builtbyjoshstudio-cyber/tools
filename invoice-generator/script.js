@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var row = document.createElement("div");
     row.className = "item-row";
     row.innerHTML =
-      '<input type="text"   class="form-input it-desc" placeholder="Description" value="' + esc(desc || "") + '">' +
-      '<input type="number" class="form-input it-qty"  placeholder="Qty"  min="0" step="1"    inputmode="decimal" value="' + (qty != null ? qty : "") + '">' +
-      '<input type="number" class="form-input it-rate" placeholder="Rate" min="0" step="0.01" inputmode="decimal" value="' + (rate != null ? rate : "") + '">' +
+      '<input type="text"   class="form-input it-desc" aria-label="Description" placeholder="Description" value="' + esc(desc || "") + '">' +
+      '<input type="number" class="form-input it-qty"  aria-label="Qty" placeholder="Qty"  min="0" step="1"    inputmode="decimal" value="' + (qty != null ? qty : "") + '">' +
+      '<input type="number" class="form-input it-rate" aria-label="Rate" placeholder="Rate" min="0" step="0.01" inputmode="decimal" value="' + (rate != null ? rate : "") + '">' +
       '<span class="it-amt">' + fmt(0) + '</span>' +
       '<button type="button" class="it-remove" aria-label="Remove line">&times;</button>';
     itemRows.appendChild(row);
