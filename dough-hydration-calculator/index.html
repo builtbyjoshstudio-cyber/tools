@@ -111,6 +111,30 @@
             "@type": "Answer",
             "text": "Different flours absorb different amounts of water. If a dough is unmanageable, the flour may be near its absorption ceiling — the tool flags when your target exceeds what a given flour typically handles."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you calculate dough hydration?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Divide the weight of the water by the weight of the flour and multiply by 100. A dough with 1,000 g of flour and 650 g of water is at 65% hydration. Count every flour in the recipe as flour, and weigh rather than measure by cup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What hydration is pizza dough?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Neapolitan pizza dough sits around 60%, which is the calculator's Neapolitan preset. New York style usually runs a little higher, and pan or Roman styles higher still. Start at 60% with Tipo 00 flour and move up a few points at a time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What hydration is fresh pasta dough?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Much lower than bread. The calculator sets semolina or egg pasta dough to 45% and leaves out the yeast, and it warns once you push past about 48%, where the dough turns too soft to roll thin and cut cleanly."
+          }
         }
       ]
     }
@@ -161,6 +185,10 @@
         .net-grid { grid-template-columns: 1fr; }
         .onboarding-steps { grid-template-columns: 1fr; gap: 16px; }
       }
+      /* ---- Reference tables ---- */
+      .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      .ref-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
+      .ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
     </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -195,7 +223,7 @@
         <span class="updated-date">Updated September 2026</span>
       </div>
       <h1>Dough Hydration Calculator</h1>
-      <p>Calculate ingredient ratios using baker's percentages, configure presets, and intercept structural hydration warnings.</p>
+      <p>Get flour, water, salt, and yeast by weight from a target hydration. Pick a flour or a style preset, enter the dough or flour weight, and the calculator does the baker&#39;s percentage math and warns when a flour cannot take that much water.</p>
     </div>
   </header>
 
@@ -378,6 +406,31 @@
     <h2 id="pasta-dough" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Pasta dough calculator</h2>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Pasta dough runs much drier than bread. Pick &ldquo;Semolina / Egg Pasta Flour&rdquo; and the calculator snaps hydration to 45% — the low-water range fresh pasta needs to roll thin and cut into clean strands — and drops the yeast, since pasta is unleavened. Enter your target flour or total-dough weight and it returns the flour, water, and salt (2%) by baker's percentage. For traditional egg pasta it also shows an egg conversion: swap the water weight for whole eggs at about 50g (1.8 oz) each, so the recipe tells you roughly how many eggs to use. Push hydration past about 48% and it warns you — above that, the dough turns too soft to hold a noodle's bite.</p>
 
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Dough hydration chart by style</h2>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">These are the starting points behind the calculator&#39;s presets, shown for 1,000 g of flour. Salt is 2% of the flour in every case; leavened doughs add yeast at 1%.</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="ref-table">
+      <thead><tr><th>Style</th><th>Hydration</th><th>Water per 1,000 g flour</th><th>Salt</th></tr></thead>
+      <tbody>
+        <tr><td>Tokyo ramen noodles</td><td>35%</td><td>350 g</td><td>20 g</td></tr>
+        <tr><td>Soba noodles</td><td>40%</td><td>400 g</td><td>20 g</td></tr>
+        <tr><td>Egg pasta (semolina)</td><td>45%</td><td>450 g</td><td>20 g</td></tr>
+        <tr><td>Neapolitan pizza</td><td>60%</td><td>600 g</td><td>20 g</td></tr>
+        <tr><td>French baguette</td><td>65%</td><td>650 g</td><td>20 g</td></tr>
+        <tr><td>Sourdough boule</td><td>72%</td><td>720 g</td><td>20 g</td></tr>
+        <tr><td>Italian ciabatta</td><td>82%</td><td>820 g</td><td>20 g</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">To work it out by hand, hydration is water divided by flour:</p>
+
+    <p style="margin-bottom: 12px; line-height: 1.8; color: var(--ink); font-family: var(--font-mono); font-size: 13px;">Hydration % = water weight &divide; flour weight &times; 100<br>Flour = target dough weight &times; 100 &divide; (100 + hydration % + salt % + yeast %)</p>
+
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">For 1,000 g of sourdough at 72%, the percentages add up to 175 (100 flour + 72 water + 2 salt + 1 yeast). That gives 571 g flour, 411 g water, 11 g salt, and 6 g yeast, which is exactly what the calculator returns in Target Total Dough Weight mode.</p>
+
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
@@ -395,6 +448,18 @@
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Why does my high-hydration dough feel too sticky?</h3>
         <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Different flours absorb different amounts of water. If a dough is unmanageable, the flour may be near its absorption ceiling — the tool flags when your target exceeds what a given flour typically handles.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do you calculate dough hydration?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Divide the weight of the water by the weight of the flour and multiply by 100. A dough with 1,000 g of flour and 650 g of water is at 65% hydration. Count every flour in the recipe as flour, and weigh rather than measure by cup.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What hydration is pizza dough?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Neapolitan pizza dough sits around 60%, which is the calculator&#39;s Neapolitan preset. New York style usually runs a little higher, and pan or Roman styles higher still. Start at 60% with Tipo 00 flour and move up a few points at a time.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What hydration is fresh pasta dough?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Much lower than bread. The calculator sets semolina or egg pasta dough to 45% and leaves out the yeast, and it warns once you push past about 48%, where the dough turns too soft to roll thin and cut cleanly.</p>
       </div>
     </div>
   </div>

@@ -121,6 +121,30 @@
             "@type": "Answer",
             "text": "It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for \"enhanced\" or a sodium-containing ingredient list before brining."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the formula for a brine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard wet brine is salt at about 5% of the water's weight, which is 50 g of salt per liter of water. A dry brine is salt at about 1% of the meat's weight. This calculator uses half the meat's weight in water, so a 12-pound turkey takes about 2.7 liters of water and 136 g of salt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an equilibrium brine?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much salt do I use for a dry brine per pound?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About 1% of the meat's weight, which is roughly 4.5 g of salt per pound. That is about one and a half teaspoons of coarse flaky kosher salt but only three quarters of a teaspoon of table salt, which is why weighing the salt is more reliable than measuring by the spoon."
+          }
         }
       ]
     }
@@ -181,6 +205,10 @@
   @media (max-width: 760px) {
     .net-grid { grid-template-columns: 1fr; }
   }
+  /* ---- Reference tables ---- */
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .ref-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
+  .ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -398,6 +426,30 @@
     <h2 id="wet-brine" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Wet brine calculator</h2>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">A wet brine dissolves salt in water and submerges the meat. The calculator uses about half the meat's weight in water to cover it, then salts that water to roughly 5% for a standard brine (4% light, 6% strong) — or, if you pick the equilibrium (EQ) method, targets 1.5% of the combined meat-and-water weight, which is much harder to over-salt on a long soak. It returns the salt (weight and volume), the water amount, and optional sugar, all scaled to your protein and weight. Best for lean cuts like turkey breast and pork chops that dry out easily.</p>
 
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Brine formula and salt by weight</h2>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Every number the calculator returns comes from three ratios:</p>
+
+    <p style="margin-bottom: 12px; line-height: 1.8; color: var(--ink); font-family: var(--font-mono); font-size: 13px;">Wet brine: water = half the meat&#39;s weight, salt = 5% of the water (4% light, 6% strong)<br>Equilibrium brine: salt = 1.5% of the meat and water combined<br>Dry brine: salt = 1% of the meat&#39;s weight (0.75% light, 1.25% strong)</p>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Worked out by meat weight, at standard strength:</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="ref-table">
+      <thead><tr><th>Meat</th><th>Water</th><th>Salt, standard wet brine</th><th>Salt, equilibrium</th><th>Salt, dry brine</th></tr></thead>
+      <tbody>
+        <tr><td>2 lb</td><td>0.5 L</td><td>23 g</td><td>20 g</td><td>9 g</td></tr>
+        <tr><td>4 lb</td><td>0.9 L</td><td>45 g</td><td>41 g</td><td>18 g</td></tr>
+        <tr><td>8 lb</td><td>1.8 L</td><td>91 g</td><td>82 g</td><td>36 g</td></tr>
+        <tr><td>12 lb</td><td>2.7 L</td><td>136 g</td><td>122 g</td><td>54 g</td></tr>
+        <tr><td>16 lb</td><td>3.6 L</td><td>181 g</td><td>163 g</td><td>73 g</td></tr>
+        <tr><td>20 lb</td><td>4.5 L</td><td>227 g</td><td>204 g</td><td>91 g</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Salt is listed in grams because a tablespoon is not a fixed amount of salt: coarse flaky kosher salt weighs about 8 g per tablespoon and table salt about 18 g. Pick your salt type in the calculator and it converts the weight to spoons for that salt.</p>
+
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
@@ -415,6 +467,18 @@
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I brine pre-seasoned or "enhanced" meat?</h3>
         <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for "enhanced" or a sodium-containing ingredient list before brining.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is the formula for a brine?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">A standard wet brine is salt at about 5% of the water&#39;s weight, which is 50 g of salt per liter of water. A dry brine is salt at about 1% of the meat&#39;s weight. This calculator uses half the meat&#39;s weight in water, so a 12-pound turkey takes about 2.7 liters of water and 136 g of salt.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is an equilibrium brine?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How much salt do I use for a dry brine per pound?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">About 1% of the meat&#39;s weight, which is roughly 4.5 g of salt per pound. That is about one and a half teaspoons of coarse flaky kosher salt but only three quarters of a teaspoon of table salt, which is why weighing the salt is more reliable than measuring by the spoon.</p>
       </div>
     </div>
   </div>

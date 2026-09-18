@@ -93,6 +93,12 @@ Q: How long should I brine meat?
 A: Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight.
 Q: Can I brine pre-seasoned or "enhanced" meat?
 A: It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for "enhanced" or a sodium-containing ingredient list before brining.
+Q: What is the formula for a brine?
+A: A standard wet brine is salt at about 5% of the water's weight, which is 50 g of salt per liter of water. A dry brine is salt at about 1% of the meat's weight. This calculator uses half the meat's weight in water, so a 12-pound turkey takes about 2.7 liters of water and 136 g of salt.
+Q: What is an equilibrium brine?
+A: An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving.
+Q: How much salt do I use for a dry brine per pound?
+A: About 1% of the meat's weight, which is roughly 4.5 g of salt per pound. That is about one and a half teaspoons of coarse flaky kosher salt but only three quarters of a teaspoon of table salt, which is why weighing the salt is more reliable than measuring by the spoon.
 
 ### Cookware & Pan Guide
 URL: https://tools.builtbyjoshstudio.com/cookware-pan-guide/
@@ -135,6 +141,12 @@ Q: How much hydration does my bread need?
 A: It depends on the style — pizza and bagels run lower, ciabatta and rustic sourdough run much higher. This tool includes presets for common styles, such as Neapolitan at 60%, baguette at 65%, sourdough at 72%, and ciabatta at 82%, as starting points.
 Q: Why does my high-hydration dough feel too sticky?
 A: Different flours absorb different amounts of water. If a dough is unmanageable, the flour may be near its absorption ceiling — the tool flags when your target exceeds what a given flour typically handles.
+Q: How do you calculate dough hydration?
+A: Divide the weight of the water by the weight of the flour and multiply by 100. A dough with 1,000 g of flour and 650 g of water is at 65% hydration. Count every flour in the recipe as flour, and weigh rather than measure by cup.
+Q: What hydration is pizza dough?
+A: Neapolitan pizza dough sits around 60%, which is the calculator's Neapolitan preset. New York style usually runs a little higher, and pan or Roman styles higher still. Start at 60% with Tipo 00 flour and move up a few points at a time.
+Q: What hydration is fresh pasta dough?
+A: Much lower than bread. The calculator sets semolina or egg pasta dough to 45% and leaves out the yeast, and it warns once you push past about 48%, where the dough turns too soft to roll thin and cut cleanly.
 
 ### Meat Thawing Planner
 URL: https://tools.builtbyjoshstudio.com/meat-thawing-planner/
@@ -153,6 +165,8 @@ Q: Can you refreeze meat after thawing?
 A: Meat thawed in the refrigerator can be refrozen without cooking first, though the texture may suffer a little. Meat thawed in cold water or the microwave should be cooked before it goes back in the freezer, because those methods can let the surface warm up. This follows the USDA's Big Thaw guidance.
 Q: What is the danger zone for thawing meat?
 A: 40°F to 140°F — the temperature range where bacteria multiply fastest. Meat should never sit in that range while thawing, which is why counter thawing isn't safe and cold water has to stay cold and be changed regularly. Refrigerator thawing keeps the meat below it the whole time.
+Q: How long does it take to thaw a turkey?
+A: About one day in the refrigerator for every 4 pounds, so 3 days for a 12-pound turkey, 4 days for 16 pounds, and 5 days for 20 pounds. In cold water changed every 30 minutes it takes about 36 minutes per pound, but past 6 hours the refrigerator is the safer choice.
 
 ### Pan Swap Calculator
 URL: https://tools.builtbyjoshstudio.com/pan-swap-calculator/

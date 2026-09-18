@@ -6,6 +6,15 @@
 // Global state
 let ingredients = [];
 
+// Seeded example: the same spaghetti-for-four the page copy walks through ($12.24 / $3.06).
+const EXAMPLE_ROWS = [
+    { name: 'Ground beef', usedVal: 1, usedUnit: 'lb', packVal: 3, packUnit: 'lb', packCost: 14.97 },
+    { name: 'Spaghetti', usedVal: 12, usedUnit: 'oz', packVal: 16, packUnit: 'oz', packCost: 1.92 },
+    { name: 'Pasta sauce', usedVal: 24, usedUnit: 'oz', packVal: 24, packUnit: 'oz', packCost: 3.48 },
+    { name: 'Onion', usedVal: 1, usedUnit: 'unit', packVal: 3, packUnit: 'unit', packCost: 2.49 },
+    { name: 'Parmesan', usedVal: 2, usedUnit: 'oz', packVal: 8, packUnit: 'oz', packCost: 6.00 }
+];
+
 const factors = {
     // Mass (base: g)
     'g': 1,
@@ -56,14 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
         calculate();
     });
 
-    // Initial 2 rows
-    addIngredientRow();
-    addIngredientRow();
+    // Open on the worked example so the first view shows a real result
+    EXAMPLE_ROWS.forEach(row => addIngredientRow(row));
+
+    // Start fresh: drop every row and leave two empty ones
+    const clearLedgerBtn = document.getElementById('clear-ledger-btn');
+    if (clearLedgerBtn) {
+        clearLedgerBtn.addEventListener('click', () => {
+            ingredients = [];
+            document.getElementById('ledger-rows').innerHTML = '';
+            const note = document.getElementById('example-note');
+            if (note) note.style.display = 'none';
+            addIngredientRow();
+            addIngredientRow();
+            calculate();
+        });
+    }
     
     calculate();
 });
 
-function addIngredientRow() {
+function addIngredientRow(preset) {
     const container = document.getElementById('ledger-rows');
     const id = Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
     
@@ -156,6 +178,16 @@ function addIngredientRow() {
     const packUnitSelect = rowEl.querySelector('.ing-pack-unit');
     const costInput = rowEl.querySelector('.ing-cost');
     const deleteBtn = rowEl.querySelector('.delete-row-btn');
+
+    if (preset) {
+        Object.assign(rowObj, preset);
+        nameInput.value = preset.name;
+        usedInput.value = preset.usedVal;
+        usedUnitSelect.value = preset.usedUnit;
+        packInput.value = preset.packVal;
+        packUnitSelect.value = preset.packUnit;
+        costInput.value = preset.packCost.toFixed(2);
+    }
     
     nameInput.addEventListener('input', (e) => { rowObj.name = e.target.value; calculate(); });
     usedInput.addEventListener('input', (e) => { rowObj.usedVal = parseFloat(e.target.value) || 0; calculate(); });
