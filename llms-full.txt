@@ -106,15 +106,23 @@ A: It is highly recommended to avoid commercial aerosol sprays. They contain pro
 
 ### Cost Per Serving Calculator
 URL: https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/
-What it does: Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
+What it does: Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.
 Q: How do you calculate cost per serving?
 A: Add up the cost of the exact portion of each ingredient you used, then divide the total by the number of servings the recipe makes. The tricky part is converting from the package you bought to the amount you used, which this calculator does automatically.
 Q: What is a waste allowance and why does it matter?
 A: A waste allowance is a percentage buffer added to your ingredient costs to account for trim, peelings, spoilage, and spills. Most kitchens use somewhere between 5% and 15%, depending on how much prep loss a recipe involves.
 Q: Can I mix weights and volumes?
-A: You can use any unit for an ingredient, but the amount you used and the package size for that same ingredient must be the same type — both by weight or both by volume. The calculator flags a mismatch if you try to compare a weight against a volume.
+A: Yes, for common ingredients. If you measured by volume but the pack is sold by weight, or the other way round, the calculator converts using a built-in density for ingredients it recognizes by name, such as flour, sugar, butter, honey, milk, and oil, and notes the conversion in the cost breakdown. For an ingredient it does not recognize it flags a mismatch, so enter the amount used and the pack size in the same kind of unit instead.
 Q: Does this calculator save my data?
 A: All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server.
+Q: What is the formula for cost per serving?
+A: Cost per serving equals total ingredient cost divided by the number of servings. The total is the sum, for every ingredient, of the pack price multiplied by the amount used divided by the pack size, plus any waste allowance.
+Q: What is the difference between cost per serving and price per serving?
+A: Cost per serving is what the ingredients in one portion cost you. Price per serving is what you charge for it. At home they are the same number. If you sell food, a common approach is to divide the cost per serving by a target food cost percentage, often around 30%, to get a starting menu price.
+Q: Does the calculator include labor, packaging, or overhead?
+A: No. It covers ingredient cost plus an optional waste allowance. Labor, packaging, utilities, and other overhead are not included, so add them separately when you set a selling price.
+Q: Can I use it as a recipe cost calculator for a bakery or small food business?
+A: Yes. It works for any recipe: enter each ingredient's amount used, pack size, and pack price, set the number of servings or pieces the batch makes, and it returns the batch cost and the cost of each one. It is free, and nothing you enter leaves your browser.
 
 ### Dough Hydration Calculator
 URL: https://tools.builtbyjoshstudio.com/dough-hydration-calculator/
@@ -182,7 +190,7 @@ A: No. This calculator is strictly for home cooks, meal planning, and testing es
 
 ### Pork Roast Cooking Time Calculator
 URL: https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/
-What it does: Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
+What it does: Pork roast cooking time, worked backward from dinner — enter a pork loin, shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
 Q: What is a reverse cooking timeline?
 A: Instead of working forward from when you start, you work backward from when you want to eat. You set your target dinner time and the tool schedules each step — prep, roasting, and resting — so everything finishes together.
 Q: How do I know when to start cooking?
@@ -191,6 +199,12 @@ Q: How long should meat rest after roasting?
 A: It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Resting lets juices redistribute and accounts for carryover cooking.
 Q: Are these cooking times exact?
 A: They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures.
+Q: How long do you cook a pork loin roast per pound?
+A: About 20 minutes per pound in a 350°F (177°C) oven, per the USDA roasting chart, for a 2 to 5 pound bone-in or boneless loin roast. A 3-pound loin takes about an hour. Cook it to a minimum internal temperature of 145°F (63°C) and rest it at least 3 minutes.
+Q: How long does a pork shoulder take in the oven?
+A: The USDA chart lists a 3 to 6 pound Boston butt at 45 minutes per pound in a 350°F (177°C) oven. This calculator's Pork Shoulder & Hams profile schedules a lower, slower cook: about 40 minutes per pound at 250°F (120°C). Pulled pork is cooked well past the safe minimum, until it is fork tender, so leave extra time and let the thermometer and the fork decide.
+Q: What temperature should a pork roast be cooked to?
+A: Whole pork cuts such as loin, shoulder, and fresh ham are safe at a minimum internal temperature of 145°F (63°C) followed by a rest of at least 3 minutes. Ground pork needs 160°F (71°C).
 
 ### Universal Recipe Scaler
 URL: https://tools.builtbyjoshstudio.com/universal-recipe-scaler/

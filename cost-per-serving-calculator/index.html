@@ -12,19 +12,19 @@
       gtag('config', 'G-QDSPBB7S9J');
     </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.">
+<meta name="description" content="Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.">
 <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta property="og:title" content="Cost Per Serving Calculator | Free Recipe Pricing Utility">
+<meta property="og:title" content="Cost Per Serving Calculator | Free Recipe Cost Calculator">
     <meta property="og:type" content="website">
-<meta property="og:description" content="Calculate total recipe cost, cost per serving, and waste buffer allowances. Features dynamic ingredients ledger, automatic unit conversions, and local-first data.">
+<meta property="og:description" content="Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.">
 <meta property="og:image" content="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/og-preview.jpg">
 <meta property="og:url" content="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/">
 <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/">
-    <meta name="twitter:title" content="Cost Per Serving Calculator | Free Recipe Pricing Utility">
-    <meta name="twitter:description" content="Calculate total recipe cost, cost per serving, and waste buffer allowances. Features dynamic ingredients ledger, automatic unit conversions, and local-first data.">
+    <meta name="twitter:title" content="Cost Per Serving Calculator | Free Recipe Cost Calculator">
+    <meta name="twitter:description" content="Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.">
     <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/og-preview.jpg">
-<title>Cost Per Serving Calculator | Free Recipe Pricing Utility</title>
+<title>Cost Per Serving Calculator | Free Recipe Cost Calculator</title>
 <link rel="canonical" href="https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/" />
 <script type="application/ld+json">
 {
@@ -32,7 +32,7 @@
   "@type": "WebApplication",
   "name": "Cost Per Serving Calculator",
   "url": "https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/",
-  "description": "Calculate total recipe costs, per-serving unit economics, and waste buffer allowances with support for mass and volume ingredient conversions. Free and local-first.",
+  "description": "Free recipe cost calculator. Works out total recipe cost and cost per serving from the amount of each ingredient used, the pack size, and the pack price, with a waste allowance, automatic unit conversion, and leftover tracking. Runs locally in the browser.",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any (web browser)",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -109,7 +109,7 @@
           "name": "Can I mix weights and volumes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "You can use any unit for an ingredient, but the amount you used and the package size for that same ingredient must be the same type — both by weight or both by volume. The calculator flags a mismatch if you try to compare a weight against a volume."
+            "text": "Yes, for common ingredients. If you measured by volume but the pack is sold by weight, or the other way round, the calculator converts using a built-in density for ingredients it recognizes by name, such as flour, sugar, butter, honey, milk, and oil, and notes the conversion in the cost breakdown. For an ingredient it does not recognize it flags a mismatch, so enter the amount used and the pack size in the same kind of unit instead."
           }
         },
         {
@@ -118,10 +118,42 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server."
-      }
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the formula for cost per serving?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cost per serving equals total ingredient cost divided by the number of servings. The total is the sum, for every ingredient, of the pack price multiplied by the amount used divided by the pack size, plus any waste allowance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between cost per serving and price per serving?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cost per serving is what the ingredients in one portion cost you. Price per serving is what you charge for it. At home they are the same number. If you sell food, a common approach is to divide the cost per serving by a target food cost percentage, often around 30%, to get a starting menu price."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator include labor, packaging, or overhead?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It covers ingredient cost plus an optional waste allowance. Labor, packaging, utilities, and other overhead are not included, so add them separately when you set a selling price."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use it as a recipe cost calculator for a bakery or small food business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. It works for any recipe: enter each ingredient's amount used, pack size, and pack price, set the number of servings or pieces the batch makes, and it returns the batch cost and the cost of each one. It is free, and nothing you enter leaves your browser."
+          }
+        }
+      ]
     }
-  ]
-}
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,6 +211,13 @@
   @media (max-width: 760px) {
     .net-grid { grid-template-columns: 1fr; }
   }
+  /* ---- Worked-example table ---- */
+  .cps-example { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .cps-example th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; white-space: nowrap; border-bottom: 2px solid var(--line-2); }
+  .cps-example td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
+  .cps-example .num { text-align: right; padding-right: 0; }
+  .cps-example .sum td { font-weight: 700; border-bottom: 0; padding-bottom: 2px; }
+  .cps-example .per td { color: var(--accent); }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -209,11 +248,11 @@
     <div style="flex:1; min-width: 0">
       <div class="meta">
         <span class="pill live">&#9679; Utilities</span>
-        <span>Recipe costing &amp; unit economics</span>
+        <span>Recipe cost &amp; price per serving</span>
         <span class="updated-date">Updated September 2026</span>
       </div>
       <h1>Cost Per Serving Calculator</h1>
-      <p>Calculate total recipe cost, cost per serving, and analyze ingredient leftovers with support for volume-to-volume and mass-to-mass conversions.</p>
+      <p>Work out what a recipe costs to make and what each serving costs. Enter how much of each ingredient you used, the size of the pack you bought, and what you paid. The calculator does the pack-to-portion math, converts the units, and shows what is left in every pack.</p>
     </div>
   </header>
 
@@ -296,14 +335,46 @@
     <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-scaler" href="../universal-recipe-scaler/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need a different batch size? Scale the recipe with the Universal Recipe Scaler &rarr;</a>
+      <a href="../recipe-nutrition-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want the nutrition facts for the same recipe? Open the Recipe Nutrition Calculator &rarr;</a>
+      <a href="../profit-margin-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Selling it? Check what a price leaves you with the Profit Margin Calculator &rarr;</a>
     </div>
   </div>
 
   <!-- Explanatory Prose & FAQ Section -->
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">How to actually price a recipe</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">How to calculate cost per serving</h2>
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Knowing what a dish costs to make is the difference between guessing at a menu price and setting one with confidence. The math is simple in principle — divide the cost of every ingredient you used by the number of servings — but it gets fiddly fast, because you rarely use a whole package of anything. You buy a five-pound bag of flour and use 300 grams of it; you buy a dozen eggs and use three.</p>
+    <p style="margin-bottom: 12px; line-height: 1.8; color: var(--ink); font-family: var(--font-mono); font-size: 13px;">Ingredient cost = pack price &times; (amount used &divide; pack size)<br>Cost per serving = total ingredient cost &divide; number of servings</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">This calculator handles that proportion for you. For each ingredient you enter how much you used, the size and price of the package you bought it in, and it works out the true cost of just the portion that went into the dish. Add a waste allowance to account for trim, spoilage, and spills, and you get a total recipe cost and a per-serving figure you can actually build a price around. Everything stays in your browser — no accounts, no data leaving your device.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">A worked example: spaghetti with meat sauce for four</h2>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Say you make spaghetti with meat sauce for four. You used one pound of ground beef out of a three-pound pack, most of a box of pasta, a whole jar of sauce, one onion from a bag of three, and a couple of ounces of parmesan. Entered into the calculator, it looks like this (example prices, so use your own receipts):</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="cps-example">
+      <thead><tr><th>Ingredient</th><th class="num">Used</th><th class="num">Pack</th><th class="num">Pack price</th><th class="num">Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Ground beef</td><td class="num">1 lb</td><td class="num">3 lb</td><td class="num">$14.97</td><td class="num">$4.99</td></tr>
+        <tr><td>Spaghetti</td><td class="num">12 oz</td><td class="num">16 oz</td><td class="num">$1.92</td><td class="num">$1.44</td></tr>
+        <tr><td>Pasta sauce</td><td class="num">24 oz</td><td class="num">24 oz</td><td class="num">$3.48</td><td class="num">$3.48</td></tr>
+        <tr><td>Onion</td><td class="num">1 unit</td><td class="num">3 units</td><td class="num">$2.49</td><td class="num">$0.83</td></tr>
+        <tr><td>Parmesan</td><td class="num">2 oz</td><td class="num">8 oz</td><td class="num">$6.00</td><td class="num">$1.50</td></tr>
+        <tr class="sum"><td colspan="4">Total recipe cost</td><td class="num">$12.24</td></tr>
+        <tr class="sum per"><td colspan="4">Cost per serving (4 servings)</td><td class="num">$3.06</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">That is $12.24 for the pot and $3.06 a serving. The breakdown also shows what is still in each pack: two pounds of beef, two onions, and six ounces of parmesan you have already paid for, which is where the next meal's math starts.</p>
+
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Slide the waste allowance to 10% to cover trim and whatever stays behind in the jar, and the same meal comes to $13.46, or $3.37 a serving.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">Cost per serving vs. price per serving</h2>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">If you cook at home, the two are the same number: what a plate costs you. If you sell food, cost per serving is the floor and the price sits above it. A common rule of thumb is to price so that ingredients come to roughly 28% to 35% of the menu price, which means dividing the cost per serving by your target food cost percentage. At 30%, the $3.06 plate above prices at $10.20.</p>
+
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">This calculator covers ingredients and waste only. Labor, packaging, and overhead sit on top, so treat the result as the line you cannot price below, not the price itself. To see what a given price leaves you, use the <a href="../profit-margin-calculator/" style="color: var(--accent); font-weight: 600; text-decoration: underline;">Profit Margin Calculator</a>. For the whole method worked by hand, read <a href="https://builtbyjoshstudio.com/blog/cost-per-serving-calculator.html" style="color: var(--accent); font-weight: 600; text-decoration: underline;">how to calculate the cost per serving of a recipe</a>.</p>
 
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
@@ -317,11 +388,27 @@
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I mix weights and volumes?</h3>
-        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">You can use any unit for an ingredient, but the amount you used and the package size for that same ingredient must be the same type — both by weight or both by volume. The calculator flags a mismatch if you try to compare a weight against a volume.</p>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Yes, for common ingredients. If you measured by volume but the pack is sold by weight, or the other way round, the calculator converts using a built-in density for ingredients it recognizes by name, such as flour, sugar, butter, honey, milk, and oil, and notes the conversion in the cost breakdown. For an ingredient it does not recognize it flags a mismatch, so enter the amount used and the pack size in the same kind of unit instead.</p>
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does this calculator save my data?</h3>
         <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is the formula for cost per serving?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Cost per serving equals total ingredient cost divided by the number of servings. The total is the sum, for every ingredient, of the pack price multiplied by the amount used divided by the pack size, plus any waste allowance.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is the difference between cost per serving and price per serving?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Cost per serving is what the ingredients in one portion cost you. Price per serving is what you charge for it. At home they are the same number. If you sell food, a common approach is to divide the cost per serving by a target food cost percentage, often around 30%, to get a starting menu price.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does the calculator include labor, packaging, or overhead?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">No. It covers ingredient cost plus an optional waste allowance. Labor, packaging, utilities, and other overhead are not included, so add them separately when you set a selling price.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I use it as a recipe cost calculator for a bakery or small food business?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Yes. It works for any recipe: enter each ingredient&#39;s amount used, pack size, and pack price, set the number of servings or pieces the batch makes, and it returns the batch cost and the cost of each one. It is free, and nothing you enter leaves your browser.</p>
       </div>
     </div>
   </div>

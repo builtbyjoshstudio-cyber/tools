@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pork Roast Cooking Time Calculator | Reverse Timeline, Free</title>
     <link rel="canonical" href="https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/" />
-    <meta name="description" content="Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.">
+    <meta name="description" content="Pork roast cooking time, worked backward from dinner — enter a pork loin, shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.">
     <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
 <meta name="msvalidate.01" content="7C8493F5A553BC7ED2B05146D209F4AF" />
@@ -39,7 +39,7 @@
         "@type": "WebApplication",
         "name": "Pork Roast Cooking Time Calculator",
         "url": "https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/",
-        "description": "Pork roast cooking time worked backward from your dinner hour — a start-to-pull oven timeline for pork shoulder, ham, turkey, beef, and barbecue. Free, ad-free, local-first.",
+        "description": "Pork roast cooking time worked backward from your dinner hour — a start-to-pull oven timeline for pork loin, pork shoulder, ham, turkey, beef, and barbecue. Free, ad-free, local-first.",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "Any",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -126,6 +126,30 @@
             "@type": "Answer",
             "text": "They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How long do you cook a pork loin roast per pound?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About 20 minutes per pound in a 350°F (177°C) oven, per the USDA roasting chart, for a 2 to 5 pound bone-in or boneless loin roast. A 3-pound loin takes about an hour. Cook it to a minimum internal temperature of 145°F (63°C) and rest it at least 3 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a pork shoulder take in the oven?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The USDA chart lists a 3 to 6 pound Boston butt at 45 minutes per pound in a 350°F (177°C) oven. This calculator's Pork Shoulder & Hams profile schedules a lower, slower cook: about 40 minutes per pound at 250°F (120°C). Pulled pork is cooked well past the safe minimum, until it is fork tender, so leave extra time and let the thermometer and the fork decide."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What temperature should a pork roast be cooked to?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Whole pork cuts such as loin, shoulder, and fresh ham are safe at a minimum internal temperature of 145°F (63°C) followed by a rest of at least 3 minutes. Ground pork needs 160°F (71°C)."
+          }
         }
       ]
     }
@@ -149,6 +173,10 @@
       .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
       .net-grid .gear-img-wrapper { height: 120px; }
       @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+      /* ---- Pork by-weight tables ---- */
+      .roast-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      .roast-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
+      .roast-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
     </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -193,7 +221,7 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Works backward from the time you want dinner on the table to a complete oven schedule for a roast.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Meat selection (pork shoulder, ham, turkey, chicken, beef roasts, brisket and more), weight in pounds, and your target dinner time.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Meat selection (pork loin, pork shoulder, ham, turkey, chicken, beef roasts, brisket and more), weight in pounds, and your target dinner time.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A chronological start-to-serve timeline with clock times — prep, into the oven, temperature checks, rest, and carve.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
@@ -225,6 +253,7 @@
                     </optgroup>
                     <optgroup label="Pork &amp; Lamb">
                         <option value="pork-shoulder">Pork Shoulder &amp; Hams</option>
+                        <option value="pork-loin">Pork Loin Roast</option>
                         <option value="lamb">Lamb Leg or Rack</option>
                     </optgroup>
                     <optgroup label="Ground, Game &amp; Seafood">
@@ -265,6 +294,8 @@
             <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
             <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
                 <a id="pipeline-link-pulltemp" href="../perfect-roast-pull-temp-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want the exact temperature to pull at? Use the Perfect Roast Pull Temp Calculator &rarr;</a>
+                <a href="../brine-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Brining first? Get the salt and the timing from the Brine Calculator &rarr;</a>
+                <a href="../meat-thawing-planner/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Roast still frozen? Plan the thaw with the Meat Thawing Planner &rarr;</a>
             </div>
         </div>
 
@@ -275,8 +306,41 @@
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">The timeline accounts for the parts people forget: oven preheat, the temperature drop and recovery when cold meat goes in, and the resting window after it comes out, when the meat keeps cooking and the juices redistribute. Larger cuts need a longer runway, and skipping the rest is the most common way a well-cooked roast still ends up dry on the plate. Always confirm doneness with a calibrated thermometer and follow USDA minimum safe temperatures for poultry, pork, and ground meat.</p>
 
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">How the calculator handles a pork roast</h2>
-    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">For pork, the calculator uses the low-and-slow profile that pork shoulder and ham actually want: about 40 minutes per pound in a 250&deg;F (120&deg;C) oven, plus a full 60-minute rest. Choose &ldquo;Pork Shoulder &amp; Hams,&rdquo; enter the weight and the time you want to eat, and it works backward &mdash; when to preheat, when the roast goes in, when to pull it, and the rest before you serve or shred it. A 6-pound pork shoulder runs about four hours in the oven plus the rest, so a 6&nbsp;p.m. dinner means starting mid-afternoon.</p>
-    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">That slow schedule is what gives a pork roast time to turn tender &mdash; a hotter, faster oven tightens the meat instead. The calculator schedules the cook from the weight; it doesn&rsquo;t read the meat for you, so confirm doneness with a thermometer and follow USDA guidance: a 145&deg;F safe minimum for whole pork cuts, with a 3-minute rest. For the exact temperature to pull at for your cut and doneness, use the companion <a href="../perfect-roast-pull-temp-calculator/" style="color: var(--accent); font-weight: 600;">Perfect Roast Pull Temp Calculator</a>.</p>
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">The calculator has two pork profiles. <strong>Pork Loin Roast</strong> follows the USDA roasting chart: about 20 minutes per pound in a 350&deg;F (175&deg;C) oven, so a 3-pound loin is about an hour. <strong>Pork Shoulder &amp; Hams</strong> runs lower and slower: about 40 minutes per pound in a 250&deg;F (120&deg;C) oven. The rest is set by weight either way: 10 minutes under 2 pounds, 20 minutes up to 8 pounds, and 40 minutes above that. Choose the cut, enter the weight and the time you want to eat, and it works backward &mdash; when to preheat, when the roast goes in, when to pull it, and the rest before you serve or shred it. A 6-pound pork shoulder runs about four hours in the oven plus the rest, so a 6&nbsp;p.m. dinner means starting early in the afternoon.</p>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">The slow shoulder schedule is what gives a tough, fatty cut time to turn tender. A lean loin is the opposite: it only needs to reach temperature, and overshooting dries it out. The calculator schedules the cook from the weight; it doesn&rsquo;t read the meat for you, so confirm doneness with a thermometer and follow USDA guidance: a 145&deg;F safe minimum for whole pork cuts, with a 3-minute rest. For the exact temperature to pull at for your cut and doneness, use the companion <a href="../perfect-roast-pull-temp-calculator/" style="color: var(--accent); font-weight: 600;">Perfect Roast Pull Temp Calculator</a>.</p>
+
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Pork roast cooking times by weight</h2>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">A pork loin roast at 350&deg;F, the profile the calculator uses for &ldquo;Pork Loin Roast&rdquo;:</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="roast-table">
+      <thead><tr><th>Weight</th><th>In the oven</th><th>Rest</th><th>Oven to carving</th></tr></thead>
+      <tbody>
+        <tr><td>2 lb</td><td>40 min</td><td>20 min</td><td>1 hr</td></tr>
+        <tr><td>3 lb</td><td>1 hr</td><td>20 min</td><td>1 hr 20 min</td></tr>
+        <tr><td>4 lb</td><td>1 hr 20 min</td><td>20 min</td><td>1 hr 40 min</td></tr>
+        <tr><td>5 lb</td><td>1 hr 40 min</td><td>20 min</td><td>2 hr</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">For other cuts, this is the USDA oven roasting chart for fresh pork (<a href="https://www.foodsafety.gov/food-safety-charts/meat-poultry-charts" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 600; text-decoration: underline;">FoodSafety.gov</a>). Every whole cut cooks to a minimum internal temperature of 145&deg;F (63&deg;C), then rests at least 3 minutes:</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="roast-table">
+      <thead><tr><th>Cut</th><th>Weight</th><th>Oven</th><th>Time</th></tr></thead>
+      <tbody>
+        <tr><td>Loin roast, bone-in or boneless</td><td>2 to 5 lb</td><td>350&deg;F (177&deg;C)</td><td>20 min per lb</td></tr>
+        <tr><td>Crown roast</td><td>10 lb</td><td>350&deg;F (177&deg;C)</td><td>12 min per lb</td></tr>
+        <tr><td>Boston butt (shoulder)</td><td>3 to 6 lb</td><td>350&deg;F (177&deg;C)</td><td>45 min per lb</td></tr>
+        <tr><td>Tenderloin</td><td>&frac12; to 1&frac12; lb</td><td>425 to 450&deg;F (218 to 232&deg;C)</td><td>20 to 27 min total</td></tr>
+        <tr><td>Ribs</td><td>2 to 4 lb</td><td>350&deg;F (177&deg;C)</td><td>1&frac12; to 2 hr, until fork tender</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Times are for planning. Bone-in roasts, a cold start, and an oven that runs off its dial all move the number, which is why the thermometer decides when it is done, not the clock.</p>
 
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
@@ -295,6 +359,18 @@
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Are these cooking times exact?</h3>
         <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long do you cook a pork loin roast per pound?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">About 20 minutes per pound in a 350&deg;F (177&deg;C) oven, per the USDA roasting chart, for a 2 to 5 pound bone-in or boneless loin roast. A 3-pound loin takes about an hour. Cook it to a minimum internal temperature of 145&deg;F (63&deg;C) and rest it at least 3 minutes.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long does a pork shoulder take in the oven?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">The USDA chart lists a 3 to 6 pound Boston butt at 45 minutes per pound in a 350&deg;F (177&deg;C) oven. This calculator&#39;s Pork Shoulder &amp; Hams profile schedules a lower, slower cook: about 40 minutes per pound at 250&deg;F (120&deg;C). Pulled pork is cooked well past the safe minimum, until it is fork tender, so leave extra time and let the thermometer and the fork decide.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What temperature should a pork roast be cooked to?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Whole pork cuts such as loin, shoulder, and fresh ham are safe at a minimum internal temperature of 145&deg;F (63&deg;C) followed by a rest of at least 3 minutes. Ground pork needs 160&deg;F (71&deg;C).</p>
       </div>
     </div>
   </div>
