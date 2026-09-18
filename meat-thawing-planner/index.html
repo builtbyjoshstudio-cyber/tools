@@ -133,6 +133,14 @@
             "@type": "Answer",
             "text": "40°F to 140°F — the temperature range where bacteria multiply fastest. Meat should never sit in that range while thawing, which is why counter thawing isn't safe and cold water has to stay cold and be changed regularly. Refrigerator thawing keeps the meat below it the whole time."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to thaw a turkey?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "About one day in the refrigerator for every 4 pounds, so 3 days for a 12-pound turkey, 4 days for 16 pounds, and 5 days for 20 pounds. In cold water changed every 30 minutes it takes about 36 minutes per pound, but past 6 hours the refrigerator is the safer choice."
+          }
         }
       ]
     }
@@ -175,6 +183,10 @@
       .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
       .net-grid .gear-img-wrapper { height: 120px; }
       @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+      /* ---- Reference tables ---- */
+      .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      .ref-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
+      .ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
     </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -327,6 +339,42 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Thawing time comes down to two safe methods, and they work at very different speeds. Refrigerator thawing is the slowest but safest — the meat stays below 40°F the entire time, so it never enters the bacterial "danger zone." As a rule of thumb it takes about 24 hours for every 5 pounds, though dense whole birds like turkey run a little slower and lean fish a little faster. Cold-water thawing is much quicker — roughly 30 minutes per pound — but the meat must be in a leak-proof bag, fully submerged, with the water changed every 30 minutes to keep it cold. This calculator gives you both estimates side by side, adjusted for the specific protein you choose, so you can pick the method that fits your timeline.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Speed isn't the only factor — safety sets the real limits. Cold-water thawing demands attention, and for large cuts it can run long enough that the surface drifts into unsafe temperatures before the center is done, which is why the tool steers you back to the refrigerator past a certain size. Vacuum-sealed fish and seafood carry a separate risk: the packaging must be opened before thawing to avoid anaerobic bacteria. Whichever method you use, the food should be cooked promptly once thawed, and counter thawing is never safe. For the full official guidance, see the USDA's <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/big-thaw-safe-defrosting-methods" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; font-weight: 600;">Big Thaw — Safe Defrosting Methods</a>.</p>
 
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Turkey thawing time by weight</h2>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">A whole turkey thaws at about 4 pounds per day in the refrigerator, or about 36 minutes per pound in cold water changed every 30 minutes:</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="ref-table">
+      <thead><tr><th>Turkey</th><th>Refrigerator</th><th>Cold water</th></tr></thead>
+      <tbody>
+        <tr><td>8 lb</td><td>2 days</td><td>4 hrs, 48 mins</td></tr>
+        <tr><td>12 lb</td><td>3 days</td><td>7 hrs, 12 mins *</td></tr>
+        <tr><td>16 lb</td><td>4 days</td><td>9 hrs, 36 mins *</td></tr>
+        <tr><td>20 lb</td><td>5 days</td><td>12 hrs *</td></tr>
+        <tr><td>24 lb</td><td>6 days</td><td>14 hrs, 24 mins *</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">* Past 6 hours in cold water the calculator recommends the refrigerator instead, because the surface of a large bird can warm up before the center thaws. Count back from the day you cook: a 16-pound turkey for Thursday goes into the refrigerator on Sunday.</p>
+
+    <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Roasts and whole chickens move faster, at about 5 pounds per day in the refrigerator or 30 minutes per pound in cold water:</p>
+
+    <div style="overflow-x: auto; margin-bottom: 14px;">
+    <table class="ref-table">
+      <thead><tr><th>Roast or chicken</th><th>Refrigerator</th><th>Cold water</th></tr></thead>
+      <tbody>
+        <tr><td>2 lb</td><td>10 hrs</td><td>1 hr</td></tr>
+        <tr><td>3 lb</td><td>15 hrs</td><td>1 hr, 30 mins</td></tr>
+        <tr><td>5 lb</td><td>1 day</td><td>2 hrs, 30 mins</td></tr>
+        <tr><td>8 lb</td><td>1 day, 15 hrs</td><td>4 hrs</td></tr>
+        <tr><td>10 lb</td><td>2 days</td><td>5 hrs</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Meat thawed in the refrigerator keeps for another day or two before cooking. Meat thawed in cold water should be cooked right away.</p>
+
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
@@ -356,6 +404,10 @@
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is the danger zone for thawing meat?</h3>
         <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">40°F to 140°F — the temperature range where bacteria multiply fastest. Meat should never sit in that range while thawing, which is why counter thawing isn't safe and cold water has to stay cold and be changed regularly. Refrigerator thawing keeps the meat below it the whole time.</p>
+      </div>
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long does it take to thaw a turkey?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">About one day in the refrigerator for every 4 pounds, so 3 days for a 12-pound turkey, 4 days for 16 pounds, and 5 days for 20 pounds. In cold water changed every 30 minutes it takes about 36 minutes per pound, but past 6 hours the refrigerator is the safer choice.</p>
       </div>
     </div>
   </div>
