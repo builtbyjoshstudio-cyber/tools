@@ -50,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
             restTime: 60,
             temp: '250°F (120°C)'
         },
+        'pork-loin': {
+            name: 'Pork Loin Roast',
+            minsPerPound: 20,
+            restTime: 20,
+            temp: '350°F (175°C)'
+        },
         'lamb': {
             name: 'Lamb Leg or Rack',
             minsPerPound: 20,
