@@ -216,9 +216,11 @@ A: They're planning estimates. Oven calibration, starting meat temperature, and 
 Q: How long do you cook a pork loin roast per pound?
 A: About 20 minutes per pound in a 350°F (177°C) oven, per the USDA roasting chart, for a 2 to 5 pound bone-in or boneless loin roast. A 3-pound loin takes about an hour. Cook it to a minimum internal temperature of 145°F (63°C) and rest it at least 3 minutes.
 Q: How long does a pork shoulder take in the oven?
-A: The USDA chart lists a 3 to 6 pound Boston butt at 45 minutes per pound in a 350°F (177°C) oven. This calculator's Pork Shoulder & Hams profile schedules a lower, slower cook: about 40 minutes per pound at 250°F (120°C). Pulled pork is cooked well past the safe minimum, until it is fork tender, so leave extra time and let the thermometer and the fork decide.
+A: About 45 minutes per pound in a 350°F (177°C) oven, per the USDA roasting chart, for a 3 to 6 pound Boston butt, so a 6-pound shoulder takes about four and a half hours. That is the profile this calculator uses. Pulled pork is cooked well past the safe minimum, until it is fork tender, so leave extra time and let the thermometer and the fork decide.
 Q: What temperature should a pork roast be cooked to?
 A: Whole pork cuts such as loin, shoulder, and fresh ham are safe at a minimum internal temperature of 145°F (63°C) followed by a rest of at least 3 minutes. Ground pork needs 160°F (71°C).
+Q: How long do you cook a ham per pound?
+A: In a 325°F (163°C) oven, the USDA chart gives 15 to 18 minutes per pound for a fully cooked whole bone-in ham and 18 to 24 for a half, or 18 to 20 and 22 to 25 for a ham labelled cook before eating. This calculator plans on 20 minutes per pound. Reheat a fully cooked ham to 140°F (60°C), and cook a cook-before-eating or fresh ham to 145°F (63°C) with a 3-minute rest.
 
 ### Universal Recipe Scaler
 URL: https://tools.builtbyjoshstudio.com/universal-recipe-scaler/

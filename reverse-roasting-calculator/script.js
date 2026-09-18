@@ -45,16 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
             temp: '225°F (105°C)'
         },
         'pork-shoulder': {
-            name: 'Pork Shoulder & Hams',
-            minsPerPound: 40,
+            name: 'Pork Shoulder (Boston Butt)',
+            minsPerPound: 45,
             restTime: 60,
-            temp: '250°F (120°C)'
+            temp: '350°F (175°C)'
         },
         'pork-loin': {
             name: 'Pork Loin Roast',
             minsPerPound: 20,
             restTime: 20,
             temp: '350°F (175°C)'
+        },
+        'ham': {
+            name: 'Ham (Whole or Half)',
+            minsPerPound: 20,
+            restTime: 20,
+            temp: '325°F (165°C)'
         },
         'lamb': {
             name: 'Lamb Leg or Rack',
