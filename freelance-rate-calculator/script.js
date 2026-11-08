@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function calculate() {
     var targetIncome = Math.max(0, num(targetIncomeInput, 0));
     var expenses     = Math.max(0, num(expensesInput, 0));
-    var taxPct       = Math.min(40, Math.max(0, num(taxRateInput, 15.3)));
+    var taxPct       = Math.min(40, Math.max(0, num(taxRateInput, 25)));
     var billable     = Math.max(1, num(billableInput, 25));
     var weeks        = Math.min(52, Math.max(1, num(weeksInput, 48)));
     var compareRate  = Math.max(0, num(compareRateInput, 0));

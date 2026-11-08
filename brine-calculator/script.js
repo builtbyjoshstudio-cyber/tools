@@ -135,6 +135,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         updatePipelineLinks();
+
+        // Every input change routes through here. Recompute so the salt shown
+        // always matches the salt type, method and strength currently selected
+        // (a stale coarse-salt spoon count read as table salt is 2x the salt).
+        if ((parseFloat(meatWeight.value) || 0) > 0) {
+            calculate();
+        } else {
+            resetOutputs();
+        }
+    }
+
+    function resetOutputs() {
+        saltVolumeOutput.textContent = "-- Tbsp";
+        saltWeightOutput.textContent = "-- g";
+        waterOutput.textContent = "--";
+        sugarOutput.textContent = "-- g";
+        timeOutput.textContent = "Calculate to view time recommendations.";
+        maxHoursForTimer = 0;
     }
 
     function setBrineType(type) {
@@ -183,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     proteinType.addEventListener("change", updateUI);
     turkeyHelperToggle.addEventListener("change", updateUI);
     saltType.addEventListener("change", updateUI);
+    brineStrength.addEventListener("change", updateUI);
     briningMethod.addEventListener("change", updateUI);
     meatWeight.addEventListener("input", updateUI);
 
@@ -229,8 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
             saltGrams = weightGrams * ratio;
         } else {
             // Wet Brine Math
-            // Water volume is 50% of meat weight to submerge
-            waterGrams = weightGrams * 0.5;
+            // Enough water to keep the meat submerged: about 0.6 L per lb (ATK uses
+            // ~2 gal for a 12-14 lb turkey), never under 2 L. Extra water can't
+            // over-salt: standard salt is a % of the water, and EQ still lands at 1.5%.
+            waterGrams = Math.max(weightLbs * 600, 2000);
             
             if (isEQ) {
                 const totalWeight = weightGrams + waterGrams;
@@ -467,11 +488,7 @@ document.addEventListener("DOMContentLoaded", () => {
             meatWeight.value = parseFloat(weight) || 10;
         }
 
-        updateUI();
-
-        if (protein || weight) {
-            calculate();
-        }
+        updateUI(); // also calculates whenever a weight is set
     }
 
     // Init

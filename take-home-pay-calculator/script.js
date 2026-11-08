@@ -1,6 +1,6 @@
 /* ============================================================
    Take-Home Pay Calculator — Tynkr Tools & Co
-   Salary -> net paycheck: 2025 federal brackets + standard
+   Salary -> net paycheck: 2026 federal brackets + standard
    deduction, FICA (SS capped, Medicare + 0.9% surtax), pre-tax
    401(k), optional flat state rate. Vanilla JS, self-contained.
    Estimates only — not tax advice.
@@ -24,30 +24,32 @@ var TYNKR_REGISTRY = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ---- 2025 federal figures (update annually) ----
+  // ---- 2026 federal figures (update annually) ----
+  // Brackets + standard deduction: IRS Rev. Proc. 2025-32 / IR-2025-103.
+  // Wage base: SSA 2026 COLA fact sheet.
   var SS_RATE = 0.062;             // employee Social Security
-  var SS_WAGE_BASE = 176100;       // 2025 Social Security wage cap
+  var SS_WAGE_BASE = 184500;       // 2026 Social Security wage cap
   var MEDICARE_RATE = 0.0145;      // employee Medicare
   var MEDICARE_SURTAX = 0.009;     // additional Medicare (withholding kicks in over $200k)
   var MEDICARE_SURTAX_FLOOR = 200000;
-  var STD_DEDUCTION = { single: 15000, mfj: 30000 };
+  var STD_DEDUCTION = { single: 16100, mfj: 32200 };
   var BRACKETS = {
     single: [
-      { upTo: 11925,    rate: 0.10 },
-      { upTo: 48475,    rate: 0.12 },
-      { upTo: 103350,   rate: 0.22 },
-      { upTo: 197300,   rate: 0.24 },
-      { upTo: 250525,   rate: 0.32 },
-      { upTo: 626350,   rate: 0.35 },
+      { upTo: 12400,    rate: 0.10 },
+      { upTo: 50400,    rate: 0.12 },
+      { upTo: 105700,   rate: 0.22 },
+      { upTo: 201775,   rate: 0.24 },
+      { upTo: 256225,   rate: 0.32 },
+      { upTo: 640600,   rate: 0.35 },
       { upTo: Infinity, rate: 0.37 }
     ],
     mfj: [
-      { upTo: 23850,    rate: 0.10 },
-      { upTo: 96950,    rate: 0.12 },
-      { upTo: 206700,   rate: 0.22 },
-      { upTo: 394600,   rate: 0.24 },
-      { upTo: 501050,   rate: 0.32 },
-      { upTo: 751600,   rate: 0.35 },
+      { upTo: 24800,    rate: 0.10 },
+      { upTo: 100800,   rate: 0.12 },
+      { upTo: 211400,   rate: 0.22 },
+      { upTo: 403550,   rate: 0.24 },
+      { upTo: 512450,   rate: 0.32 },
+      { upTo: 768700,   rate: 0.35 },
       { upTo: Infinity, rate: 0.37 }
     ]
   };
@@ -162,8 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
       { ix: "G", h: "Gross paycheck", p: "Salary &divide; " + periods + " pay periods", code: money2(grossCk), cls: "" }
     ];
     if (kCk > 0) rows.push({ ix: "401k", h: "401(k) contribution", p: "Pre-tax — still your money, just parked", code: "&minus;" + money2(kCk), cls: "" });
-    rows.push({ ix: "FED", h: "Federal income tax", p: "2025 brackets on income after 401(k) + standard deduction", code: "&minus;" + money2(fedCk), cls: "" });
-    rows.push({ ix: "SS", h: "Social Security", p: "6.2% of gross" + (gross > SS_WAGE_BASE ? " (capped at $176,100/yr)" : ""), code: "&minus;" + money2(ssCk), cls: "" });
+    rows.push({ ix: "FED", h: "Federal income tax", p: "2026 brackets on income after 401(k) + standard deduction", code: "&minus;" + money2(fedCk), cls: "" });
+    rows.push({ ix: "SS", h: "Social Security", p: "6.2% of gross" + (gross > SS_WAGE_BASE ? " (capped at " + money(SS_WAGE_BASE) + "/yr)" : ""), code: "&minus;" + money2(ssCk), cls: "" });
     rows.push({ ix: "MED", h: "Medicare", p: "1.45% of gross" + (gross > MEDICARE_SURTAX_FLOOR ? " + 0.9% surtax over $200k" : ""), code: "&minus;" + money2(medCk), cls: "" });
     if (stCk > 0) rows.push({ ix: "ST", h: "State income tax", p: "Flat " + (stateRate * 100).toFixed(1) + "% after 401(k) (rough)", code: "&minus;" + money2(stCk), cls: "" });
     rows.push({ ix: "NET", h: "Lands in your account", p: "What the month actually runs on", code: money2(netCk), cls: " is-net" });

@@ -98,22 +98,48 @@ Object.keys(INGREDIENT_DATABASE).forEach(key => {
     INGREDIENT_DENSITIES[key] = INGREDIENT_DATABASE[key].density;
 });
 
+// A key can sit inside the name of a different food: "coconut milk" contains
+// "milk", "almond flour" contains "flour", "sugar snap peas" contains "sugar".
+// When one of these patterns matches, the line is left unmatched so the user is
+// asked, instead of silently getting the wrong food's nutrition or density.
+const DIFFERENT_FOOD = {
+    "milk": /\b(coconut|almond|oat|soy|rice|cashew|condensed|evaporated|powdered)[\s-]+milk\b|\bmilk[\s-]+chocolate\b/,
+    "butter": /\b(peanut|almond|cashew|sunflower|apple|cocoa)[\s-]+butter\b|\bbutter[\s-]+(beans?|lettuce)\b/,
+    "flour": /\b(almond|coconut|rice|corn|chickpea|oat|tapioca|potato|cassava|soy)[\s-]+flour\b/,
+    "sugar": /\bsugar[\s-]*free\b|\bsugar[\s-]+(snap|substitute)\b/,
+    "water": /\bwater[\s-]+chestnuts?\b|\bcoconut[\s-]+water\b/
+};
+
+function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 /**
  * Finds the matching ingredient database entry for a given ingredient name or text line.
- * Performs a case-insensitive search matching the longest key first to prevent false partial matches.
- * 
+ * Case-insensitive, whole-word, longest key first ("all-purpose flour" before "flour").
+ * Whole words keep "saltine" from matching salt and "goats" from matching oats.
+ *
  * @param {string} text - The line of text or ingredient name to search.
  * @returns {object|null} - An object with { name, density, cal, protein, carbs, fat, fiber, sodium } or null.
  */
 function findIngredientDensity(text) {
     if (!text) return null;
     const cleanText = text.toLowerCase();
-    
+
     // Sort keys by length descending to match "all-purpose flour" before "flour"
     const sortedKeys = Object.keys(INGREDIENT_DATABASE).sort((a, b) => b.length - a.length);
-    
+
     for (const key of sortedKeys) {
-        if (cleanText.includes(key)) {
+        // optional plural: "flaxseeds" still finds "flaxseed"
+        const wholeWord = new RegExp('(^|[^a-z])' + escapeRegExp(key) + 's?([^a-z]|$)');
+        const m = wholeWord.exec(cleanText);
+        if (m) {
+            // Judge the guard on the words right around THIS occurrence, so
+            // "1 cup milk (or almond milk)" stays milk but "almond milk" doesn't.
+            const at = m.index + m[1].length;
+            const near = cleanText.slice(0, at).match(/([a-z]+[\s-]*)?$/)[0] +
+                         cleanText.slice(at).match(/^[a-z]+([\s-]*[a-z]+)?/)[0];
+            if (DIFFERENT_FOOD[key] && DIFFERENT_FOOD[key].test(near)) return null;
             return {
                 name: key,
                 ...INGREDIENT_DATABASE[key]

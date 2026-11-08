@@ -1,7 +1,7 @@
 /* ============================================================
    Quarterly Tax Estimator — Tynkr Tools & Co
    SE tax (15.3% on 92.35% of profit, SS portion capped) +
-   2025 federal brackets after half-SE deduction and the
+   2026 federal brackets after half-SE deduction and the
    standard deduction, split across the four IRS due dates.
    Vanilla JS, self-contained. Estimates only — not tax advice.
    Theme is handled globally by ../kinetic.js
@@ -22,29 +22,31 @@ var TYNKR_REGISTRY = {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ---- 2025 federal figures (update annually) ----
+  // ---- 2026 federal figures (update annually) ----
+  // Brackets + standard deduction: IRS Rev. Proc. 2025-32 / IR-2025-103.
+  // Wage base: SSA 2026 COLA fact sheet.
   var SE_FACTOR = 0.9235;          // taxable share of net profit
   var SE_SS_RATE = 0.124;          // Social Security portion
   var SE_MEDICARE_RATE = 0.029;    // Medicare portion (uncapped)
-  var SS_WAGE_BASE = 176100;       // 2025 Social Security wage base
-  var STD_DEDUCTION = { single: 15000, mfj: 30000 };
+  var SS_WAGE_BASE = 184500;       // 2026 Social Security wage base
+  var STD_DEDUCTION = { single: 16100, mfj: 32200 };
   var BRACKETS = {
     single: [
-      { upTo: 11925,    rate: 0.10 },
-      { upTo: 48475,    rate: 0.12 },
-      { upTo: 103350,   rate: 0.22 },
-      { upTo: 197300,   rate: 0.24 },
-      { upTo: 250525,   rate: 0.32 },
-      { upTo: 626350,   rate: 0.35 },
+      { upTo: 12400,    rate: 0.10 },
+      { upTo: 50400,    rate: 0.12 },
+      { upTo: 105700,   rate: 0.22 },
+      { upTo: 201775,   rate: 0.24 },
+      { upTo: 256225,   rate: 0.32 },
+      { upTo: 640600,   rate: 0.35 },
       { upTo: Infinity, rate: 0.37 }
     ],
     mfj: [
-      { upTo: 23850,    rate: 0.10 },
-      { upTo: 96950,    rate: 0.12 },
-      { upTo: 206700,   rate: 0.22 },
-      { upTo: 394600,   rate: 0.24 },
-      { upTo: 501050,   rate: 0.32 },
-      { upTo: 751600,   rate: 0.35 },
+      { upTo: 24800,    rate: 0.10 },
+      { upTo: 100800,   rate: 0.12 },
+      { upTo: 211400,   rate: 0.22 },
+      { upTo: 403550,   rate: 0.24 },
+      { upTo: 512450,   rate: 0.32 },
+      { upTo: 768700,   rate: 0.35 },
       { upTo: Infinity, rate: 0.37 }
     ]
   };
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var rows = [
       { ix: "SE", h: "Self-employment tax", p: "15.3% on " + money(profit * SE_FACTOR) + " (92.35% of profit)", code: money(se) },
       { ix: "&minus;", h: "Adjustments", p: "Half of SE tax (" + money(halfSE) + ") + standard deduction (" + money(deduction) + ")", code: "&minus;" + money(halfSE + deduction) },
-      { ix: "IT", h: "Federal income tax", p: "2025 brackets on " + money(taxable) + " taxable income", code: money(fed) }
+      { ix: "IT", h: "Federal income tax", p: "2026 brackets on " + money(taxable) + " taxable income", code: money(fed) }
     ];
     if (stateRate > 0) {
       rows.push({ ix: "ST", h: "State income tax", p: "Flat " + stateRate + "% of net profit (rough)", code: money(state) });

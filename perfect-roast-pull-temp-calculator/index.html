@@ -181,7 +181,7 @@
       <div class="meta">
         <span class="pill live">&#9679; Utilities</span>
         <span>Carryover cooking math</span>
-        <span class="updated-date">Updated September 2026</span>
+        <span class="updated-date">Updated November 2026</span>
       </div>
       <h1>Perfect Roast Pull Temp</h1>
       <p>Calculate the precise temperature to remove your meat from the heat, accounting for resting time and carryover cooking to hit the perfect final doneness.</p>
@@ -195,7 +195,7 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Finds the temperature to pull meat from the heat so carryover cooking during the rest lands it exactly on your target doneness.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Meat type (turkey to venison), cut/size (whole bird, thick steak, thin cut, brisket, duck breast), cooking method/environment (standard, high heat, low &amp; slow), and desired final doneness (rare through well done or 165°F-safe).</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Meat type (turkey to venison), cut/size (whole bird, thick steak, thin cut, brisket, duck breast), cooking method/environment (standard, high heat, low &amp; slow), and desired final doneness (rare through well done, or the USDA-safe 160°F for ground meat and 165°F for poultry).</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The pull temperature, the expected temperature rise during rest, and the final serving temperature.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
@@ -233,7 +233,8 @@
             <option value="lamb">Lamb Leg or Rack</option>
           </optgroup>
           <optgroup label="Ground, Game &amp; Seafood">
-            <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
+            <option value="ground-meat">Ground Beef, Pork &amp; Lamb</option>
+            <option value="ground-poultry">Ground Turkey &amp; Chicken</option>
             <option value="game-meat">Venison &amp; Bison (Lean Game)</option>
             <option value="seafood">Fish &amp; Seafood</option>
           </optgroup>
@@ -270,8 +271,7 @@
           <option value="160">Well Done</option>
           <option value="165" style="display: none;" id="poultry-safe">Safe (165&deg;F / 74&deg;C)</option>
           <option value="140" style="display: none;" id="fish-safe">Flaky/Opaque (140&deg;F / 60&deg;C)</option>
-          <option value="130" style="display: none;" id="duck-mr">Medium-Rare (130&deg;F / 54&deg;C)</option>
-          <option value="140" style="display: none;" id="duck-med">Medium (140&deg;F / 60&deg;C)</option>
+          <option value="160" style="display: none;" id="ground-safe">Safe (160&deg;F / 71&deg;C)</option>
           <option value="200" style="display: none;" id="bbq-safe">Probe Tender (200&deg;F - 205&deg;F)</option>
           <option value="203" style="display: none;" id="brisket-safe">Collagen Breakdown (203&deg;F / 95&deg;C)</option>
           <option value="135" style="display: none;" id="duck-breast-mr">Medium-Rare (135&deg;F / 57&deg;C)</option>

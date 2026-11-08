@@ -72,12 +72,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ---------- name engine (compact mix of the name generator's styles) ----------
-  var NA = ["Ae", "El", "Ly", "Tha", "Cae", "Vae", "Mira", "Sere", "Ori", "Fae", "Gro", "Kar", "Bal", "Mor", "Vor", "Dag", "Bo", "Fen", "Gil", "Pip", "Tam", "Wick", "Bram", "Nell", "Hark", "Sola"];
+  var NA = ["Ae", "El", "Ly", "Tha", "Cae", "Vae", "Mira", "Sere", "Ori", "Fae", "Gro", "Kar", "Bal", "Mor", "Vor", "Thok", "Bo", "Fen", "Gil", "Pip", "Tam", "Wick", "Bram", "Nell", "Hark", "Sola"];
   var NB = ["l", "n", "r", "s", "th", "k", "g", "dr", ""];
   var NC = ["ien", "wen", "ara", "orin", "ise", "eth", "ak", "dur", "rok", "arn", "is", "o", "a", "et", "yn", "une"];
-  function makeName() {
+  function makeNameOnce() {
     var n = pick(NA) + pick(NB) + pick(NC);
     return n.charAt(0).toUpperCase() + n.slice(1).toLowerCase();
+  }
+  // Franchise character names the pools assemble exactly (Skyrim's Miraak, WoW's
+  // Elune). Found by enumerating all 3,744 combinations against franchise names and
+  // an offensive-word list; re-run that check whenever the pools change.
+  var BLOCK = { miraak: 1, elune: 1 };
+  function makeName() {
+    var n;
+    do { n = makeNameOnce(); } while (BLOCK[n.toLowerCase()]);
+    return n;
   }
 
   // ---------- pools (all invented) ----------
