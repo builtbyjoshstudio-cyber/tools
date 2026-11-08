@@ -102,12 +102,24 @@ document.addEventListener("DOMContentLoaded", function () {
     var first = rnd(2) ? nameFlowing() : nameHarsh();
     return first + " " + pick(NOBLE_ADJ) + pick(NOBLE_SUFFIX);
   }
-  function makeName(style) {
+  function makeNameOnce(style) {
     if (style === "any") style = pick(["flowing", "harsh", "short", "noble"]);
     if (style === "flowing") return nameFlowing();
     if (style === "harsh") return nameHarsh();
     if (style === "short") return nameShort();
     return nameNoble();
+  }
+  // Franchise places and characters the pools can assemble exactly (Tolkien's
+  // Mordor, WoW's Ironforge, Skyrim's Dawnguard, Eberron's Stormreach...). Checked
+  // per word, so a noble surname is caught too; a hit is re-rolled. Found by
+  // enumerating every combination; re-run that check when the pools change.
+  var BLOCK = { mordor: 1, ironforge: 1, dawnguard: 1, stormreach: 1, ravencrest: 1,
+                moonbrook: 1, muzgash: 1, morgrim: 1, balrok: 1, elune: 1 };
+  function makeName(style) {
+    var n;
+    do { n = makeNameOnce(style); }
+    while (n.toLowerCase().split(" ").some(function (w) { return BLOCK[w]; }));
+    return n;
   }
 
   // ---------- generate / select ----------

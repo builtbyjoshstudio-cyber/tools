@@ -16,8 +16,7 @@ const restWarning = document.getElementById('rest-warning');
 const copyBtn = document.getElementById('copy-btn');
 const poultrySafeOpt = document.getElementById('poultry-safe');
 const fishSafeOpt = document.getElementById('fish-safe');
-const duckMrOpt = document.getElementById('duck-mr');
-const duckMedOpt = document.getElementById('duck-med');
+const groundSafeOpt = document.getElementById('ground-safe');
 const bbqSafeOpt = document.getElementById('bbq-safe');
 const cookingMethod = document.getElementById('cooking-method');
 const brisketSafeOpt = document.getElementById('brisket-safe');
@@ -33,10 +32,8 @@ function updateDonenessOptionTexts(isCelsius) {
             opt.textContent = isCelsius ? 'Safe (74°C)' : 'Safe (165°F / 74°C)';
         } else if (opt.id === 'fish-safe') {
             opt.textContent = isCelsius ? 'Flaky/Opaque (60°C)' : 'Flaky/Opaque (140°F / 60°C)';
-        } else if (opt.id === 'duck-mr') {
-            opt.textContent = isCelsius ? 'Medium-Rare (54°C)' : 'Medium-Rare (130°F / 54°C)';
-        } else if (opt.id === 'duck-med') {
-            opt.textContent = isCelsius ? 'Medium (60°C)' : 'Medium (140°F / 60°C)';
+        } else if (opt.id === 'ground-safe') {
+            opt.textContent = isCelsius ? 'Safe (71°C)' : 'Safe (160°F / 71°C)';
         } else if (opt.id === 'bbq-safe') {
             opt.textContent = isCelsius ? 'Probe Tender (93°C - 96°C)' : 'Probe Tender (200°F - 205°F)';
         } else if (opt.id === 'brisket-safe') {
@@ -99,60 +96,31 @@ function updateUI() {
 
     const options = finalDoneness.options;
     
+    // Options are selected by element, not by value: several share a value
+    // (160 = Well Done and Safe-for-ground; 135 = Medium-Rare and duck breast),
+    // and setting .value would pick whichever comes first, even a hidden one.
+    function showOnly(opt) {
+        for (let i = 0; i < options.length; i++) {
+            options[i].style.display = (options[i] === opt) ? '' : 'none';
+        }
+        opt.selected = true;
+    }
+
     if (isBrisketOverride) {
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].id !== 'brisket-safe') {
-                options[i].style.display = 'none';
-            }
-        }
-        brisketSafeOpt.style.display = '';
-        finalDoneness.value = "203";
+        showOnly(brisketSafeOpt);
     } else if (isDuckBreastOverride) {
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].id !== 'duck-breast-mr') {
-                options[i].style.display = 'none';
-            }
-        }
-        duckBreastMrOpt.style.display = '';
-        finalDoneness.value = "135";
-    } else if (meatType.value === 'turkey' || meatType.value === 'chicken') {
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].id !== 'poultry-safe') {
-                options[i].style.display = 'none';
-            }
-        }
-        poultrySafeOpt.style.display = '';
-        finalDoneness.value = "165";
+        showOnly(duckBreastMrOpt);
+    } else if (isPoultryType()) {
+        showOnly(poultrySafeOpt);
+    } else if (meatType.value === 'ground-meat') {
+        showOnly(groundSafeOpt);
     } else if (meatType.value === 'seafood') {
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].id !== 'fish-safe') {
-                options[i].style.display = 'none';
-            }
-        }
-        fishSafeOpt.style.display = '';
-        finalDoneness.value = "140";
-    } else if (meatType.value === 'duck-goose') {
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].id !== 'duck-mr' && options[i].id !== 'duck-med') {
-                options[i].style.display = 'none';
-            }
-        }
-        duckMrOpt.style.display = '';
-        duckMedOpt.style.display = '';
-        if (finalDoneness.value !== "130" && finalDoneness.value !== "140") {
-            finalDoneness.value = "130";
-        }
+        showOnly(fishSafeOpt);
     } else if (meatType.value === 'pork-shoulder') {
-        for (let i = 0; i < options.length; i++) {
-            if (options[i].id !== 'bbq-safe') {
-                options[i].style.display = 'none';
-            }
-        }
-        bbqSafeOpt.style.display = '';
-        finalDoneness.value = "200";
+        showOnly(bbqSafeOpt);
     } else {
         // Hide all special options, show standard options
-        const specialIds = ['poultry-safe', 'fish-safe', 'duck-mr', 'duck-med', 'bbq-safe', 'brisket-safe', 'duck-breast-mr'];
+        const specialIds = ['poultry-safe', 'fish-safe', 'ground-safe', 'bbq-safe', 'brisket-safe', 'duck-breast-mr'];
         for (let i = 0; i < options.length; i++) {
             if (!specialIds.includes(options[i].id)) {
                 options[i].style.display = '';
@@ -160,7 +128,7 @@ function updateUI() {
                 options[i].style.display = 'none';
             }
         }
-        
+
         // Reset disabled states for standard options
         for (let i = 0; i < options.length; i++) {
             if (options[i].style.display !== 'none') {
@@ -168,10 +136,20 @@ function updateUI() {
             }
         }
 
-        if (['165', '140', '130', '200', '203', '135'].includes(finalDoneness.value)) {
+        // Coming from a special-case meat: fall back to Medium. A standard
+        // choice (e.g. Medium-Rare) is kept when only the cut changes.
+        if (specialIds.includes(options[finalDoneness.selectedIndex].id)) {
             finalDoneness.value = "145";
         }
     }
+}
+
+// Everything held to the USDA 165°F poultry minimum. Duck breast is the one
+// exception (chef's medium-rare, handled as its own override).
+function isPoultryType() {
+    const m = meatType.value;
+    if (m === 'duck-goose') return cutSize.value !== 'duck_breast';
+    return m === 'turkey' || m === 'chicken' || m === 'ground-poultry';
 }
 
 // Math Engine
@@ -182,7 +160,8 @@ function convertToCelsius(f) {
 
 function calculate() {
     const isCelsius = (currentUnit === 'metric');
-    const isPoultry = (meatType.value === 'turkey' || meatType.value === 'chicken');
+    const isPoultry = isPoultryType();
+    const isGround = (meatType.value === 'ground-meat');
     const isFish = (meatType.value === 'seafood');
     const isGame = (meatType.value === 'game-meat');
     const isDuck = (meatType.value === 'duck-goose');
@@ -195,6 +174,7 @@ function calculate() {
     
     // Enforce logic rule minimums defensively
     if (isPoultry) targetTempF = 165;
+    if (isGround) targetTempF = 160;
     if (isFish) targetTempF = 140;
     if (isBbq) targetTempF = 200;
     if (isBrisketOverride) targetTempF = 203;
@@ -204,7 +184,13 @@ function calculate() {
     let restTimeStr = "";
     const method = cookingMethod.value; // 'standard', 'high', 'low'
     
-    if (isBrisketOverride) {
+    if (isPoultry || isGround) {
+        // Food-safety minimums: pull AT the minimum. Carryover is a bonus,
+        // never part of the safety math.
+        carryoverSubF = 0;
+        restTimeStr = cutSize.value === 'large' ? '15-20 minutes'
+                    : cutSize.value === 'thick' ? '5-10 minutes' : '5 minutes';
+    } else if (isBrisketOverride) {
         carryoverSubF = 5; // Pull at 198°F (203 - 5 = 198)
     } else if (isDuckBreastOverride) {
         carryoverSubF = 5; // Pull at 130°F (135 - 5 = 130)
@@ -276,6 +262,12 @@ function calculate() {
             pullTempC = 54.4;
             targetTempC = 57.2;
         }
+        if (isPoultry) {
+            // 165°F is 73.9°C; show the 74°C the USDA (and the note below) cite,
+            // so a safety number never reads as under the stated minimum.
+            pullTempC = 74;
+            targetTempC = 74;
+        }
         pullTempOutput.innerText = `${pullTempC}°C`;
         targetTempOutput.innerText = `${targetTempC}°C`;
     } else {
@@ -289,8 +281,18 @@ function calculate() {
             : `<strong>Brisket Override:</strong> Pull at 198°F (92°C) and store in an insulated cooler for a minimum of 2 hours.`;
     } else if (isDuckBreastOverride) {
         restWarning.innerHTML = isCelsius
-            ? `<strong>Chef's Note:</strong> For premium duck breast, bypass generic well-done poultry guidelines to preserve succulence. Pull at 54.4°C (130°F) for medium-rare and rest for 8 minutes.`
-            : `<strong>Chef's Note:</strong> For premium duck breast, bypass generic well-done poultry guidelines to preserve succulence. Pull at 130°F (54.4°C) for medium-rare and rest for 8 minutes.`;
+            ? `<strong>Chef's Note:</strong> Duck breast is classically served medium-rare, a chef's preference below the USDA's 74°C (165°F) poultry guideline. Pull at 54.4°C (130°F) and rest for 8 minutes. Roasting a whole duck or goose? Choose Large Roast / Whole Bird for the 74°C safe target.`
+            : `<strong>Chef's Note:</strong> Duck breast is classically served medium-rare, a chef's preference below the USDA's 165°F (74°C) poultry guideline. Pull at 130°F (54.4°C) and rest for 8 minutes. Roasting a whole duck or goose? Choose Large Roast / Whole Bird for the 165°F safe target.`;
+    } else if (isPoultry) {
+        const where = meatType.value === 'ground-poultry' ? 'the center of the thickest patty or loaf'
+                    : cutSize.value === 'large' ? 'the thickest part of the breast and thigh' : 'the thickest part';
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> Poultry is pulled at the USDA minimum of 74°C (165°F). Carryover is a bonus, not part of the safety math. Check ${where}, then rest ${restTimeStr}.`
+            : `<strong>Food Safety:</strong> Poultry is pulled at the USDA minimum of 165°F (74°C). Carryover is a bonus, not part of the safety math. Check ${where}, then rest ${restTimeStr}.`;
+    } else if (isGround) {
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> Ground meat must reach 71°C (160°F) all the way through. Grinding spreads surface bacteria into the center, so there's no safe rare or medium. Check the center of the thickest patty or loaf, then rest ${restTimeStr}.`
+            : `<strong>Food Safety:</strong> Ground meat must reach 160°F (71°C) all the way through. Grinding spreads surface bacteria into the center, so there's no safe rare or medium. Check the center of the thickest patty or loaf, then rest ${restTimeStr}.`;
     } else if (isGame) {
         restWarning.innerHTML = isCelsius
             ? `<strong>Chef's Note:</strong> Game meat is extremely lean. It is highly recommended not to target above Medium-Rare (57°C) or it will dry out. Rest 5-10 minutes.`
@@ -323,13 +325,25 @@ function setUnitSystem(unit) {
 unitImperialBtn.addEventListener('click', () => setUnitSystem('imperial'));
 unitMetricBtn.addEventListener('click', () => setUnitSystem('metric'));
 
+// Once a result is on screen, any input change must refresh it, or a stale
+// pull temp (e.g. a beef number after switching to chicken) stays up and in Copy.
+function recalcIfShowing() {
+    if (pullTempOutput.innerText !== '--°F' && pullTempOutput.innerText !== '--°C') {
+        calculate();
+    }
+}
+
 meatType.addEventListener('change', () => {
     updateUI();
+    recalcIfShowing();
 });
 
 cutSize.addEventListener('change', () => {
     updateUI();
+    recalcIfShowing();
 });
+
+finalDoneness.addEventListener('change', recalcIfShowing);
 
 cookingMethod.addEventListener('change', () => {
     if (pullTempOutput.innerText !== '--°F' && pullTempOutput.innerText !== '--°C') {

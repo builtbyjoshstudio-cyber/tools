@@ -29,7 +29,7 @@
 - [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year.
 - [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side.
 - [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded.
-- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, expenses, and non-billable time.
+- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after tax, expenses, and non-billable time.
 - [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
 - [Free Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded.
 - [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves.
@@ -94,7 +94,7 @@ A: Roughly an hour per pound for a wet brine as a starting point, longer for dry
 Q: Can I brine pre-seasoned or "enhanced" meat?
 A: It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for "enhanced" or a sodium-containing ingredient list before brining.
 Q: What is the formula for a brine?
-A: A standard wet brine is salt at about 5% of the water's weight, which is 50 g of salt per liter of water. A dry brine is salt at about 1% of the meat's weight. This calculator uses half the meat's weight in water, so a 12-pound turkey takes about 2.7 liters of water and 136 g of salt.
+A: A standard wet brine is salt at about 5% of the water's weight, which is 50 g of salt per liter of water. A dry brine is salt at about 1% of the meat's weight. This calculator uses about 0.6 liters of water per pound of meat (at least 2 liters) to keep it submerged, so a 12-pound turkey takes about 7.2 liters of water and 360 g of salt.
 Q: What is an equilibrium brine?
 A: An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving.
 Q: How much salt do I use for a dry brine per pound?
@@ -301,9 +301,9 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 
 ### Freelance Rate Calculator
 URL: https://tools.builtbyjoshstudio.com/freelance-rate-calculator/
-What it does: Calculate the freelance hourly rate you need to hit your income goal — after self-employment tax, expenses, and non-billable time. Free, ad-free.
+What it does: Calculate the freelance hourly rate you need to hit your income goal — after tax, expenses, and non-billable time. Free, ad-free.
 Q: How do I calculate my freelance hourly rate?
-A: Start with your target take-home income, add self-employment tax (about 15.3%) and your annual business expenses, then divide the total by your realistic billable hours per year. Billable hours are lower than working hours because admin, marketing, and downtime aren't billable. This calculator does all of that and shows the floor rate you need to charge.
+A: Start with your target take-home income, set aside tax on top of it (self-employment tax plus federal and state income tax, commonly 25–30% of profit), add your annual business expenses, then divide the total by your realistic billable hours per year. Billable hours are lower than working hours because admin, marketing, and downtime aren't billable. This calculator does all of that and shows the floor rate you need to charge.
 Q: Why is my freelance rate higher than an equivalent salary?
 A: As a freelancer you cover costs an employer normally pays: the full 15.3% self-employment tax, health insurance, retirement, software, and unpaid time off. You also can't bill every working hour. Once those are factored in, the rate needed to match a given take-home is typically 25-50% higher than the equivalent W-2 hourly wage.
 Q: What percentage of my hours are actually billable?
@@ -369,7 +369,7 @@ A: The usual federal due dates are April 15, June 15, and September 15 of the ta
 Q: What is the safe harbor rule for estimated taxes?
 A: You generally avoid an underpayment penalty if you pay at least 90% of this year's tax or 100% of last year's tax (110% if your prior-year adjusted gross income was over $150,000), spread evenly across the quarters. If your income is hard to predict, paying to the prior-year safe harbor is the low-stress strategy.
 Q: Is this quarterly tax estimator accurate?
-A: It's an estimate built on 2025 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, and the ordinary income brackets. It doesn't know your credits, other income, retirement contributions, or QBI deduction, so treat it as a planning number and confirm with a tax professional.
+A: It's an estimate built on 2026 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, and the ordinary income brackets. It doesn't know your credits, other income, retirement contributions, or QBI deduction, so treat it as a planning number and confirm with a tax professional.
 
 ### Savings Goal Calculator
 URL: https://tools.builtbyjoshstudio.com/savings-goal-calculator/
@@ -387,13 +387,13 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 URL: https://tools.builtbyjoshstudio.com/take-home-pay-calculator/
 What it does: See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month. Free, ad-free, no signup.
 Q: How is take-home pay calculated from salary?
-A: Start with gross pay, subtract pre-tax retirement contributions, then subtract federal income tax (2025 brackets after the standard deduction), Social Security (6.2% up to the annual wage cap), Medicare (1.45%, plus 0.9% on wages over $200,000), and any state income tax. What's left is your net — this calculator shows it per paycheck and per month.
+A: Start with gross pay, subtract pre-tax retirement contributions, then subtract federal income tax (2026 brackets after the standard deduction), Social Security (6.2% up to the annual wage cap), Medicare (1.45%, plus 0.9% on wages over $200,000), and any state income tax. What's left is your net — this calculator shows it per paycheck and per month.
 Q: Why is my paycheck so much smaller than my salary?
 A: Three quiet subtractions: FICA taxes (7.65% for most people, covering Social Security and Medicare), federal income tax withholding, and in most states, state income tax. Together they commonly take 20–30% of gross pay for middle incomes. Retirement and health contributions reduce the check further — but that money is still yours.
 Q: Does contributing to a 401(k) lower my paycheck dollar-for-dollar?
 A: No — traditional 401(k) contributions come out before federal income tax, so a $100 contribution typically shrinks your check by only $75–$90 depending on your bracket. The rest is tax you didn't pay. Move the contribution slider and compare the net change to the contribution amount to see your own discount.
 Q: How accurate is this take-home pay calculator?
-A: It uses 2025 federal figures — brackets, standard deduction, and FICA rates and caps — and treats state tax as a simple flat rate you enter. It doesn't model health premiums, HSA/FSA, local taxes, credits, or W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.
+A: It uses 2026 federal figures — brackets, standard deduction, and FICA rates and caps — and treats state tax as a simple flat rate you enter. It doesn't model health premiums, HSA/FSA, local taxes, credits, or W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.
 Q: Is this take-home pay calculator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
 

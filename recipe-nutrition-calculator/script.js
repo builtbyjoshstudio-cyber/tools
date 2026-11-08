@@ -188,14 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return volumeMl * density;
         }
 
-        // Count base (specifically support eggs)
-        if (unit === 'count') {
-            if (/\beggs?\b/i.test(density)) { // density used as string identifier in egg check
-                return qty * 50; // 1 large egg is ~50g
-            }
-        }
-
         return null;
+    }
+
+    // Eggs aren't in the shared database, and whole egg, white and yolk differ ~6x
+    // in calories. USDA SR Legacy per 100 g: whole FDC 171287, white FDC 172183,
+    // yolk FDC 172184. `each` = grams in one large egg / white / yolk.
+    // A standalone "egg(s)" means whole eggs, even with "white" (shell colour) or a
+    // second item on the line ("2 eggs plus 1 yolk"); only "egg white(s)",
+    // "egg yolk(s)" or a bare "yolk(s)" switch profiles.
+    function eggProfile(name) {
+        if (!/\beggs?\b(?!\s+(whites?|yolks?)\b)/i.test(name)) {
+            if (/\bwhites?\b/i.test(name)) return { cal: 52, protein: 10.9, carbs: 0.73, fat: 0.17, fiber: 0, sodium: 166, each: 33 };
+            if (/\byolks?\b/i.test(name)) return { cal: 322, protein: 15.9, carbs: 3.59, fat: 26.5, fiber: 0, sodium: 48, each: 17 };
+        }
+        return { cal: 143, protein: 12.6, carbs: 0.7, fat: 9.5, fiber: 0, sodium: 142, each: 50 };
     }
 
     // Auto-replace text helper for ambiguity warnings
@@ -274,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Special check for Egg counts
-            const isEgg = /\beggs?\b/i.test(matchedName);
+            const isEgg = /\beggs?\b|\byolks?\b/i.test(matchedName);
             const lookupName = isEgg ? 'yeast' : matchedName; // lookup check
             const dbMatch = findIngredientDensity(isEgg ? 'water' : matchedName); // density checks
 
@@ -286,25 +293,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 nutritionData = dbMatch;
             }
 
-            // If egg count is active, pass identifier
-            const checkDensity = isEgg ? matchedName : density;
-            const grams = convertToGrams(parsed.quantity, parsed.unit, checkDensity);
+            // Eggs: counted by the piece, or by volume at egg's ~1.03 g/ml.
+            let grams;
+            if (isEgg) {
+                nutritionData = eggProfile(matchedName);
+                grams = parsed.unit === 'count'
+                    ? parsed.quantity * nutritionData.each
+                    : convertToGrams(parsed.quantity, parsed.unit, 1.03);
+            } else {
+                grams = convertToGrams(parsed.quantity, parsed.unit, density);
+            }
 
-            if (grams !== null && (nutritionData || isEgg)) {
-                // If egg, hardcode standard raw whole egg values per 100g (143 cal, 12.6g P, 0.7g C, 9.5g F, 0g fiber, 142mg sodium)
-                const calPer100 = isEgg ? 143 : nutritionData.cal;
-                const proteinPer100 = isEgg ? 12.6 : nutritionData.protein;
-                const carbsPer100 = isEgg ? 0.7 : nutritionData.carbs;
-                const fatPer100 = isEgg ? 9.5 : nutritionData.fat;
-                const fiberPer100 = isEgg ? 0 : nutritionData.fiber;
-                const sodiumPer100 = isEgg ? 142 : nutritionData.sodium;
-
-                totalCal += grams * (calPer100 / 100);
-                totalProtein += grams * (proteinPer100 / 100);
-                totalCarbs += grams * (carbsPer100 / 100);
-                totalFat += grams * (fatPer100 / 100);
-                totalFiber += grams * (fiberPer100 / 100);
-                totalSodium += grams * (sodiumPer100 / 100);
+            // A line that can't produce a real number is listed as unmatched rather
+            // than turning the whole label into NaN.
+            if (grams !== null && Number.isFinite(grams) && nutritionData) {
+                totalCal += grams * (nutritionData.cal / 100);
+                totalProtein += grams * (nutritionData.protein / 100);
+                totalCarbs += grams * (nutritionData.carbs / 100);
+                totalFat += grams * (nutritionData.fat / 100);
+                totalFiber += grams * (nutritionData.fiber / 100);
+                totalSodium += grams * (nutritionData.sodium / 100);
                 totalWeightG += grams;
             } else {
                 unmatchedItems.push(parsed.original);

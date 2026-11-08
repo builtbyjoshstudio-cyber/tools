@@ -137,8 +137,15 @@ document.addEventListener('DOMContentLoaded', () => {
             let lineHasFraction = false;
             const densityMatch = useDensity ? findIngredientDensity(line) : null;
 
+            // "1 (14.5 ounce) can tomatoes": the parenthetical is the package size as
+            // printed, not an amount. It still gets unit conversion but is never
+            // multiplied; the leading count scales below.
+            const pkgMatch = /^\s*(?:\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)\s*\([^)]*\d[^)]*\)/.exec(processedLine);
+            const pkgPrefix = pkgMatch ? pkgMatch[0] : '';
+            let unitMultiplier = currentMultiplier;
+
             // Globally replace all quantities with known units
-            processedLine = processedLine.replace(unitRegex, (match, originalNumStr, unitStr) => {
+            const scaleUnits = (match, originalNumStr, unitStr) => {
                 let num = parseNumber(originalNumStr);
                 if (isNaN(num)) return match;
 
@@ -151,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Multiplier conditionally applied
                 let scaledNum = num;
                 if (!isF && !isIn && !isC && !isCm) {
-                    scaledNum = num * currentMultiplier;
+                    scaledNum = num * unitMultiplier;
                 }
 
                 if (isEggLine) {
@@ -269,7 +276,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         else if (isIn) { scaledNum *= 2.5; outUnit = 'cm'; useFraction = false; }
                         else if (isF) {
                             scaledNum = (scaledNum - 32) * 5 / 9;
-                            scaledNum = Math.round(scaledNum / 10) * 10;
+                            // Below 120°C (internal temps, early sugar stages) keep the exact
+                            // degree: 165°F = 74°C, not a rounded-down 70°C that's below the
+                            // poultry minimum. Hotter candy stages and oven temps round to 5°C.
+                            scaledNum = scaledNum < 120 ? Math.round(scaledNum) : Math.round(scaledNum / 5) * 5;
                             outUnit = '°C';
                             useFraction = false;
                         }
@@ -328,7 +338,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 let valStr = useFraction ? toFraction(scaledNum) : scaledNum.toString();
                 // Ensure a single space between number and unit
                 return `<span class="highlight">${valStr} ${outUnit}</span>`;
-            });
+            };
+
+            unitMultiplier = 1;
+            const pkgOut = pkgPrefix.replace(unitRegex, scaleUnits);
+            unitMultiplier = currentMultiplier;
+            processedLine = pkgOut + processedLine.substring(pkgPrefix.length).replace(unitRegex, scaleUnits);
 
             // Check if there's a unitless number at the start of the line that wasn't covered above
             let startMatch = startNumberRegex.exec(processedLine);

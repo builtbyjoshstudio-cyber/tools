@@ -106,10 +106,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ---------- engine ----------
-  function simulate(debts, extra, strategy) {
+  // noRollover = the minimums-only baseline, where each debt only ever gets its
+  // own minimum. Every real strategy keeps paying the same total each month, so
+  // a cleared debt's minimum rolls into the next one (the snowball/avalanche).
+  function simulate(debts, extra, strategy, noRollover) {
     var d = debts.map(function (x) {
       return { name: x.name, bal: x.balance, apr: x.apr / 100 / 12, min: x.min, interest: 0, paidMonth: null };
     });
+    var fixedBudget = d.reduce(function (s, x) { return s + x.min; }, 0) + extra;
     var month = 0, totalInterest = 0;
     var schedule = [{ month: 0, balance: d.reduce(function (s, x) { return s + x.bal; }, 0) }];
     var MAX = 1200;
@@ -133,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (x.bal > 0.005) { var i = x.bal * x.apr; x.bal += i; x.interest += i; totalInterest += i; }
       });
       var active = d.filter(function (x) { return x.bal > 0.005; });
-      var budget = active.reduce(function (s, x) { return s + x.min; }, 0) + extra;
+      var budget = noRollover
+        ? active.reduce(function (s, x) { return s + x.min; }, 0) + extra
+        : fixedBudget;
       active.forEach(function (x) { var pay = Math.min(x.min, x.bal); x.bal -= pay; budget -= pay; });
       var targets = order();
       for (var k = 0; k < targets.length && budget > 0.005; k++) {
@@ -202,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     var primary  = simulate(debts, extra, strategy);
-    var baseline = simulate(debts, 0, "avalanche"); // minimums-only baseline
+    var baseline = simulate(debts, 0, "avalanche", true); // minimums-only baseline
     var snow = simulate(debts, extra, "snowball");
     var aval = simulate(debts, extra, "avalanche");
     var hyb  = simulate(debts, extra, "hybrid");
