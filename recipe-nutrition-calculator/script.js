@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM Elements
     const recipeInput = document.getElementById('recipe-input');
+    const exampleNote = document.getElementById('example-note');
+    const clearRecipeBtn = document.getElementById('clear-recipe-btn');
     const servingsInput = document.getElementById('servings');
     const displayModeServingBtn = document.getElementById('display-mode-serving');
     const displayModeTotalBtn = document.getElementById('display-mode-total');
@@ -55,14 +57,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const lblFiberDv = document.getElementById('lbl-fiber-dv');
     const lblProtein = document.getElementById('lbl-protein');
 
-    // Load saved recipe
-    const savedRecipe = localStorage.getItem('savedNutritionRecipe');
-    if (savedRecipe) {
-        recipeInput.value = savedRecipe;
+    // Seeded example (pancakes for four at the default 4 servings): every line
+    // resolves in the shared ingredient database, so the label opens on a real result.
+    const EXAMPLE_RECIPE = [
+        '1 1/2 cups all-purpose flour',
+        '2 tbsp sugar',
+        '2 tsp baking powder',
+        '1/2 tsp salt',
+        '1 1/4 cups milk',
+        '1 large egg',
+        '3 tbsp butter, melted'
+    ].join('\n');
+
+    // Storage can be blocked (private mode, site data off): the tool still works, it just doesn't remember.
+    function loadItem(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+    function saveItem(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) { /* not remembered */ }
     }
 
+    // Load saved recipe; a first visit (nothing saved) opens on the example.
+    // Anything saved wins, even an emptied box.
+    const savedRecipe = loadItem('savedNutritionRecipe');
+    recipeInput.value = savedRecipe === null ? EXAMPLE_RECIPE : savedRecipe;
+
     // Load saved custom ingredients
-    const savedCustoms = localStorage.getItem('savedCustomIngredients');
+    const savedCustoms = loadItem('savedCustomIngredients');
     if (savedCustoms) {
         try {
             customIngredients = JSON.parse(savedCustoms);
@@ -221,7 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Main Calculations
     function calculateNutrition() {
         const text = recipeInput.value;
-        localStorage.setItem('savedNutritionRecipe', text);
+        saveItem('savedNutritionRecipe', text);
+        exampleNote.style.display = text === EXAMPLE_RECIPE ? 'block' : 'none';
 
         const servings = Math.max(1, parseInt(servingsInput.value) || 4);
         
@@ -490,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         customIngredients.push(customItem);
-        localStorage.setItem('savedCustomIngredients', JSON.stringify(customIngredients));
+        saveItem('savedCustomIngredients', JSON.stringify(customIngredients));
 
         // Reset Inputs
         customNameInput.value = '';
@@ -530,7 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
             row.querySelector('.remove-btn').addEventListener('click', (e) => {
                 const id = e.target.dataset.id;
                 customIngredients = customIngredients.filter(x => x.id !== id);
-                localStorage.setItem('savedCustomIngredients', JSON.stringify(customIngredients));
+                saveItem('savedCustomIngredients', JSON.stringify(customIngredients));
                 renderCustomIngredients();
                 calculateNutrition();
             });
@@ -557,6 +579,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inputs Listeners
     recipeInput.addEventListener('input', calculateNutrition);
     servingsInput.addEventListener('input', calculateNutrition);
+
+    // Clear the box to start your own recipe; asks first unless it's empty or the untouched example
+    clearRecipeBtn.addEventListener('click', () => {
+        const text = recipeInput.value;
+        if (text.trim() && text !== EXAMPLE_RECIPE && !window.confirm('Clear the ingredient list?')) return;
+        recipeInput.value = '';
+        calculateNutrition();
+        recipeInput.focus();
+    });
 
     // Initial Trigger
     calculateNutrition();

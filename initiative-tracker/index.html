@@ -271,28 +271,12 @@
         <div class="meta">
           <span class="pill live">&#9679; Tabletop</span>
           <span>Any system &middot; Saves itself</span>
-          <span class="updated-date">Updated August 2026</span>
+          <span class="updated-date">Updated November 2026</span>
         </div>
         <h1>Initiative Tracker</h1>
         <p>Run the whole fight from one screen — turn order, rounds, HP, and conditions. Your encounter saves itself in this browser, so you can set it up before the session and it'll still be here at the table.</p>
       </div>
     </header>
-
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Runs a tabletop RPG combat from one screen: turn order, rounds, HP, and conditions.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Each combatant's name, initiative, optional HP, and side — works for D&amp;D, Pathfinder, or any system.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A sorted initiative order with round counting, next-turn cycling, HP tracking, and condition tags.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs and saves in this browser's local storage — nothing leaves your device.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
 
     <!-- ADD COMBATANTS -->
     <div class="glass type-card" style="margin-top:22px;">
@@ -341,6 +325,7 @@
 
       <div class="role">Turn order</div>
       <div id="combatant-list"></div>
+      <p class="note" id="example-note" style="margin:0 0 12px;" hidden>Example loaded: two heroes against two bandits and a wolf. Press Next turn to watch it run; add your own to replace it, or Clear all to start empty.</p>
       <p class="note">Ties keep the order you added them in — nudge with a decimal (15.5 beats 15) if your table rules differently. Everything here stays on this device.</p>
       <a class="xlink" href="../dice-roller/"
          style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
@@ -356,6 +341,21 @@
         Fight's over? Log what happened in the session notes &rarr;
       </a>
     </div>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-top: 18px; margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Runs a tabletop RPG combat from one screen: turn order, rounds, HP, and conditions.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Each combatant's name, initiative, optional HP, and side — works for D&amp;D, Pathfinder, or any system.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A sorted initiative order with round counting, next-turn cycling, HP tracking, and condition tags.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs and saves in this browser's local storage — nothing leaves your device.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 
     <!-- PROSE -->
     <section class="prose">

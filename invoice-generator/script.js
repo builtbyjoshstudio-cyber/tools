@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var logoClear = document.getElementById("logo-clear");
   var logoStatus = document.getElementById("logo-status");
   var printBtn = document.getElementById("print-btn");
+  var exampleNote = document.getElementById("example-note");
+  var exampleClear = document.getElementById("example-clear");
 
   // ---- preview els ----
   var pv = {
@@ -204,6 +206,31 @@ document.addEventListener("DOMContentLoaded", function () {
     render();
   });
 
+  // ---------- first-visit example ----------
+  // opens on a worked example so the first view (and the first Print) is a real invoice:
+  // $600.00 - 10% = $540.00, + 8% tax $43.20 = $583.20. Obviously-sample names; the note and its
+  // Clear button sit in the editor, which never prints. Nothing is stored, so every fresh load starts here.
+  var EXAMPLE = { bizName: "Sample Studio", clientName: "Example Client Co.", taxRate: "8", discount: "10" };
+  var EXAMPLE_ITEMS = [["Logo design", 1, 450], ["Revision rounds", 2, 75]];
+
+  function exampleUntouched() {
+    var lines = readItems().filter(function (it) { return it.desc.trim() || it.qty || it.rate; });
+    return Object.keys(EXAMPLE).every(function (k) { return f[k].value === EXAMPLE[k]; }) &&
+      lines.length === EXAMPLE_ITEMS.length &&
+      EXAMPLE_ITEMS.every(function (e, i) { return lines[i].desc === e[0] && lines[i].qty === e[1] && lines[i].rate === e[2]; });
+  }
+
+  // empties only what the example filled in; if the user typed over any of it, ask first
+  exampleClear.addEventListener("click", function () {
+    if (!exampleUntouched() && !window.confirm("Clear the example and your edits to its names, line items, tax and discount?")) return;
+    Object.keys(EXAMPLE).forEach(function (k) { f[k].value = f[k].defaultValue; });
+    itemRows.innerHTML = "";
+    addItem("", null, null);
+    addItem("", null, null);
+    exampleNote.style.display = "none";
+    f.bizName.focus();
+  });
+
   // ---------- print ----------
   printBtn.addEventListener("click", function () { window.print(); });
 
@@ -224,4 +251,25 @@ document.addEventListener("DOMContentLoaded", function () {
     addItem("", null, null);
     render();
   })();
+
+  // A form the browser restored is the user's invoice: never seed over it, but keep the note (and its Clear)
+  // while any example value is still in it, so 8% / 10% never print unnoticed. Chrome puts restored values back
+  // after load, just before pageshow (Firefox before DOMContentLoaded), so the example is decided on the first
+  // pageshow; later pageshows (bfcache) only re-render.
+  var seedChecked = false;
+  window.addEventListener("pageshow", function () {
+    if (!seedChecked) {
+      seedChecked = true;
+      var restored = ["bizName", "bizDetails", "clientName", "clientDetails", "taxRate", "discount", "shipping", "notes"].some(function (k) {
+        return f[k].value !== f[k].defaultValue && f[k].value !== EXAMPLE[k];
+      }) || readItems().some(function (it) { return it.desc.trim() || it.qty || it.rate; });
+      if (!restored) {
+        Object.keys(EXAMPLE).forEach(function (k) { f[k].value = EXAMPLE[k]; });
+        itemRows.innerHTML = "";
+        // filled by .value (not addItem's value attribute) so the rows' defaults stay blank and Chrome saves every typed value
+        EXAMPLE_ITEMS.forEach(function (it) { addItem("", null, null); var ins = itemRows.lastChild.querySelectorAll("input"); ins[0].value = it[0]; ins[1].value = it[1]; ins[2].value = it[2]; });
+      } else if (!Object.keys(EXAMPLE).some(function (k) { return f[k].value === EXAMPLE[k]; })) exampleNote.style.display = "none";
+    }
+    render();
+  });
 });

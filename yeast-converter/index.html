@@ -158,7 +158,7 @@
 
       /* onboarding steps */
       .onboarding-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-      .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
+      .step-col h3, .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
       .step-col p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
 
       @media (max-width: 760px) {
@@ -203,41 +203,6 @@
     </div>
   </header>
 
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Converts a yeast quantity between active dry, instant, and fresh yeast by weight.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The amount, the yeast type your recipe calls for (or what you have), and the unit (grams, ounces, teaspoons, or 7 g packets).</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The equivalent amount in the other two yeast types, with weight guards against nonsensical quantities.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
-  <!-- HOW TO CONVERT -->
-  <div class="glass" style="margin-bottom: 24px; padding: 24px;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Convert Yeast</h3>
-    <div class="onboarding-steps">
-      <div class="step-col">
-        <h4>1. Enter Yeast Amount</h4>
-        <p>Type in the quantity of yeast specified in your recipe or baking formula.</p>
-      </div>
-      <div class="step-col">
-        <h4>2. Choose Type &amp; Unit</h4>
-        <p>Select your starting yeast type and unit. Fresh yeast is locked to weight (grams or ounces) for baking precision.</p>
-      </div>
-      <div class="step-col">
-        <h4>3. Read Converted Ratios</h4>
-        <p>View the exact equivalents for the other two yeast styles below in both weight and dry volume measures.</p>
-      </div>
-    </div>
-  </div>
-
   <!-- CONVERSIONS CONFIGURATION -->
   <div class="glass type-card" style="margin-bottom: 24px;">
     <div class="role">1. Yeast Configuration</div>
@@ -276,12 +241,12 @@
 
   <!-- CONVERSION RESULTS SECTION -->
   <div class="glass" style="margin-bottom: 24px; padding: 24px;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">Conversion Results</h3>
+    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">Conversion Results</h2>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
         
         <!-- Result Card 1 -->
         <div class="glass-lite" style="padding: 20px; border-radius: var(--r-s);">
-            <h4 id="result-title-1" style="font-family: var(--font-display); font-size: 18px; margin: 0 0 10px; color: var(--ink);">Instant Yeast</h4>
+            <h3 id="result-title-1" style="font-family: var(--font-display); font-size: 18px; margin: 0 0 10px; color: var(--ink);">Instant Yeast</h3>
             <div style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 8px;">
                 <span id="result-weight-1">0 g / 0.00 oz</span>
             </div>
@@ -292,7 +257,7 @@
         
         <!-- Result Card 2 -->
         <div class="glass-lite" style="padding: 20px; border-radius: var(--r-s);">
-            <h4 id="result-title-2" style="font-family: var(--font-display); font-size: 18px; margin: 0 0 10px; color: var(--ink);">Fresh Yeast</h4>
+            <h3 id="result-title-2" style="font-family: var(--font-display); font-size: 18px; margin: 0 0 10px; color: var(--ink);">Fresh Yeast</h3>
             <div style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--ink); line-height: 1.1; margin-bottom: 8px;">
                 <span id="result-weight-2">0 g / 0.00 oz</span>
             </div>
@@ -305,9 +270,43 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
+    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-dough" href="../dough-hydration-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Baking bread or pizza? Get exact flour, water, and yeast weights with the Dough Hydration Calculator &rarr;</a>
+    </div>
+  </div>
+
+  <!-- HOW TO CONVERT -->
+  <div class="glass" style="margin-bottom: 24px; padding: 24px;">
+    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Convert Yeast</h2>
+    <div class="onboarding-steps">
+      <div class="step-col">
+        <h3>1. Enter Yeast Amount</h3>
+        <p>Type in the quantity of yeast specified in your recipe or baking formula.</p>
+      </div>
+      <div class="step-col">
+        <h3>2. Choose Type &amp; Unit</h3>
+        <p>Select your starting yeast type and unit. Fresh yeast is locked to weight (grams or ounces) for baking precision.</p>
+      </div>
+      <div class="step-col">
+        <h3>3. Read Converted Ratios</h3>
+        <p>View the exact equivalents for the other two yeast styles above in both weight and dry volume measures.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Converts a yeast quantity between active dry, instant, and fresh yeast by weight.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The amount, the yeast type your recipe calls for (or what you have), and the unit (grams, ounces, teaspoons, or 7 g packets).</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The equivalent amount in the other two yeast types, with weight guards against nonsensical quantities.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 

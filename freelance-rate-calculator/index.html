@@ -211,7 +211,7 @@
       font-family: var(--font-mono); font-size: 13px;
     }
     .anatomy-row .lbl { flex: 1 1 auto; min-width: 0; }
-    .anatomy-row .lbl h3, .anatomy-row .lbl h4 { margin: 0; font-size: 15px; }
+    .anatomy-row .lbl h2, .anatomy-row .lbl h3, .anatomy-row .lbl h4 { margin: 0; font-size: 15px; }
     .anatomy-row .lbl p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
     .anatomy-row code {
       font-family: var(--font-mono); font-size: 16px; color: var(--ink);
@@ -237,7 +237,7 @@
       font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em;
       text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
     }
-    .funnel h3 { margin: 0 0 6px; font-size: 21px; color: var(--ink); }
+    .funnel h2, .funnel h3 { margin: 0 0 6px; font-size: 21px; color: var(--ink); }
     .funnel p { margin: 0; color: var(--muted); font-size: 14.5px; max-width: 60ch; }
     .funnel .go {
       display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
@@ -317,22 +317,6 @@
       </div>
     </header>
 
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Finds the hourly rate a freelancer must charge to hit a real income goal after the costs employees never see.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Target take-home income per year, annual business expenses, billable hours per week, and working weeks per year.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The minimum hourly rate, plus what any rate actually leaves you after tax and expenses.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
     <!-- INPUT CARD -->
     <div class="glass type-card" style="margin-top:22px;">
       <div class="role">1. Your numbers</div>
@@ -375,22 +359,22 @@
       <div class="anatomy-labels">
         <div class="glass-lite anatomy-row">
           <div class="ix">1</div>
-          <div class="lbl"><h3>Gross revenue required</h3><p>Income + expenses + tax</p></div>
+          <div class="lbl"><h2>Gross revenue required</h2><p>Income + expenses + tax</p></div>
           <code id="gross-output">$77,922</code>
         </div>
         <div class="glass-lite anatomy-row">
           <div class="ix">2</div>
-          <div class="lbl"><h3>Tax set-aside</h3><p>SE + income tax</p></div>
+          <div class="lbl"><h2>Tax set-aside</h2><p>SE + income tax</p></div>
           <code id="tax-output">$11,922</code>
         </div>
         <div class="glass-lite anatomy-row">
           <div class="ix">3</div>
-          <div class="lbl"><h3>Billable hours per year</h3><p>Hours you can actually invoice</p></div>
+          <div class="lbl"><h2>Billable hours per year</h2><p>Hours you can actually invoice</p></div>
           <code id="hours-output">1,200 hrs</code>
         </div>
         <div class="glass-lite anatomy-row is-pos">
           <div class="ix">4</div>
-          <div class="lbl"><h3>At your compare rate <span id="compare-echo">$75/hr</span></h3><p>Annual take-home after tax &amp; expenses</p></div>
+          <div class="lbl"><h2>At your compare rate <span id="compare-echo">$75/hr</span></h2><p>Annual take-home after tax &amp; expenses</p></div>
           <code id="compare-output">$63,360</code>
         </div>
       </div>
@@ -400,10 +384,25 @@
     <!-- FUNNEL CTA → Business OS on the main domain -->
     <a class="funnel" href="https://builtbyjoshstudio.com/products/creator-finance-os.html" target="_blank" rel="noopener">
       <div class="eyebrow">Run the business behind the rate</div>
-      <h3>Creator Finance OS</h3>
+      <h2>Creator Finance OS</h2>
       <p>Knowing your rate is step one. Finance OS is the Notion command center for tracking clients, projects, invoices, and income so you actually hit the number you just calculated.</p>
       <span class="go">See Finance OS &rarr;</span>
     </a>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-top: 18px; margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Finds the hourly rate a freelancer must charge to hit a real income goal after the costs employees never see.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Target take-home income per year, annual business expenses, billable hours per week, and working weeks per year.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The minimum hourly rate, plus what any rate actually leaves you after tax and expenses.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 
     <!-- PROSE EXPLAINER -->
     <section class="prose">

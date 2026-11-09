@@ -187,22 +187,6 @@
     </div>
   </header>
 
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Converts a baking recipe between pan sizes and shapes by pan volume (footprint times depth).</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The recipe's pan and your pan — round, square, rectangular, loaf, 12-cup muffin tin, or 10-cup Bundt/tube, with dimensions and depth.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The batter multiplier for the new pan plus bake-time and fill-level warnings.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
   <div class="tool-controls">
     <div class="tynkr-unit-toggle-wrapper">
       <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Inches</button>
@@ -282,21 +266,21 @@
       <div class="glass-lite anatomy-row">
         <div class="ix">&#8721;</div>
         <div>
-          <h3>Volume Comparison</h3>
+          <h2>Volume Comparison</h2>
           <p id="area-output">Original: 0.0 cu in | Target: 0.0 cu in</p>
         </div>
       </div>
       <div class="glass-lite anatomy-row">
         <div class="ix">&#9201;</div>
         <div>
-          <h3>Bake Time Warning</h3>
+          <h2>Bake Time Warning</h2>
           <p id="time-output">Select pan dimensions to see adjustment warnings.</p>
         </div>
       </div>
       <div id="depth-warning-box" class="glass-lite anatomy-row" style="display: none; border-color: var(--warn); background: color-mix(in oklab, var(--warn) 8%, transparent); grid-template-columns: 36px minmax(0, 1fr) auto;">
         <div class="ix" style="color: var(--warn); background: color-mix(in oklab, var(--warn) 15%, transparent);">!</div>
         <div>
-          <h4 style="color: var(--warn); margin: 0 0 2px;">Critical Baking Warning</h4>
+          <h3 style="color: var(--warn); margin: 0 0 2px;">Critical Baking Warning</h3>
           <p style="font-size: 13px; line-height: 1.5; margin: 0; color: var(--ink);">The target pan is much deeper than the original, so at this multiplier your batter sits much deeper. To keep the center from staying raw and gummy, reduce your oven temperature by 25&deg;F and extend the baking time by 15 to 20 minutes. Use a toothpick to verify the absolute center before pulling.</p>
         </div>
       </div>
@@ -308,10 +292,25 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
+    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-dough" href="../dough-hydration-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Adjusting a bread or pizza recipe? Dial in your ratios with the Dough Hydration Calculator &rarr;</a>
       <a href="../cookware-pan-guide/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Not sure which pan to reach for? See the Cookware &amp; Pan Guide &rarr;</a>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Converts a baking recipe between pan sizes and shapes by pan volume (footprint times depth).</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The recipe's pan and your pan — round, square, rectangular, loaf, 12-cup muffin tin, or 10-cup Bundt/tube, with dimensions and depth.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The batter multiplier for the new pan plus bake-time and fill-level warnings.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 

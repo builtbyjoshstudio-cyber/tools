@@ -177,7 +177,7 @@
 
       /* onboarding steps */
       .onboarding-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-      .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
+      .step-col h3, .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
       .step-col p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
       .ix svg { width: 18px; height: 18px; display: block; }
 
@@ -220,51 +220,17 @@
       <div class="meta">
         <span class="pill live">&#9679; Utilities</span>
         <span>Baker's percentages</span>
-        <span class="updated-date">Updated September 2026</span>
+        <span class="updated-date">Updated November 2026</span>
       </div>
       <h1>Dough Hydration Calculator</h1>
       <p>Get flour, water, salt, and yeast by weight from a target hydration. Pick a flour or a style preset, enter the dough or flour weight, and the calculator does the baker&#39;s percentage math and warns when a flour cannot take that much water.</p>
     </div>
   </header>
 
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Calculates bread, pizza, and pasta dough by baker's percentages, with flour-absorbency guardrails.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Flour type (all-purpose to rye, spelt and more), a baking-style preset (Neapolitan pizza, sourdough boule, and others) or custom percentages, calculation mode (target dough weight or target flour mass), and the target weight.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Flour, water, salt (and starter where relevant) by weight, the hydration percentage, and structural warnings when a combination will misbehave.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
   <div class="tool-controls">
     <div class="tynkr-unit-toggle-wrapper">
       <button type="button" id="unit-imperial" class="tynkr-unit-btn active">Imperial (oz)</button>
       <button type="button" id="unit-metric" class="tynkr-unit-btn">Metric (g)</button>
-    </div>
-  </div>
-
-  <div class="glass" style="margin-bottom: 24px; padding: 24px;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Build Your Dough</h3>
-    <div class="onboarding-steps">
-      <div class="step-col">
-        <h4>1. Choose Your Style</h4>
-        <p>Select a Flour Type or pick a Baking Style Preset (like Sourdough or Tokyo Ramen) to instantly snap the slider to its traditional water ratio.</p>
-      </div>
-      <div class="step-col">
-        <h4>2. Set Your Yield</h4>
-        <p>Type in the exact total weight of dough your recipe or pan demands in ounces or grams.</p>
-      </div>
-      <div class="step-col">
-        <h4>3. Weigh &amp; Bake</h4>
-        <p>Read your instant, zero-guesswork ingredient list below. No loose cups or spoons&mdash;just precise kitchen scale metrics.</p>
-      </div>
     </div>
   </div>
 
@@ -349,7 +315,7 @@
       <div class="glass-lite anatomy-row">
         <div class="ix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h14M5 15h14M9 5v14M15 5v14"></path></svg></div>
         <div>
-          <h4>Flour Mass</h4>
+          <h2>Flour Mass</h2>
           <p>100% base flour</p>
         </div>
         <code id="flour-output">20.4 oz</code>
@@ -358,7 +324,7 @@
       <div class="glass-lite anatomy-row">
         <div class="ix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c2.8 3.6 5.2 6.5 5.2 9.3a5.2 5.2 0 1 1-10.4 0c0-2.8 2.4-5.7 5.2-9.3Z"></path></svg></div>
         <div>
-          <h4>Water Mass</h4>
+          <h2>Water Mass</h2>
           <p id="water-pct-label">72% hydration</p>
         </div>
         <code id="water-output">14.7 oz</code>
@@ -367,7 +333,7 @@
       <div class="glass-lite anatomy-row">
         <div class="ix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5 19 18H5Z"></path></svg></div>
         <div>
-          <h4>Salt Mass</h4>
+          <h2>Salt Mass</h2>
           <p>2% base weight</p>
         </div>
         <code id="salt-output">0.4 oz</code>
@@ -376,7 +342,7 @@
       <div class="glass-lite anatomy-row">
         <div class="ix" id="yeast-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18a8 8 0 0 1 16 0Z"></path><path d="M3 18h18"></path></svg></div>
         <div>
-          <h4 id="yeast-label">Yeast Mass</h4>
+          <h2 id="yeast-label">Yeast Mass</h2>
           <p id="yeast-pct-label">1% base weight</p>
         </div>
         <code id="yeast-output">0.2 oz</code>
@@ -389,10 +355,43 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
+    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-pan" href="../pan-swap-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to scale? Adjust your dough to a specific baking pan size with the Pan Swap Calculator &rarr;</a>
       <a href="../yeast-converter/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Swapping yeast types? Get the amount right with the Yeast Converter &rarr;</a>
+    </div>
+  </div>
+
+  <div class="glass" style="margin-bottom: 24px; padding: 24px;">
+    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Build Your Dough</h2>
+    <div class="onboarding-steps">
+      <div class="step-col">
+        <h3>1. Choose Your Style</h3>
+        <p>Select a Flour Type or pick a Baking Style Preset (like Sourdough or Tokyo Ramen) to instantly snap the slider to its traditional water ratio.</p>
+      </div>
+      <div class="step-col">
+        <h3>2. Set Your Yield</h3>
+        <p>Type in the exact total weight of dough your recipe or pan demands in ounces or grams.</p>
+      </div>
+      <div class="step-col">
+        <h3>3. Weigh &amp; Bake</h3>
+        <p>Read your instant, zero-guesswork ingredient list above. No loose cups or spoons&mdash;just precise kitchen scale metrics.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Calculates bread, pizza, and pasta dough by baker's percentages, with flour-absorbency guardrails.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Flour type (all-purpose to rye, spelt and more), a baking-style preset (Neapolitan pizza, sourdough boule, and others) or custom percentages, calculation mode (target dough weight or target flour mass), and the target weight.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Flour, water, salt (and starter where relevant) by weight, the hydration percentage, and structural warnings when a combination will misbehave.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 

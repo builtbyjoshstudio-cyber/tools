@@ -164,6 +164,10 @@
     .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
     .grid-2 .input-group { margin-bottom:8px; }
 
+    /* first-visit example note (inside .editor, so it never prints) */
+    #example-note { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:0 0 18px; padding:10px 12px; border:2px dashed var(--line-2); border-radius:var(--r-s); font-size:13px; line-height:1.5; color:var(--muted); }
+    #example-clear { flex:0 0 auto; font-family:var(--font-mono); font-size:10.5px; text-transform:uppercase; color:var(--ink); background:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:5px 9px; cursor:pointer; }
+
     /* logo upload */
     .logo-drop { border:2px dashed var(--line-2); border-radius:var(--r-s); padding:14px; text-align:center; background:var(--surface-2); }
     .logo-drop label { display:inline-block; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); cursor:pointer; padding:8px 14px; border:2px solid var(--accent); border-radius:var(--r-s); }
@@ -248,7 +252,7 @@
     @media print {
       @page { margin:0; }
       body { background:#fff !important; }
-      .tool-nav, .editor, .hero, .funnel, .prose, .faq, .net-band, .footer, .print-btn { display:none !important; }
+      .tool-nav, .editor, .hero, .funnel, main > div.glass, .prose, .faq, .net-band, .footer, .print-btn { display:none !important; }
       .page.tool-shell { max-width:none; margin:0; padding:0; }
       .layout { display:block; margin:0; }
       .invoice-wrap { position:static; }
@@ -285,33 +289,18 @@
       <div class="meta">
         <span class="pill live">&#9679; Business</span>
         <span>Letterhead &middot; line items &middot; print</span>
-        <span class="updated-date">Updated August 2026</span>
+        <span class="updated-date">Updated November 2026</span>
       </div>
       <h1>Invoice Generator</h1>
       <p>Build a clean, professional invoice in your browser. Add your own 16:9 letterhead image — or just your business name — list your work, and print or save as PDF. No signup, and nothing you type or upload ever leaves your device.</p>
     </header>
-
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Builds a clean, professional invoice in the browser, ready to print or save as PDF.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Your business name or a 16:9 letterhead image, client details, line items, currency (USD, EUR, GBP, CAD, AUD, JPY), tax %, discount %, shipping/fee, and dates.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A print-ready invoice with totals calculated — print it or save as PDF straight from the browser.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — the letterhead image and every detail stay on your device.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
 
     <div class="layout">
 
       <!-- EDITOR (screen only) -->
       <div class="editor">
         <div class="glass type-card">
+          <p id="example-note"><span>Example loaded: a sample design invoice with a 10% discount and 8% tax. Edit any field, or clear it to start your own.</span> <button type="button" id="example-clear">Clear example</button></p>
           <div class="role">Letterhead</div>
           <div class="logo-drop">
             <label for="logo-input">Choose 16:9 image</label>
@@ -421,6 +410,21 @@
       <p>This makes the invoice. Business OS runs everything around it — track which clients you've billed, what's been paid, and the projects behind each invoice, all in one Notion command center built for people running a business solo.</p>
       <span class="go">See Business OS &rarr;</span>
     </a>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-top: 18px; margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Builds a clean, professional invoice in the browser, ready to print or save as PDF.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Your business name or a 16:9 letterhead image, client details, line items, currency (USD, EUR, GBP, CAD, AUD, JPY), tax %, discount %, shipping/fee, and dates.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A print-ready invoice with totals calculated — print it or save as PDF straight from the browser.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — the letterhead image and every detail stay on your device.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 
     <!-- PROSE -->
     <section class="prose">

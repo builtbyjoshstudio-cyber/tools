@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var resetBtn = document.getElementById("reset-encounter");
   var clearBtn = document.getElementById("clear-encounter");
   var listEl   = document.getElementById("combatant-list");
+  var exNote   = document.getElementById("example-note");
 
   var TYPE_LABEL = { pc: "Player", ally: "Ally / NPC", enemy: "Enemy" };
 
@@ -45,10 +46,35 @@ document.addEventListener("DOMContentLoaded", function () {
   function blank() {
     return { combatants: [], round: 1, turn: 0, seq: 1 };
   }
+  // First visit opens on a worked example, so Next turn moves the marker on the very first click.
+  // (The list lives inside the function: load() runs at the `var state` line above, before later vars are set.)
+  function example() {
+    var s = blank();
+    [
+      { name: "Mira",     init: 18, type: "pc",    hp: null, conditions: [] },
+      { name: "Tobin",    init: 11, type: "pc",    hp: null, conditions: [] },
+      { name: "Bandit",   init: 15, type: "enemy", hp: 12,   conditions: [] },
+      { name: "Bandit 2", init: 7,  type: "enemy", hp: 12,   conditions: ["Poisoned"] },
+      { name: "Wolf",     init: 13, type: "enemy", hp: 9,    conditions: [] }
+    ].forEach(function (c) {
+      s.combatants.push({ id: "c" + s.seq, seq: s.seq++, name: c.name, init: c.init, type: c.type, hp: c.hp, maxHp: c.hp, conditions: c.conditions });
+    });
+    return s;
+  }
+  // Still exactly the shipped combatants (turns taken don't count): labeled as the example, and clears with no confirm.
+  function isUntouchedExample() {
+    var ex = example().combatants;
+    return state.combatants.length === ex.length && ex.every(function (e, i) {
+      var c = state.combatants[i];
+      return c.name === e.name && c.init === e.init && c.type === e.type && c.hp === e.hp &&
+        c.maxHp === e.maxHp && JSON.stringify(c.conditions) === JSON.stringify(e.conditions);
+    });
+  }
   function load() {
+    var raw;
+    try { raw = localStorage.getItem(STORE_KEY); } catch (e) { return example(); } // storage blocked: the example still runs, it just won't save
     try {
-      var raw = localStorage.getItem(STORE_KEY);
-      if (!raw) return blank();
+      if (raw === null) return example(); // nothing saved = first visit; a cleared encounter saves as empty, so it stays empty
       var s = JSON.parse(raw);
       if (!s || !Array.isArray(s.combatants)) return blank();
       // sanitize every field — drifted/hand-edited storage must never crash render or reach innerHTML unescaped
@@ -110,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isFinite(init)) init = 0;
     var hp = parseInt(hpIn.value, 10);
     var hasHp = isFinite(hp) && hp >= 0;
+    if (isUntouchedExample()) state = blank(); // the example is for watching, not building on: your first Add starts your own encounter
 
     // keep the active combatant's turn stable when the newcomer sorts above them
     var sortedBefore = order();
@@ -169,9 +196,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   clearBtn.addEventListener("click", function () {
     if (!state.combatants.length) return;
-    if (!window.confirm("Remove every combatant and start over?")) return;
+    if (!isUntouchedExample() && !window.confirm("Remove every combatant and start over?")) return; // the untouched example has nothing to lose
     state = blank();
     save(); render();
+    nameIn.focus(); // straight into adding your own
   });
 
   // ---------- per-combatant actions ----------
@@ -248,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (state.turn >= n) state.turn = 0;
 
     roundLbl.textContent = "Round " + state.round;
+    if (exNote) exNote.hidden = !isUntouchedExample(); // guarded: a cached older page has no note
 
     if (!n) {
       curName.textContent = "Add combatants to start";

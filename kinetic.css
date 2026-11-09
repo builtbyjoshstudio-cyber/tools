@@ -390,7 +390,7 @@ input[type="range"].form-input-range::-moz-range-thumb {
   background: var(--accent); color: var(--accent-ink);
   font-family: var(--font-mono); font-size: 14px; font-weight: 600;
 }
-.anatomy-row h3, .anatomy-row h4 { font-family: var(--font-ui); font-size: 13.5px; font-weight: 700; margin: 0 0 2px; }
+.anatomy-row h2, .anatomy-row h3, .anatomy-row h4 { font-family: var(--font-ui); font-size: 13.5px; font-weight: 700; margin: 0 0 2px; }
 .anatomy-row p { font-size: 12px; color: var(--muted); margin: 0; }
 .anatomy-row code {
   font-family: var(--font-mono); font-size: 13px; font-weight: 600;
@@ -404,9 +404,9 @@ input[type="range"].form-input-range::-moz-range-thumb {
 .compare .col { padding: 22px 24px 26px; border-radius: var(--r-s); }
 .compare .col.yes { border: 2px solid var(--accent); }
 .compare .col.no  { border: 2px dashed color-mix(in oklab, var(--neg) 55%, var(--line-2)); }
-.compare h3 { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; margin: 0 0 12px; }
-.compare .col.yes h3 { color: var(--accent); }
-.compare .col.no h3 { color: var(--neg); }
+.compare h2, .compare h3 { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; margin: 0 0 12px; }
+.compare .col.yes h2, .compare .col.yes h3 { color: var(--accent); }
+.compare .col.no h2, .compare .col.no h3 { color: var(--neg); }
 .compare ul { list-style: none; padding: 0; margin: 0; }
 .compare li { padding: 9px 0; font-size: 14px; color: var(--ink); border-bottom: 1px solid var(--line); }
 .compare li:last-child { border-bottom: 0; }

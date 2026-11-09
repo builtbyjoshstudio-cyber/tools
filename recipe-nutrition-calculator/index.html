@@ -170,28 +170,12 @@
       <div class="meta">
         <span class="pill live">&#9679; Utilities</span>
         <span>Recipe analysis &amp; macro estimates</span>
-        <span class="updated-date">Updated September 2026</span>
+        <span class="updated-date">Updated November 2026</span>
       </div>
       <h1>Recipe Nutrition Calculator</h1>
       <p>Estimate per-serving calories, macro splits, and review ingredient matching gaps in real time. Local-first and entirely offline.</p>
     </div>
   </header>
-
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Estimates per-serving nutrition for any recipe from its ingredient list.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Recipe servings and each ingredient's name and weight in grams; macro entry per 100 g or for the full weight (calories, protein, carbs, fat, fiber, sodium).</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Per-serving calories and macro split plus an Estimated Nutrition Facts label, with gaps flagged where an ingredient needs manual numbers.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
 
   <div class="disclaimer-banner glass">
     <span class="icon">⚠️</span>
@@ -206,8 +190,12 @@
       <!-- Text Area Card -->
       <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
         <div class="role" style="margin-bottom: 12px;" id="recipe-input-label">Paste Ingredients</div>
+        <p id="example-note" style="margin: 0 0 12px; font-size: 13px; line-height: 1.5; color: var(--muted);">Example loaded: pancakes for four. Edit any line, or clear it and paste your own recipe.</p>
         <textarea id="recipe-input" aria-labelledby="recipe-input-label" class="form-input" style="min-height: 180px; font-family: var(--font-ui); font-size: 14px; line-height: 1.6;" placeholder="Paste your recipe here (one item per line). E.g.&#10;500g chicken breast raw&#10;200g jasmine rice cooked&#10;1 tbsp olive oil"></textarea>
-        
+        <div style="margin-top: 10px; text-align: right;">
+          <button type="button" id="clear-recipe-btn" class="btn" style="padding: 8px 14px; font-size: 13px;">Clear ingredients</button>
+        </div>
+
         <div style="margin-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end;">
           <div class="input-group">
             <label class="input-label" for="servings">Recipe Servings</label>
@@ -396,6 +384,21 @@
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-scaler" href="../universal-recipe-scaler/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want to convert weights or change portions? Use the Universal Recipe Scaler &rarr;</a>
       <a id="pipeline-link-cost" href="../cost-per-serving-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want to price your recipe? Calculate unit economics with the Cost Per Serving Calculator &rarr;</a>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Estimates per-serving nutrition for any recipe from its ingredient list.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Recipe servings and each ingredient's name and weight in grams; macro entry per 100 g or for the full weight (calories, protein, carbs, fat, fiber, sodium).</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Per-serving calories and macro split plus an Estimated Nutrition Facts label, with gaps flagged where an ingredient needs manual numbers.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 

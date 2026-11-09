@@ -43,8 +43,11 @@ document.addEventListener("DOMContentLoaded", function () {
   var clearHist  = document.getElementById("clear-history");
 
   // pool = { sides: count }, insertion-ordered by first tap
-  var pool = {};
-  var poolOrder = [];
+  // The pool isn't saved, so every load opens holding 1 × d20 — the very first Roll works.
+  // The first die tap replaces that d20, so tapping builds the user's own pool, not one on top of it.
+  var pool = { "20": 1 };
+  var poolOrder = ["20"];
+  var poolIsSeed = true;
   var history = loadHistory();
 
   function loadHistory() {
@@ -214,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".die-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
       var s = btn.getAttribute("data-die");
+      if (poolIsSeed) { pool = {}; poolOrder = []; poolIsSeed = false; }
       if (!pool[s]) {
         pool[s] = 0;
         if (poolOrder.indexOf(s) === -1) poolOrder.push(s);
