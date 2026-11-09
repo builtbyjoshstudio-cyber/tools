@@ -111,7 +111,7 @@
           "name": "How long should I brine meat?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight."
+            "text": "For a wet brine, about an hour per pound for whole birds, chicken pieces and roasts, never under 30 minutes, with chicken capped at 4 hours and turkey, duck and goose at 24 hours. Steaks, chops and seafood are timed by the piece, not the pack: 30 minutes to 1 hour for steaks and chops, 15 to 30 minutes for fish and seafood. Ground meat isn't wet brined. A dry brine takes 1 to 2 hours per pound (at least 1 hour, with turkey, chicken, duck and goose capped at 24 hours), and an equilibrium brine at least as long as a standard one, up to 2 days."
           }
         },
         {
@@ -135,7 +135,7 @@
           "name": "What is an equilibrium brine?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving."
+            "text": "An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving, so the calculator gives it at least the standard brine's time and up to 2 days. The limit there is the fridge, not the salt: a 1.5% brine doesn't preserve meat, and raw poultry keeps only 1 to 2 days."
           }
         },
         {
@@ -269,7 +269,7 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Calculates wet- and dry-brine quantities — salt, water, optional sugar — plus a recommended brining time window, from your protein and its weight.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Protein type (11 options, whole turkey to fish), weight in lbs or kg, wet or dry method, salt type (4 densities), brine strength, standard-gradient or equilibrium method, optional sugar.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Protein type (12 options, whole turkey to fish), weight in lbs or kg, wet or dry method, salt type (4 densities), brine strength, standard-gradient or equilibrium method, optional sugar.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Salt in tablespoons and grams, water volume (wet brine), sugar amount, a brining-time recommendation, and a live brining timer.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
@@ -299,7 +299,8 @@
             <option value="lamb">Lamb Leg or Rack</option>
           </optgroup>
           <optgroup label="Ground, Game &amp; Seafood">
-            <option value="ground-meat">Ground Meats (Beef/Pork/Turkey)</option>
+            <option value="ground-meat">Ground Beef, Pork &amp; Lamb</option>
+            <option value="ground-poultry">Ground Turkey &amp; Chicken</option>
             <option value="game-meat">Venison &amp; Bison (Lean Game)</option>
             <option value="seafood">Fish &amp; Seafood</option>
           </optgroup>
@@ -462,7 +463,7 @@
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long should I brine meat?</h3>
-        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight.</p>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">For a wet brine, about an hour per pound for whole birds, chicken pieces and roasts, never under 30 minutes, with chicken capped at 4 hours and turkey, duck and goose at 24 hours. Steaks, chops and seafood are timed by the piece, not the pack: 30 minutes to 1 hour for steaks and chops, 15 to 30 minutes for fish and seafood. Ground meat isn't wet brined. A dry brine takes 1 to 2 hours per pound (at least 1 hour, with turkey, chicken, duck and goose capped at 24 hours), and an equilibrium brine at least as long as a standard one, up to 2 days.</p>
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Can I brine pre-seasoned or "enhanced" meat?</h3>
@@ -474,7 +475,7 @@
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is an equilibrium brine?</h3>
-        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving.</p>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving, so the calculator gives it at least the standard brine's time and up to 2 days. The limit there is the fridge, not the salt: a 1.5% brine doesn't preserve meat, and raw poultry keeps only 1 to 2 days.</p>
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How much salt do I use for a dry brine per pound?</h3>

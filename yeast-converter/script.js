@@ -3,20 +3,12 @@
  * Converts between Active Dry, Instant, and Fresh yeast.
  */
 
-// Conversion ratios by weight
-const yeastRatios = {
-    "active-dry": {
-        "instant": 0.75,
-        "fresh": 2.5
-    },
-    "instant": {
-        "active-dry": 1.33,
-        "fresh": 3.0
-    },
-    "fresh": {
-        "active-dry": 0.4,
-        "instant": 0.33
-    }
+// Relative weight of each yeast for the same rise (instant = 1).
+// Every pair is derived from this one table, so conversions agree in every direction.
+const yeastWeights = {
+    "instant": 1,
+    "active-dry": 1.25,
+    "fresh": 3
 };
 
 // Unit constants
@@ -127,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         titleEl.textContent = target.label;
 
         // Calculate converted weight in grams
-        const ratio = yeastRatios[fromType][target.type];
+        const ratio = yeastWeights[target.type] / yeastWeights[fromType];
         const targetGrams = baseGrams * ratio;
         const targetOunces = targetGrams / G_PER_OZ;
 

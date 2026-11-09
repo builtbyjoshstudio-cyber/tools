@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var hp    = (c.hp    === null || c.hp    === undefined || !isFinite(Number(c.hp)))    ? null : Math.max(0, Math.floor(Number(c.hp)));
         var maxHp = (c.maxHp === null || c.maxHp === undefined || !isFinite(Number(c.maxHp))) ? null : Math.max(0, Math.floor(Number(c.maxHp)));
         combatants.push({
-          id: String(c.id || "c" + fallbackSeq),
-          seq: isFinite(Number(c.seq)) ? Number(c.seq) : fallbackSeq,
+          id: "c" + fallbackSeq, // regenerated: stored ids are never trusted (duplicates, markup)
+          seq: fallbackSeq, // regenerated too: storage order is insertion order, so tie order survives
           name: String(c.name || "Combatant").slice(0, 40),
           init: isFinite(Number(c.init)) ? Number(c.init) : 0,
           type: (c.type === "pc" || c.type === "ally") ? c.type : "enemy",
@@ -72,12 +72,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         fallbackSeq++;
       });
-      var maxSeq = combatants.reduce(function (m, c) { return Math.max(m, c.seq); }, 0);
       return {
         combatants: combatants,
         round: Math.max(1, parseInt(s.round, 10) || 1),
         turn:  Math.max(0, parseInt(s.turn, 10)  || 0),
-        seq:   Math.max(maxSeq + 1, parseInt(s.seq, 10) || 1)
+        seq:   fallbackSeq // ids/seqs are 1..n, so the next minted "c" + seq can't collide
       };
     } catch (e) { return blank(); }
   }
@@ -127,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
       conditions: []
     });
 
-    if (activeId) {
+    if (activeId && (state.round > 1 || state.turn > 0)) { // before the first Next the top of the order stays active
       var sortedAfter = order();
       for (var i = 0; i < sortedAfter.length; i++) {
         if (sortedAfter[i].id === activeId) { state.turn = i; break; }
@@ -192,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!n) { state.turn = 0; }
     else {
       if (removedIdx !== -1 && removedIdx < state.turn) state.turn--;
-      if (state.turn >= n) state.turn = 0;
+      if (state.turn >= n) { state.turn = 0; state.round++; } // active last-in-order removed: turn wraps like Next
     }
     save(); render();
   }
@@ -207,9 +206,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function setHp(id, value) {
     var c = byId(id);
     if (!c) return;
-    var v = parseInt(value, 10);
-    if (!isFinite(v)) { render(); return; } // emptied field: keep current HP, restore the display
-    c.hp = Math.max(0, v);
+    var m = /^\s*([+-]?)(\d+)\s*$/.exec(value);
+    if (!m) { render(); return; } // emptied or spliced field ("3-70"): keep current HP, restore the display
+    var v = parseInt(m[1] + m[2], 10);
+    var next = m[1] ? c.hp + v : v; // "-7" = 7 damage, "+5" = heal 5
+    if (!isFinite(next)) { render(); return; } // a 309-digit paste parses to Infinity
+    c.hp = Math.max(0, next);
     save(); render();
   }
 
@@ -272,25 +274,25 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         hpHtml =
           '<span class="hp-lbl">HP</span>' +
-          '<button type="button" class="hp-btn" data-act="hp" data-id="' + c.id + '" data-d="-1" aria-label="Damage ' + esc(c.name) + ' by 1">&minus;</button>' +
-          '<input class="hp" type="number" inputmode="numeric" value="' + c.hp + '" data-act="hpset" data-id="' + c.id + '" aria-label="' + esc(c.name) + ' hit points">' +
-          '<button type="button" class="hp-btn" data-act="hp" data-id="' + c.id + '" data-d="1" aria-label="Heal ' + esc(c.name) + ' by 1">+</button>' +
+          '<button type="button" class="hp-btn" data-act="hp" data-id="' + esc(c.id) + '" data-d="-1" aria-label="Damage ' + esc(c.name) + ' by 1">&minus;</button>' +
+          '<input class="hp" type="text" inputmode="numeric" value="' + c.hp + '" data-act="hpset" data-id="' + esc(c.id) + '" aria-label="' + esc(c.name) + ' hit points" title="Type -7 for damage, +5 to heal, or a number to set HP">' +
+          '<button type="button" class="hp-btn" data-act="hp" data-id="' + esc(c.id) + '" data-d="1" aria-label="Heal ' + esc(c.name) + ' by 1">+</button>' +
           (c.maxHp !== null ? '<span class="hp-max">/ ' + c.maxHp + '</span>' : '');
       }
 
       var condHtml = '';
       for (var j = 0; j < c.conditions.length; j++) {
         condHtml += '<span class="cond">' + esc(c.conditions[j]) +
-          '<button type="button" data-act="uncond" data-id="' + c.id + '" data-idx="' + j + '" aria-label="Remove condition ' + esc(c.conditions[j]) + '">&times;</button></span>';
+          '<button type="button" data-act="uncond" data-id="' + esc(c.id) + '" data-idx="' + j + '" aria-label="Remove condition ' + esc(c.conditions[j]) + '">&times;</button></span>';
       }
-      condHtml += '<input class="cond-add" type="text" list="cond-presets" placeholder="+ condition" maxlength="24" data-act="cond" data-id="' + c.id + '" aria-label="Add condition to ' + esc(c.name) + '">';
+      condHtml += '<input class="cond-add" type="text" list="cond-presets" placeholder="+ condition" maxlength="24" data-act="cond" data-id="' + esc(c.id) + '" aria-label="Add condition to ' + esc(c.name) + '">';
 
       html +=
         '<div class="' + cls + '">' +
           '<div class="init" title="Initiative" aria-label="Initiative ' + fmtInit(c.init) + '">' + fmtInit(c.init) + '</div>' +
           '<div class="who"><div class="nm">' + esc(c.name) + '</div><div class="tp ' + c.type + '">' + TYPE_LABEL[c.type] + '</div></div>' +
           '<div class="c-mid"><div class="hp-line">' + hpHtml + '</div><div class="cond-line">' + condHtml + '</div></div>' +
-          '<button type="button" class="c-remove" data-act="remove" data-id="' + c.id + '" aria-label="Remove ' + esc(c.name) + '">&times;</button>' +
+          '<button type="button" class="c-remove" data-act="remove" data-id="' + esc(c.id) + '" aria-label="Remove ' + esc(c.name) + '">&times;</button>' +
         '</div>';
     }
     listEl.innerHTML = html;
@@ -317,7 +319,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key === "Enter" && t.getAttribute("data-act") === "cond") {
       e.preventDefault();
       addCondition(t.getAttribute("data-id"), t.value);
+    } else if ((e.key === "ArrowUp" || e.key === "ArrowDown") && t.getAttribute("data-act") === "hpset") {
+      e.preventDefault(); // the text HP box has no built-in stepping: Up heals 1, Down deals 1, like the old number box
+      var id = t.getAttribute("data-id");
+      var typed = t.value;
+      t.value = String(byId(id).hp); // un-dirty the box so the re-render cannot fire a late change
+      setHp(id, typed); // commit a typed entry first (an invalid one just re-renders)
+      bumpHp(id, e.key === "ArrowUp" ? 1 : -1);
+      var box = listEl.querySelector('input.hp[data-id="' + id + '"]');
+      if (box) box.focus();
     }
+  });
+  listEl.addEventListener("focusin", function (e) {
+    if (e.target.getAttribute("data-act") === "hpset") e.target.select(); // typing "-7" replaces the shown HP instead of splicing into it
   });
 
   // Datalist of common condition names (generic across systems)

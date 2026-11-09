@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "a chess piece — the knight", "a heavy iron key", "a captain's spyglass", "a prayer book", "a tin whistle",
     "a coil of silk rope", "a surgeon's kit", "a decanter", "a child's toy soldier", "an embroidered map",
     "a lantern with shutters", "a pocket sundial", "a sealed letter", "a horn inkwell", "a pair of spectacles",
-    "a ceremonial dagger", "a fishing lure", "a bracelet of flat stones", "a weather-vane rooster", "a locksmith's blank keys",
+    "a ceremonial dagger", "a fishing lure", "a bracelet of flat stones", "a weather-vane rooster", "a ring of locksmith's blank keys",
     "a drum no wider than a plate", "a carved walking cane", "a soup ladle", "a hooded falconry glove", "a jar of buttons",
     "a candle stub in a silver holder", "a marionette missing its strings", "an abacus", "a door knocker shaped like a fist",
     "a set of nesting boxes", "a tuning fork", "a barber's razor", "a hollow book", "a saint's medallion", "a bone comb"

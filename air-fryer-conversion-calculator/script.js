@@ -49,6 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
         "Wings love a final 2–3 minutes at a higher temp for extra crunch."
       ]
     },
+    ground: {
+      dtF: 25, timeFactor: 0.80,
+      tips: [
+        "<strong>Confirm 160&deg;F (71&deg;C) internal</strong> (165&deg;F / 74&deg;C if it's turkey or chicken) with a thermometer — time is only an estimate.",
+        "<strong>Leave space between patties, meatballs, or links</strong> so the air can brown every side.",
+        "<strong>Flip burgers halfway</strong>; shake or turn meatballs and sausages so they brown evenly."
+      ]
+    },
     roast: {
       dtF: 30, timeFactor: 0.85,
       tips: [
@@ -141,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var afTemp = round5(ovenTemp - tempDrop(food.dtF));
     var minTemp = unit === "F" ? 120 : 50;
     if (afTemp < minTemp) afTemp = minTemp;
+    var maxTemp = unit === "F" ? 400 : 200; // a common air fryer ceiling
 
     var afTime = Math.max(Math.round(ovenTime * food.timeFactor), 1);
     var checkAt = Math.max(Math.round(afTime * 2 / 3), 2);
@@ -149,7 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
     settingOut.innerHTML = deg(afTemp) + " &middot; " + afTime + " min";
     settingSub.innerHTML = "Converted from " + deg(ovenTemp) + " for " + ovenTime +
       " minutes in the oven &mdash; " + tempDrop(food.dtF) + "&deg; lower, " +
-      Math.round((1 - food.timeFactor) * 100) + "% less time.";
+      Math.round((1 - food.timeFactor) * 100) + "% less time." +
+      (afTemp > maxTemp ? " <strong>Many air fryers top out at " + deg(maxTemp) + ".</strong> If yours does, " +
+        "set it to its max and check at the first-check time; it may need a few extra minutes." : "");
 
     tempOut.innerHTML = deg(afTemp);
     timeOut.innerHTML = "~" + afTime + " min";

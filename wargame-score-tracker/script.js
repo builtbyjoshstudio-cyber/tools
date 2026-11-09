@@ -277,6 +277,8 @@ document.addEventListener("DOMContentLoaded", function () {
       secLists[p].addEventListener("click", function (e) {
         var t = e.target.closest("button[data-id]");
         if (!t) return;
+        var hit = state.players[p].secondaries.filter(function (x) { return x.id === t.getAttribute("data-id"); })[0];
+        if (!hit || !window.confirm("Remove " + (hit.name || "this secondary") + "?")) return;
         state.players[p].secondaries = state.players[p].secondaries.filter(function (x) {
           return x.id !== t.getAttribute("data-id");
         });

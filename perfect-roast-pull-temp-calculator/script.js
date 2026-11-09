@@ -21,6 +21,8 @@ const bbqSafeOpt = document.getElementById('bbq-safe');
 const cookingMethod = document.getElementById('cooking-method');
 const brisketSafeOpt = document.getElementById('brisket-safe');
 const duckBreastMrOpt = document.getElementById('duck-breast-mr');
+const hamCookedOpt = document.getElementById('ham-cooked');
+const hamFreshOpt = document.getElementById('ham-fresh');
 const cutBrisket = document.getElementById('cut-brisket');
 const cutDuckBreast = document.getElementById('cut-duck-breast');
 
@@ -31,7 +33,7 @@ function updateDonenessOptionTexts(isCelsius) {
         if (opt.id === 'poultry-safe') {
             opt.textContent = isCelsius ? 'Safe (74°C)' : 'Safe (165°F / 74°C)';
         } else if (opt.id === 'fish-safe') {
-            opt.textContent = isCelsius ? 'Flaky/Opaque (60°C)' : 'Flaky/Opaque (140°F / 60°C)';
+            opt.textContent = isCelsius ? 'Flaky/Opaque (63°C)' : 'Flaky/Opaque (145°F / 63°C)';
         } else if (opt.id === 'ground-safe') {
             opt.textContent = isCelsius ? 'Safe (71°C)' : 'Safe (160°F / 71°C)';
         } else if (opt.id === 'bbq-safe') {
@@ -40,6 +42,10 @@ function updateDonenessOptionTexts(isCelsius) {
             opt.textContent = isCelsius ? 'Collagen Breakdown (95°C)' : 'Collagen Breakdown (203°F / 95°C)';
         } else if (opt.id === 'duck-breast-mr') {
             opt.textContent = isCelsius ? 'Medium-Rare (57°C)' : 'Medium-Rare (135°F / 57°C)';
+        } else if (opt.id === 'ham-cooked') {
+            opt.textContent = isCelsius ? 'Fully Cooked, Reheat (60°C)' : 'Fully Cooked, Reheat (140°F / 60°C)';
+        } else if (opt.id === 'ham-fresh') {
+            opt.textContent = isCelsius ? 'Fresh or Cook-Before-Eating (63°C)' : 'Fresh or Cook-Before-Eating (145°F / 63°C)';
         } else {
             const labels = {
                 '125': 'Rare',
@@ -118,11 +124,18 @@ function updateUI() {
         showOnly(fishSafeOpt);
     } else if (meatType.value === 'pork-shoulder') {
         showOnly(bbqSafeOpt);
+    } else if (meatType.value === 'ham') {
+        for (let i = 0; i < options.length; i++) {
+            options[i].style.display = (options[i] === hamCookedOpt || options[i] === hamFreshOpt) ? '' : 'none';
+        }
+        if (!hamCookedOpt.selected && !hamFreshOpt.selected) hamCookedOpt.selected = true;
     } else {
         // Hide all special options, show standard options
-        const specialIds = ['poultry-safe', 'fish-safe', 'ground-safe', 'bbq-safe', 'brisket-safe', 'duck-breast-mr'];
+        const specialIds = ['poultry-safe', 'fish-safe', 'ground-safe', 'bbq-safe', 'brisket-safe', 'duck-breast-mr', 'ham-cooked', 'ham-fresh'];
+        // Pork loin and chops: nothing below the USDA 145°F whole-pork minimum.
+        const isPorkLoin = (meatType.value === 'pork-loin');
         for (let i = 0; i < options.length; i++) {
-            if (!specialIds.includes(options[i].id)) {
+            if (!specialIds.includes(options[i].id) && !(isPorkLoin && parseInt(options[i].value) < 145)) {
                 options[i].style.display = '';
             } else {
                 options[i].style.display = 'none';
@@ -136,9 +149,10 @@ function updateUI() {
             }
         }
 
-        // Coming from a special-case meat: fall back to Medium. A standard
-        // choice (e.g. Medium-Rare) is kept when only the cut changes.
-        if (specialIds.includes(options[finalDoneness.selectedIndex].id)) {
+        // Coming from a special-case meat (or Rare/Medium-Rare into pork loin):
+        // fall back to Medium. A visible choice (e.g. Medium-Rare) is kept when
+        // only the cut changes.
+        if (options[finalDoneness.selectedIndex].style.display === 'none') {
             finalDoneness.value = "145";
         }
     }
@@ -166,7 +180,9 @@ function calculate() {
     const isGame = (meatType.value === 'game-meat');
     const isDuck = (meatType.value === 'duck-goose');
     const isBbq = (meatType.value === 'pork-shoulder');
-    
+    const isPorkLoin = (meatType.value === 'pork-loin');
+    const isHam = (meatType.value === 'ham');
+
     const isBrisketOverride = (meatType.value === 'beef-brisket');
     const isDuckBreastOverride = (meatType.value === 'duck-goose' && cutSize.value === 'duck_breast');
     
@@ -175,8 +191,10 @@ function calculate() {
     // Enforce logic rule minimums defensively
     if (isPoultry) targetTempF = 165;
     if (isGround) targetTempF = 160;
-    if (isFish) targetTempF = 140;
+    if (isFish) targetTempF = 145;
     if (isBbq) targetTempF = 200;
+    if (isPorkLoin) targetTempF = Math.max(targetTempF, 145);
+    if (isHam) targetTempF = hamFreshOpt.selected ? 145 : 140;
     if (isBrisketOverride) targetTempF = 203;
     if (isDuckBreastOverride) targetTempF = 135; // Medium-Rare target
 
@@ -194,9 +212,9 @@ function calculate() {
         carryoverSubF = 5; // Pull at 198°F (203 - 5 = 198)
     } else if (isDuckBreastOverride) {
         carryoverSubF = 5; // Pull at 130°F (135 - 5 = 130)
-    } else if (isFish) {
-        carryoverSubF = 3;
-        restTimeStr = "a few minutes";
+    } else if (isFish || isHam) {
+        // USDA minimums, pulled AT the minimum like poultry.
+        carryoverSubF = 0;
     } else if (isBbq) {
         carryoverSubF = targetTempF - 195; // Forces pull temp to 195
     } else {
@@ -248,8 +266,10 @@ function calculate() {
         }
     }
 
-    const pullTempF = targetTempF - carryoverSubF;
-    
+    let pullTempF = targetTempF - carryoverSubF;
+    // Pork loin keeps its carryover, but is never pulled below the 145°F minimum.
+    if (isPorkLoin) pullTempF = Math.max(pullTempF, 145);
+
     // Display
     if (isCelsius) {
         let pullTempC = convertToCelsius(pullTempF);
@@ -267,6 +287,11 @@ function calculate() {
             // so a safety number never reads as under the stated minimum.
             pullTempC = 74;
             targetTempC = 74;
+        }
+        if (isFish || isPorkLoin || isHam) {
+            // Same for the 145°F minimum: 62.8°C, shown as the USDA's 63°C.
+            if (pullTempF === 145) pullTempC = 63;
+            if (targetTempF === 145) targetTempC = 63;
         }
         pullTempOutput.innerText = `${pullTempC}°C`;
         targetTempOutput.innerText = `${targetTempC}°C`;
@@ -301,6 +326,28 @@ function calculate() {
         restWarning.innerHTML = isCelsius
             ? `<strong>Chef's Note:</strong> Barbecue cuts are cooked for tenderness, not temperature. Pull when a probe slides in like warm butter (usually around 90.6°C-95°C). You MUST rest these large cuts in an insulated cooler for 1 to 2 hours before slicing.`
             : `<strong>Chef's Note:</strong> Barbecue cuts are cooked for tenderness, not temperature. Pull when a probe slides in like warm butter (usually around 195°F-203°F). You MUST rest these large cuts in an insulated cooler for 1 to 2 hours before slicing.`;
+    } else if (isFish) {
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> Fish is pulled at the USDA minimum of 63°C (145°F). Without a thermometer, cook until the flesh is opaque and separates easily with a fork. Rest a few minutes before serving.`
+            : `<strong>Food Safety:</strong> Fish is pulled at the USDA minimum of 145°F (63°C). Without a thermometer, cook until the flesh is opaque and separates easily with a fork. Rest a few minutes before serving.`;
+    } else if (isHam && targetTempF === 145) {
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> Fresh ham and ham labeled cook before eating are pulled at the USDA minimum of 63°C (145°F), then rested at least 3 minutes before carving.`
+            : `<strong>Food Safety:</strong> Fresh ham and ham labeled cook before eating are pulled at the USDA minimum of 145°F (63°C), then rested at least 3 minutes before carving.`;
+    } else if (isHam) {
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> A fully cooked ham packaged in a USDA-inspected plant is reheated to 60°C (140°F). Any other cooked ham, such as leftovers or ham repackaged outside the plant, must reach 74°C (165°F).`
+            : `<strong>Food Safety:</strong> A fully cooked ham packaged in a USDA-inspected plant is reheated to 140°F (60°C). Any other cooked ham, such as leftovers or ham repackaged outside the plant, must reach 165°F (74°C).`;
+    } else if (isPorkLoin && pullTempF > targetTempF - carryoverSubF) {
+        // The 145°F floor raised the pull, so carryover lands above the target.
+        const finishF = pullTempF + carryoverSubF;
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> Pork is never pulled below the USDA minimum of 63°C (145°F), and it needs at least a 3-minute rest. Carryover is a bonus, not part of the safety math: rest it uncovered for <strong>${restTimeStr}</strong> and expect it to finish around ${convertToCelsius(finishF)}°C (${finishF}°F), above your target.`
+            : `<strong>Food Safety:</strong> Pork is never pulled below the USDA minimum of 145°F (63°C), and it needs at least a 3-minute rest. Carryover is a bonus, not part of the safety math: rest it uncovered for <strong>${restTimeStr}</strong> and expect it to finish around ${finishF}°F (${convertToCelsius(finishF)}°C), above your target.`;
+    } else if (isPorkLoin) {
+        restWarning.innerHTML = isCelsius
+            ? `<strong>Food Safety:</strong> Pork is never pulled below the USDA minimum of 63°C (145°F), and it needs at least a 3-minute rest. Rest it uncovered for <strong>${restTimeStr}</strong> to reach this final temperature.`
+            : `<strong>Food Safety:</strong> Pork is never pulled below the USDA minimum of 145°F (63°C), and it needs at least a 3-minute rest. Rest it uncovered for <strong>${restTimeStr}</strong> to reach this final temperature.`;
     } else {
         restWarning.innerHTML = `<strong>Chef's Note:</strong> You must rest the meat uncovered for at least <strong>${restTimeStr}</strong> to achieve this final temperature. Cutting early halts the cooking process and ruins the calculation.`;
     }

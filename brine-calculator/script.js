@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const copyBtn = document.getElementById("copy-btn");
     
     // Timer state
-    let maxHoursForTimer = 0;
+    let maxMinutesForTimer = 0;
     const startTimerBtn = document.getElementById("start-timer-btn");
     const stopTimerBtn = document.getElementById("stop-timer-btn");
     const timerContainer = document.getElementById("timer-container");
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
         waterOutput.textContent = "--";
         sugarOutput.textContent = "-- g";
         timeOutput.textContent = "Calculate to view time recommendations.";
-        maxHoursForTimer = 0;
+        maxMinutesForTimer = 0;
     }
 
     function setBrineType(type) {
@@ -219,6 +219,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return `${totalTbsp.toFixed(1)} Tbsp`;
     }
 
+    // Brining times are whole hours, or minutes when under an hour
+    function formatMinutes(mins) {
+        if (mins < 60) return `${mins} minutes`;
+        const hours = mins / 60;
+        return `${hours} hour${hours !== 1 ? 's' : ''}`;
+    }
+
     function calculate() {
         const weight = parseFloat(meatWeight.value) || 0;
         if (weight <= 0) return;
@@ -230,6 +237,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const salt = saltType.value;
         const strength = brineStrength.value;
         const hasSugar = includeSugar.checked;
+        const enhancedWarning = "Warning: Do not brine meat that is labeled as 'enhanced', 'basted', or 'pre-seasoned' (like most frozen turkeys), as it will be incredibly salty.";
+
+        // Ground meat soaks up a wet brine and can't be rinsed or patted dry, so
+        // there is no wet-brine recipe or time to give it.
+        if (!isDry && (protein === 'ground-meat' || protein === 'ground-poultry')) {
+            resetOutputs();
+            timeOutput.textContent = "Not recommended: ground meat soaks up a wet brine and can't be rinsed or patted dry. Season it with salt instead.";
+            notesOutput.innerHTML = enhancedWarning;
+            updatePipelineLinks();
+            return;
+        }
 
         // Convert weight to grams
         const weightGrams = isKg ? weight * 1000 : weight * 453.592;
@@ -337,39 +355,63 @@ document.addEventListener("DOMContentLoaded", () => {
             sugarOutput.textContent = `${sugarGrams.toFixed(1)} g (${sugarVolStr})`;
         }
 
-        // Render Time
+        // Render Time (in minutes, so a small cut never rounds down to 0 hours)
         let timeStr = "";
-        let hoursMax = 0;
-        
+        let maxMinutes = 0;
+
         if (isDry) {
-            let hoursMin = Math.round(weightLbs * 1);
-            hoursMax = Math.round(weightLbs * 2);
-            
+            // At least 1 hour (ATK salts steaks and chops for 1 hour)
+            let hoursMin = Math.max(1, Math.round(weightLbs * 1));
+            let hoursMax = Math.max(hoursMin, Math.round(weightLbs * 2));
+
             if (protein === 'turkey' || protein === 'chicken' || protein === 'duck-goose') {
                 if (hoursMax > 24) hoursMax = 24;
             }
             if (hoursMin === hoursMax) {
-                timeStr = `${hoursMin} hours (or overnight)`;
+                timeStr = `${formatMinutes(hoursMin * 60)} (or overnight)`;
             } else {
                 timeStr = `${hoursMin} - ${hoursMax} hours (or overnight)`;
             }
+            maxMinutes = hoursMax * 60;
         } else {
-            hoursMax = Math.round(weightLbs * 1);
-            if (protein === 'turkey' || protein === 'chicken' || protein === 'duck-goose') {
-                if (hoursMax > 24) hoursMax = 24;
+            if (protein === 'seafood') {
+                // Seafood brines by the piece, not the pack: ATK gives up to six 1-inch
+                // fish fillets 15 minutes in a 6% brine
+                timeStr = "15 - 30 minutes";
+                maxMinutes = 30;
+            } else if (protein === 'beef-steak') {
+                // Thickness sets the time, not the pack size: ATK brines 1.5-inch chops
+                // 1 hour and boneless breasts 30 minutes to 1 hour
+                timeStr = "30 minutes - 1 hour";
+                maxMinutes = 60;
+            } else {
+                // Whole birds and roasts: about 1 hour per lb, never under 30 minutes
+                maxMinutes = Math.max(30, Math.round(weightLbs * 1) * 60);
+                if (protein === 'chicken') {
+                    if (maxMinutes > 240) maxMinutes = 240; // whole or pieces, capped at 4 hours
+                } else if (protein === 'turkey' || protein === 'duck-goose') {
+                    if (maxMinutes > 1440) maxMinutes = 1440;
+                }
+                timeStr = formatMinutes(maxMinutes);
             }
-            timeStr = `${hoursMax} hour${hoursMax !== 1 ? 's' : ''}`;
+            if (isEQ) {
+                // EQ water is always weaker than a standard brine, so it needs at least
+                // the standard time. It can't over-salt; the ceiling is the fridge
+                // (USDA: raw poultry keeps 1-2 days), so 2 days for every protein.
+                timeStr = `At least ${formatMinutes(Math.min(maxMinutes, 2880))}, up to 2 days`;
+                maxMinutes = 2880;
+            }
         }
         timeOutput.textContent = timeStr;
-        maxHoursForTimer = hoursMax;
+        maxMinutesForTimer = maxMinutes;
 
         // Render Notes
-        let notes = "Warning: Do not brine meat that is labeled as 'enhanced', 'basted', or 'pre-seasoned' (like most frozen turkeys), as it will be incredibly salty.<br><br>";
+        let notes = enhancedWarning + "<br><br>";
         if (isDry) {
             notes += "<strong>Method:</strong> Pat meat completely dry before applying salt. Rest uncovered on a wire rack in the fridge.";
         } else {
             if (isEQ) {
-                notes = "<strong>Equilibrium Mode Active:</strong> The meat will absorb exactly 1.5% salt and cannot become over-salted, even if left in the brine for multiple days. Ideal for long-term curing and ultra-precise BBQ control.<br><br>";
+                notes += "<strong>Equilibrium Mode Active:</strong> The meat will absorb exactly 1.5% salt and cannot become over-salted, however long it soaks. It is not a cure: 1.5% salt doesn't preserve meat, so keep it in the fridge and take it out within 2 days. Ideal for long, forgiving soaks and ultra-precise BBQ control.";
             } else {
                 notes += "<strong>Method:</strong> Always rinse the meat and pat completely dry after removing from a wet brine.";
             }
@@ -430,7 +472,7 @@ document.addEventListener("DOMContentLoaded", () => {
             liveTimerDisplay.textContent = "00:00:00";
             liveTimerDisplay.style.color = "var(--warn)";
             clearInterval(timerInterval);
-            alert("Brining time is up! Please remove your meat from the brine immediately to prevent over-salting.");
+            alert("Brining time is up! Please remove your meat from the brine now.");
         } else {
             liveTimerDisplay.textContent = formatTime(remaining);
             liveTimerDisplay.style.color = "var(--accent)";
@@ -438,14 +480,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     startTimerBtn.addEventListener("click", () => {
-        if (maxHoursForTimer > 0) {
-            const endTime = Date.now() + (maxHoursForTimer * 3600 * 1000);
+        if (maxMinutesForTimer > 0) {
+            const endTime = Date.now() + (maxMinutesForTimer * 60 * 1000);
             localStorage.setItem('brineTimerEnd', endTime.toString());
             if (timerInterval) clearInterval(timerInterval);
             timerInterval = setInterval(updateTimer, 1000);
             updateTimer();
         } else {
-            alert("Please calculate a brine first to set the timer duration.");
+            // No time to run: either nothing is calculated yet or the selection has
+            // no wet-brine time (ground meat); the time line already says which
+            alert(timeOutput.textContent);
         }
     });
 

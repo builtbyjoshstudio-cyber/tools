@@ -45,8 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return parseFloat(str);
     }
 
-    // Float to readable fraction (approximating to practical cooking measurements)
-    function toFraction(num) {
+    // Float to readable fraction (approximating to practical cooking measurements).
+    // A fraction is used only when it's within 5% (and 0.1) of the real amount. Teaspoons
+    // (eighths) also get 1/8, 3/8, 5/8 and 7/8 and always take the nearest one,
+    // since nothing finer than 1/8 tsp gets measured.
+    function toFraction(num, eighths) {
         if (isNaN(num) || num <= 0) return '';
         
         const tolerance = 1.0E-6;
@@ -59,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
             { val: 3/4, text: '3/4' },
             { val: 1, text: '' } // handle rounding up to next whole
         ];
+        if (eighths) {
+            fractions.push({ val: 1/8, text: '1/8' }, { val: 3/8, text: '3/8' }, { val: 5/8, text: '5/8' }, { val: 7/8, text: '7/8' });
+        }
 
         let whole = Math.floor(num + tolerance);
         let decimal = num - whole;
@@ -84,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
             closestFraction = fractions[0];
         }
 
-        if (minDiff > 0.1) {
+        if (eighths ? (whole === 0 && closestFraction.val === 0) : minDiff > Math.min(0.1, num * 0.05)) {
             // If it doesn't cleanly round to a practical cooking fraction, try to just show sensible decimals.
-            let res = Number.isInteger(num) ? num.toString() : num.toFixed(2).replace(/\.00$/, '');
+            let res = Number.isInteger(num) ? num.toString() : num.toFixed(2).replace(/\.?0+$/, '');
             return res;
         }
 
@@ -99,6 +105,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return `${whole} ${closestFraction.text}`;
+    }
+
+    // US cups and spoons, written the way a standard measuring set holds them
+    // (1 cup = 16 tbsp = 48 tsp): cups down to 1/4 cup, then whole or half
+    // tablespoons down to 1 tbsp, then teaspoons. A smaller measure is added only
+    // when the bigger one alone would be more than 5% off, so 1/3 cup halved is
+    // 2 tbsp + 2 tsp (not 1/4 cup) and 3/4 tsp halved is 3/8 tsp.
+    function toUsVolume(amount, unit, unitText) {
+        const tsp = amount * (unit === 'cup' ? 48 : unit === 'tbsp' ? 3 : 1);
+        const tol = tsp * 0.05;
+        const parts = [];
+        let rest = tsp;
+        if (unit === 'cup') {
+            const cups = rest / 48;
+            const whole = Math.floor(cups);
+            let near = whole, below = whole;
+            [1/4, 1/3, 1/2, 2/3, 3/4, 1].forEach(f => {
+                if (Math.abs(cups - whole - f) < Math.abs(cups - near)) near = whole + f;
+                if (whole + f <= cups) below = whole + f;
+            });
+            if (near >= 1/4 && Math.abs(cups - near) * 48 <= tol) return `${toFraction(near)} ${unitText}`;
+            if (below > 0) {
+                parts.push(`${toFraction(below)} ${unitText}`);
+                rest -= below * 48;
+            }
+        }
+        if (unit !== 'tsp') {
+            const tbspText = unit === 'tbsp' ? unitText : 'tbsp';
+            const half = Math.round(rest / 1.5) / 2;
+            if (half >= 1 && Math.abs(rest - half * 3) <= tol) {
+                parts.push(`${toFraction(half)} ${tbspText}`);
+                rest = 0;
+            } else if (rest >= 3) {
+                const wholeTbsp = Math.floor(rest / 3);
+                parts.push(`${wholeTbsp} ${tbspText}`);
+                rest -= wholeTbsp * 3;
+            }
+        }
+        if (!parts.length || rest > 1/16) {
+            parts.push(`${toFraction(rest, true)} ${unit === 'tsp' ? unitText : 'tsp'}`);
+        }
+        return parts.join(' + ');
     }
 
     function scaleRecipe() {
@@ -123,8 +171,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let hasFractionalEggs = false;
 
-        const unitRegex = /(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)\s*(cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|°?c|celsius|inches|inch|in\.?|cm|centimeters?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b/gi;
-        const startNumberRegex = /^(\s*)(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)(?!\s*(?:cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|inches|inch|in\.?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b)/i;
+        const unitRegex = /(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)\s*(cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|kilograms?|kgs?|liters?|litres?|l|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|°?c|celsius|inches|inch|in\.?|cm|centimeters?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b/gi;
+        const startNumberRegex = /^(\s*)(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)(?!\s*(?:cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|kilograms?|kgs?|liters?|litres?|l|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|inches|inch|in\.?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b)/i;
 
         lines.forEach(line => {
             if (!line.trim()) {
@@ -184,8 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let isLb = /^(pounds?|lbs?\.?)$/.test(unit);
                 let isG = /^(grams?|g\.?)$/.test(unit);
                 let isMl = /^(milliliters?|ml\.?)$/.test(unit);
+                let isKg = /^(kilograms?|kgs?)$/.test(unit);
+                let isL = /^(liters?|litres?|l)$/.test(unit);
 
-                if (densityMatch && (isTsp || isTbsp || isFlOz || isCup || isPt || isQt || isGal || isOz || isLb || isG || isMl || unit === 'l' || unit === 'kg')) {
+                if (densityMatch && (isTsp || isTbsp || isFlOz || isCup || isPt || isQt || isGal || isOz || isLb || isG || isMl || isL || isKg)) {
                     const density = densityMatch.density;
                     if (convertToMetric) {
                         // Volume to Weight
@@ -198,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         else if (isQt) volumeMl = scaledNum * 946.353;
                         else if (isGal) volumeMl = scaledNum * 3785.41;
                         else if (isMl) volumeMl = scaledNum;
-                        else if (unit === 'l') volumeMl = scaledNum * 1000;
+                        else if (isL) volumeMl = scaledNum * 1000;
 
                         if (volumeMl > 0) {
                             scaledNum = volumeMl * density;
@@ -214,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             // Weight to Weight (just use normal logic)
                             if (isOz) { scaledNum *= 28.3495; outUnit = 'g'; useFraction = false; }
                             else if (isLb) { scaledNum *= 453.592; outUnit = 'g'; useFraction = false; }
+                            else if (isKg) { scaledNum *= 1000; outUnit = 'g'; useFraction = false; }
                             if (scaledNum >= 1000) {
                                 scaledNum /= 1000;
                                 outUnit = 'kg';
@@ -226,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         // Weight to Volume
                         let weightG = 0;
                         if (isG) weightG = scaledNum;
-                        else if (unit === 'kg') weightG = scaledNum * 1000;
+                        else if (isKg) weightG = scaledNum * 1000;
                         else if (isOz) weightG = scaledNum * 28.3495;
                         else if (isLb) weightG = scaledNum * 453.592;
 
@@ -249,7 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             useFraction = true;
                         } else {
                             // Volume to Volume (just use normal logic)
-                            if (isMl) {
+                            if (isMl || isL) {
+                                if (isL) scaledNum *= 1000;
                                 let cups = scaledNum / 240;
                                 if (cups >= 0.25) { scaledNum = cups; outUnit = scaledNum <= 1 ? 'cup' : 'cups'; }
                                 else {
@@ -273,6 +325,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         else if (isGal) { scaledNum *= 3.8; outUnit = 'L'; useFraction = false; }
                         else if (isOz) { scaledNum *= 28; outUnit = 'g'; useFraction = false; }
                         else if (isLb) { scaledNum *= 454; outUnit = 'g'; useFraction = false; }
+                        else if (isKg) { scaledNum *= 1000; outUnit = 'g'; useFraction = false; }
+                        else if (isL) { scaledNum *= 1000; outUnit = 'ml'; useFraction = false; }
                         else if (isIn) { scaledNum *= 2.5; outUnit = 'cm'; useFraction = false; }
                         else if (isF) {
                             scaledNum = (scaledNum - 32) * 5 / 9;
@@ -297,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             // Decimal strictness
                             if (outUnit === 'L') {
-                                scaledNum = Number(scaledNum.toFixed(1));
+                                scaledNum = Number(scaledNum.toFixed(isL ? 2 : 1));
                             } else if (outUnit === 'kg') {
                                 scaledNum = Number(scaledNum.toFixed(2));
                             } else if (outUnit === 'ml' || outUnit === 'g' || outUnit === '°C' || outUnit === '°F') {
@@ -309,7 +363,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } else {
                         // Metric to US Customary
-                        if (isMl) {
+                        if (isMl || isL) {
+                            if (isL) scaledNum *= 1000;
                             let cups = scaledNum / 240;
                             if (cups >= 0.25) { scaledNum = cups; outUnit = scaledNum <= 1 ? 'cup' : 'cups'; }
                             else {
@@ -317,8 +372,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 if (tbsp >= 0.5) { scaledNum = tbsp; outUnit = 'tbsp'; }
                                 else { scaledNum = scaledNum / 5; outUnit = 'tsp'; }
                             }
-                        } else if (isG || unit === 'kg') {
-                            if (unit === 'kg') scaledNum *= 1000;
+                        } else if (isG || isKg) {
+                            if (isKg) scaledNum *= 1000;
                             scaledNum /= 28.35; outUnit = 'oz';
                             useFraction = false;
                             scaledNum = Number(scaledNum.toFixed(1));
@@ -333,6 +388,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             useFraction = false;
                         }
                     }
+                }
+
+                // US cups and spoons can drop to a smaller measure (see toUsVolume)
+                let usVolume = '';
+                if (useFraction) {
+                    if (/^(cups?|c\.?)$/i.test(outUnit)) usVolume = 'cup';
+                    else if (/^(tablespoons?|tbsps?\.?)$/i.test(outUnit)) usVolume = 'tbsp';
+                    else if (/^(teaspoons?|tsps?\.?)$/i.test(outUnit)) usVolume = 'tsp';
+                }
+                if (usVolume && scaledNum > 0) {
+                    return `<span class="highlight">${toUsVolume(scaledNum, usVolume, outUnit)}</span>`;
                 }
 
                 let valStr = useFraction ? toFraction(scaledNum) : scaledNum.toString();

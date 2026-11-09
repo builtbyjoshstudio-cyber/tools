@@ -77,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------- notation parser ----------
   // Expression: terms joined by + or -. Term: NdX(khK|klK)? or integer.
   function parse(expr) {
+    // "1d20 5" must not collapse into 1d205 when the spaces are stripped
+    if (/\d\s+\d/.test(String(expr || ""))) return { error: "Put + or - between terms — like 1d20+5." };
     var s = String(expr || "").toLowerCase().replace(/\s+/g, "");
     if (!s) return { error: "Nothing to roll." };
     if (!/^[0-9dkhl+\-]+$/.test(s)) return { error: "Only dice notation here — like 3d6+2 or 4d6kh3." };
@@ -87,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
     while ((m = re.exec(s)) !== null) {
       if (m.index !== consumed) return { error: "Couldn't read that — check the notation." };
       consumed = m.index + m[0].length;
+      if (terms.length && !m[1]) return { error: "Put + or - between terms — like 1d20+5." };
       var sign = m[1] === "-" ? -1 : 1;
       var body = m[2];
       if (terms.length >= MAX_TERMS) return { error: "That's a lot of terms — keep it under " + MAX_TERMS + "." };
@@ -244,11 +247,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   rollBtn.addEventListener("click", function () {
-    var typed = notationIn.value.replace(/\s+/g, "");
+    var typed = notationIn.value.trim();
     var expr = typed || poolExpr();
     if (!expr) { showError("Tap some dice or type notation first."); return; }
-    // typed notation carries its own modifiers; the pool gets the modifier field
-    doRoll(typed ? typed : expr + modSuffix());
+    // the modifier field applies to every roll, typed notation included
+    doRoll(expr + modSuffix());
   });
   notationIn.addEventListener("keydown", function (e) {
     if (e.key === "Enter") { e.preventDefault(); rollBtn.click(); }
@@ -280,6 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }).join("");
   }
   clearHist.addEventListener("click", function () {
+    if (!history.length) return;
+    if (!window.confirm("Clear roll history?")) return;
     history = [];
     saveHistory();
     renderHistory();

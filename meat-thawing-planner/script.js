@@ -131,8 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Determine thawing rates based on specific protein characteristics
         let fridgeRateLbsPerDay = 5.0; // Default: 24 hours per 5 lbs (USDA standard)
         let waterRateHoursPerLb = 0.5; // Default: 30 mins/lb
-        let isFlatBaseline = false;
-        let fridgeHours = 0;
+        let minFridgeHours = 0; // Floor for small packages, however light
 
         if (protein === 'turkey' || protein === 'duck-goose') {
             fridgeRateLbsPerDay = 4.0; // Whole dense birds / thick poultry (4 lbs/day)
@@ -148,21 +147,20 @@ document.addEventListener("DOMContentLoaded", () => {
             waterRateHoursPerLb = 0.45; // 27 mins/lb
         } else if (protein === 'seafood') {
             fridgeRateLbsPerDay = 8.0; // Fish & seafood thaws much faster (8 lbs/day)
+            minFridgeHours = 12; // FDA: thaw seafood in the refrigerator overnight
             waterRateHoursPerLb = 0.3; // 18 mins/lb
         } else if (protein === 'beef-steak') {
-            isFlatBaseline = true;
-            fridgeHours = 12; // Flat 12-hour refrigerator window for individual cuts
+            fridgeRateLbsPerDay = 5.0; // 5 lbs/day for bigger packs of cuts
+            minFridgeHours = 12; // At least overnight for individual cuts
             waterRateHoursPerLb = 0.4; // 24 mins/lb
-        } else if (protein === 'ground-meat') {
-            isFlatBaseline = true;
-            fridgeHours = 24; // Flat 24-hour refrigerator window for ground meat packages
+        } else if (protein === 'ground-meat' || protein === 'ground-poultry') {
+            fridgeRateLbsPerDay = 5.0; // 5 lbs/day for bulk packs
+            minFridgeHours = 24; // USDA: even a pound of ground meat needs a full day
             waterRateHoursPerLb = 0.5; // 30 mins/lb
         }
 
         // Calculate refrigerator thawing time
-        if (!isFlatBaseline) {
-            fridgeHours = (weightLbs / fridgeRateLbsPerDay) * 24;
-        }
+        const fridgeHours = Math.max(minFridgeHours, (weightLbs / fridgeRateLbsPerDay) * 24);
 
         // Calculate cold water thawing time
         const waterHours = weightLbs * waterRateHoursPerLb;
@@ -196,11 +194,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Helper to format fridge time
     function formatFridgeTime(totalHours) {
-        if (totalHours < 24) {
-            return `${Math.ceil(totalHours)} hrs`;
+        const roundedHours = Math.ceil(totalHours); // Round before splitting so 47.6 hrs reads "2 days", not "1 day, 24 hrs"
+        if (roundedHours < 24) {
+            return `${roundedHours} ${roundedHours === 1 ? 'hr' : 'hrs'}`;
         }
-        const days = Math.floor(totalHours / 24);
-        const remainingHours = Math.ceil(totalHours % 24);
+        const days = Math.floor(roundedHours / 24);
+        const remainingHours = roundedHours % 24;
         if (remainingHours === 0) {
             return `${days} ${days === 1 ? 'day' : 'days'}`;
         }
@@ -209,15 +208,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Helper to format water time
     function formatWaterTime(totalHours) {
-        const hours = Math.floor(totalHours);
-        const minutes = Math.round((totalHours - hours) * 60);
+        const totalMinutes = Math.round(totalHours * 60); // Round before splitting so 1.99 hrs reads "2 hrs", not "1 hr, 60 mins"
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
         if (hours === 0) {
-            return `${minutes} mins`;
+            return `${minutes} ${minutes === 1 ? 'min' : 'mins'}`;
         }
         if (minutes === 0) {
             return `${hours} ${hours === 1 ? 'hr' : 'hrs'}`;
         }
-        return `${hours} ${hours === 1 ? 'hr' : 'hrs'}, ${minutes} mins`;
+        return `${hours} ${hours === 1 ? 'hr' : 'hrs'}, ${minutes} ${minutes === 1 ? 'min' : 'mins'}`;
     }
 
     // Dynamic next-steps update

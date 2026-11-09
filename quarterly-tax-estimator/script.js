@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------- tax math ----------
   function seTax(profit) {
     var base = profit * SE_FACTOR;
+    if (base < 400) return 0;      // Schedule SE line 4c: under $400, no SE tax
     var ss = Math.min(base, SS_WAGE_BASE) * SE_SS_RATE;
     var medicare = base * SE_MEDICARE_RATE;
     return ss + medicare;
@@ -102,19 +103,36 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ---------- rows ----------
-  function renderDueDates(quarterly) {
-    dueDates.innerHTML = DUE_DATES.map(function (d) {
-      return '<div class="glass-lite anatomy-row">' +
-        '<div class="ix">' + d.q + "</div>" +
-        '<div class="lbl"><h4>Due ' + d.due + "</h4><p>" + d.covers + "</p></div>" +
-        "<code>" + money(quarterly) + "</code>" +
+  function renderDueDates(quarterly, underMin, total, state, stateRate) {
+    var html;
+    if (underMin) {
+      html = '<div class="glass-lite anatomy-row">' +
+        '<div class="ix">IRS</div>' +
+        '<div class="lbl"><h4>Under $1,000 for the year</h4><p>Quarterly payments generally aren\'t required; pay with your return.</p></div>' +
+        "<code>" + money(total) + "</code>" +
       "</div>";
-    }).join("");
+    } else {
+      html = DUE_DATES.map(function (d) {
+        return '<div class="glass-lite anatomy-row">' +
+          '<div class="ix">' + d.q + "</div>" +
+          '<div class="lbl"><h4>Due ' + d.due + "</h4><p>" + d.covers + "</p></div>" +
+          "<code>" + money(quarterly) + "</code>" +
+        "</div>";
+      }).join("");
+    }
+    if (stateRate > 0) {
+      html += '<div class="glass-lite anatomy-row">' +
+        '<div class="ix">ST</div>' +
+        '<div class="lbl"><h4>State tax for the year</h4><p>Pay this to your state, not the IRS. Schedules vary (e.g., California is 30/40/0/30% on the same four dates).</p></div>' +
+        "<code>" + money(state) + "</code>" +
+      "</div>";
+    }
+    dueDates.innerHTML = html;
   }
 
   function renderBreakdown(profit, se, halfSE, deduction, taxable, fed, state, stateRate) {
     var rows = [
-      { ix: "SE", h: "Self-employment tax", p: "15.3% on " + money(profit * SE_FACTOR) + " (92.35% of profit)", code: money(se) },
+      { ix: "SE", h: "Self-employment tax", p: se > 0 ? "15.3% on " + money(profit * SE_FACTOR) + " (92.35% of profit)" : "None: 92.35% of profit is under $400", code: money(se) },
       { ix: "&minus;", h: "Adjustments", p: "Half of SE tax (" + money(halfSE) + ") + standard deduction (" + money(deduction) + ")", code: "&minus;" + money(halfSE + deduction) },
       { ix: "IT", h: "Federal income tax", p: "2026 brackets on " + money(taxable) + " taxable income", code: money(fed) }
     ];
@@ -153,18 +171,21 @@ document.addEventListener("DOMContentLoaded", function () {
     var taxable = Math.max(profit - halfSE - deduction, 0);
     var fed = bracketTax(taxable, status);
     var state = profit * (stateRate / 100);
-    var total = se + fed + state;
+    var total = se + fed;          // federal only; state tax is paid to the state
     var quarterly = total / 4;
+    var underMin = Math.round(total) < 1000;
 
     heroQuarterly.textContent = money(quarterly);
     var pct = profit > 0 ? Math.round(total / profit * 100) : 0;
-    heroSub.textContent = "About " + pct + "% of your profit goes to tax — " + money(total) + " for the year, split four ways.";
+    heroSub.textContent = "About " + pct + "% of your profit goes to federal tax — " + money(total) + " for the year" +
+      (underMin ? ". That's under $1,000, so quarterly payments generally aren't required; pay with your return." : ", split four ways.") +
+      (stateRate > 0 ? " Plus about " + money(state) + " for your state, paid separately." : "");
 
     seOut.textContent = money(se);
     fedOut.textContent = money(fed);
     totalOut.textContent = money(total);
 
-    renderDueDates(quarterly);
+    renderDueDates(quarterly, underMin, total, state, stateRate);
     renderBreakdown(profit, se, halfSE, deduction, taxable, fed, state, stateRate);
   }
 

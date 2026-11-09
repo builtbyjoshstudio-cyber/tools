@@ -90,13 +90,13 @@ A: A wet brine dissolves salt in water and submerges the meat; a dry brine appli
 Q: How much salt do I need to brine a turkey?
 A: It depends on the meat's weight and your salt brand — flaky kosher salt and fine table salt have very different densities by volume. Enter your weight and salt type for an exact amount.
 Q: How long should I brine meat?
-A: Roughly an hour per pound for a wet brine as a starting point, longer for dry brining, with poultry capped to avoid over-salting. The tool gives a recommended range for your protein and weight.
+A: For a wet brine, about an hour per pound for whole birds, chicken pieces and roasts, never under 30 minutes, with chicken capped at 4 hours and turkey, duck and goose at 24 hours. Steaks, chops and seafood are timed by the piece, not the pack: 30 minutes to 1 hour for steaks and chops, 15 to 30 minutes for fish and seafood. Ground meat isn't wet brined. A dry brine takes 1 to 2 hours per pound (at least 1 hour, with turkey, chicken, duck and goose capped at 24 hours), and an equilibrium brine at least as long as a standard one, up to 2 days.
 Q: Can I brine pre-seasoned or "enhanced" meat?
 A: It's not recommended. Many supermarket turkeys and pork are already injected with a salt solution, and brining on top of that makes them too salty. Check the label for "enhanced" or a sodium-containing ingredient list before brining.
 Q: What is the formula for a brine?
 A: A standard wet brine is salt at about 5% of the water's weight, which is 50 g of salt per liter of water. A dry brine is salt at about 1% of the meat's weight. This calculator uses about 0.6 liters of water per pound of meat (at least 2 liters) to keep it submerged, so a 12-pound turkey takes about 7.2 liters of water and 360 g of salt.
 Q: What is an equilibrium brine?
-A: An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving.
+A: An equilibrium brine uses exactly the amount of salt you want to end up in the food, so it cannot over-salt however long it soaks. The calculator sets it at 1.5% of the combined weight of the meat and the water. It is slower than a standard brine but far more forgiving, so the calculator gives it at least the standard brine's time and up to 2 days. The limit there is the fridge, not the salt: a 1.5% brine doesn't preserve meat, and raw poultry keeps only 1 to 2 days.
 Q: How much salt do I use for a dry brine per pound?
 A: About 1% of the meat's weight, which is roughly 4.5 g of salt per pound. That is about one and a half teaspoons of coarse flaky kosher salt but only three quarters of a teaspoon of table salt, which is why weighing the salt is more reliable than measuring by the spoon.
 
@@ -172,11 +172,11 @@ A: About one day in the refrigerator for every 4 pounds, so 3 days for a 12-poun
 URL: https://tools.builtbyjoshstudio.com/pan-swap-calculator/
 What it does: Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings. Free and ad-free.
 Q: How do I convert a recipe to a different pan size?
-A: Compare the surface area of the two pans — the ratio tells you how to scale the batter. A pan with twice the area needs roughly twice the batter. This tool calculates the exact multiplier for you.
-Q: Why does pan area matter more than volume?
-A: For most cakes and bars, batter depth drives bake time and texture. Matching surface area keeps the depth similar, so the bake behaves predictably. A much deeper or shallower pan changes timing and can leave the center under- or over-baked.
+A: Compare the volume of the two pans (footprint times depth) — the ratio tells you how to scale the batter. A pan that holds twice as much needs roughly twice the batter. This tool calculates the exact multiplier for you.
+Q: Why does pan depth matter?
+A: Batter depth drives bake time and texture. Pans of the same depth, like standard 2-inch 8x8 and 9x13 pans, can be matched by area alone, but a loaf pan is 2.5 to 3 inches deep: scaling a loaf recipe by area keeps that deep batter and can fill a 9x13 to the rim. Scaling by volume fills the new pan to the same level instead. When the new pan is deeper, the batter sits deeper and needs a longer bake, which the tool flags.
 Q: What pan shapes can I convert between?
-A: Round, square, rectangular, Bundt, and muffin pans.
+A: Round, square, rectangular, loaf, Bundt, and muffin pans.
 Q: Will the baking time change when I swap pans?
 A: Often, yes. A shallower pan bakes faster, a deeper one slower. The tool flags when a swap pushes batter into a notably deeper or shallower setup so you know to check doneness early or extend the time.
 
@@ -210,7 +210,7 @@ A: Instead of working forward from when you start, you work backward from when y
 Q: How do I know when to start cooking?
 A: Enter your protein, its weight, and your target serving time. The tool calculates total cook time from the weight, adds resting and prep buffers, and tells you the exact time to begin.
 Q: How long should meat rest after roasting?
-A: It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Resting lets juices redistribute and accounts for carryover cooking.
+A: It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Barbecue cuts hold longer: the timeline keeps a pork shoulder in an insulated cooler for 1 hour and a brisket for 2 hours before slicing. Resting lets juices redistribute and accounts for carryover cooking.
 Q: Are these cooking times exact?
 A: They're planning estimates. Oven calibration, starting meat temperature, and bone-in versus boneless all affect real cook time. Always confirm doneness with a calibrated thermometer and follow USDA safe internal temperatures.
 Q: How long do you cook a pork loin roast per pound?
@@ -240,9 +240,9 @@ What it does: Convert yeast measurements between Active Dry, Instant, and Fresh 
 Q: What's the difference between active dry, instant, and fresh yeast?
 A: They're the same organism at different moisture levels. Instant yeast is the most concentrated and finely milled, active dry has more moisture and slightly less potency by weight, and fresh (or "cake") yeast is mostly water — so you need progressively more of each to get the same rise. That's why you can't swap them one-for-one.
 Q: How do I substitute instant yeast for active dry?
-A: Use about 75% of the weight — if a recipe calls for 10g of active dry, use roughly 7.5g of instant. Going the other way, use about 1.33 times as much active dry as instant. Instant can be mixed straight into the dry ingredients, while active dry is often dissolved in warm (not cold) liquid first, especially in a cool kitchen.
+A: Use about 80% of the weight — if a recipe calls for 10g of active dry, use roughly 8g of instant. Going the other way, use about 1.25 times as much active dry as instant. Instant can be mixed straight into the dry ingredients, while active dry is often dissolved in warm (not cold) liquid first, especially in a cool kitchen.
 Q: How much fresh yeast equals a packet of dry yeast?
-A: A standard 7g packet of active dry yeast is roughly 17.5g of fresh yeast (about 2.5×); a 7g packet of instant is roughly 21g of fresh (about 3×). Fresh yeast is always measured by weight, never by teaspoon, since it's a moist solid rather than a dry granule — this converter keeps fresh yeast in grams and ounces for that reason.
+A: A standard 7g packet of active dry yeast is roughly 16.8g of fresh yeast (about 2.4×); a 7g packet of instant is roughly 21g of fresh (about 3×). Fresh yeast is always measured by weight, never by teaspoon, since it's a moist solid rather than a dry granule — this converter keeps fresh yeast in grams and ounces for that reason.
 Q: Will my dough rise the same after converting?
 A: The amounts are matched for equivalent rising power, but the timing can differ — instant yeast tends to get going faster than active dry, often shaving time off the rise. Treat the converted amount as a reliable starting point and watch the dough rather than the clock: it's ready when it's roughly doubled, not when a timer says so.
 
@@ -319,7 +319,7 @@ A: A common lender guideline is the 28/36 rule: your housing payment (mortgage p
 Q: What is the 28/36 rule?
 A: It's the classic debt-to-income guideline lenders use: no more than 28% of gross monthly income on housing (the front-end ratio), and no more than 36% on housing plus every other debt payment — cars, cards, student loans (the back-end ratio). Whichever limit you hit first is the one that caps your budget, which is why existing debt payments shrink how much house you can afford.
 Q: How does my down payment change what I can afford?
-A: Dollar for dollar, the down payment adds straight onto your price range — it's the part of the house you don't have to finance. It also helps indirectly: a bigger down payment can mean better rates and, at 20% or more, no private mortgage insurance. This calculator adds your down payment on top of the loan your monthly budget supports.
+A: Until your down payment covers the whole price, each extra dollar down raises your price range by a bit less than a dollar — about 83 cents at a 6.5% rate, from 76 cents at 3% to 87 cents at 10%. The rest goes to the extra property tax and insurance on a pricier home, which is why the loan amount dips slightly as your down payment grows. It also helps indirectly: a bigger down payment can mean better rates and, at 20% or more, no private mortgage insurance. This calculator keeps your monthly budget fixed and finds the price where the loan payment plus tax and insurance fit inside it.
 Q: Is this home affordability calculator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
 
@@ -351,7 +351,7 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 URL: https://tools.builtbyjoshstudio.com/profit-margin-calculator/
 What it does: See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin. Free, ad-free, no signup.
 Q: What's the difference between margin and markup?
-A: Margin is profit as a share of the selling price; markup is profit as a share of your cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows both so nothing gets lost in translation.
+A: Margin is profit as a share of the selling price; markup is how far the price sits above your cost, as a share of that cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows markup before platform fees, the way those formulas work, and margin after fees, which is what a sale actually leaves you.
 Q: What profit margin should handmade sellers aim for?
 A: Many handmade and print-on-demand sellers target a 50–70% margin after fees, because that has to cover your time beyond labor, marketing, returns, and slow seasons — not just materials. Below about 30% after fees, most product businesses struggle to pay their owner. Use the target-margin slider to see the price that actually supports your goal.
 Q: Why do platform fees change my price so much?
@@ -393,7 +393,7 @@ A: Three quiet subtractions: FICA taxes (7.65% for most people, covering Social 
 Q: Does contributing to a 401(k) lower my paycheck dollar-for-dollar?
 A: No — traditional 401(k) contributions come out before federal income tax, so a $100 contribution typically shrinks your check by only $75–$90 depending on your bracket. The rest is tax you didn't pay. Move the contribution slider and compare the net change to the contribution amount to see your own discount.
 Q: How accurate is this take-home pay calculator?
-A: It uses 2026 federal figures — brackets, standard deduction, and FICA rates and caps — and treats state tax as a simple flat rate you enter. It doesn't model health premiums, HSA/FSA, local taxes, credits, or W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.
+A: It uses 2026 federal figures — brackets, standard deduction, FICA rates and caps, and the $24,500 401(k) limit — and treats state tax as a simple flat rate you enter. It figures one job's paycheck; married couples who both work should pick the both-work option, which matches a W-4 with the Step 2 box checked. It doesn't model health premiums, HSA/FSA, 401(k) catch-up contributions, local taxes, credits, or other W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.
 Q: Is this take-home pay calculator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
 
@@ -468,7 +468,7 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept h
 URL: https://tools.builtbyjoshstudio.com/random-table-roller/
 What it does: Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables. Free, ad-free, no signup.
 Q: What format can I paste tables in?
-A: Almost anything line-based. Plain lines get auto-numbered in order (twenty lines becomes a d20 table). Lines that start with a number ('7: a broken cart') keep that number, and ranges ('01-05: nothing happens') become weighted entries — the wider the range, the more likely the result. You can mix all three styles in one paste.
+A: Almost anything line-based. Plain lines get auto-numbered in order (twenty lines becomes a d20 table). Lines that start with a number ('7: a broken cart') keep that number, and ranges ('01-05: nothing happens') become weighted entries — the wider the range, the more likely the result. You can mix all three styles in one paste. Percentile numbering works too: 00 counts as 100 (as in 96-00), a d10's 0 counts as 10, and a table that counts from zero (00-09 through 90-99) moves up one so every entry keeps its odds.
 Q: How do weighted entries work?
 A: The roller rolls a die as big as your table's highest number and finds the entry whose range covers the roll. An entry spanning 1-5 is five times likelier than one covering a single number. If your ranges leave gaps, a roll landing in a gap says so honestly instead of pretending.
 Q: Where are my tables stored, and can I share them?

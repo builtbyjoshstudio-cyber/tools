@@ -301,6 +301,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (decimals === 0) {
             return Math.round(val);
         }
+        // Under 1 oz (salt, yeast on small batches) 0.1 oz is too coarse: 0.054 oz of yeast read as 0.1 or 0.0
+        if (val < 1) {
+            return (Math.round(val * 100) / 100).toFixed(2);
+        }
         return (Math.round(val * 10) / 10).toFixed(decimals);
     }
 
