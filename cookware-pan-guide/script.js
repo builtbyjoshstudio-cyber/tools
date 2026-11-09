@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', () => {
             specResponsiveness.textContent = materialProfile.responsiveness;
             specStick.textContent = materialProfile.stickResistance;
             specAcid.textContent = materialProfile.acidReactivity;
-            specInduction.textContent = materialProfile.inductionCompatibility === 'Generally Compatible' ? 'Yes' : (materialProfile.inductionCompatibility === 'Compatible only if magnetic / induction-ready' ? 'Conditionally' : 'No');
+            specInduction.textContent = materialProfile.inductionCompatibility === 'Generally Compatible' ? 'Yes' : (materialProfile.inductionCompatibility === 'Compatible only if magnetic / induction-ready' ? 'Conditionally' : (materialProfile.inductionCompatibility === 'Incompatible unless built with an induction base' ? 'Needs Induction Base' : 'No'));
             specOven.textContent = materialProfile.ovenSafety;
         } else {
             [specRetention, specResponsiveness, specStick, specAcid, specInduction, specOven].forEach(el => el.textContent = '--');
@@ -538,8 +538,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const tr = document.createElement('tr');
             
             // Format properties into short badge formats
-            const acidSafeClass = m.acidReactivity === 'Safe' ? 'yes' : 'no';
-            const acidSafeLabel = m.acidReactivity === 'Safe' ? 'Yes' : 'No';
+            const acidSafeClass = m.acidReactivity === 'Safe' ? 'yes' : (m.acidReactivity === 'Safe (Anodized) / Reactive (Bare)' ? 'limited' : 'no');
+            const acidSafeLabel = m.acidReactivity === 'Safe' ? 'Yes' : (m.acidReactivity === 'Safe (Anodized) / Reactive (Bare)' ? 'Anodized Only' : 'No');
             
             let indClass = 'no';
             let indLabel = 'No';

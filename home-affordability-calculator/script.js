@@ -76,6 +76,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function affordablePrice(piti, down, factor) {
     var tiMo = TI_ANNUAL_RATE / 12;
     if (piti <= 0) return 0;
+    // Cash-constrained regime: if the down payment alone out-buys the formula
+    // price, no loan is needed — T&I on the home is the binding limit.
+    if (piti < tiMo * down) return piti / tiMo;
     return (piti + factor * down) / (factor + tiMo);
   }
 
@@ -118,9 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     var price = affordablePrice(piti, down, factor);
-    // Cash-constrained regime: if the down payment alone out-buys the formula
-    // price, no loan is needed — T&I on the home is the binding limit.
-    if (piti < tiMo * down) price = piti / tiMo;
     var loan = Math.max(price - down, 0);
     var pAndI = loan * factor;
     var ti = price * tiMo;

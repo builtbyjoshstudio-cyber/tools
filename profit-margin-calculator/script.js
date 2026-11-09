@@ -1,6 +1,6 @@
 /* ============================================================
    Profit Margin Calculator — Tynkr Tools & Co
-   Profit/margin/markup after platform fees, break-even price,
+   Profit/margin after platform fees, markup on cost (before fees), break-even price,
    and required price for a target margin. Vanilla JS.
    Theme is handled globally by ../kinetic.js
    ============================================================ */
@@ -85,7 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var fees = price * feePct + feeFixed;
     var profit = price - cost - fees;
     var margin = profit / price * 100;
-    var markup = cost > 0 ? profit / cost * 100 : Infinity;
+    // Markup is before fees: (price - cost) / cost, the way cost-multiplier pricing formulas work
+    var markup = cost > 0 ? (price - cost) / cost * 100 : Infinity;
     var breakeven = requiredPrice(cost, feeFixed, feePct, 0);
 
     heroProfit.textContent = money2(profit);

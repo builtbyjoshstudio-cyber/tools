@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ---------- milestones ----------
-  function renderMilestones(sim, years, annualRate) {
+  function renderMilestones(sim, annualRate) {
     var rows = [];
     var months = sim.balCurve.length - 1;
 
@@ -108,11 +108,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
-    var halfY = Math.max(1, Math.round(years / 2));
-    var halfM = Math.min(halfY * 12, months);
+    var halfM = Math.round(months / 2);
     rows.push({
       ix: "&frac12;", h: "Halfway there",
-      p: "Balance at year " + halfY + " — the second half grows much faster",
+      p: "Balance after " + (halfM < 12 ? halfM + " months" : yearsText(halfM / 12)) + " — the second half grows much faster",
       code: money(sim.balCurve[halfM])
     });
 
@@ -174,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
     shareOut.textContent = share + "%";
 
     drawChart(sim.balCurve, sim.contribCurve);
-    renderMilestones(sim, years, rate);
+    renderMilestones(sim, rate);
   }
 
   [startEl, contribEl, rateEl, yearsEl].forEach(function (el) {

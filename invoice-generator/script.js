@@ -68,7 +68,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function nl2br(s) { return esc(s).replace(/\n/g, "<br>"); }
   function sym() { return CURRENCIES[f.currency.value] || "$"; }
-  function fmt(n) { if (!isFinite(n)) n = 0; return sym() + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+  // JPY has no minor unit (ISO 4217); everything else bills in cents
+  function dp() { return f.currency.value === "JPY" ? 0 : 2; }
+  // maxDp lets a unit price keep its cents even in JPY (¥31.5/kWh) so qty x rate still matches the amount
+  function fmt(n, maxDp) { if (!isFinite(n)) n = 0; return sym() + n.toLocaleString("en-US", { minimumFractionDigits: dp(), maximumFractionDigits: maxDp || dp() }); }
+  // round half away from zero to the currency's precision, same as fmt() (toPrecision strips float noise so x.xx5 ties round up; credits round like charges and never leave -0)
+  function roundCur(n) { var m = Math.pow(10, dp()); var r = Math.round(Number((Math.abs(n) * m).toPrecision(15))) / m; return n < 0 && r ? -r : r; }
 
   // ---------- line items ----------
   function addItem(desc, qty, rate) {
@@ -92,19 +97,21 @@ document.addEventListener("DOMContentLoaded", function () {
       var desc = row.querySelector(".it-desc").value;
       var qty = parseFloat(row.querySelector(".it-qty").value) || 0;
       var rate = parseFloat(row.querySelector(".it-rate").value) || 0;
-      out.push({ desc: desc, qty: qty, rate: rate, amt: qty * rate, el: row });
+      out.push({ desc: desc, qty: qty, rate: rate, amt: roundCur(qty * rate), el: row });
     });
     return out;
   }
 
   // ---------- totals ----------
+  // every row is rounded before it is summed, so the printed rows always add up to the total;
+  // discount is clamped to 0-100% of a positive subtotal and tax/shipping to >= 0 so a hidden row can't change the total
   function compute(items) {
-    var subtotal = items.reduce(function (s, it) { return s + it.amt; }, 0);
-    var discountAmt = subtotal * (num(f.discount, 0) / 100);
-    var base = subtotal - discountAmt;
-    var taxAmt = base * (num(f.taxRate, 0) / 100);
-    var ship = num(f.shipping, 0);
-    return { subtotal: subtotal, discountAmt: discountAmt, taxAmt: taxAmt, ship: ship, total: base + taxAmt + ship };
+    var subtotal = roundCur(items.reduce(function (s, it) { return s + it.amt; }, 0));
+    var discountAmt = roundCur(Math.max(subtotal, 0) * (Math.min(Math.max(num(f.discount, 0), 0), 100) / 100));
+    var base = roundCur(subtotal - discountAmt);
+    var taxAmt = roundCur(base * (Math.max(num(f.taxRate, 0), 0) / 100));
+    var ship = roundCur(Math.max(num(f.shipping, 0), 0));
+    return { subtotal: subtotal, discountAmt: discountAmt, taxAmt: taxAmt, ship: ship, total: roundCur(base + taxAmt + ship) };
   }
 
   // ---------- render preview ----------
@@ -139,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return '<tr>' +
         '<td>' + (esc(it.desc) || "&nbsp;") + '</td>' +
         '<td class="r">' + (it.qty || "") + '</td>' +
-        '<td class="r">' + (it.rate ? fmt(it.rate) : "") + '</td>' +
+        '<td class="r">' + (it.rate ? fmt(it.rate, 2) : "") + '</td>' +
         '<td class="r">' + fmt(it.amt) + '</td>' +
       '</tr>';
     }).join("");
@@ -208,7 +215,8 @@ document.addEventListener("DOMContentLoaded", function () {
   (function seed() {
     var today = new Date();
     var due = new Date(); due.setDate(due.getDate() + 14);
-    function iso(d) { return d.toISOString().slice(0, 10); }
+    // local calendar date (toISOString is UTC, which is already tomorrow on a US evening)
+    function iso(d) { function p(n) { return (n < 10 ? "0" : "") + n; } return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
     f.invDate.value = iso(today);
     f.dueDate.value = iso(due);
     f.invNo.value = "INV-" + today.getFullYear() + "-001";

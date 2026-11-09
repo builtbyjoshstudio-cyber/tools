@@ -295,6 +295,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var t = e.target.closest('[data-act="nremove"]');
     if (!t) return;
     var c = activeCamp();
+    var hit = c.npcs.filter(function (n) { return n.id === t.getAttribute("data-id"); })[0];
+    if (!hit || !window.confirm("Remove " + (hit.name || "this NPC") + "?")) return;
     c.npcs = c.npcs.filter(function (n) { return n.id !== t.getAttribute("data-id"); });
     save(); renderNpcs();
   });
@@ -344,6 +346,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var t = e.target.closest('[data-act="lremove"]');
     if (!t) return;
     var c = activeCamp();
+    var hit = c.loot.filter(function (l) { return l.id === t.getAttribute("data-id"); })[0];
+    if (!hit || !window.confirm("Remove " + (hit.text || "this item") + "?")) return;
     c.loot = c.loot.filter(function (l) { return l.id !== t.getAttribute("data-id"); });
     save(); renderLoot();
   });

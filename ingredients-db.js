@@ -32,7 +32,10 @@ const INGREDIENT_DATABASE = {
     "molasses": { density: 1.40, cal: 290, protein: 0, carbs: 75.0, fat: 0.1, fiber: 0, sodium: 37 },
 
     // Fats & Oils
+    // USDA SR Legacy: unsalted FDC 173430, salted FDC 173410
     "butter": { density: 0.96, cal: 717, protein: 0.9, carbs: 0.1, fat: 81.1, fiber: 0, sodium: 11 },
+    "unsalted butter": { density: 0.96, cal: 717, protein: 0.9, carbs: 0.1, fat: 81.1, fiber: 0, sodium: 11 },
+    "salted butter": { density: 0.96, cal: 717, protein: 0.9, carbs: 0.1, fat: 81.1, fiber: 0, sodium: 643 },
     "margarine": { density: 0.92, cal: 713, protein: 0.1, carbs: 0.9, fat: 80.5, fiber: 0, sodium: 700 },
     "olive oil": { density: 0.92, cal: 884, protein: 0, carbs: 0, fat: 100, fiber: 0, sodium: 2 },
     "vegetable oil": { density: 0.92, cal: 884, protein: 0, carbs: 0, fat: 100, fiber: 0, sodium: 0 },
@@ -46,7 +49,9 @@ const INGREDIENT_DATABASE = {
     "heavy cream": { density: 0.98, cal: 340, protein: 2.8, carbs: 2.7, fat: 36.1, fiber: 0, sodium: 27 },
     "heavy whipping cream": { density: 0.98, cal: 340, protein: 2.8, carbs: 2.7, fat: 36.1, fiber: 0, sodium: 27 },
     "sour cream": { density: 0.98, cal: 198, protein: 2.4, carbs: 4.6, fat: 19.4, fiber: 0, sodium: 31 },
-    "yogurt": { density: 1.05, cal: 59, protein: 10.0, carbs: 3.6, fat: 0.4, fiber: 0, sodium: 36 },
+    // USDA SR Legacy: plain whole-milk yogurt FDC 171284, plain nonfat Greek FDC 170894
+    "yogurt": { density: 1.04, cal: 61, protein: 3.5, carbs: 4.7, fat: 3.3, fiber: 0, sodium: 46 },
+    "greek yogurt": { density: 1.05, cal: 59, protein: 10.2, carbs: 3.6, fat: 0.4, fiber: 0, sodium: 36 },
     "buttermilk": { density: 1.03, cal: 40, protein: 3.3, carbs: 4.8, fat: 0.9, fiber: 0, sodium: 105 },
 
     // Seasonings & Salts
@@ -54,7 +59,8 @@ const INGREDIENT_DATABASE = {
     "salt": { density: 1.15, cal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium: 38758 },
     "kosher salt": { density: 0.70, cal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium: 38758 },
     "diamond crystal kosher salt": { density: 0.57, cal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium: 38758 },
-    "morton kosher salt": { density: 0.83, cal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium: 38758 },
+    // Morton Coarse Kosher label: 1/4 tsp = 1.2 g, so 4.8 g per tsp
+    "morton kosher salt": { density: 0.97, cal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium: 38758 },
     "sea salt": { density: 1.05, cal: 0, protein: 0, carbs: 0, fat: 0, fiber: 0, sodium: 38758 },
 
     // Baking Agents & Leaveners
@@ -86,7 +92,8 @@ const INGREDIENT_DATABASE = {
     "chicken cooked": { density: 1.0, cal: 165, protein: 31.0, carbs: 0, fat: 3.6, fiber: 0, sodium: 74 },
 
     // Extras
-    "chocolate chips": { density: 0.71, cal: 479, protein: 5.2, carbs: 64.1, fat: 22.3, fiber: 5.3, sodium: 115 },
+    // USDA SR Legacy FDC 167976, semisweet chocolate (1 cup chips = 168 g)
+    "chocolate chips": { density: 0.71, cal: 480, protein: 4.2, carbs: 63.9, fat: 30.0, fiber: 5.9, sodium: 11 },
     "walnuts": { density: 0.50, cal: 654, protein: 15.2, carbs: 13.7, fat: 65.2, fiber: 6.7, sodium: 2 },
     "almonds": { density: 0.58, cal: 579, protein: 21.2, carbs: 21.6, fat: 49.9, fiber: 12.5, sodium: 1 },
     "pecans": { density: 0.46, cal: 691, protein: 9.2, carbs: 13.9, fat: 72.0, fiber: 9.6, sodium: 0 }
@@ -105,6 +112,8 @@ Object.keys(INGREDIENT_DATABASE).forEach(key => {
 const DIFFERENT_FOOD = {
     "milk": /\b(coconut|almond|oat|soy|rice|cashew|condensed|evaporated|powdered)[\s-]+milk\b|\bmilk[\s-]+chocolate\b/,
     "butter": /\b(peanut|almond|cashew|sunflower|apple|cocoa)[\s-]+butter\b|\bbutter[\s-]+(beans?|lettuce)\b/,
+    "unsalted butter": /\bbutter[\s-]+(beans?|lettuce)\b/,
+    "salted butter": /\bbutter[\s-]+(beans?|lettuce)\b/,
     "flour": /\b(almond|coconut|rice|corn|chickpea|oat|tapioca|potato|cassava|soy)[\s-]+flour\b/,
     "sugar": /\bsugar[\s-]*free\b|\bsugar[\s-]+(snap|substitute)\b/,
     "water": /\bwater[\s-]+chestnuts?\b|\bcoconut[\s-]+water\b/
@@ -124,7 +133,11 @@ function escapeRegExp(s) {
  */
 function findIngredientDensity(text) {
     if (!text) return null;
-    const cleanText = text.toLowerCase();
+    // Spellings no key covers: "Greek nonfat yogurt" / "Greek-style yogurt" are
+    // Greek yogurt, and "non-salted" / "un-salted" butter is unsalted butter.
+    const cleanText = text.toLowerCase()
+        .replace(/\bgreek[\s-]+([a-z0-9%]+[\s-]+){0,3}?yogurt/g, 'greek yogurt')
+        .replace(/\b(un|non|no)[\s-]+salted\b/g, 'unsalted');
 
     // Sort keys by length descending to match "all-purpose flour" before "flour"
     const sortedKeys = Object.keys(INGREDIENT_DATABASE).sort((a, b) => b.length - a.length);
@@ -138,7 +151,7 @@ function findIngredientDensity(text) {
             // "1 cup milk (or almond milk)" stays milk but "almond milk" doesn't.
             const at = m.index + m[1].length;
             const near = cleanText.slice(0, at).match(/([a-z]+[\s-]*)?$/)[0] +
-                         cleanText.slice(at).match(/^[a-z]+([\s-]*[a-z]+)?/)[0];
+                         key + cleanText.slice(at + key.length).match(/^s?([\s-]*[a-z]+)?/)[0];
             if (DIFFERENT_FOOD[key] && DIFFERENT_FOOD[key].test(near)) return null;
             return {
                 name: key,

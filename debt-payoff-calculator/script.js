@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function futureDate(m) {
     var d = new Date();
+    d.setDate(1); // only month/year are shown; avoids end-of-month rollover
     d.setMonth(d.getMonth() + m);
     return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
   }
@@ -125,7 +126,9 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (strategy === "snowball") {
         active.sort(function (a, b) { return a.bal - b.bal || b.apr - a.apr; });
       } else {
-        if (month < 3) active.sort(function (a, b) { return a.bal - b.bal; });
+        // hybrid: snowball until the first debt is cleared, then avalanche
+        var firstWin = d.some(function (x) { return x.paidMonth !== null; });
+        if (!firstWin) active.sort(function (a, b) { return a.bal - b.bal; });
         else active.sort(function (a, b) { return b.apr - a.apr; });
       }
       return active;
@@ -166,7 +169,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // ---------- chart (hand-drawn inline SVG, dependency-free) ----------
   function drawChart(primary, baseline) {
     var W = 640, H = 240, padL = 8, padR = 8, padT = 14, padB = 22;
-    var maxM = Math.max(primary.months, baseline.months, 1);
+    // a minimums-only baseline that never finishes would stretch the axis to
+    // 100 years; cap it at twice the plan and cut the dashed line off there
+    var maxM = baseline.stalled
+      ? Math.max(primary.months, Math.min(baseline.months, primary.months * 2), 1)
+      : Math.max(primary.months, baseline.months, 1);
+    var baseSched = baseline.schedule.filter(function (p) { return p.month <= maxM; });
     var maxB = Math.max(
       primary.schedule[0].balance,
       baseline.schedule[0].balance, 1
@@ -182,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
       '<svg viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" ' +
       'aria-label="Balance over time: your plan vs paying minimums only">' +
       // baseline (minimums only) — muted dashed
-      '<path class="chart-baseline" d="' + path(baseline.schedule) + '" fill="none" ' +
+      '<path class="chart-baseline" d="' + path(baseSched) + '" fill="none" ' +
       'stroke-width="2" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>' +
       // primary plan — accent
       '<path class="chart-primary" d="' + path(primary.schedule) + '" fill="none" ' +
@@ -227,13 +235,18 @@ document.addEventListener("DOMContentLoaded", function () {
       var sooner = baseline.months - primary.months;
 
       heroMonths.textContent = monthsToText(primary.months);
-      heroSub.textContent = (saved > 0 && sooner > 0)
-        ? "Debt-free " + monthsToText(sooner) + " sooner and " + money(saved) + " less interest than paying minimums only."
-        : "Your debt-free timeline at these numbers.";
+      // a stalled baseline stopped early, so its months and interest aren't a real total
+      if (baseline.stalled) {
+        heroSub.textContent = "Paying only the minimums would never make you debt-free — your plan gets you there in " + monthsToText(primary.months) + ".";
+      } else {
+        heroSub.textContent = (saved > 0 && sooner > 0)
+          ? "Debt-free " + monthsToText(sooner) + " sooner and " + money(saved) + " less interest than paying minimums only."
+          : "Your debt-free timeline at these numbers.";
+      }
 
       freeDateOut.textContent = futureDate(primary.months);
       interestOut.textContent = money(primary.totalInterest);
-      savedOut.textContent = money(Math.max(0, saved));
+      savedOut.textContent = baseline.stalled ? "—" : money(Math.max(0, saved));
 
       orderList.innerHTML = primary.payoffOrder.map(function (p, i) {
         return '<div class="glass-lite anatomy-row">' +
@@ -269,8 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
         '</div>';
     }).join("");
 
-    // verdict
-    if (verdict && !primary.stalled) {
+    // verdict (cleared when the plan, snowball or avalanche never finishes)
+    if (verdict && !primary.stalled && !snow.stalled && !aval.stalled) {
       var diff = snow.totalInterest - aval.totalInterest;
       if (diff < 50) {
         verdict.textContent = "Snowball and avalanche cost almost the same here (" + money(diff) +
@@ -279,6 +292,8 @@ document.addEventListener("DOMContentLoaded", function () {
         verdict.textContent = "Avalanche saves you " + money(diff) +
           " over snowball here. If the early wins of snowball keep you motivated, that gap is often worth it — the best plan is the one you finish.";
       }
+    } else if (verdict) {
+      verdict.textContent = "";
     }
   }
 

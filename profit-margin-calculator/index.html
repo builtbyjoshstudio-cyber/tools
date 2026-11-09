@@ -26,7 +26,7 @@
     "@type": "WebApplication",
     "name": "Profit Margin Calculator",
     "url": "https://tools.builtbyjoshstudio.com/profit-margin-calculator/",
-    "description": "Calculate real profit per sale for handmade and online sellers — profit margin and markup after platform fees, break-even price, and the exact price needed to hit a target margin.",
+    "description": "Calculate real profit per sale for handmade and online sellers — profit margin after platform fees, markup on cost, break-even price, and the exact price needed to hit a target margin.",
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Any (web browser)",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -89,7 +89,7 @@
         "name": "What's the difference between margin and markup?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Margin is profit as a share of the selling price; markup is profit as a share of your cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows both so nothing gets lost in translation."
+          "text": "Margin is profit as a share of the selling price; markup is how far the price sits above your cost, as a share of that cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows markup before platform fees, the way those formulas work, and margin after fees, which is what a sale actually leaves you."
         }
       },
       {
@@ -242,7 +242,7 @@
         <div class="meta">
           <span class="pill live">&#9679; Business</span>
           <span>Margin &middot; fees &middot; price</span>
-          <span class="updated-date">Updated August 2026</span>
+          <span class="updated-date">Updated November 2026</span>
         </div>
         <h1>Profit Margin Calculator</h1>
         <p>For Etsy shops, print-on-demand, and anyone selling a thing: see what a sale really leaves you after platform fees — and the exact price that hits the margin you actually want.</p>
@@ -257,7 +257,7 @@
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Shows what a sale really leaves a seller after platform fees, and the price that hits a target margin.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Cost per unit, selling price, platform fees as % of price, and any fixed fee per sale.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Profit per sale, profit margin, markup on cost, break-even price, and the exact price for your target margin.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Profit per sale, profit margin, markup on cost (before fees), break-even price, and the exact price for your target margin.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
@@ -303,7 +303,7 @@
 
       <div class="stat-trio">
         <div class="glass-lite stat-cell"><span class="k">Profit margin</span><span class="v" id="margin-output">—</span></div>
-        <div class="glass-lite stat-cell"><span class="k">Markup on cost</span><span class="v" id="markup-output">—</span></div>
+        <div class="glass-lite stat-cell"><span class="k">Pre-fee markup</span><span class="v" id="markup-output">—</span></div>
         <div class="glass-lite stat-cell"><span class="k">Break-even price</span><span class="v" id="breakeven-output">—</span></div>
       </div>
 
@@ -338,7 +338,7 @@
       <p>Materials are the easy part. Add your labor at a real hourly rate — even a modest one — plus packaging and shipping supplies. If your labor isn't in the cost, your "profit" is just an unpaid paycheck moving between pockets.</p>
 
       <h3>Margin, markup, and which to use</h3>
-      <p>Margin is profit over price; markup is profit over cost. Both describe the same dollars from different angles, and mixing them up is how a "100% markup" ends up being a disappointing 50% margin. The tool reports both so your pricing formula and your bookkeeping agree.</p>
+      <p>Margin is profit over price; markup is how far your price sits above cost, as a share of cost. Before fees they describe the same dollars from different angles, and mixing them up is how a "100% markup" ends up being a disappointing 50% margin — and fees only shrink it from there. The tool shows markup before fees, so it matches a cost-multiplier pricing formula, and margin after fees, so you see what each sale actually leaves you.</p>
 
       <h3>Work backwards from the margin you need</h3>
       <p>Instead of picking a price and hoping, pick the margin your business needs — for most handmade sellers that's 50–70% after fees — and let the target rows tell you the price. If that price feels too high for the market, the answer is usually cutting unit cost or changing the product, not silently accepting a margin that can't pay you.</p>
@@ -348,7 +348,7 @@
     <section class="faq">
       <details>
         <summary>What's the difference between margin and markup?</summary>
-        <p>Margin is profit as a share of the selling price; markup is profit as a share of your cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows both so nothing gets lost in translation.</p>
+        <p>Margin is profit as a share of the selling price; markup is how far the price sits above your cost, as a share of that cost. A $10 item sold for $25 has a 60% margin ($15 of the $25 price) but a 150% markup ($15 on $10 of cost). Platforms and accountants usually talk margin; workshop pricing formulas often talk markup. This calculator shows markup before platform fees, the way those formulas work, and margin after fees, which is what a sale actually leaves you.</p>
       </details>
       <details>
         <summary>What profit margin should handmade sellers aim for?</summary>

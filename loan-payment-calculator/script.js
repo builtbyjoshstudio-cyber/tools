@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function futureDate(m) {
     var d = new Date();
+    d.setDate(1); // only month/year are shown; avoids end-of-month rollover
     d.setMonth(d.getMonth() + m);
     return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
   }

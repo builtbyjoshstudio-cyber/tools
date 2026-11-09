@@ -153,34 +153,60 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ---------- paste parser ----------
-  // "01-05: text" | "1–5 text" -> range ("00" as the upper bound means 100, d100-style);
-  // "7: text" | "7. text" | "7) text" -> single (punctuation required — "10 gold pieces" stays content);
-  // anything else -> auto-numbered after the current highest face.
-  function faceNum(str) {
+  // "01-05: text" | "1–5 text" -> range; "7: text" | "7. text" | "7) text" -> single
+  // (punctuation required — "10 gold pieces" stays content); anything else -> auto-numbered
+  // after the current highest face.
+  // A zero reads the way the die shows it: "00" is 100 ("96-00" = 96-100), a d10's "0" is 10.
+  // But a paste that counts FROM zero ("00-09 ... 90-99", "0: ... 5:", "00: ... 19:") moves every face up one
+  // (00-09 -> 1-10, 90-99 -> 91-100) so each entry keeps its true odds.
+  // 1-3 digit bounds so date-like lines ("2024-07-20: x") fall through to plain text
+  var RANGE_RE = /^(\d{1,3})\s*[-–—]\s*(\d{1,3})[\s.:)]*(.*)$/;
+  var SINGLE_RE = /^(\d{1,4})\s*[.:)]\s*(.*)$/;
+  function countsFromZero(raw, startAt) {
+    var high = startAt || 0, zeroTop = 0, fromZero = false; // the table's existing faces count toward the run
+    String(raw).split(/\r?\n/).forEach(function (line) {
+      var s = line.trim();
+      var m = RANGE_RE.exec(s);
+      if (m) {
+        if (!m[3]) return;
+        if (parseInt(m[1], 10) === 0) fromZero = true; // a range can't wrap, so it must start the table
+        high = Math.max(high, parseInt(m[1], 10), parseInt(m[2], 10));
+        return;
+      }
+      m = SINGLE_RE.exec(s);
+      if (!m || !m[2]) return;
+      if (parseInt(m[1], 10) === 0) zeroTop = Math.max(zeroTop, Math.pow(10, m[1].length));
+      else high = Math.max(high, parseInt(m[1], 10));
+    });
+    return fromZero || (zeroTop > 0 && high !== zeroTop - 1); // a lone 0 is the top face only when it completes 1-9 or 01-99
+  }
+  function faceNum(str, fromZero, digits) {
     var n = parseInt(str, 10);
     if (!isFinite(n)) return 1;
-    if (n === 0) n = 100; // d100 convention: 00 reads as 100
+    if (fromZero) n += 1;
+    else if (n === 0) n = Math.pow(10, digits); // "0" -> 10, "00" -> 100
     return Math.max(1, Math.min(MAX_FACE, n));
   }
   function parseLines(raw, startAt) {
     var out = [];
     var nextAuto = startAt + 1;
+    var fromZero = countsFromZero(raw, startAt);
     String(raw).split(/\r?\n/).forEach(function (line) {
       var s = line.trim();
       if (!s) return;
-      // 1-3 digit bounds so date-like lines ("2024-07-20: x") fall through to plain text
-      var m = /^(\d{1,3})\s*[-–—]\s*(\d{1,3})[\s.:)]*(.*)$/.exec(s);
+      var m = RANGE_RE.exec(s);
       if (m) {
         if (!m[3]) return; // bare range with no text — skip rather than mangle
-        var lo = faceNum(m[1]), hi = faceNum(m[2]);
+        var digits = Math.max(m[1].length, m[2].length);
+        var lo = faceNum(m[1], fromZero, digits), hi = faceNum(m[2], fromZero, digits);
         if (hi < lo) { var sw = lo; lo = hi; hi = sw; }
         out.push({ min: lo, max: hi, text: m[3].trim().slice(0, MAX_TEXT) });
         if (hi >= nextAuto) nextAuto = hi + 1;
         return;
       }
-      m = /^(\d{1,4})\s*[.:)]\s*(.*)$/.exec(s);
+      m = SINGLE_RE.exec(s);
       if (m && m[2]) {
-        var n = faceNum(m[1]);
+        var n = faceNum(m[1], fromZero, m[1].length);
         out.push({ min: n, max: n, text: m[2].trim().slice(0, MAX_TEXT) });
         if (n >= nextAuto) nextAuto = n + 1;
         return;
@@ -192,15 +218,49 @@ document.addEventListener("DOMContentLoaded", function () {
     return out;
   }
 
+  // The shipped example is for rolling, not building on: while it's still exactly as shipped,
+  // adding to it starts the user's own table instead of overlapping or extending the example.
+  function isUntouchedExample(t) {
+    var ex = blank().tables[0];
+    return t.name === ex.name && t.entries.length === ex.entries.length && ex.entries.every(function (e, i) {
+      var x = t.entries[i];
+      return x.min === e.min && x.max === e.max && x.text === e.text;
+    });
+  }
+  function startOwnTable() {
+    var names = state.tables.map(function (x) { return x.name; });
+    var name = "My Table";
+    for (var n = 2; names.indexOf(name) >= 0; n++) name = "My Table " + n; // no rename control, so keep options tellable apart
+    var t = blankTable(name, 0);
+    t.id = uid("t");
+    state.tables.push(t);
+    state.active = t.id;
+    renderTables();
+    return t;
+  }
+  function ownTableNote(t) {
+    return " · started a new table, \"" + t.name + "\" — the example is still in the Table list";
+  }
+
   parseBtn.addEventListener("click", function () {
     var t = activeTable();
-    var parsed = parseLines(pasteBox.value, tableMax(t));
+    var fresh = isUntouchedExample(t) && state.tables.length < MAX_TABLES;
+    var startAt = fresh ? 0 : tableMax(t);
+    var parsed = parseLines(pasteBox.value, startAt);
+    if (fresh && parsed.every(function (e) { return e.min > tableMax(t); })) {
+      fresh = false; // "11: ... 12: ..." carries on the example's numbering — extend it, not a new table of gaps
+      startAt = tableMax(t);
+      parsed = parseLines(pasteBox.value, startAt);
+    }
     if (!parsed.length) { pasteBox.focus(); return; }
+    if (fresh) t = startOwnTable();
     var added = parsed.slice(0, Math.max(0, MAX_ENTRIES - t.entries.length));
     added.forEach(function (e) {
       t.entries.push({ id: uid("e"), min: e.min, max: e.max, text: e.text });
     });
     save(); renderEntries();
+    if (fresh) dieNote.textContent += ownTableNote(t);
+    if (countsFromZero(pasteBox.value, startAt)) dieNote.textContent += " · numbered from 0, so every number moved up one";
     if (added.length < parsed.length) {
       // keep the paste so nothing is lost; say what happened
       dieNote.textContent += " · " + (parsed.length - added.length) + " pasted lines dropped (table is full)";
@@ -213,6 +273,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var text = (oneIn.value || "").trim();
     if (!text) { oneIn.focus(); return; }
     var t = activeTable();
+    var fresh = isUntouchedExample(t) && state.tables.length < MAX_TABLES;
+    if (fresh) t = startOwnTable();
     if (t.entries.length >= MAX_ENTRIES) return;
     var n = tableMax(t) + 1;
     if (n > MAX_FACE) return;
@@ -220,6 +282,7 @@ document.addEventListener("DOMContentLoaded", function () {
     oneIn.value = "";
     oneIn.focus();
     save(); renderEntries();
+    if (fresh) dieNote.textContent += ownTableNote(t);
   });
   oneIn.addEventListener("keydown", function (e) {
     if (e.key === "Enter") { e.preventDefault(); oneAdd.click(); }
@@ -292,8 +355,16 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderEntries() {
     var t = activeTable();
     var max = tableMax(t);
+    var cover = [], overlaps = 0; // faces claimed by 2+ entries — on those, only the first listed entry can roll
+    t.entries.forEach(function (e) {
+      for (var f = e.min; f <= e.max; f++) {
+        cover[f] = (cover[f] || 0) + 1;
+        if (cover[f] === 2) overlaps++;
+      }
+    });
     dieNote.textContent = t.entries.length
-      ? "d" + max + " table · " + t.entries.length + (t.entries.length === 1 ? " entry" : " entries")
+      ? "d" + max + " table · " + t.entries.length + (t.entries.length === 1 ? " entry" : " entries") +
+        (overlaps ? " · " + overlaps + (overlaps === 1 ? " face overlaps" : " faces overlap") + " — first listed entry wins" : "")
       : "Empty table";
     if (!t.entries.length) {
       entryList.innerHTML = '<div class="empty-note">No entries yet. Paste a list above — twenty lines makes a d20 table.</div>';
@@ -312,7 +383,9 @@ document.addEventListener("DOMContentLoaded", function () {
     var b = e.target.closest("button[data-id]");
     if (!b) return;
     var t = activeTable();
-    t.entries = t.entries.filter(function (x) { return x.id !== b.getAttribute("data-id"); });
+    var hit = t.entries.filter(function (x) { return x.id === b.getAttribute("data-id"); })[0];
+    if (!hit || !window.confirm("Remove entry " + (hit.min === hit.max ? hit.min : hit.min + "–" + hit.max) + ": \"" + hit.text + "\"?")) return;
+    t.entries = t.entries.filter(function (x) { return x.id !== hit.id; });
     save(); renderEntries();
     oneIn.focus(); // keyboard users land somewhere useful
   });

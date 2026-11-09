@@ -62,10 +62,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ---------- simulation: months until balance >= goal ----------
-  // Monthly compounding at APY/12, contribution at end of each month.
+  // Monthly compounding at the rate whose 12-month yield equals the APY
+  // (APY is an effective annual yield, not a nominal rate to divide by 12),
+  // contribution at end of each month.
   // Returns { months, curve[], deposited, interest } or null if unreachable.
   function simulate(goal, saved, apy, monthly) {
-    var r = apy / 100 / 12;
+    var r = Math.pow(1 + apy / 100, 1 / 12) - 1;
     var bal = saved;
     var deposited = saved;
     var curve = [bal];
@@ -84,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Required end-of-month contribution to reach goal in n months at APY.
   // goal = saved*(1+r)^n + c*(((1+r)^n - 1)/r)  ->  solve for c.
   function requiredMonthly(goal, saved, apy, n) {
-    var r = apy / 100 / 12;
+    var r = Math.pow(1 + apy / 100, 1 / 12) - 1;
     if (n <= 0) return Infinity;
     if (r === 0) return Math.max((goal - saved) / n, 0);
     var growth = Math.pow(1 + r, n);

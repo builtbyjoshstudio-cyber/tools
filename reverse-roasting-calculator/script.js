@@ -7,41 +7,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // Data Dictionary
     // ---------------------------------------------------------
+    // restTime is set only where the rest is fixed (barbecue cooler holds, fish);
+    // every other profile rests by weight in generateTimeline().
+    // bands: [from lbs, up to lbs, minutes] at the top of each charted range.
     const roastingData = {
         'turkey': {
             name: 'Turkey (Whole or Breast)',
-            minsPerPound: 15,
-            restTime: 30,
+            // USDA FSIS unstuffed timetable at 325°F: breast 4-6 and 6-8 lb, then whole birds
+            bands: [[4, 6, 135], [6, 8, 195], [8, 12, 180], [12, 14, 225], [14, 18, 255], [18, 20, 270], [20, 24, 300]],
             temp: '325°F (165°C)'
         },
         'chicken': {
             name: 'Chicken (Whole or Pieces)',
             minsPerPound: 20,
-            restTime: 15,
             temp: '375°F (190°C)'
         },
         'duck-goose': {
             name: 'Duck & Goose',
             minsPerPound: 20,
-            restTime: 15,
             temp: '375°F (190°C)'
         },
         'beef-roast': {
-            name: 'Beef Roasts (Prime Rib/Tri-Tip)',
-            minsPerPound: 15,
-            restTime: 30,
+            name: 'Beef Roasts (Prime Rib)',
+            // USDA chart: bone-in rib roast at 325°F, 23 to 25 min per lb
+            minsPerPound: 25,
             temp: '325°F (165°C)'
+        },
+        'beef-tri-tip': {
+            name: 'Beef Tri-Tip Roast',
+            // Beef checkoff oven chart at 425°F, to medium: 1.5-2 lb 40-50 min, 2-3 lb 50-60 min
+            bands: [[1.5, 2, 50], [2, 3, 60]],
+            temp: '425°F (220°C)'
         },
         'beef-brisket': {
             name: 'Beef Brisket (Low & Slow)',
             minsPerPound: 60,
-            restTime: 60,
+            restTime: 120,
             temp: '250°F (120°C)'
         },
         'beef-steak': {
             name: 'Steaks & Chops (Individual)',
             minsPerPound: 25,
-            restTime: 10,
             temp: '225°F (105°C)'
         },
         'pork-shoulder': {
@@ -53,31 +59,31 @@ document.addEventListener('DOMContentLoaded', () => {
         'pork-loin': {
             name: 'Pork Loin Roast',
             minsPerPound: 20,
-            restTime: 20,
             temp: '350°F (175°C)'
         },
         'ham': {
             name: 'Ham (Whole or Half)',
             minsPerPound: 20,
-            restTime: 20,
             temp: '325°F (165°C)'
         },
         'lamb': {
             name: 'Lamb Leg or Rack',
             minsPerPound: 20,
-            restTime: 20,
             temp: '325°F (165°C)'
         },
         'ground-meat': {
-            name: 'Ground Meats (Beef/Pork/Turkey)',
+            name: 'Ground Beef, Pork & Lamb',
             minsPerPound: 20,
-            restTime: 10,
+            temp: '350°F (175°C)'
+        },
+        'ground-poultry': {
+            name: 'Ground Turkey & Chicken',
+            minsPerPound: 20,
             temp: '350°F (175°C)'
         },
         'game-meat': {
             name: 'Venison & Bison (Lean Game)',
             minsPerPound: 25,
-            restTime: 20,
             temp: '300°F (150°C)'
         },
         'seafood': {
@@ -119,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // Core Logic
     // ---------------------------------------------------------
-    function formatTime(dateObj) {
+    function formatTime(dateObj, serveDate) {
         let hours = dateObj.getHours();
         let minutes = dateObj.getMinutes();
         const ampm = hours >= 12 ? 'PM' : 'AM';
@@ -128,7 +134,24 @@ document.addEventListener('DOMContentLoaded', () => {
         hours = hours ? hours : 12; // the hour '0' should be '12'
         minutes = minutes < 10 ? '0' + minutes : minutes;
         
-        return `${hours}:${minutes} ${ampm}`;
+        // Label steps that fall on an earlier calendar day than the meal
+        const stepDay = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+        const serveDay = new Date(serveDate.getFullYear(), serveDate.getMonth(), serveDate.getDate());
+        const daysBefore = Math.round((serveDay - stepDay) / 86400000);
+        const dayLabel = daysBefore === 1 ? ' (day before)' : daysBefore > 1 ? ` (${daysBefore} days before)` : '';
+        
+        return `${hours}:${minutes} ${ampm}${dayLabel}`;
+    }
+
+    // Charted total time for the weight; past either end of the chart, scale that end's time by weight
+    function bandCookTime(bands, weight) {
+        const first = bands[0];
+        const last = bands[bands.length - 1];
+        if (weight < first[0]) return Math.round(first[2] * weight / first[0]);
+        // A weight where two bands meet (8 lb: breast or whole bird) takes the shorter time, which sits inside both ranges
+        const fits = bands.filter(band => weight >= band[0] && weight <= band[1]);
+        if (fits.length) return Math.min(...fits.map(band => band[2]));
+        return Math.round(last[2] * weight / last[1]);
     }
 
     function generateTimeline() {
@@ -158,13 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Please enter a valid weight.');
                 return;
             }
-            totalCookTimeMins = Math.round(weight * data.minsPerPound);
+            totalCookTimeMins = data.bands ? bandCookTime(data.bands, weight) : Math.round(weight * data.minsPerPound);
             weightDesc = `${weightInputVal} ${currentUnit === 'metric' ? 'kg' : 'lbs'} of`;
         }
         
-        // Dynamic resting calculation
+        // Dynamic resting calculation (profiles with their own restTime keep it)
         let restTime = data.restTime;
-        if (!data.fixedTimeMins) {
+        if (!data.fixedTimeMins && !restTime) {
             if (weight < 2) {
                 restTime = 10;
             } else if (weight <= 8) {
@@ -193,39 +216,45 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let preheatTime, recoveryStartTime, roastingTime;
         if (hasBuffer) {
-            roastingTime = ovenTime;
-            recoveryStartTime = new Date(ovenTime.getTime() - (15 * 60000));
+            // The 15-minute recovery is the start of the charted cook time, not extra time on top of it
+            recoveryStartTime = ovenTime;
+            roastingTime = new Date(ovenTime.getTime() + (15 * 60000));
             preheatTime = new Date(recoveryStartTime.getTime() - (30 * 60000));
         } else {
             preheatTime = new Date(ovenTime.getTime() - (30 * 60000));
         }
+
+        // Barbecue cuts hold in a cooler, matching the Perfect Roast Pull Temp Calculator
+        const restDesc = restTime >= 60
+            ? `Pull from oven and hold in an insulated cooler for ${restTime} mins before slicing.`
+            : `Pull from oven and let rest for ${restTime} mins.`;
 
         // Render to DOM
         if (hasBuffer) {
             timelineOutput.innerHTML = `
                 <li>
                     <div class="timeline-step">Step 1: Preheat (Start Preparation Time)</div>
-                    <div class="timeline-time">${formatTime(preheatTime)}</div>
-                    <div class="timeline-desc">Preheat Oven/Smoker to ${data.temp}. (Start preparation time is adjusted backward by 15 minutes to account for heat loss).</div>
+                    <div class="timeline-time">${formatTime(preheatTime, serveTime)}</div>
+                    <div class="timeline-desc">Preheat Oven/Smoker to ${data.temp}.</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 2: Oven Recovery & Initial Searing Buffer</div>
-                    <div class="timeline-time">${formatTime(recoveryStartTime)}</div>
+                    <div class="timeline-time">${formatTime(recoveryStartTime, serveTime)}</div>
                     <div class="timeline-desc">Put meat in the oven. Ambient temperature will drop; this 15-minute buffer allows the oven to recover heat and begin initial searing.</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 3: Put in Oven & Roast</div>
-                    <div class="timeline-time">${formatTime(roastingTime)}</div>
-                    <div class="timeline-desc">Main roasting phase: Roast ${weightDesc} ${data.name} for ~${totalCookTimeMins} mins.</div>
+                    <div class="timeline-time">${formatTime(roastingTime, serveTime)}</div>
+                    <div class="timeline-desc">Main roasting phase: Roast ${weightDesc} ${data.name} for ~${totalCookTimeMins - 15} mins.</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 4: Rest</div>
-                    <div class="timeline-time">${formatTime(pullTime)}</div>
-                    <div class="timeline-desc">Pull from oven and let rest for ${restTime} mins.</div>
+                    <div class="timeline-time">${formatTime(pullTime, serveTime)}</div>
+                    <div class="timeline-desc">${restDesc}</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 5: Serve</div>
-                    <div class="timeline-time">${formatTime(serveTime)}</div>
+                    <div class="timeline-time">${formatTime(serveTime, serveTime)}</div>
                     <div class="timeline-desc">Carve and enjoy your perfect ${data.name}!</div>
                 </li>
             `;
@@ -233,22 +262,22 @@ document.addEventListener('DOMContentLoaded', () => {
             timelineOutput.innerHTML = `
                 <li>
                     <div class="timeline-step">Step 1: Preheat (Start Preparation Time)</div>
-                    <div class="timeline-time">${formatTime(preheatTime)}</div>
+                    <div class="timeline-time">${formatTime(preheatTime, serveTime)}</div>
                     <div class="timeline-desc">Preheat Oven/Smoker to ${data.temp}.</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 2: Put in Oven</div>
-                    <div class="timeline-time">${formatTime(ovenTime)}</div>
+                    <div class="timeline-time">${formatTime(ovenTime, serveTime)}</div>
                     <div class="timeline-desc">Roast ${weightDesc} ${data.name} for ~${totalCookTimeMins} mins.</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 3: Rest</div>
-                    <div class="timeline-time">${formatTime(pullTime)}</div>
-                    <div class="timeline-desc">Pull from oven and let rest for ${restTime} mins.</div>
+                    <div class="timeline-time">${formatTime(pullTime, serveTime)}</div>
+                    <div class="timeline-desc">${restDesc}</div>
                 </li>
                 <li>
                     <div class="timeline-step">Step 4: Serve</div>
-                    <div class="timeline-time">${formatTime(serveTime)}</div>
+                    <div class="timeline-time">${formatTime(serveTime, serveTime)}</div>
                     <div class="timeline-desc">Carve and enjoy your perfect ${data.name}!</div>
                 </li>
             `;
