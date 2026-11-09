@@ -14,18 +14,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyBtn = document.getElementById('copy-btn');
     const printBtn = document.getElementById('print-btn');
     const useDensityCheckbox = document.getElementById('use-density');
+    const clearRecipeBtn = document.getElementById('clear-recipe-btn');
+    const exampleNote = document.getElementById('example-note');
 
     let currentMultiplier = 1;
+
+    // Seeded example for a first visit: fractions, eggs, a package size and an oven temp.
+    // Serves four, matching the default Original Servings.
+    const EXAMPLE_RECIPE = [
+        '1 1/2 lb ground beef',
+        '1/2 cup breadcrumbs',
+        '1/3 cup milk',
+        '2 eggs',
+        '1/2 cup chopped onion',
+        '1 (8 ounce) can tomato sauce',
+        '2 tbsp brown sugar',
+        '1 tsp salt',
+        '1/2 tsp black pepper',
+        'Bake at 350°F'
+    ].join('\n');
 
     function autoResizeInput() {
         recipeInput.style.height = 'auto';
         recipeInput.style.height = recipeInput.scrollHeight + 'px';
     }
 
-    // Load saved recipe from local storage
-    const savedRecipe = localStorage.getItem('savedRecipe');
-    if (savedRecipe) {
+    // Load saved recipe from local storage. Nothing saved yet (a first visit) opens on the
+    // example; an empty save means the user cleared it, so it stays empty.
+    let savedRecipe = null;
+    try {
+        savedRecipe = localStorage.getItem('savedRecipe');
+    } catch (e) { /* storage blocked (private mode): still open on the example */ }
+    if (savedRecipe !== null) {
         recipeInput.value = savedRecipe;
+    } else {
+        recipeInput.value = EXAMPLE_RECIPE;
     }
     autoResizeInput();
 
@@ -151,7 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function scaleRecipe() {
         const text = recipeInput.value;
-        localStorage.setItem('savedRecipe', text);
+        // The untouched example is never saved, so it only ever stands in for "nothing saved yet"
+        try {
+            if (text === EXAMPLE_RECIPE) localStorage.removeItem('savedRecipe');
+            else localStorage.setItem('savedRecipe', text);
+        } catch (e) { /* storage blocked: scaling still works, it just isn't remembered */ }
+        if (exampleNote) exampleNote.style.display = text === EXAMPLE_RECIPE ? 'block' : 'none';
 
         const eggTipBox = document.getElementById('egg-tip-box');
         const volumetricWarningBox = document.getElementById('volumetric-warning-box');
@@ -533,7 +561,20 @@ document.addEventListener('DOMContentLoaded', () => {
             window.print();
         });
     }
-    
+
+    // Clear the box to start your own recipe: the untouched example goes without asking,
+    // anything the user typed asks first
+    if (clearRecipeBtn) {
+        clearRecipeBtn.addEventListener('click', () => {
+            const text = recipeInput.value;
+            if (text.trim() && text !== EXAMPLE_RECIPE && !window.confirm('Clear your recipe and start over?')) return;
+            recipeInput.value = '';
+            autoResizeInput();
+            scaleRecipe();
+            recipeInput.focus();
+        });
+    }
+
     // Initial active state
     document.querySelector('.scale-btn[data-scale="1"]').classList.add('active');
     

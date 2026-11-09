@@ -178,22 +178,6 @@
     </div>
   </header>
 
-  <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-      <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Recommends the best cookware material and pan shape for a specific cooking task.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The cooking task (searing steak, simmering tomato sauce, and eight more).</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A ranked material recommendation with thermal profile, acid reactivity, induction compatibility, and care guidance; an explorer for comparing all materials.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-
   <!-- Interactive Navigation Tabs -->
   <div class="tab-controls-wrapper">
     <div class="tab-controls" role="tablist">
@@ -213,8 +197,7 @@
       <div class="input-group">
         <label for="task-select" class="input-label">What are you cooking?</label>
         <select id="task-select" class="form-input" style="font-size: 15px; font-weight: 500;">
-          <option value="" disabled selected>-- Select a cooking task --</option>
-          <option value="searing-steak">Searing Steak / Chops (High Heat)</option>
+          <option value="searing-steak" selected>Searing Steak / Chops (High Heat)</option>
           <option value="tomato-sauce">Simmering Tomato Sauce / Wine Reductions</option>
           <option value="eggs">Frying Eggs / Omelets (Low/Med Heat)</option>
           <option value="stir-fry">Stir-Frying (High Heat, Fast)</option>
@@ -360,6 +343,21 @@
       <a id="pipeline-link-pan" href="../pan-swap-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to swap pan sizes or adjust scaling? Try the Pan Swap Calculator &rarr;</a>
       <a id="pipeline-link-scale" href="../universal-recipe-scaler/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to scale ingredient weights? Use the Universal Recipe Scaler &rarr;</a>
       <a href="../air-fryer-conversion-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Moving an oven recipe to the air fryer? Use the Air Fryer Conversion Calculator &rarr;</a>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE (P2-c) -->
+  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
+    <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tbody>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Recommends the best cookware material and pan shape for a specific cooking task.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The cooking task (searing steak, simmering tomato sauce, and eight more).</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A ranked material recommendation with thermal profile, acid reactivity, induction compatibility, and care guidance; an explorer for comparing all materials.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 

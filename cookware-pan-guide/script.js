@@ -579,4 +579,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- INITIALIZATION ---
     buildMaterialsExplorer();
     buildComparisonMatrix();
+    // Open on the selected task (Searing Steak on a first visit) so the first view shows a real recommendation
+    taskSelect.dispatchEvent(new Event('change'));
+    // Chrome restores an earlier choice (back/forward, session restore) after load and fires no change event, so re-render on pageshow
+    window.addEventListener('pageshow', () => taskSelect.dispatchEvent(new Event('change')));
 });
