@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return '' +
         '<div class="bucket ' + cue + '">' +
           '<div class="bucket-top">' +
-            '<div class="bucket-name"><h4>' + b.label + '</h4><p>' + b.desc + '</p></div>' +
+            '<div class="bucket-name"><h2>' + b.label + '</h2><p>' + b.desc + '</p></div>' +
             '<div class="bucket-nums">' +
               '<code>' + money(actD) + '</code>' +
               '<span class="bucket-pct">' + actP.toFixed(0) + '% of income</span>' +

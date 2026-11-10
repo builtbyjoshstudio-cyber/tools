@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var cur = b.key === "std" ? " is-current" : "";
       return '<div class="glass-lite anatomy-row' + cur + '">' +
         '<div class="ix">' + Math.round(b.front * 100) + "</div>" +
-        '<div class="lbl"><h4>' + b.label + " &middot; " + Math.round(b.front * 100) + "/" + Math.round(b.back * 100) + "</h4><p>" + b.note + "</p></div>" +
+        '<div class="lbl"><h2>' + b.label + " &middot; " + Math.round(b.front * 100) + "/" + Math.round(b.back * 100) + "</h2><p>" + b.note + "</p></div>" +
         "<code>" + (bPrice > 0 ? money100(bPrice) : "&mdash;") + "</code>" +
       "</div>";
     }).join("");
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     splitEl.innerHTML = split.map(function (row) {
       return '<div class="glass-lite anatomy-row">' +
         '<div class="ix">' + row.ix + "</div>" +
-        '<div class="lbl"><h4>' + row.h + "</h4><p>" + row.p + "</p></div>" +
+        '<div class="lbl"><h2>' + row.h + "</h2><p>" + row.p + "</p></div>" +
         "<code>" + row.code + "</code>" +
       "</div>";
     }).join("");

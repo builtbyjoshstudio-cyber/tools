@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
       orderList.innerHTML = primary.payoffOrder.map(function (p, i) {
         return '<div class="glass-lite anatomy-row">' +
           '<div class="ix">' + (i + 1) + '</div>' +
-          '<div class="lbl"><h4>' + escapeHtml(p.name) + '</h4>' +
+          '<div class="lbl"><h2>' + escapeHtml(p.name) + '</h2>' +
           '<p>' + money(p.interest) + ' interest paid</p></div>' +
           '<code>' + (p.month ? futureDate(p.month) : "—") + '</code></div>';
       }).join("");
