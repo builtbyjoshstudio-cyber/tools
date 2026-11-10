@@ -337,12 +337,78 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ---------------------------------------------------------
+    // Share Links
+    // ---------------------------------------------------------
+    // Only built when "Copy link" is clicked, never written to the address bar.
+    // ?protein=&weight=&unit= are the hand-off params the Meat Thawing Planner
+    // already sends; ?time= adds the target dinner time.
+    // The cap only stops absurd link weights (?weight=1e308) from overflowing the timeline dates
+    const MAX_LINK_WEIGHT = 1000000;
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+    const copyLinkStatus = document.getElementById('copy-link-status');
+    let copyLinkTimer = null;
+
+    // A link weight must be a positive number, like a typed one; anything else is ignored
+    function linkWeight(raw) {
+        if (raw === null || raw.length > 32) return null;
+        const n = parseFloat(raw);
+        return isFinite(n) && n > 0 ? Math.min(n, MAX_LINK_WEIGHT) : null;
+    }
+
+    // A link time must be a 24-hour HH:MM, the format the time input uses
+    function linkTime(raw) {
+        return raw !== null && /^([01]\d|2[0-3]):[0-5]\d$/.test(raw) ? raw : null;
+    }
+
+    function shareParams() {
+        const params = new URLSearchParams();
+        params.set('protein', meatTypeInput.value);
+        const weight = linkWeight(meatWeightInput.value);
+        if (weight !== null) params.set('weight', weight);
+        params.set('unit', currentUnit === 'metric' ? 'kg' : 'lbs');
+        const time = linkTime(targetTimeInput.value);
+        if (time !== null) params.set('time', time);
+        return params.toString();
+    }
+
+    function showCopyLinkStatus(msg) {
+        copyLinkStatus.textContent = msg;
+        clearTimeout(copyLinkTimer);
+        copyLinkTimer = setTimeout(() => copyLinkStatus.textContent = '', 3000);
+    }
+
+    function fallbackCopyLink(text) {
+        const ta = document.createElement('textarea');
+        let ok = false;
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        copyLinkBtn.focus();
+        showCopyLinkStatus(ok ? 'Link copied' : "Couldn't copy the link");
+    }
+
+    copyLinkBtn.addEventListener('click', () => {
+        const url = location.origin + location.pathname + '?' + shareParams();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => showCopyLinkStatus('Link copied'), () => fallbackCopyLink(url));
+        } else {
+            fallbackCopyLink(url);
+        }
+    });
+
     // Ingestion of URL Parameters
     function parseUrlParameters() {
         const params = new URLSearchParams(window.location.search);
-        const weight = params.get('weight');
+        const weight = linkWeight(params.get('weight'));
         const unit = params.get('unit');
         const protein = params.get('protein');
+        const time = linkTime(params.get('time'));
 
         if (unit && (unit.toLowerCase() === 'kg' || unit.toLowerCase() === 'metric')) {
             setUnitSystem('metric');
@@ -370,8 +436,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        if (weight) {
-            meatWeightInput.value = parseFloat(weight) || 5;
+        if (weight !== null) {
+            meatWeightInput.value = weight;
+        }
+
+        if (time !== null) {
+            targetTimeInput.value = time;
         }
 
         // Set target time to 6:00 PM if it's not set
@@ -379,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
             targetTimeInput.value = "18:00";
         }
 
-        if (protein || weight) {
+        if (protein || weight !== null || time !== null) {
             generateTimeline();
         }
     }

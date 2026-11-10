@@ -148,9 +148,107 @@ document.addEventListener("DOMContentLoaded", function () {
     }).join("");
   }
 
+  // ---------- saved inputs (this browser only) + Copy link ----------
+  // Storage and links share one shape, { cost, price, fee, fixed, target }, and both go
+  // through clean() so they're checked like typed input. Only inputs are saved, never
+  // results; a link (?cost=&price=&fee=&fixed=&target=) is only built on "Copy link".
+  var STORE_KEY = "tynkr-profit-margin-calculator-v1";
+  var FIELDS = [
+    { key: "cost",   el: costEl,   min: 0,  max: Infinity },
+    { key: "price",  el: priceEl,  min: 0,  max: Infinity },
+    { key: "fee",    el: feePctEl, min: 0,  max: 50 },
+    { key: "fixed",  el: feeFixEl, min: 0,  max: Infinity },
+    { key: "target", el: targetEl, min: 10, max: 85, step: 5 }
+  ];
+  var resetBtn    = document.getElementById("reset-inputs");
+  var copyBtn     = document.getElementById("copy-link");
+  var shareStatus = document.getElementById("share-status");
+  var statusTimer = null;
+
+  // Number or short numeric text -> clamped number; anything else -> null (ignored).
+  // 24 chars is the longest a JS number prints, so every copied value fits.
+  function clean(f, raw) {
+    if (typeof raw !== "number" && typeof raw !== "string") return null;
+    if (typeof raw === "string" && (raw.length > 24 || !/\S/.test(raw))) return null;
+    var v = Number(raw);
+    if (!isFinite(v)) return null;
+    if (f.step) v = Math.round(v / f.step) * f.step;
+    return Math.min(Math.max(v, f.min), f.max);
+  }
+  // What's on screen: parsed the way render() reads it, not as untrusted text.
+  function readState() {
+    var s = {};
+    FIELDS.forEach(function (f) {
+      var v = parseFloat(f.el.value);
+      s[f.key] = clean(f, isFinite(v) ? v : f.min);
+    });
+    return s;
+  }
+  function applyState(src) {
+    FIELDS.forEach(function (f) {
+      var v = clean(f, src[f.key]);
+      if (v !== null) f.el.value = String(v);
+    });
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(readState())); } catch (e) {}
+  }
+
+  // First visit keeps the example; saved numbers restore it; a shared link wins
+  // for this view only (nothing is written until you edit here).
+  try {
+    var stored = JSON.parse(localStorage.getItem(STORE_KEY));
+    if (stored && typeof stored === "object" && !Array.isArray(stored)) applyState(stored);
+  } catch (e) {}
+  var params = new URLSearchParams(location.search), fromLink = {};
+  FIELDS.forEach(function (f) { if (params.has(f.key)) fromLink[f.key] = params.get(f.key); });
+  applyState(fromLink);
+
+  resetBtn.addEventListener("click", function () {
+    var changed = FIELDS.some(function (f) { return clean(f, f.el.value) !== clean(f, f.el.defaultValue); });
+    // a link view shows the link's numbers, not yours: if any are saved, ask before deleting them
+    try { changed = changed || localStorage.getItem(STORE_KEY) !== null; } catch (e) {}
+    if (changed && !confirm("Reset to the example numbers? This clears the numbers saved in this browser.")) return;
+    FIELDS.forEach(function (f) { f.el.value = f.el.defaultValue; });
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  copyBtn.addEventListener("click", function () {
+    var s = readState(), p = new URLSearchParams();
+    FIELDS.forEach(function (f) { p.set(f.key, String(s[f.key])); });
+    var url = location.origin + location.pathname + "?" + p.toString();
+    function done(ok) {
+      clearTimeout(statusTimer);
+      shareStatus.textContent = ok ? "Link copied" : "Couldn't copy the link";
+      statusTimer = setTimeout(function () { shareStatus.textContent = ""; }, 4000);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea"), ok = false;
+      ta.value = url;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      copyBtn.focus();
+      done(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { done(true); }, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  function onEdit() {
+    render();
+    save();
+  }
   [costEl, priceEl, feePctEl, feeFixEl, targetEl].forEach(function (el) {
-    el.addEventListener("input", render);
-    el.addEventListener("change", render);
+    el.addEventListener("input", onEdit);
+    el.addEventListener("change", onEdit);
   });
 
   render();

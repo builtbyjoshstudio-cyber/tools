@@ -1,6 +1,7 @@
 /* ============================================================
    Session Notes & NPC Log — Tynkr Tools & Co
-   Campaign journal: session log / NPC list / loot, Markdown export.
+   Campaign journal: session log / NPC list / loot, Markdown export,
+   JSON backup/restore of the whole journal.
    Vanilla JS, self-contained. State persists in localStorage.
    Theme is handled by ../kinetic.js
    ============================================================ */
@@ -23,11 +24,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var STORE_KEY = "tynkr-session-notes-v1";
   var MAX_CAMPAIGNS = 20, MAX_SESSIONS = 200, MAX_NPCS = 300, MAX_LOOT = 200;
   var MAX_TEXT = 20000, MAX_NAME = 60, MAX_NOTE = 200, MAX_LOOT_TEXT = 120;
+  var MAX_BACKUP_BYTES = 32 * 1024 * 1024;   // >3x the ~5M-char storage quota: non-ASCII text is up to 3 bytes per char in the file
 
   var campSelect = document.getElementById("campaign-select");
   var newCampIn  = document.getElementById("new-campaign-name");
   var newCampBtn = document.getElementById("new-campaign-btn");
   var exportBtn  = document.getElementById("export-btn");
+  var backupBtn  = document.getElementById("backup-btn");
+  var restoreBtn = document.getElementById("restore-btn");
+  var restoreIn  = document.getElementById("restore-file");
+  var backupStat = document.getElementById("backup-status");
   var deleteBtn  = document.getElementById("delete-campaign");
 
   var newSessBtn = document.getElementById("new-session");
@@ -73,48 +79,51 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       var raw = localStorage.getItem(STORE_KEY);
       if (!raw) return blank();
-      var s = JSON.parse(raw);
-      if (!s || !Array.isArray(s.campaigns)) return blank();
-      // sanitize everything AND regenerate every id — stored ids are untrusted, and fresh
-      // sequential ids guarantee uid() can never mint a duplicate of a kept one
-      var seq = 1;
-      var campaigns = [];
-      var activeIdx = 0;
-      var origActive = String(s.active || "");
-      s.campaigns.slice(0, MAX_CAMPAIGNS).forEach(function (c) {
-        if (!c || typeof c !== "object") return;
-        if (origActive && String(c.id || "") === origActive) activeIdx = campaigns.length;
-        var campNum = seq++;
-        campaigns.push({
-          id: "camp" + campNum,
-          name: String(c.name || "Campaign " + campNum).slice(0, MAX_NAME),
-          sessions: (Array.isArray(c.sessions) ? c.sessions : []).slice(0, MAX_SESSIONS)
-            .filter(function (x) { return x && typeof x === "object"; })
-            .map(function (x) {
-              return { id: "s" + seq++, date: cleanDate(x.date), text: String(x.text || "").slice(0, MAX_TEXT) };
-            }),
-          npcs: (Array.isArray(c.npcs) ? c.npcs : []).slice(0, MAX_NPCS)
-            .filter(function (x) { return x && typeof x === "object"; })
-            .map(function (x) {
-              return { id: "n" + seq++, name: String(x.name || "").slice(0, MAX_NAME), note: String(x.note || "").slice(0, MAX_NOTE) };
-            }),
-          loot: (Array.isArray(c.loot) ? c.loot : []).slice(0, MAX_LOOT)
-            .filter(function (x) { return x && typeof x === "object"; })
-            .map(function (x) {
-              return { id: "l" + seq++, text: String(x.text || "").slice(0, MAX_LOOT_TEXT), done: !!x.done };
-            })
-        });
-      });
-      if (!campaigns.length) return blank();
-      return {
-        campaigns: campaigns,
-        active: campaigns[Math.min(activeIdx, campaigns.length - 1)].id,
-        seq: seq
-      };
+      return sanitize(JSON.parse(raw)) || blank();
     } catch (e) { return blank(); }
   }
+  // shared by load() and Restore: returns a clean journal, or null if s isn't one
+  function sanitize(s) {
+    if (!s || !Array.isArray(s.campaigns)) return null;
+    // sanitize everything AND regenerate every id — stored ids are untrusted, and fresh
+    // sequential ids guarantee uid() can never mint a duplicate of a kept one
+    var seq = 1;
+    var campaigns = [];
+    var activeIdx = 0;
+    var origActive = String(s.active || "");
+    s.campaigns.slice(0, MAX_CAMPAIGNS).forEach(function (c) {
+      if (!c || typeof c !== "object") return;
+      if (origActive && String(c.id || "") === origActive) activeIdx = campaigns.length;
+      var campNum = seq++;
+      campaigns.push({
+        id: "camp" + campNum,
+        name: String(c.name || "Campaign " + campNum).slice(0, MAX_NAME),
+        sessions: (Array.isArray(c.sessions) ? c.sessions : []).slice(0, MAX_SESSIONS)
+          .filter(function (x) { return x && typeof x === "object"; })
+          .map(function (x) {
+            return { id: "s" + seq++, date: cleanDate(x.date), text: String(x.text || "").slice(0, MAX_TEXT) };
+          }),
+        npcs: (Array.isArray(c.npcs) ? c.npcs : []).slice(0, MAX_NPCS)
+          .filter(function (x) { return x && typeof x === "object"; })
+          .map(function (x) {
+            return { id: "n" + seq++, name: String(x.name || "").slice(0, MAX_NAME), note: String(x.note || "").slice(0, MAX_NOTE) };
+          }),
+        loot: (Array.isArray(c.loot) ? c.loot : []).slice(0, MAX_LOOT)
+          .filter(function (x) { return x && typeof x === "object"; })
+          .map(function (x) {
+            return { id: "l" + seq++, text: String(x.text || "").slice(0, MAX_LOOT_TEXT), done: !!x.done };
+          })
+      });
+    });
+    if (!campaigns.length) return null;
+    return {
+      campaigns: campaigns,
+      active: campaigns[Math.min(activeIdx, campaigns.length - 1)].id,
+      seq: seq
+    };
+  }
   function save() {
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {}
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); return true; } catch (e) { return false; }
   }
   function activeCamp() {
     for (var i = 0; i < state.campaigns.length; i++) {
@@ -192,6 +201,61 @@ document.addEventListener("DOMContentLoaded", function () {
     a.click();
     document.body.removeChild(a);
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+
+  // ---------- JSON backup / restore (whole journal, never leaves the device) ----------
+  function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+  function journalSize(s) {
+    var n = 0;
+    s.campaigns.forEach(function (c) { n += c.sessions.length; });
+    return plural(s.campaigns.length, "campaign") + ", " + plural(n, "session");
+  }
+
+  backupBtn.addEventListener("click", function () {
+    var name = "session-notes-backup-" + todayLocal() + ".json";
+    var blob = new Blob([JSON.stringify(state)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    backupStat.textContent = "Backup downloaded as " + name + " (" + journalSize(state) + ").";
+  });
+
+  restoreBtn.addEventListener("click", function () { restoreIn.click(); });
+  restoreIn.addEventListener("change", function () {
+    var file = restoreIn.files && restoreIn.files[0];
+    restoreIn.value = "";   // lets the same file be picked again
+    if (!file) return;
+    if (file.size > MAX_BACKUP_BYTES) {
+      backupStat.textContent = "That file is too large to be a Session Notes backup. Nothing was changed.";
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function () {
+      var next = null;
+      try { next = sanitize(JSON.parse(String(reader.result))); } catch (e) { next = null; }
+      if (!next) {
+        backupStat.textContent = "That file isn't a Session Notes backup. Nothing was changed.";
+        return;
+      }
+      if (!window.confirm("Replace this journal (" + journalSize(state) + ") with the backup (" + journalSize(next) + ")? Everything currently in this browser's journal will be overwritten. This cannot be undone.")) {
+        backupStat.textContent = "Restore cancelled. Nothing was changed.";
+        return;
+      }
+      state = next;
+      var ok = save();
+      renderAll();
+      backupStat.textContent = ok
+        ? "Backup restored: " + journalSize(state) + "."
+        : "Backup loaded for now, but this browser couldn't save it (storage is full or blocked), so it will be gone when you close the page.";
+    };
+    reader.onerror = function () {
+      backupStat.textContent = "Couldn't read that file. Nothing was changed.";
+    };
+    reader.readAsText(file);
   });
 
   // ---------- sessions ----------

@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Air Fryer Conversion Calculator | Oven to Air Fryer, Free</title>
@@ -175,6 +176,9 @@
       .af-tips { font-size: 13.5px; line-height: 1.65; color: var(--muted); margin: 0; padding-left: 18px; }
       .af-tips li { margin-bottom: 6px; }
       .af-tips strong { color: var(--ink); }
+      .af-share { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
+      .af-share .btn { padding: 9px 14px; font-size: 13px; }
+      .af-share-status { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
 
       .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
       .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
@@ -278,6 +282,10 @@
     </div>
     <div class="role" style="margin-bottom: 10px;">Tips for this food</div>
     <ul class="af-tips" id="tips-list"></ul>
+    <div class="af-share">
+      <button type="button" class="btn" id="copy-link" aria-label="Copy link to these numbers">Copy link</button>
+      <span class="af-share-status" id="copy-status" role="status" aria-live="polite"></span>
+    </div>
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">

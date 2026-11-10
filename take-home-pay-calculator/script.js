@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ---------- main render ----------
   function render() {
-    var gross = Math.max(num(salaryEl, 0), 0);
+    var gross = Math.min(Math.max(num(salaryEl, 0), 0), 1000000000);
     var status = statusEl.value === "mfj" || statusEl.value === "mfj2" ? statusEl.value : "single";
     var periods = parseInt(freqEl.value, 10) || 26;
     var stateRate = Math.min(Math.max(num(stateEl, 0), 0), 15) / 100;
@@ -187,9 +187,128 @@ document.addEventListener("DOMContentLoaded", function () {
     }).join("");
   }
 
+  // ---------- saved inputs (this browser only) + Copy link ----------
+  // Storage and links share one shape, { salary, status, freq, state, k401 },
+  // and both go through clean() so they're checked like typed input. Only
+  // inputs are saved, never results; a link is only built on "Copy link".
+  var STORE_KEY = "tynkr-take-home-pay-calculator-v1";
+  var FIELDS = [
+    { key: "salary", el: salaryEl, min: 0, max: 1000000000 },
+    { key: "status", el: statusEl, list: ["single", "mfj", "mfj2"] },
+    { key: "freq",   el: freqEl,   list: ["52", "26", "24", "12"] },
+    { key: "state",  el: stateEl,  min: 0, max: 15 },
+    { key: "k401",   el: k401El,   min: 0, max: 25, whole: true }
+  ];
+  var resetBtn    = document.getElementById("reset-inputs");
+  var copyBtn     = document.getElementById("copy-link");
+  var shareStatus = document.getElementById("share-status");
+  var statusTimer = null;
+
+  // Number/allowed value or short text -> clean value; anything else -> null (ignored).
+  function clean(f, raw) {
+    if (typeof raw !== "number" && typeof raw !== "string") return null;
+    if (typeof raw === "string" && (raw.length > 20 || !/\S/.test(raw))) return null;
+    if (f.list) return f.list.indexOf(String(raw)) >= 0 ? String(raw) : null;
+    var v = Number(raw);
+    if (!isFinite(v)) return null;
+    if (f.whole) v = Math.round(v);
+    return Math.min(Math.max(v, f.min), f.max);
+  }
+  function defaultOf(el) {
+    if (el.tagName !== "SELECT") return el.defaultValue;
+    for (var i = 0; i < el.options.length; i++) {
+      if (el.options[i].defaultSelected) return el.options[i].value;
+    }
+    return el.options[0].value;
+  }
+  function readState() {
+    var s = {};
+    FIELDS.forEach(function (f) {
+      var v = clean(f, f.el.value);
+      s[f.key] = v === null ? (f.list ? f.list[0] : f.min) : v;
+    });
+    return s;
+  }
+  function applyState(src) {
+    var any = false;
+    FIELDS.forEach(function (f) {
+      var v = clean(f, src[f.key]);
+      if (v !== null) { f.el.value = String(v); any = true; }
+    });
+    return any;
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(readState())); } catch (e) {}
+  }
+  function loadStored() {
+    try {
+      var stored = JSON.parse(localStorage.getItem(STORE_KEY));
+      if (stored && typeof stored === "object" && !Array.isArray(stored)) return stored;
+    } catch (e) {}
+    return null;
+  }
+
+  var DEFAULTS = {};
+  FIELDS.forEach(function (f) { DEFAULTS[f.key] = clean(f, defaultOf(f.el)); });
+
+  // A shared link wins for this view (and isn't saved until you edit here);
+  // otherwise restore this browser's saved numbers; otherwise the example stays.
+  var params = new URLSearchParams(location.search), fromLink = {};
+  FIELDS.forEach(function (f) { if (params.has(f.key)) fromLink[f.key] = params.get(f.key); });
+  if (!applyState(fromLink)) {
+    var stored = loadStored();
+    if (stored) applyState(stored);
+  }
+
+  // Ask first if the screen OR the saved numbers differ from the example
+  // (on a link view the saved numbers aren't the ones on screen).
+  resetBtn.addEventListener("click", function () {
+    var s = readState(), saved = loadStored() || {};
+    var changed = FIELDS.some(function (f) {
+      var v = clean(f, saved[f.key]);
+      return s[f.key] !== DEFAULTS[f.key] || (v !== null && v !== DEFAULTS[f.key]);
+    });
+    if (changed && !confirm("Reset to the example numbers? This clears the numbers saved in this browser.")) return;
+    applyState(DEFAULTS);
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  copyBtn.addEventListener("click", function () {
+    var s = readState(), p = new URLSearchParams();
+    FIELDS.forEach(function (f) { p.set(f.key, String(s[f.key])); });
+    var url = location.href.split("#")[0].split("?")[0] + "?" + p.toString();
+    function done(ok) {
+      clearTimeout(statusTimer);
+      shareStatus.textContent = ok ? "Link copied" : "Couldn't copy the link";
+      statusTimer = setTimeout(function () { shareStatus.textContent = ""; }, 4000);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea"), ok = false;
+      ta.value = url;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      copyBtn.focus();
+      done(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { done(true); }, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  function onEdit() {
+    render();
+    save();
+  }
   [salaryEl, statusEl, freqEl, stateEl, k401El].forEach(function (el) {
-    el.addEventListener("input", render);
-    el.addEventListener("change", render);
+    el.addEventListener("input", onEdit);
+    el.addEventListener("change", onEdit);
   });
 
   render();

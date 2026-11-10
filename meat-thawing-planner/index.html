@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Meat Thawing Time Calculator | Fridge &amp; Cold Water, Free</title>
@@ -307,6 +308,11 @@
 
     <div id="seafood-warning-container" style="display: none; grid-column: 1 / -1; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
       &#9888; Critical Seafood Safety: If your seafood is vacuum-sealed, you MUST puncture or remove the packaging completely before thawing in the refrigerator or cold water to eliminate the risk of lethal anaerobic botulism bacteria growth.
+    </div>
+
+    <div style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <button type="button" id="copy-link-btn" class="btn" aria-label="Copy link to these numbers">Copy link</button>
+      <span id="copy-link-status" role="status" style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); align-self: center;"></span>
     </div>
   </div>
 

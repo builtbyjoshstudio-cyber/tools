@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -113,7 +114,7 @@
         "name": "Is this emergency fund calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it."
         }
       }
     ]
@@ -161,6 +162,9 @@
     .controls-3 { display:grid; grid-template-columns:1fr; gap:18px; }
     @media (min-width:620px){ .controls-3 { grid-template-columns:repeat(3,1fr); } }
     .controls-extra { margin-top:18px; }
+    .tool-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
+    .tool-status { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--muted); }
+    .anatomy > .tool-actions { grid-column:1 / -1; margin-top:0; }
 
     /* hero readout */
     .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
@@ -279,6 +283,9 @@
         <label class="input-label" for="coverage-months">Months of coverage <span id="months-bubble" style="color:var(--accent); font-family:var(--font-mono);">3 months</span></label>
         <input type="range" id="coverage-months" class="form-input-range" min="1" max="12" value="3" step="1">
       </div>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="reset-inputs" aria-label="Reset to the example">Reset</button>
+      </div>
     </div>
 
     <!-- RESULTS -->
@@ -293,6 +300,11 @@
         <div class="glass-lite stat-cell"><span class="k">Covered today</span><span class="v" id="covered-output">—</span></div>
         <div class="glass-lite stat-cell"><span class="k">Still to save</span><span class="v" id="remaining-output">—</span></div>
         <div class="glass-lite stat-cell pos"><span class="k">Fully funded</span><span class="v" id="funded-output">—</span></div>
+      </div>
+
+      <div class="tool-actions">
+        <button type="button" class="btn" id="copy-link" aria-label="Copy link to these numbers">Copy link</button>
+        <span class="tool-status" id="share-status" role="status" aria-live="polite"></span>
       </div>
 
       <div class="chart-wrap">
@@ -331,7 +343,7 @@
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Sizes an emergency fund from your real essential expenses instead of a generic rule of thumb.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Essential expenses per month, what's saved for emergencies so far, and what you can save per month.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Your emergency-fund target, how many months you're covered today, what's still to save, and the date you'll be fully funded.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded. Your numbers are saved in this browser only; Reset clears them.</td></tr>
       </tbody>
     </table>
     </div>
@@ -368,7 +380,7 @@
       </details>
       <details>
         <summary>Is this emergency fund calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it.</p>
       </details>
     </section>
 

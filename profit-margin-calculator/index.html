@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -113,7 +114,7 @@
         "name": "Is this profit margin calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it."
         }
       }
     ]
@@ -162,6 +163,8 @@
     @media (min-width:620px){ .controls-4 { grid-template-columns:repeat(2,1fr); } }
     @media (min-width:860px){ .controls-4 { grid-template-columns:repeat(4,1fr); } }
     .controls-extra { margin-top:18px; }
+    .tool-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
+    .tool-status { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--muted); }
 
     /* hero readout */
     .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
@@ -274,6 +277,9 @@
         <label class="input-label" for="target-margin">Target margin <span id="target-bubble" style="color:var(--accent); font-family:var(--font-mono);">60%</span></label>
         <input type="range" id="target-margin" class="form-input-range" min="10" max="85" value="60" step="5">
       </div>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="reset-inputs" aria-label="Reset to the example">Reset</button>
+      </div>
       <p class="note" style="margin-top:14px;">Cost per unit = materials + your labor + packaging. Fees vary by platform — listing, transaction, and payment fees combined often land between 8% and 13% plus a small fixed amount.</p>
     </div>
 
@@ -289,6 +295,11 @@
         <div class="glass-lite stat-cell"><span class="k">Profit margin</span><span class="v" id="margin-output">—</span></div>
         <div class="glass-lite stat-cell"><span class="k">Pre-fee markup</span><span class="v" id="markup-output">—</span></div>
         <div class="glass-lite stat-cell"><span class="k">Break-even price</span><span class="v" id="breakeven-output">—</span></div>
+      </div>
+
+      <div class="tool-actions">
+        <button type="button" class="btn" id="copy-link" aria-label="Copy link to these numbers">Copy link</button>
+        <span class="tool-status" id="share-status" role="status" aria-live="polite"></span>
       </div>
 
       <div class="role" style="margin-top:22px;">Where the price goes</div>
@@ -322,7 +333,7 @@
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Shows what a sale really leaves a seller after platform fees, and the price that hits a target margin.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Cost per unit, selling price, platform fees as % of price, and any fixed fee per sale.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Profit per sale, profit margin, markup on cost (before fees), break-even price, and the exact price for your target margin.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded. Your numbers are saved in this browser only; Reset clears them.</td></tr>
       </tbody>
     </table>
     </div>
@@ -359,7 +370,7 @@
       </details>
       <details>
         <summary>Is this profit margin calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it.</p>
       </details>
     </section>
 

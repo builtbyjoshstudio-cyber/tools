@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var row = document.createElement("div");
     row.className = "debt-row";
     row.innerHTML =
-      '<input type="text"   class="form-input d-name" aria-label="Debt name" placeholder="Debt name" value="' + (name || "") + '">' +
+      '<input type="text"   class="form-input d-name" aria-label="Debt name" placeholder="Debt name" value="' + escapeHtml(name || "") + '">' +
       '<input type="number" class="form-input d-bal"  aria-label="Balance" placeholder="Balance" min="0" step="100" inputmode="numeric" value="' + (balance != null ? balance : "") + '">' +
       '<input type="number" class="form-input d-apr"  aria-label="APR %" placeholder="APR %"   min="0" step="0.1" inputmode="decimal" value="' + (apr != null ? apr : "") + '">' +
       '<input type="number" class="form-input d-min"  aria-label="Min/mo" placeholder="Min/mo"  min="0" step="10" inputmode="numeric" value="' + (min != null ? min : "") + '">' +
@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
     row.querySelector(".d-remove").addEventListener("click", function () {
       row.remove();
       syncAddBtn();
-      calculate();
+      onEdit();
     });
     row.querySelectorAll("input").forEach(function (inp) {
-      inp.addEventListener("input", calculate);
+      inp.addEventListener("input", onEdit);
     });
     syncAddBtn();
   }
@@ -303,24 +303,161 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ---------- URL prefill (optional handoff) ----------
-  function parseUrlParameters() {
+  // ---------- saved inputs + share links ----------
+  // One input state ({debts, extra, strategy}) is saved to this browser's
+  // localStorage and built into Copy link URLs; whatever comes back from either
+  // goes through the same clean-up before it touches the page.
+  // Link format v1: one "debt" param per row, "name_balance_apr_min" (an empty
+  // field stays empty; names may contain "_", so the last three fields are
+  // split off the right), plus "extra" and "strategy", the names the budget
+  // calculator hand-off already uses. A new format gets a new param name.
+  var STORE_KEY = "tynkr-debt-payoff-calculator-v1";
+  var STRATEGIES = ["avalanche", "snowball", "hybrid"];
+  // seed with a realistic mix chosen to show how the strategies diverge
+  var DEFAULT_STATE = {
+    debts: [
+      { name: "Credit Card", bal: 6000, apr: 24.99, min: 150 },
+      { name: "Student Loan", bal: 9000, apr: 5.5, min: 110 },
+      { name: "Medical Bill", bal: 1500, apr: 0, min: 40 }
+    ],
+    extra: 150,
+    strategy: "avalanche"
+  };
+  var resetBtn   = document.getElementById("reset-inputs");
+  var copyBtn    = document.getElementById("copy-link");
+  var copyStatus = document.getElementById("copy-status");
+
+  // a number in [0, max], or null for an empty or unreadable field
+  function cleanNum(v, max) {
+    var n = typeof v === "number" ? v : (typeof v === "string" && /^\s*-?(\d+\.?\d*|\.\d+)(e[-+]?\d+)?\s*$/i.test(v) ? Number(v) : NaN);
+    return isFinite(n) ? Math.min(max, Math.max(0, n)) : null;
+  }
+  function cleanDebt(x) {
+    if (!x || typeof x !== "object") return null;
+    return {
+      name: typeof x.name === "string" ? x.name.slice(0, 100) : "",
+      bal: cleanNum(x.bal, 1e9),
+      apr: cleanNum(x.apr, 1000),
+      min: cleanNum(x.min, 1e9)
+    };
+  }
+  function cleanState(raw) {
+    if (!raw || typeof raw !== "object") raw = {};
+    var debts = Array.isArray(raw.debts) ? raw.debts.slice(0, MAX_DEBTS).map(cleanDebt).filter(Boolean) : [];
+    if (!Array.isArray(raw.debts) || (raw.debts.length && !debts.length)) debts = DEFAULT_STATE.debts;
+    var extra = cleanNum(raw.extra, 2000);
+    return {
+      debts: debts,
+      extra: extra === null ? DEFAULT_STATE.extra : extra,
+      strategy: STRATEGIES.indexOf(raw.strategy) >= 0 ? raw.strategy : DEFAULT_STATE.strategy
+    };
+  }
+  function readState() {
+    var debts = [];
+    rowsEl.querySelectorAll(".debt-row").forEach(function (row) {
+      debts.push(cleanDebt({
+        name: row.querySelector(".d-name").value,
+        bal: row.querySelector(".d-bal").value,
+        apr: row.querySelector(".d-apr").value,
+        min: row.querySelector(".d-min").value
+      }));
+    });
+    return { debts: debts, extra: cleanNum(extraInput.value, 2000), strategy: strategySel.value };
+  }
+  function applyState(s) {
+    rowsEl.innerHTML = "";
+    s.debts.forEach(function (x) { addRow(x.name, x.bal, x.apr, x.min); });
+    syncAddBtn();
+    extraInput.value = s.extra;
+    strategySel.value = s.strategy;
+  }
+  function loadSaved() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      return raw ? cleanState(JSON.parse(raw)) : null;
+    } catch (e) { return null; }
+  }
+  function saveState() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(readState())); } catch (e) {}
+  }
+  // saving happens only here, on the person's own edits, never on load
+  function onEdit() {
+    calculate();
+    saveState();
+  }
+
+  // link params override the example and saved inputs for this view only;
+  // invalid or unknown params are ignored
+  function withUrlParams(base) {
     var p = new URLSearchParams(window.location.search);
-    if (p.has("extra")) extraInput.value = p.get("extra");
-    if (p.has("strategy") && ["snowball", "avalanche", "hybrid"].indexOf(p.get("strategy")) >= 0) {
-      strategySel.value = p.get("strategy");
-    }
+    var s = { debts: base.debts, extra: base.extra, strategy: base.strategy };
+    var extra = p.has("extra") ? cleanNum(p.get("extra"), 2000) : null;
+    if (extra !== null) s.extra = extra;
+    if (STRATEGIES.indexOf(p.get("strategy")) >= 0) s.strategy = p.get("strategy");
+    var debts = [];
+    p.getAll("debt").forEach(function (v) {
+      var f = v.length <= 200 ? v.split("_") : [];
+      if (f.length < 4 || debts.length >= MAX_DEBTS) return;
+      var min = f.pop(), apr = f.pop(), bal = f.pop();
+      debts.push(cleanDebt({ name: f.join("_"), bal: bal, apr: apr, min: min }));
+    });
+    if (debts.length) s.debts = debts;
+    return s;
+  }
+  function shareUrl() {
+    var s = readState(), p = new URLSearchParams();
+    s.debts.forEach(function (x) {
+      p.append("debt", [x.name, x.bal, x.apr, x.min].map(function (v) { return v === null ? "" : v; }).join("_"));
+    });
+    p.set("extra", s.extra);
+    p.set("strategy", s.strategy);
+    return location.origin + location.pathname + "?" + p.toString();
+  }
+  var statusTimer = null;
+  function showStatus(msg) {
+    copyStatus.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { copyStatus.textContent = ""; }, 4000);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    ta.remove();
+    copyBtn.focus();
+    showStatus(ok ? "Link copied" : "Couldn't copy the link");
   }
 
   // ---------- init ----------
-  addBtn.addEventListener("click", function () { addRow(); calculate(); });
-  extraInput.addEventListener("input", calculate);
-  strategySel.addEventListener("change", calculate);
+  addBtn.addEventListener("click", function () { addRow(); onEdit(); });
+  extraInput.addEventListener("input", onEdit);
+  strategySel.addEventListener("change", onEdit);
+  resetBtn.addEventListener("click", function () {
+    // a link view shows the link's numbers, not yours: if any are saved, ask before deleting them
+    var hasSaved = false;
+    try { hasSaved = localStorage.getItem(STORE_KEY) !== null; } catch (e) {}
+    if ((hasSaved || JSON.stringify(readState()) !== JSON.stringify(DEFAULT_STATE)) &&
+        !confirm("Reset to the example debts? This clears the numbers saved in this browser.")) return;
+    applyState(DEFAULT_STATE);
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    calculate();
+  });
+  copyBtn.addEventListener("click", function () {
+    var url = shareUrl();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { showStatus("Link copied"); }, function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  });
 
-  // seed with a realistic mix chosen to show how the strategies diverge
-  addRow("Credit Card", 6000, 24.99, 150);
-  addRow("Student Loan", 9000, 5.5, 110);
-  addRow("Medical Bill", 1500, 0, 40);
-  parseUrlParameters();
+  // first visit = the seeded example; nothing is stored until something changes
+  applyState(withUrlParams(loadSaved() || DEFAULT_STATE));
   calculate();
 });

@@ -308,6 +308,66 @@ document.addEventListener("DOMContentLoaded", () => {
         return (Math.round(val * 10) / 10).toFixed(decimals);
     }
 
+    // Share links: only built when "Copy link" is clicked, never written to the
+    // address bar. They reuse the hand-off params read below (?weight=&unit=&mode=
+    // &flour=&preset=&hydration=), so older links still land the same way.
+    const copyLinkBtn = document.getElementById("copy-link-btn");
+    const copyLinkStatus = document.getElementById("copy-link-status");
+    let copyLinkTimer = null;
+
+    // A link weight must be a finite positive number, same as the typed field; anything else is ignored
+    function linkWeight(raw) {
+        if (raw === null || raw.trim() === "" || raw.length > 32) return null;
+        const n = Number(raw);
+        return isFinite(n) && n > 0 ? n : null;
+    }
+
+    function shareParams() {
+        const params = new URLSearchParams();
+        params.set('unit', currentUnit);
+        params.set('mode', calcMode.value);
+        params.set('flour', flourType.value);
+        const weight = linkWeight(targetValueInput.value);
+        if (weight !== null) params.set('weight', weight);
+        // A named preset carries its own hydration (?hydration= would switch it to custom)
+        if (bakingPreset.value !== 'custom') {
+            params.set('preset', bakingPreset.value);
+        } else {
+            params.set('hydration', hydrationSlider.value);
+        }
+        return params.toString();
+    }
+
+    function showCopyLinkStatus(msg) {
+        copyLinkStatus.textContent = msg;
+        clearTimeout(copyLinkTimer);
+        copyLinkTimer = setTimeout(() => copyLinkStatus.textContent = "", 3000);
+    }
+
+    function fallbackCopyLink(text) {
+        const ta = document.createElement("textarea");
+        let ok = false;
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        copyLinkBtn.focus();
+        showCopyLinkStatus(ok ? "Link copied" : "Couldn't copy the link");
+    }
+
+    copyLinkBtn.addEventListener("click", () => {
+        const url = location.origin + location.pathname + '?' + shareParams();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => showCopyLinkStatus("Link copied"), () => fallbackCopyLink(url));
+        } else {
+            fallbackCopyLink(url);
+        }
+    });
+
     // URL Parameter Ingestion
     function parseUrlParameters() {
         const params = new URLSearchParams(window.location.search);
@@ -337,8 +397,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        if (weight) {
-            targetValueInput.value = weight;
+        const linkedWeight = linkWeight(weight);
+        if (linkedWeight !== null) {
+            targetValueInput.value = linkedWeight;
         } else {
             targetValueInput.value = currentUnit === 'g' ? "1000" : "35.3";
         }

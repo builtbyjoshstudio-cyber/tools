@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -113,7 +114,7 @@
         "name": "Is this freelance rate calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them, and Copy link puts them in a link only when you click it."
         }
       }
     ]
@@ -223,6 +224,10 @@
     .note {
       font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.5;
     }
+
+    .tool-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+    .tool-actions .btn { font-size: 13px; padding: 10px 16px; }
+    .copy-status { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
 
     /* ===== Funnel CTA → paid product on the main domain ===== */
     .funnel {
@@ -347,6 +352,9 @@
           <input type="number" id="compare-rate" class="form-input" value="75" min="0" step="5" inputmode="numeric">
         </div>
       </div>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="reset-btn">Reset to the example</button>
+      </div>
     </div>
 
     <!-- RESULTS -->
@@ -379,6 +387,10 @@
         </div>
       </div>
       <p class="note" id="verdict">Charging $75/hr clears your $60,000 goal with room to spare.</p>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="copy-link" aria-label="Copy link to these numbers">Copy link</button>
+        <span class="copy-status" id="copy-status" role="status"></span>
+      </div>
     </div>
 
     <!-- FUNNEL CTA → Business OS on the main domain -->
@@ -398,7 +410,7 @@
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Finds the hourly rate a freelancer must charge to hit a real income goal after the costs employees never see.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Target take-home income per year, annual business expenses, billable hours per week, and working weeks per year.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The minimum hourly rate, plus what any rate actually leaves you after tax and expenses.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs and saves in this browser's local storage — nothing leaves your device.</td></tr>
       </tbody>
     </table>
     </div>
@@ -435,7 +447,7 @@
       </details>
       <details>
         <summary>Is this freelance rate calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them, and Copy link puts them in a link only when you click it.</p>
       </details>
     </section>
 

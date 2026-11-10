@@ -2,6 +2,7 @@
    Compound Interest Calculator — Tynkr Tools & Co
    Monthly compounding with end-of-month contributions.
    Vanilla JS, self-contained.
+   Inputs persist in localStorage; "Copy link" shares them as ?params.
    Theme is handled globally by ../kinetic.js
    ============================================================ */
 
@@ -31,18 +32,87 @@ document.addEventListener("DOMContentLoaded", function () {
   var shareOut   = document.getElementById("share-output");
   var chartEl    = document.getElementById("chart");
   var milestones = document.getElementById("milestones");
+  var resetBtn   = document.getElementById("reset-btn");
+  var copyBtn    = document.getElementById("copy-link-btn");
+  var copyStatus = document.getElementById("copy-status");
 
   // ---------- helpers ----------
   function money(n) {
     if (!isFinite(n)) n = 0;
     return "$" + Math.round(n).toLocaleString("en-US");
   }
-  function num(el, fallback) {
-    var v = parseFloat(el && el.value);
-    return isFinite(v) ? v : fallback;
-  }
   function yearsText(y) {
     return y + (y === 1 ? " year" : " years");
+  }
+
+  // ---------- inputs: typing, saved inputs and share links share one clamp ----------
+  // Only inputs (never results) are saved, in this browser's localStorage. A link carries
+  // ?start=&monthly=&rate=&years= and is only ever built when "Copy link" is clicked.
+  var STORE_KEY = "tynkr-compound-interest-calculator-v1";
+  var KEYS = ["start", "contrib", "rate", "years"];
+  var DEFAULTS = { start: 1000, contrib: 200, rate: 8, years: 30 }; // the shipped example (matches the HTML values)
+  var FIELDS = {
+    start:   { el: startEl,   param: "start",   min: 0, max: Infinity, empty: 0 }, // the money inputs declare no max
+    contrib: { el: contribEl, param: "monthly", min: 0, max: Infinity, empty: 0 },
+    rate:    { el: rateEl,    param: "rate",    min: 0, max: 30,  empty: 0 },
+    years:   { el: yearsEl,   param: "years",   min: 1, max: 50,  empty: 30 }
+  };
+
+  // Number or numeric text -> clamped number; anything else (blank, junk, non-finite) -> null.
+  function clampField(k, v) {
+    var f = FIELDS[k];
+    if (typeof v === "string") v = v.trim() === "" ? NaN : Number(v);
+    if (typeof v !== "number" || !isFinite(v)) return null;
+    v = Math.min(Math.max(v, f.min), f.max);
+    return k === "years" ? Math.round(v) : v;
+  }
+  function readInputs() {
+    var s = {};
+    KEYS.forEach(function (k) {
+      var v = clampField(k, FIELDS[k].el.value);
+      s[k] = v === null ? FIELDS[k].empty : v;
+    });
+    return s;
+  }
+  function applyInputs(s) {
+    KEYS.forEach(function (k) { FIELDS[k].el.value = String(s[k]); });
+  }
+  function isDefault(s) {
+    return KEYS.every(function (k) { return s[k] === DEFAULTS[k]; });
+  }
+  function loadSaved() {
+    var raw;
+    try { raw = localStorage.getItem(STORE_KEY); } catch (e) { return null; } // storage blocked: the example still runs, it just won't save
+    if (raw === null) return null; // nothing saved = first visit
+    try {
+      var o = JSON.parse(raw);
+      if (!o || typeof o !== "object") return null;
+      var s = {};
+      KEYS.forEach(function (k) {
+        var v = clampField(k, o[k]);
+        s[k] = v === null ? DEFAULTS[k] : v;
+      });
+      return s;
+    } catch (e) { return null; }
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(readInputs())); } catch (e) {}
+  }
+  // Valid link params override this view only; unknown or invalid ones are ignored.
+  function readLink(s) {
+    var p = new URLSearchParams(location.search);
+    var used = false;
+    KEYS.forEach(function (k) {
+      var v = clampField(k, p.get(FIELDS[k].param));
+      if (v !== null) { s[k] = v; used = true; }
+    });
+    return used;
+  }
+  function shareLink() {
+    var s = readInputs();
+    return location.origin + location.pathname + "?" + KEYS.map(function (k) {
+      return FIELDS[k].param + "=" + encodeURIComponent(String(s[k]));
+    }).join("&");
   }
 
   // ---------- simulation ----------
@@ -135,10 +205,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ---------- main render ----------
   function render() {
-    var start = Math.max(num(startEl, 0), 0);
-    var contrib = Math.max(num(contribEl, 0), 0);
-    var rate = Math.min(Math.max(num(rateEl, 0), 0), 30);
-    var years = Math.min(Math.max(num(yearsEl, 30), 1), 50);
+    var s = readInputs();
+    var start = s.start;
+    var contrib = s.contrib;
+    var rate = s.rate;
+    var years = s.years;
 
     yearsBub.textContent = yearsText(years);
     stageYears.textContent = yearsText(years);
@@ -176,10 +247,62 @@ document.addEventListener("DOMContentLoaded", function () {
     renderMilestones(sim, rate);
   }
 
-  [startEl, contribEl, rateEl, yearsEl].forEach(function (el) {
-    el.addEventListener("input", render);
-    el.addEventListener("change", render);
+  // ---------- copy link (explicit only; the address bar is never touched) ----------
+  var statusTimer = null;
+  function showStatus(msg) {
+    copyStatus.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    var ok = false;
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "0";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    copyBtn.focus();
+    return ok;
+  }
+  copyBtn.addEventListener("click", function () {
+    var link = shareLink();
+    function done(ok) { showStatus(ok ? "Link copied" : "Couldn't copy the link"); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(link).then(function () { done(true); }, function () { done(fallbackCopy(link)); });
+    } else {
+      done(fallbackCopy(link));
+    }
   });
+
+  resetBtn.addEventListener("click", function () {
+    var saved = loadSaved();
+    if ((!isDefault(readInputs()) || (saved && !isDefault(saved))) &&
+        !confirm("Reset to the example? This clears the numbers saved in this browser.")) return;
+    applyInputs(DEFAULTS);
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  function onEdit() {
+    render();
+    save();
+  }
+  [startEl, contribEl, rateEl, yearsEl].forEach(function (el) {
+    el.addEventListener("input", onEdit);
+    el.addEventListener("change", onEdit);
+  });
+
+  // First visit shows the HTML example untouched; saved inputs, then a shared link, override it.
+  // Nothing is written on load, so opening someone's link never replaces your own saved numbers.
+  var saved = loadSaved();
+  var initial = {};
+  KEYS.forEach(function (k) { initial[k] = saved ? saved[k] : DEFAULTS[k]; });
+  if (readLink(initial) || saved) applyInputs(initial);
 
   render();
 });

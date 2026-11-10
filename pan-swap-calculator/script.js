@@ -228,8 +228,39 @@ function setUnitSystem(unit) {
 if (unitImperialBtn) unitImperialBtn.addEventListener('click', () => setUnitSystem('imperial'));
 if (unitMetricBtn) unitMetricBtn.addEventListener('click', () => setUnitSystem('metric'));
 
-// Initialize
+// Share links: ?units=in|cm&from=<shape>&from_l=&from_w=&from_d=&to=<shape>&to_l=&to_w=&to_d=
+// (l = diameter, side or length; w = width; d = depth). Only built when "Copy link" is clicked,
+// never written to the address bar. The dough tool's ?doughWeight=&unit= hand-off stays unread.
+const SHARE_PANS = [['orig', 'from'], ['target', 'to']];
+const SHARE_DIMS = [['dim1', 'l'], ['dim2', 'w'], ['depth', 'd']];
+
+// One rule for link sizes, used when copying and when opening: plain numbers above 0 and up to 1000.
+function isShareSize(raw) {
+  return /^\d+(\.\d+)?$/.test(raw) && Number(raw) > 0 && Number(raw) <= 1000;
+}
+
+// Initialize: a shared link's units and shapes, then the default sizes, then its sizes.
+const shared = new URLSearchParams(location.search);
+if (shared.get('units') === 'cm') setUnitSystem('metric');
+SHARE_PANS.forEach(([prefix, name]) => {
+  const select = document.getElementById(`${prefix}-shape`);
+  if (Array.from(select.options).some(o => o.value === shared.get(name))) select.value = shared.get(name);
+});
 updateInputs();
+SHARE_PANS.forEach(([prefix, name]) => {
+  SHARE_DIMS.forEach(([dim, key]) => {
+    const input = document.getElementById(`${prefix}-${dim}`);
+    const raw = shared.get(`${name}_${key}`);
+    // Only plain sizes above 0 and up to 1000 are used; anything else keeps the default.
+    if (input && isShareSize(raw)) {
+      // Show at most 4 decimals but compute from the full size, as after a unit toggle.
+      input.value = +Number(raw).toFixed(4);
+      input.dataset.exact = raw;
+      input.dataset.shown = input.value;
+    }
+  });
+});
+calculate();
 
 const copyBtn = document.getElementById('copy-btn');
 if (copyBtn) {
@@ -248,3 +279,61 @@ if (copyBtn) {
     });
   });
 }
+
+const copyLinkBtn = document.getElementById('copy-link-btn');
+const copyLinkStatus = document.getElementById('copy-link-status');
+let copyLinkTimer = null;
+
+// Returns null when a size box holds something a link can't carry, so the link never opens to other numbers.
+function shareParams() {
+  const params = new URLSearchParams();
+  let ok = true;
+  params.set('units', currentUnit === 'metric' ? 'cm' : 'in');
+  SHARE_PANS.forEach(([prefix, name]) => {
+    params.set(name, document.getElementById(`${prefix}-shape`).value);
+    SHARE_DIMS.forEach(([dim, key]) => {
+      const input = document.getElementById(`${prefix}-${dim}`);
+      if (!input) return;
+      // The exact size in use (after a unit toggle the box shows it rounded), in full so the link computes the same.
+      const val = String(lengthOf(input));
+      if (isShareSize(val)) params.set(`${name}_${key}`, val);
+      else ok = false;
+    });
+  });
+  return ok ? params.toString() : null;
+}
+
+function showCopyLinkStatus(msg) {
+  copyLinkStatus.textContent = msg;
+  clearTimeout(copyLinkTimer);
+  copyLinkTimer = setTimeout(() => copyLinkStatus.textContent = '', 3000);
+}
+
+function fallbackCopyLink(text) {
+  const ta = document.createElement('textarea');
+  let ok = false;
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  document.body.removeChild(ta);
+  copyLinkBtn.focus();
+  showCopyLinkStatus(ok ? 'Link copied' : "Couldn't copy the link");
+}
+
+copyLinkBtn.addEventListener('click', () => {
+  const params = shareParams();
+  if (!params) {
+    showCopyLinkStatus('Enter sizes above 0 and up to 1000 to copy a link');
+    return;
+  }
+  const url = location.origin + location.pathname + '?' + params;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => showCopyLinkStatus('Link copied'), () => fallbackCopyLink(url));
+  } else {
+    fallbackCopyLink(url);
+  }
+});

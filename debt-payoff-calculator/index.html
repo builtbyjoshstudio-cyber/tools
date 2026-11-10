@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -113,7 +114,7 @@
         "name": "Is this debt payoff calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere. Your numbers are saved in this browser only, so they're still here next time; Reset to the example clears them."
         }
       }
     ]
@@ -177,6 +178,10 @@
 
     .controls-2 { display:grid; grid-template-columns:1fr; gap:18px; margin-top:18px; }
     @media (min-width:620px){ .controls-2 { grid-template-columns:1.3fr 1fr; } }
+
+    /* reset + copy link */
+    .tool-actions { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:18px; }
+    .copy-status { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--muted); }
 
     /* hero readout */
     .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
@@ -307,6 +312,9 @@
           </select>
         </div>
       </div>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="reset-inputs">Reset to the example</button>
+      </div>
     </div>
 
     <!-- RESULTS -->
@@ -315,6 +323,10 @@
         <span class="stage-label">Debt-free in</span>
         <span class="stage-value" id="hero-months">3 yrs 0 mo</span>
         <span class="stage-sub" id="hero-sub">Debt-free sooner and less interest than paying minimums only.</span>
+        <div class="tool-actions">
+          <button type="button" class="btn" id="copy-link" aria-label="Copy link to these numbers">Copy link</button>
+          <span class="copy-status" id="copy-status" role="status"></span>
+        </div>
       </div>
 
       <div class="stat-trio">
@@ -405,7 +417,7 @@
       </details>
       <details>
         <summary>Is this debt payoff calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere. Your numbers are saved in this browser only, so they're still here next time; Reset to the example clears them.</p>
       </details>
     </section>
 

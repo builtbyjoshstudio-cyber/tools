@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.">
@@ -117,7 +118,7 @@
           "name": "Does this calculator save my data?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server."
+            "text": "Yes, in this browser only. All calculations run locally, and your ledger, servings, and waste allowance are saved in this browser, so they're still here next time; nothing is uploaded or stored on a server. Reset to the example clears them."
           }
         },
         {
@@ -293,7 +294,8 @@
 
     <div class="add-row-btn-container">
       <button type="button" id="add-ingredient-btn" class="btn">+ Add Ingredient</button>
-      <button type="button" id="clear-ledger-btn" class="btn" style="margin-left: 10px;">Start fresh</button>
+      <button type="button" id="clear-ledger-btn" class="btn">Start fresh</button>
+      <button type="button" id="reset-ledger-btn" class="btn">Reset to the example</button>
     </div>
   </div>
 
@@ -394,7 +396,7 @@
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Does this calculator save my data?</h3>
-        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server.</p>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Yes, in this browser only. All calculations run locally, and your ledger, servings, and waste allowance are saved in this browser, so they're still here next time; nothing is uploaded or stored on a server. Reset to the example clears them.</p>
       </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is the formula for cost per serving?</h3>

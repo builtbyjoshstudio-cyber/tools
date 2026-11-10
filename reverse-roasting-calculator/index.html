@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pork Roast Cooking Time Calculator | Reverse Timeline, Free</title>
@@ -277,8 +278,10 @@
             <ul id="timeline-output" class="timeline-list">
                 <li class="placeholder-text">Enter your details and click Generate to see your timeline.</li>
             </ul>
-            <div class="action-buttons">
+            <div class="action-buttons" style="flex-wrap: wrap;">
                 <button id="copy-btn" class="btn">Copy to Clipboard</button>
+                <button type="button" id="copy-link-btn" class="btn" aria-label="Copy link to these numbers">Copy link</button>
+                <span id="copy-link-status" role="status" style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); align-self: center;"></span>
             </div>
         </div>
 
