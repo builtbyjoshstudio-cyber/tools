@@ -445,7 +445,67 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => copyBtn.textContent = originalText, 2000);
         });
     });
-    
+
+    // Share links: only built when "Copy link" is clicked, never written to the
+    // address bar. ?weight=&unit=&protein= are the existing hand-off params from
+    // the other meat tools; the rest name this page's other inputs.
+    const MAX_LINK_WEIGHT = 1000000;
+    const copyLinkBtn = document.getElementById("copy-link-btn");
+    const copyLinkStatus = document.getElementById("copy-link-status");
+    let copyLinkTimer = null;
+
+    // A link weight must be a positive number; anything else is ignored
+    function linkWeight(raw) {
+        if (raw === null || raw.length > 32) return null;
+        const n = parseFloat(raw);
+        return isFinite(n) && n > 0 ? Math.min(n, MAX_LINK_WEIGHT) : null;
+    }
+
+    function shareParams() {
+        const params = new URLSearchParams();
+        const weight = linkWeight(String(parseFloat(meatWeight.value)));
+        if (weight !== null) params.set('weight', weight);
+        params.set('unit', currentWeightUnit);
+        params.set('protein', proteinType.value);
+        params.set('type', currentBrineType);
+        params.set('vol', currentVolumeUnit);
+        params.set('salt', saltType.value);
+        params.set('strength', brineStrength.value);
+        params.set('method', briningMethod.value);
+        params.set('sugar', includeSugar.checked ? '1' : '0');
+        return params.toString();
+    }
+
+    function showCopyLinkStatus(msg) {
+        copyLinkStatus.textContent = msg;
+        clearTimeout(copyLinkTimer);
+        copyLinkTimer = setTimeout(() => copyLinkStatus.textContent = "", 3000);
+    }
+
+    function fallbackCopyLink(text) {
+        const ta = document.createElement("textarea");
+        let ok = false;
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        copyLinkBtn.focus();
+        showCopyLinkStatus(ok ? "Link copied" : "Couldn't copy the link");
+    }
+
+    copyLinkBtn.addEventListener("click", () => {
+        const url = location.origin + location.pathname + '?' + shareParams();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => showCopyLinkStatus("Link copied"), () => fallbackCopyLink(url));
+        } else {
+            fallbackCopyLink(url);
+        }
+    });
+
     // Timer Functions
     function formatTime(ms) {
         if (ms <= 0) return "00:00:00";
@@ -528,8 +588,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        const type = params.get('type');
+        if (type === 'wet' || type === 'dry') setBrineType(type);
+        const vol = params.get('vol');
+        if (vol === 'imperial' || vol === 'metric') setVolumeUnit(vol);
+        [[saltType, 'salt'], [brineStrength, 'strength'], [briningMethod, 'method']].forEach(([select, name]) => {
+            const value = params.get(name);
+            if (Array.from(select.options).some(option => option.value === value)) select.value = value;
+        });
+        const sugar = params.get('sugar');
+        if (sugar === '1' || sugar === '0') includeSugar.checked = sugar === '1';
+
         if (weight) {
-            meatWeight.value = parseFloat(weight) || 10;
+            const linked = linkWeight(weight);
+            meatWeight.value = linked !== null ? linked : 10;
         }
 
         updateUI(); // also calculates whenever a weight is set

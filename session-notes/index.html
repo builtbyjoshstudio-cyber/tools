@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -89,7 +90,7 @@
         "name": "Where are my campaign notes stored?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use the Markdown export now and then to keep a copy you own."
+          "text": "In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use Back up journal now and then to download a .json copy you own, which Restore backup loads back in here, in another browser, or on another device."
         }
       },
       {
@@ -105,7 +106,7 @@
         "name": "Can I get my notes out of the tool?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document."
+          "text": "Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document. To move the whole journal to another browser or device, use Back up journal (.json) and Restore backup instead."
         }
       },
       {
@@ -163,6 +164,8 @@
     .camp-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
     .camp-actions .btn { font-size:13px; padding:10px 14px; }
     .btn.danger:hover { border-color:var(--neg); color:var(--neg); background:var(--surface); }
+    .backup-status { font-size:13px; color:var(--muted); line-height:1.5; margin:0; }
+    .backup-status:not(:empty) { margin-top:12px; }
     #new-campaign-btn { font-family:var(--font-display); font-weight:700; font-size:14px; background:var(--accent); color:var(--accent-ink); border:2px solid var(--accent); border-radius:var(--r-s); padding:11px 18px; cursor:pointer; box-shadow:4px 4px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); white-space:nowrap; }
     #new-campaign-btn:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 var(--shadow); }
     @media (max-width:680px){ .camp-grid { grid-template-columns:1fr; } }
@@ -273,8 +276,12 @@
       </div>
       <div class="camp-actions">
         <button type="button" class="btn" id="export-btn" title="Download this campaign as a .md file">Export campaign (.md)</button>
+        <button type="button" class="btn" id="backup-btn" title="Download every campaign as a .json file you can restore later">Back up journal (.json)</button>
+        <button type="button" class="btn" id="restore-btn" title="Replace this journal with a .json backup file">Restore backup</button>
+        <input type="file" id="restore-file" accept=".json,application/json" hidden>
         <button type="button" class="btn danger" id="delete-campaign" title="Delete this campaign and all its notes">Delete campaign</button>
       </div>
+      <p class="backup-status" id="backup-status" role="status"></p>
     </div>
 
     <!-- SESSION LOG -->
@@ -305,7 +312,7 @@
         <button type="button" class="add-btn" id="loot-add">+ Add item</button>
       </div>
       <div id="loot-list"></div>
-      <p class="note">Everything on this page lives in this browser only — nothing is uploaded. Export to Markdown now and then so your campaign history has a copy you own.</p>
+      <p class="note">Everything on this page lives in this browser only — nothing is uploaded. Back up the journal now and then so your campaign history has a copy you own and can restore.</p>
       <a class="xlink" href="../initiative-tracker/"
          style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
                 font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
@@ -322,7 +329,7 @@
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A campaign journal that remembers what the table forgets.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Free-form session entries, NPC names and details, and loot — organized per campaign, with support for multiple campaigns.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A running campaign log, an NPC directory, and a loot ledger, exportable to Markdown.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A running campaign log, an NPC directory, and a loot ledger, exportable to Markdown, plus a .json backup of the whole journal you can restore.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs and saves in this browser's local storage — nothing leaves your device.</td></tr>
       </tbody>
     </table>
@@ -341,14 +348,14 @@
       <p>A session entry here is just a date and a text box. No templates to fill in, no fields fighting you — a few sentences about what happened is worth more than the elaborate journal you'd abandon by session three. The entries stack newest-first, so last session's cliffhanger is always at the top when you sit back down.</p>
 
       <h3>Your notes are yours — literally</h3>
-      <p>Everything stays in your browser's local storage: no account, no cloud, nothing sent anywhere. The flip side is that clearing your browser data clears the journal, so the export button matters — one click turns the whole campaign into a Markdown file with every session, NPC, and loot item. Plain text, readable anywhere, pasteable into Notion or Obsidian if your campaign outgrows this page.</p>
+      <p>Everything stays in your browser's local storage: no account, no cloud, nothing sent anywhere. The flip side is that clearing your browser data clears the journal, so back it up — one click saves every campaign as a .json file you can restore here, in another browser, or on another device. The Markdown export turns a campaign into a file with every session, NPC, and loot item. Plain text, readable anywhere, pasteable into Notion or Obsidian if your campaign outgrows this page.</p>
     </section>
 
     <!-- FAQ -->
     <section class="faq">
       <details>
         <summary>Where are my campaign notes stored?</summary>
-        <p>In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use the Markdown export now and then to keep a copy you own.</p>
+        <p>In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use Back up journal now and then to download a .json copy you own, which Restore backup loads back in here, in another browser, or on another device.</p>
       </details>
       <details>
         <summary>Can I keep notes for more than one campaign?</summary>
@@ -356,7 +363,7 @@
       </details>
       <details>
         <summary>Can I get my notes out of the tool?</summary>
-        <p>Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document.</p>
+        <p>Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document. To move the whole journal to another browser or device, use Back up journal (.json) and Restore backup instead.</p>
       </details>
       <details>
         <summary>Is this campaign journal free?</summary>

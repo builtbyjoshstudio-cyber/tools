@@ -20,6 +20,14 @@ function getToolUrl(toolId, params = {}) {
 // Global state variables
 let currentUnit = 'lbs'; // 'lbs' or 'kg'
 
+// A link weight must be a positive number; anything else is ignored
+const MAX_LINK_WEIGHT = 1000000;
+function linkWeight(raw) {
+    if (raw === null || raw.length > 32) return null;
+    const n = parseFloat(raw);
+    return isFinite(n) && n > 0 ? Math.min(n, MAX_LINK_WEIGHT) : null;
+}
+
 // Ingestion of URL Parameters
 function parseUrlParameters() {
     const params = new URLSearchParams(window.location.search);
@@ -51,7 +59,8 @@ function parseUrlParameters() {
     }
 
     if (weight) {
-        document.getElementById("meat-weight").value = parseFloat(weight) || 12;
+        const linked = linkWeight(weight);
+        document.getElementById("meat-weight").value = linked !== null ? linked : 12;
     }
 }
 
@@ -231,6 +240,52 @@ document.addEventListener("DOMContentLoaded", () => {
             pipelineLinkReverse.href = getToolUrl('reverseRoast', { weight: weight, unit: unit, protein: protein });
         }
     }
+
+    // Share links: only built when "Copy link" is clicked, never written to the
+    // address bar. ?weight=&unit=&protein= are the existing hand-off params from
+    // the other meat tools, so a copied link reads back through parseUrlParameters.
+    const copyLinkBtn = document.getElementById("copy-link-btn");
+    const copyLinkStatus = document.getElementById("copy-link-status");
+    let copyLinkTimer = null;
+
+    function shareParams() {
+        const params = new URLSearchParams();
+        const weight = linkWeight(String(parseFloat(meatWeight.value)));
+        if (weight !== null) params.set('weight', weight);
+        params.set('unit', currentUnit);
+        params.set('protein', proteinType.value);
+        return params.toString();
+    }
+
+    function showCopyLinkStatus(msg) {
+        copyLinkStatus.textContent = msg;
+        clearTimeout(copyLinkTimer);
+        copyLinkTimer = setTimeout(() => copyLinkStatus.textContent = "", 3000);
+    }
+
+    function fallbackCopyLink(text) {
+        const ta = document.createElement("textarea");
+        let ok = false;
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        copyLinkBtn.focus();
+        showCopyLinkStatus(ok ? "Link copied" : "Couldn't copy the link");
+    }
+
+    copyLinkBtn.addEventListener("click", () => {
+        const url = location.origin + location.pathname + '?' + shareParams();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => showCopyLinkStatus("Link copied"), () => fallbackCopyLink(url));
+        } else {
+            fallbackCopyLink(url);
+        }
+    });
 
     // Calculate on button click or input changes
     calculateBtn.addEventListener("click", calculateThawing);

@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -121,7 +122,7 @@
         "name": "Is this budget calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them."
         }
       }
     ]
@@ -204,6 +205,9 @@
     .note { font-size:13px; color:var(--muted); margin-top:6px; line-height:1.5; }
     .xlink { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12px; letter-spacing:.03em; text-transform:uppercase; color:var(--accent); text-decoration:none; }
     .xlink:hover { text-decoration:underline; }
+    .tool-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
+    .tool-actions .btn { padding:9px 14px; font-size:13px; }
+    .copy-status { font-family:var(--font-mono); font-size:12px; color:var(--muted); }
 
     .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
     .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
@@ -302,6 +306,9 @@
           <input type="number" id="a-savings" class="form-input" value="320" min="0" step="50" inputmode="numeric">
         </div>
       </div>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="reset-inputs">Reset to the example</button>
+      </div>
     </div>
 
     <!-- RESULT: verdict + buckets -->
@@ -319,6 +326,10 @@
 
       <p class="note" id="unalloc-output"></p>
       <a class="xlink" id="debt-link" href="../debt-payoff-calculator/">Putting money toward debt? See how fast it clears &rarr;</a>
+      <div class="tool-actions">
+        <button type="button" class="btn" id="copy-link" aria-label="Copy link to these numbers">Copy link</button>
+        <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
+      </div>
     </div>
 
     <!-- FUNNEL CTA → Ultimate Budget Workbook -->
@@ -338,7 +349,7 @@
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Compares the 50/30/20 ideal split against what you actually spend.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Monthly take-home income and your real spending on needs, wants, and savings.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The ideal dollar split vs your split, where you're over or under, and what to change — with adjustable category targets.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser and saves your numbers in this browser only — nothing is uploaded.</td></tr>
       </tbody>
     </table>
     </div>
@@ -382,7 +393,7 @@
       </details>
       <details>
         <summary>Is this budget calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.</p>
       </details>
     </section>
 

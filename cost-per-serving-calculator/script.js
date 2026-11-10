@@ -5,6 +5,11 @@
 
 // Global state
 let ingredients = [];
+let rowSeq = 0;
+
+// Saved inputs (this browser only): the ledger rows, servings and waste. Never results, never uploaded.
+const STORE_KEY = 'tynkr-cost-per-serving-calculator-v1';
+const MAX_ROWS = 100;
 
 // Seeded example: the same spaghetti-for-four the page copy walks through ($12.24 / $3.06).
 const EXAMPLE_ROWS = [
@@ -63,15 +68,37 @@ document.addEventListener('DOMContentLoaded', () => {
     addIngredientBtn.addEventListener('click', () => {
         addIngredientRow();
         calculate();
+        saveInputs();
     });
 
-    // Open on the worked example so the first view shows a real result
-    EXAMPLE_ROWS.forEach(row => addIngredientRow(row));
+    // Open on the worked example so the first view shows a real result,
+    // unless this browser saved a ledger on an earlier visit
+    const saved = loadSavedInputs();
+    if (saved) {
+        servingsInput.value = saved.servings;
+        wasteSlider.value = saved.waste;
+        wasteValueDisplay.textContent = `${saved.waste}%`;
+        saved.rows.forEach(row => addIngredientRow(row));
+        const note = document.getElementById('example-note');
+        if (note) note.style.display = 'none';
+    } else {
+        EXAMPLE_ROWS.forEach(row => addIngredientRow(row));
+    }
+
+    // Every edit is saved (input/change bubble up from the rows)
+    ['input', 'change'].forEach(type => {
+        document.getElementById('ledger-rows').addEventListener(type, saveInputs);
+        servingsInput.addEventListener(type, saveInputs);
+        wasteSlider.addEventListener(type, saveInputs);
+    });
 
     // Start fresh: drop every row and leave two empty ones
     const clearLedgerBtn = document.getElementById('clear-ledger-btn');
     if (clearLedgerBtn) {
         clearLedgerBtn.addEventListener('click', () => {
+            // the ledger is saved now, so clearing anything the user entered is permanent: ask first
+            const hasRows = ingredients.some(i => i.name || i.usedVal || i.packVal || i.packCost);
+            if (!isExample() && hasRows && !confirm('Start fresh? This clears your ledger and what is saved in this browser.')) return;
             ingredients = [];
             document.getElementById('ledger-rows').innerHTML = '';
             const note = document.getElementById('example-note');
@@ -79,15 +106,77 @@ document.addEventListener('DOMContentLoaded', () => {
             addIngredientRow();
             addIngredientRow();
             calculate();
+            saveInputs();
         });
     }
-    
+
+    // Reset to the example: put the worked example back and forget the saved ledger
+    const resetBtn = document.getElementById('reset-ledger-btn');
+    resetBtn.addEventListener('click', () => {
+        if (!isExample() && !confirm('Reset to the example? This replaces your ledger and clears what is saved in this browser.')) return;
+        ingredients = [];
+        document.getElementById('ledger-rows').innerHTML = '';
+        EXAMPLE_ROWS.forEach(row => addIngredientRow(row));
+        servingsInput.value = servingsInput.defaultValue;
+        wasteSlider.value = wasteSlider.defaultValue;
+        wasteValueDisplay.textContent = `${wasteSlider.value}%`;
+        const note = document.getElementById('example-note');
+        if (note) note.style.display = '';
+        try { localStorage.removeItem(STORE_KEY); } catch (e) { /* nothing saved */ }
+        calculate();
+    });
+
     calculate();
 });
 
+// True while the page still shows the untouched worked example
+function isExample() {
+    const servingsInput = document.getElementById('servings');
+    const wasteSlider = document.getElementById('waste');
+    return servingsInput.value === servingsInput.defaultValue && wasteSlider.value === wasteSlider.defaultValue &&
+        ingredients.length === EXAMPLE_ROWS.length &&
+        ingredients.every((item, i) => Object.keys(EXAMPLE_ROWS[i]).every(k => item[k] === EXAMPLE_ROWS[i][k]));
+}
+
+function saveInputs() {
+    const data = {
+        servings: document.getElementById('servings').value,
+        waste: document.getElementById('waste').value,
+        rows: ingredients.map(i => ({ name: i.name, usedVal: i.usedVal, usedUnit: i.usedUnit, packVal: i.packVal, packUnit: i.packUnit, packCost: i.packCost }))
+    };
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) { /* not remembered */ }
+}
+
+// Read the saved ledger back trusting nothing: numbers re-parsed and clamped, units checked against
+// the unit list, names capped, rows capped. Returns null (show the example) when nothing usable is saved.
+function loadSavedInputs() {
+    let data;
+    try { data = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) { return null; }
+    if (!data || typeof data !== 'object' || !Array.isArray(data.rows)) return null;
+    const num = (v, min, max, fallback) => {
+        const n = (typeof v === 'number' || typeof v === 'string') ? parseFloat(v) : NaN;
+        return isFinite(n) ? Math.min(max, Math.max(min, n)) : fallback;
+    };
+    const unit = u => (typeof u === 'string' && Object.prototype.hasOwnProperty.call(factors, u)) ? u : 'g';
+    // Servings re-parsed the way calculate() reads the field (parseInt, 0/blank -> 4), so a reload shows the same result
+    const servings = (typeof data.servings === 'number' || typeof data.servings === 'string') ? parseInt(data.servings, 10) : NaN;
+    return {
+        servings: Math.min(100000, Math.max(1, servings || 4)),
+        waste: Math.round(num(data.waste, 0, 50, 0) / 5) * 5,
+        rows: data.rows.slice(0, MAX_ROWS).filter(r => r && typeof r === 'object').map(r => ({
+            name: typeof r.name === 'string' ? r.name.slice(0, 200) : '',
+            usedVal: num(r.usedVal, 0, 1e9, 0),
+            usedUnit: unit(r.usedUnit),
+            packVal: num(r.packVal, 0, 1e9, 0),
+            packUnit: unit(r.packUnit),
+            packCost: Math.round(num(r.packCost, 0, 1e9, 0) * 100) / 100
+        }))
+    };
+}
+
 function addIngredientRow(preset) {
     const container = document.getElementById('ledger-rows');
-    const id = Date.now().toString(36) + Math.random().toString(36).substring(2, 5);
+    const id = (++rowSeq).toString(36);
     
     const rowObj = {
         id: id,
@@ -182,11 +271,11 @@ function addIngredientRow(preset) {
     if (preset) {
         Object.assign(rowObj, preset);
         nameInput.value = preset.name;
-        usedInput.value = preset.usedVal;
+        usedInput.value = preset.usedVal || '';
         usedUnitSelect.value = preset.usedUnit;
-        packInput.value = preset.packVal;
+        packInput.value = preset.packVal || '';
         packUnitSelect.value = preset.packUnit;
-        costInput.value = preset.packCost.toFixed(2);
+        costInput.value = preset.packCost ? preset.packCost.toFixed(2) : '';
     }
     
     nameInput.addEventListener('input', (e) => { rowObj.name = e.target.value; calculate(); });
@@ -207,6 +296,7 @@ function removeIngredientRow(id, element) {
     ingredients = ingredients.filter(i => i.id !== id);
     element.remove();
     calculate();
+    saveInputs();
 }
 
 function calculate() {

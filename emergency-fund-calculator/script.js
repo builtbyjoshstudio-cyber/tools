@@ -64,8 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (target <= 0) { chartEl.innerHTML = ""; return; }
     // Extend the x-axis slightly past the goal so the target line reads as reached.
     var span = Math.max(monthsToGoal, 1);
+    if (!isFinite(span)) span = 600;
     var pts = [];
-    for (var i = 0; i <= span; i++) {
+    // Cap the point count so a tiny monthly amount (typed or from a link) can't hang the page.
+    for (var k = 0, n = Math.min(span, 600); k <= n; k++) {
+      var i = span * k / n;
       var bal = Math.min(current + monthly * i, target);
       var x = PAD + (W - 2 * PAD) * (i / span);
       var y = PAD + (H - 2 * PAD) * (1 - bal / target);
@@ -154,9 +157,104 @@ document.addEventListener("DOMContentLoaded", function () {
     renderCheckpoints(expenses, current, monthly, coverage);
   }
 
+  // ---------- saved inputs (this browser only) + Copy link ----------
+  // Storage and links share one shape: { expenses, saved, monthly, months },
+  // read back through clean() so both are re-validated like typed input.
+  var STORE_KEY = "tynkr-emergency-fund-calculator-v1";
+  var MONEY_MAX = 1000000000;
+  var FIELDS = [
+    { key: "expenses", el: expensesEl, min: 0, max: MONEY_MAX },
+    { key: "saved",    el: currentEl,  min: 0, max: MONEY_MAX },
+    { key: "monthly",  el: monthlyEl,  min: 0, max: MONEY_MAX },
+    { key: "months",   el: coverageEl, min: 1, max: 12, whole: true }
+  ];
+  var resetBtn    = document.getElementById("reset-inputs");
+  var copyBtn     = document.getElementById("copy-link");
+  var shareStatus = document.getElementById("share-status");
+  var statusTimer = null;
+
+  function clean(f, raw) {
+    if (typeof raw !== "number" && typeof raw !== "string") return null;
+    if (typeof raw === "string" && (raw.length > 20 || !/^\s*-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\s*$/i.test(raw))) return null;
+    var v = Number(raw);
+    if (!isFinite(v)) return null;
+    if (f.whole) v = Math.round(v);
+    return Math.min(Math.max(v, f.min), f.max);
+  }
+  function readState() {
+    var s = {};
+    FIELDS.forEach(function (f) {
+      var v = clean(f, parseFloat(f.el.value)); // typed input: parsed like render(), no length cap
+      s[f.key] = v === null ? f.min : v;
+    });
+    return s;
+  }
+  function applyState(src) {
+    var any = false;
+    FIELDS.forEach(function (f) {
+      var v = clean(f, src[f.key]);
+      if (v !== null) { f.el.value = String(v); any = true; }
+    });
+    return any;
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(readState())); } catch (e) {}
+  }
+
+  // A shared link wins for this view (and isn't saved until you edit);
+  // otherwise restore this browser's saved numbers; otherwise the example stays.
+  var params = new URLSearchParams(window.location.search), fromLink = {};
+  FIELDS.forEach(function (f) { if (params.has(f.key)) fromLink[f.key] = params.get(f.key); });
+  if (!applyState(fromLink)) {
+    try {
+      var stored = JSON.parse(localStorage.getItem(STORE_KEY));
+      if (stored && typeof stored === "object" && !Array.isArray(stored)) applyState(stored);
+    } catch (e) {}
+  }
+
+  resetBtn.addEventListener("click", function () {
+    function differs(src) { return FIELDS.some(function (f) { return clean(f, src[f.key]) !== clean(f, f.el.defaultValue); }); }
+    // In a link view the saved numbers aren't on screen, so check them too.
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) {}
+    var changed = differs(readState()) || (!!saved && typeof saved === "object" && differs(saved));
+    if (changed && !confirm("Reset to the example numbers? This clears the numbers saved in this browser.")) return;
+    FIELDS.forEach(function (f) { f.el.value = f.el.defaultValue; });
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  copyBtn.addEventListener("click", function () {
+    var s = readState(), p = new URLSearchParams();
+    FIELDS.forEach(function (f) { p.set(f.key, String(s[f.key])); });
+    var url = location.href.split("#")[0].split("?")[0] + "?" + p.toString();
+    function done(ok) {
+      clearTimeout(statusTimer);
+      shareStatus.textContent = ok ? "Link copied" : "Couldn't copy the link";
+      statusTimer = setTimeout(function () { shareStatus.textContent = ""; }, 4000);
+    }
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = url;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      copyBtn.focus();
+      return ok;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(fallback()); });
+    } else done(fallback());
+  });
+
   [expensesEl, currentEl, monthlyEl, coverageEl].forEach(function (el) {
     el.addEventListener("input", render);
     el.addEventListener("change", render);
+    el.addEventListener("input", save);
+    el.addEventListener("change", save);
   });
 
   render();

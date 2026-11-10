@@ -120,7 +120,7 @@ A: A waste allowance is a percentage buffer added to your ingredient costs to ac
 Q: Can I mix weights and volumes?
 A: Yes, for common ingredients. If you measured by volume but the pack is sold by weight, or the other way round, the calculator converts using a built-in density for ingredients it recognizes by name, such as flour, sugar, butter, honey, milk, and oil, and notes the conversion in the cost breakdown. For an ingredient it does not recognize it flags a mismatch, so enter the amount used and the pack size in the same kind of unit instead.
 Q: Does this calculator save my data?
-A: All calculations run locally in your browser. Nothing you enter is uploaded or stored on a server.
+A: Yes, in this browser only. All calculations run locally, and your ledger, servings, and waste allowance are saved in this browser, so they're still here next time; nothing is uploaded or stored on a server. Reset to the example clears them.
 Q: What is the formula for cost per serving?
 A: Cost per serving equals total ingredient cost divided by the number of servings. The total is the sum, for every ingredient, of the pack price multiplied by the amount used divided by the pack size, plus any waste allowance.
 Q: What is the difference between cost per serving and price per serving?
@@ -261,7 +261,7 @@ A: If you live somewhere expensive, 50% for needs can be unrealistic. The target
 Q: Should debt payments go in needs or savings?
 A: Minimum required debt payments are needs — you have to make them. Extra payments above the minimum count toward the savings-and-debt bucket, since paying down debt faster is a form of building wealth. If you're focused on debt payoff, the debt payoff calculator shows how fast your extra payment clears it.
 Q: Is this budget calculator free?
-A: Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.
 
 ### Compound Interest Calculator
 URL: https://tools.builtbyjoshstudio.com/compound-interest-calculator/
@@ -273,7 +273,7 @@ A: It depends on what you're modeling. Long-run U.S. stock market averages are o
 Q: How often does this calculator compound?
 A: Monthly. Your annual rate is divided by 12 and applied each month, and monthly contributions are added at the end of each month. That matches how most people actually invest — a recurring monthly deposit.
 Q: Is this compound interest calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere. Your numbers are saved in this browser only, so they're still here next time; Reset clears them.
 
 ### Debt Payoff Calculator
 URL: https://tools.builtbyjoshstudio.com/debt-payoff-calculator/
@@ -285,7 +285,7 @@ A: Avalanche always saves the most interest mathematically. But the difference i
 Q: How much faster will an extra payment make me debt-free?
 A: Every extra dollar goes straight to principal on your target debt, so even a small extra payment can cut months or years off your timeline and save thousands in interest. Move the extra-payment slider to see exactly how your date and total interest change.
 Q: Is this debt payoff calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere. Your numbers are saved in this browser only, so they're still here next time; Reset to the example clears them.
 
 ### Emergency Fund Calculator
 URL: https://tools.builtbyjoshstudio.com/emergency-fund-calculator/
@@ -297,7 +297,7 @@ A: Just essentials. An emergency fund covers survival mode — housing, food, ut
 Q: Where should I keep my emergency fund?
 A: Somewhere safe and instantly reachable — a high-yield savings account is the usual answer. Not invested in stocks (it might be down exactly when you need it) and not locked up in CDs or retirement accounts. This calculator doesn't assume any interest, so anything a savings account earns just gets you there a little sooner.
 Q: Is this emergency fund calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it.
 
 ### Freelance Rate Calculator
 URL: https://tools.builtbyjoshstudio.com/freelance-rate-calculator/
@@ -309,7 +309,7 @@ A: As a freelancer you cover costs an employer normally pays: the full 15.3% sel
 Q: What percentage of my hours are actually billable?
 A: Most freelancers bill only 60-70% of their working hours. The rest goes to invoicing, proposals, marketing, email, and admin. If you work 40 hours a week, plan on roughly 25-28 billable hours. This tool lets you set your own billable percentage so the rate reflects reality.
 Q: Is this freelance rate calculator free?
-A: Yes. It is completely free, has no ads, requires no signup, and runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them, and Copy link puts them in a link only when you click it.
 
 ### Home Affordability Calculator
 URL: https://tools.builtbyjoshstudio.com/home-affordability-calculator/
@@ -321,7 +321,7 @@ A: It's the classic debt-to-income guideline lenders use: no more than 28% of gr
 Q: How does my down payment change what I can afford?
 A: Until your down payment covers the whole price, each extra dollar down raises your price range by a bit less than a dollar — about 83 cents at a 6.5% rate, from 76 cents at 3% to 87 cents at 10%. The rest goes to the extra property tax and insurance on a pricier home, which is why the loan amount dips slightly as your down payment grows. It also helps indirectly: a bigger down payment can mean better rates and, at 20% or more, no private mortgage insurance. This calculator keeps your monthly budget fixed and finds the price where the loan payment plus tax and insurance fit inside it.
 Q: Is this home affordability calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.
 
 ### Invoice Generator
 URL: https://tools.builtbyjoshstudio.com/invoice-generator/
@@ -345,7 +345,7 @@ A: Every extra dollar goes straight to principal, which shrinks the balance that
 Q: Does this work for auto loans, personal loans, and other loans?
 A: Yes — it models any fixed-rate, fixed-term loan with monthly payments: auto loans, personal loans, boat or RV loans, and similar. It doesn't model credit cards (revolving balances) or loans with variable rates.
 Q: Is this loan payment calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.
 
 ### Profit Margin Calculator
 URL: https://tools.builtbyjoshstudio.com/profit-margin-calculator/
@@ -357,7 +357,7 @@ A: Many handmade and print-on-demand sellers target a 50–70% margin after fees
 Q: Why do platform fees change my price so much?
 A: Because percentage fees scale with the price itself. If fees take 9% of the sale, raising your margin target means the fee grows too, so the price needed rises faster than you'd guess. The required-price formula divides by (1 − fees − margin), which is why high fee rates plus high margin targets push prices up sharply.
 Q: Is this profit margin calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it.
 
 ### Quarterly Tax Estimator
 URL: https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/
@@ -381,7 +381,7 @@ A: For short goals, a little; for long goals, more than you'd think. At a typica
 Q: Should savings goals be in a separate account?
 A: It helps. A dedicated account (or a bank that supports savings buckets) keeps goal money from blending into spending money, makes progress visible, and earns interest while it waits. Many people run one high-yield account with named buckets per goal — the math in this calculator works either way.
 Q: Is this savings goal calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them. Copy link puts them in a link only when you click it.
 
 ### Take-Home Pay Calculator
 URL: https://tools.builtbyjoshstudio.com/take-home-pay-calculator/
@@ -395,7 +395,7 @@ A: No — traditional 401(k) contributions come out before federal income tax, s
 Q: How accurate is this take-home pay calculator?
 A: It uses 2026 federal figures — brackets, standard deduction, FICA rates and caps, and the $24,500 401(k) limit — and treats state tax as a simple flat rate you enter. It figures one job's paycheck; married couples who both work should pick the both-work option, which matches a W-4 with the Step 2 box checked. It doesn't model health premiums, HSA/FSA, 401(k) catch-up contributions, local taxes, credits, or other W-4 adjustments, so treat it as a close planning estimate rather than a payroll stub.
 Q: Is this take-home pay calculator free?
-A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
+A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.
 
 
 ## Tabletop & RPG
@@ -480,11 +480,11 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your t
 URL: https://tools.builtbyjoshstudio.com/session-notes/
 What it does: Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown. Free, ad-free, no signup.
 Q: Where are my campaign notes stored?
-A: In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use the Markdown export now and then to keep a copy you own.
+A: In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use Back up journal now and then to download a .json copy you own, which Restore backup loads back in here, in another browser, or on another device.
 Q: Can I keep notes for more than one campaign?
 A: Yes. Create as many campaigns as you like and switch between them from the campaign picker — each keeps its own session log, NPC list, and loot list.
 Q: Can I get my notes out of the tool?
-A: Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document.
+A: Yes — one click exports the whole campaign as a Markdown file: every session entry with its date, the full NPC list, and your loot and quest items. It's plain text, so it opens anywhere and pastes cleanly into Notion, Obsidian, or a plain document. To move the whole journal to another browser or device, use Back up journal (.json) and Restore backup instead.
 Q: Is this campaign journal free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your notes stay on your own device.
 

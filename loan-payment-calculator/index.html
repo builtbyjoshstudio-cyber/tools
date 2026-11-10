@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -113,7 +114,7 @@
         "name": "Is this loan payment calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them."
         }
       }
     ]
@@ -290,6 +291,9 @@
         <label class="input-label" for="extra-payment">Extra payment per month <span id="extra-bubble" style="color:var(--accent); font-family:var(--font-mono);">$0/mo extra</span></label>
         <input type="range" id="extra-payment" class="form-input-range" min="0" max="1000" value="0" step="25">
       </div>
+      <div style="margin-top:18px;">
+        <button type="button" class="btn" id="reset-btn" aria-label="Reset to the example">Reset</button>
+      </div>
     </div>
 
     <!-- RESULTS -->
@@ -298,6 +302,10 @@
         <span class="stage-label">Monthly payment</span>
         <span class="stage-value" id="hero-payment">$0</span>
         <span class="stage-sub" id="hero-sub">Standard amortized payment for this loan.</span>
+        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:12px;">
+          <button type="button" class="btn" id="copy-link-btn" aria-label="Copy link to these numbers">Copy link</button>
+          <span id="copy-status" role="status" style="font-family:var(--font-mono); font-size:12px; color:var(--muted);"></span>
+        </div>
       </div>
 
       <div class="stat-trio">
@@ -379,7 +387,7 @@
       </details>
       <details>
         <summary>Is this loan payment calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.</p>
       </details>
     </section>
 

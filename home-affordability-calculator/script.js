@@ -164,9 +164,109 @@ document.addEventListener("DOMContentLoaded", function () {
     }).join("");
   }
 
+  // ---------- saved inputs + share links ----------
+  // Inputs only (never results). One sanitizer for localStorage and for
+  // ?income=&debts=&down=&rate= links; anything invalid is dropped silently.
+  var STORE_KEY = "tynkr-home-affordability-calculator-v1";
+  var MAX_AMOUNT = 1e9;
+  var resetBtn   = document.getElementById("reset-btn");
+  var copyBtn    = document.getElementById("copy-link-btn");
+  var copyStatus = document.getElementById("copy-status");
+  var statusTimer;
+
+  function clampNum(v, lo, hi) {
+    if (typeof v !== "number" && typeof v !== "string") return null;
+    if (String(v).length > 32) return null;
+    if (typeof v === "string" && !/^-?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(v)) return null; // plain numbers only, like a number input
+    v = parseFloat(v);
+    return isFinite(v) ? Math.min(Math.max(v, lo), hi) : null;
+  }
+  function sanitize(src) {
+    var s = {};
+    if (!src || typeof src !== "object") return s;
+    var i = clampNum(src.income, 0, MAX_AMOUNT);
+    var d = clampNum(src.debts, 0, MAX_AMOUNT);
+    var dp = clampNum(src.down, 0, MAX_AMOUNT);
+    var r = clampNum(src.rate, 3, 10);
+    if (i !== null) s.income = i;
+    if (d !== null) s.debts = d;
+    if (dp !== null) s.down = dp;
+    if (r !== null) s.rate = 3 + Math.round((r - 3) / 0.125) * 0.125; // slider step
+    return s;
+  }
+  function apply(s) {
+    if (s.income !== undefined) incomeEl.value = s.income;
+    if (s.debts !== undefined) debtsEl.value = s.debts;
+    if (s.down !== undefined) downEl.value = s.down;
+    if (s.rate !== undefined) rateEl.value = s.rate;
+  }
+  function current() {
+    return sanitize({ income: num(incomeEl, 0), debts: num(debtsEl, 0), down: num(downEl, 0), rate: num(rateEl, 6.5) });
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(current())); } catch (e) {}
+  }
+
+  var DEFAULTS = sanitize({ income: incomeEl.defaultValue, debts: debtsEl.defaultValue,
+    down: downEl.defaultValue, rate: rateEl.defaultValue });
+
+  // A shared link wins for this view but is not saved until the user edits here.
+  var params = new URLSearchParams(location.search);
+  var fromLink = sanitize({ income: params.get("income"), debts: params.get("debts"),
+    down: params.get("down"), rate: params.get("rate") });
+  if (Object.keys(fromLink).length) {
+    apply(fromLink);
+  } else {
+    try { apply(sanitize(JSON.parse(localStorage.getItem(STORE_KEY)))); } catch (e) {}
+  }
+
+  resetBtn.addEventListener("click", function () {
+    var saved = null; // on a link view the saved numbers aren't the ones shown
+    try { saved = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) {}
+    if ((JSON.stringify(current()) !== JSON.stringify(DEFAULTS) ||
+        (saved !== null && JSON.stringify(sanitize(saved)) !== JSON.stringify(DEFAULTS))) &&
+        !confirm("Reset to the example numbers? Your saved numbers in this browser will be cleared.")) return;
+    apply(DEFAULTS);
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  function showStatus(msg) {
+    copyStatus.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    var ok = false;
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    copyBtn.focus();
+    showStatus(ok ? "Link copied" : "Couldn't copy the link");
+  }
+  copyBtn.addEventListener("click", function () {
+    var s = current();
+    var url = location.origin + location.pathname + "?income=" + s.income + "&debts=" + s.debts +
+      "&down=" + s.down + "&rate=" + s.rate;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { showStatus("Link copied"); },
+        function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  });
+
   [incomeEl, debtsEl, downEl, rateEl].forEach(function (el) {
     el.addEventListener("input", render);
     el.addEventListener("change", render);
+    el.addEventListener("input", save);
+    el.addEventListener("change", save);
   });
 
   render();

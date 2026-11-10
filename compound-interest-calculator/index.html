@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -113,7 +114,7 @@
         "name": "Is this compound interest calculator free?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored."
+          "text": "Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere. Your numbers are saved in this browser only, so they're still here next time; Reset clears them."
         }
       }
     ]
@@ -174,6 +175,8 @@
     .stat-cell .k { font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
     .stat-cell .v { font-family:var(--font-display); font-weight:800; font-size:22px; }
     .stat-cell.pos .v { color:var(--pos); }
+    .share-row { grid-column:1 / -1; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .share-status { font-family:var(--font-mono); font-size:12px; color:var(--muted); }
 
     /* chart */
     .chart-wrap { margin-top:18px; }
@@ -279,6 +282,9 @@
         <label class="input-label" for="years">Years invested <span id="years-bubble" style="color:var(--accent); font-family:var(--font-mono);">30 years</span></label>
         <input type="range" id="years" class="form-input-range" min="1" max="50" value="30" step="1">
       </div>
+      <div style="margin-top:16px;">
+        <button type="button" class="btn" id="reset-btn" aria-label="Reset to the example">Reset</button>
+      </div>
     </div>
 
     <!-- RESULTS -->
@@ -293,6 +299,11 @@
         <div class="glass-lite stat-cell"><span class="k">You put in</span><span class="v" id="contrib-output">—</span></div>
         <div class="glass-lite stat-cell pos"><span class="k">Growth earned</span><span class="v" id="growth-output">—</span></div>
         <div class="glass-lite stat-cell"><span class="k">Growth share of balance</span><span class="v" id="share-output">—</span></div>
+      </div>
+
+      <div class="share-row">
+        <button type="button" class="btn" id="copy-link-btn" aria-label="Copy link to these numbers">Copy link</button>
+        <span class="share-status" id="copy-status" role="status"></span>
       </div>
 
       <div class="chart-wrap">
@@ -368,7 +379,7 @@
       </details>
       <details>
         <summary>Is this compound interest calculator free?</summary>
-        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.</p>
+        <p>Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere. Your numbers are saved in this browser only, so they're still here next time; Reset clears them.</p>
       </details>
     </section>
 

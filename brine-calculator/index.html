@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.">
@@ -387,9 +388,11 @@
       <button id="stop-timer-btn" class="btn" style="margin-top: 14px; border-color: var(--neg); color: var(--neg);">Stop Timer</button>
     </div>
 
-    <div style="margin-top: 24px; display: flex; justify-content: center; width: 100%; gap: 12px; flex-wrap: wrap;">
+    <div style="position: relative; margin-top: 24px; display: flex; justify-content: center; width: 100%; gap: 12px; flex-wrap: wrap;">
       <button id="start-timer-btn" class="btn primary">Start Brining Timer</button>
       <button id="copy-btn" class="btn">Copy to Clipboard</button>
+      <button type="button" id="copy-link-btn" class="btn" aria-label="Copy link to these numbers">Copy link</button>
+      <span id="copy-link-status" role="status" style="position: absolute; top: 100%; left: 0; right: 0; font-family: var(--font-mono); font-size: 12px; line-height: 2; color: var(--muted); text-align: center;"></span>
     </div>
 
     <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--line); text-align: center;">

@@ -9,7 +9,8 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-QDSPBB7S9J');
+      var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -352,6 +353,11 @@
     <div id="egg-note-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; color: var(--accent); line-height: 1.5; padding: 12px; border: 2px solid var(--line-2); border-radius: var(--r-s); background: var(--surface-2);"></div>
 
     <div id="absorbency-warning-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);"></div>
+
+    <div style="grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+      <button type="button" id="copy-link-btn" class="btn" aria-label="Copy link to these numbers">Copy link</button>
+      <span id="copy-link-status" role="status" style="font-family: var(--font-mono); font-size: 12px; color: var(--muted);"></span>
+    </div>
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">

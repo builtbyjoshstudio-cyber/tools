@@ -50,13 +50,15 @@ document.addEventListener("DOMContentLoaded", function () {
     return isFinite(v) ? v : fallback;
   }
 
+  var MONEY_MAX = 1e9; // sanity cap for money values, typed or loaded (those inputs have no max)
+
   function calculate() {
-    var targetIncome = Math.max(0, num(targetIncomeInput, 0));
-    var expenses     = Math.max(0, num(expensesInput, 0));
+    var targetIncome = Math.min(MONEY_MAX, Math.max(0, num(targetIncomeInput, 0)));
+    var expenses     = Math.min(MONEY_MAX, Math.max(0, num(expensesInput, 0)));
     var taxPct       = Math.min(40, Math.max(0, num(taxRateInput, 25)));
-    var billable     = Math.max(1, num(billableInput, 25));
+    var billable     = Math.min(80, Math.max(1, num(billableInput, 25)));
     var weeks        = Math.min(52, Math.max(1, num(weeksInput, 48)));
-    var compareRate  = Math.max(0, num(compareRateInput, 0));
+    var compareRate  = Math.min(MONEY_MAX, Math.max(0, num(compareRateInput, 0)));
 
     if (taxBubble) taxBubble.textContent = taxPct.toFixed(1).replace(/\.0$/, "") + "%";
 
@@ -105,27 +107,103 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // --- URL param prefill (house pattern: tools hand off state via query string) ---
-  function parseUrlParameters() {
-    var p = new URLSearchParams(window.location.search);
-    var map = {
-      income: targetIncomeInput,
-      expenses: expensesInput,
-      tax: taxRateInput,
-      billable: billableInput,
-      weeks: weeksInput,
-      rate: compareRateInput
-    };
-    Object.keys(map).forEach(function (key) {
-      if (p.has(key) && map[key]) map[key].value = p.get(key);
+  // --- Inputs state: one sanitizer for saved inputs (localStorage) and share-link params ---
+  var STORE_KEY = "tynkr-freelance-rate-calculator-v1";
+  var fields = [
+    { key: "income",   el: targetIncomeInput, min: 0, max: MONEY_MAX },
+    { key: "expenses", el: expensesInput,     min: 0, max: MONEY_MAX },
+    { key: "tax",      el: taxRateInput,      min: 0, max: 40 },
+    { key: "billable", el: billableInput,     min: 1, max: 80 },
+    { key: "weeks",    el: weeksInput,        min: 1, max: 52 },
+    { key: "rate",     el: compareRateInput,  min: 0, max: MONEY_MAX }
+  ];
+
+  // Returns a safe value for the field's input, or null to ignore it.
+  function cleanValue(f, raw) {
+    if (raw === "" && f.el.type === "number") return ""; // a cleared field stays cleared
+    if (typeof raw === "string" && raw.length <= 30 && /^-?\d*\.?\d+(e[-+]?\d+)?$/i.test(raw)) raw = parseFloat(raw);
+    if (typeof raw !== "number" || isNaN(raw)) return null;
+    return String(Math.min(f.max, Math.max(f.min, raw)));
+  }
+  // get(key) returns the raw value or null; returns how many fields were set.
+  function applyValues(get) {
+    var used = 0;
+    fields.forEach(function (f) {
+      var v = cleanValue(f, get(f.key));
+      if (v !== null) { f.el.value = v; used++; }
     });
+    return used;
+  }
+  function currentValues() {
+    var o = {};
+    fields.forEach(function (f) { o[f.key] = f.el.value; });
+    return o;
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(currentValues())); } catch (e) {}
+  }
+  function loadSaved() {
+    var o = null;
+    try { o = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) {}
+    if (!o || typeof o !== "object" || Array.isArray(o)) return;
+    applyValues(function (k) { return Object.prototype.hasOwnProperty.call(o, k) ? o[k] : null; });
   }
 
-  parseUrlParameters();
+  // --- URL param prefill (house pattern: tools hand off state via query string; Copy link uses the same names) ---
+  function parseUrlParameters() {
+    var p = new URLSearchParams(window.location.search);
+    return applyValues(function (k) { return p.has(k) ? p.get(k) : null; }) > 0;
+  }
+
+  // A link's numbers win for this view but are not saved until something is changed here.
+  if (!parseUrlParameters()) loadSaved();
+  function onEdit() { calculate(); save(); }
   inputs.forEach(function (el) {
     if (!el) return;
-    el.addEventListener("input", calculate);
-    el.addEventListener("change", calculate);
+    el.addEventListener("input", onEdit);
+    el.addEventListener("change", onEdit);
   });
+
+  // --- Reset to the example (the HTML value attributes) ---
+  var resetBtn = document.getElementById("reset-btn");
+  if (resetBtn) resetBtn.addEventListener("click", function () {
+    var changed = fields.some(function (f) { return f.el.value !== f.el.defaultValue; });
+    // a link view shows the link's numbers, not yours: if any are saved, ask before deleting them
+    try { changed = changed || localStorage.getItem(STORE_KEY) !== null; } catch (e) {}
+    if (changed && !confirm("Reset to the example numbers? This also clears the numbers saved in this browser.")) return;
+    fields.forEach(function (f) { f.el.value = f.el.defaultValue; });
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    calculate();
+  });
+
+  // --- Copy link (only on click; the address bar is never rewritten) ---
+  var copyBtn = document.getElementById("copy-link");
+  var copyStatus = document.getElementById("copy-status");
+  var statusTimer = null;
+  function showStatus(msg) {
+    copyStatus.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { copyStatus.textContent = ""; }, 4000);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    copyBtn.focus();
+    return ok;
+  }
+  if (copyBtn && copyStatus) copyBtn.addEventListener("click", function () {
+    var url = location.origin + location.pathname + "?" + new URLSearchParams(currentValues()).toString();
+    function done(ok) { showStatus(ok ? "Link copied" : "Couldn't copy the link"); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(fallbackCopy(url)); });
+    } else done(fallbackCopy(url));
+  });
+
   calculate();
 });

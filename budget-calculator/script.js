@@ -150,14 +150,99 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // URL prefill
+  // Saved inputs + share links share one field map and one sanitizer.
+  // Each name is both the localStorage field and the URL param (?income= is the existing hand-off).
+  var STORE_KEY = "tynkr-budget-calculator-v1";
+  var FIELDS = { income: incomeInput, tneeds: tNeeds, twants: tWants, tsavings: tSavings, needs: aNeeds, wants: aWants, savings: aSavings };
+  var NAMES = ["income", "tneeds", "twants", "tsavings", "needs", "wants", "savings"];
+
+  // Re-parse and clamp to the input's own min/max (dollar fields have no max: cap at $1B).
+  // Returns the value to put in the input, or null to ignore it.
+  function clean(el, v) {
+    if (typeof v !== "string" && typeof v !== "number") return null;
+    v = String(v);
+    if (v === "") return "";
+    if (v.length > 32) return null;
+    // Whole string must be a number the input itself would accept ("5,000", "12abc", "0x10" are ignored).
+    if (!/^-?(\d+(\.\d+)?|\.\d+)(e[+-]?\d+)?$/i.test(v)) return null;
+    var n = Number(v);
+    if (!isFinite(n)) return null;
+    var max = el.max !== "" ? parseFloat(el.max) : 1e9;
+    return String(Math.min(max, Math.max(parseFloat(el.min) || 0, n)));
+  }
+  function applyValues(get) {
+    NAMES.forEach(function (k) {
+      var v = clean(FIELDS[k], get(k));
+      if (v !== null) FIELDS[k].value = v;
+    });
+  }
+  function save() {
+    var s = {};
+    NAMES.forEach(function (k) { s[k] = FIELDS[k].value; });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) {}
+  }
+
+  function readSaved() {
+    try {
+      var s = JSON.parse(localStorage.getItem(STORE_KEY));
+      return s && typeof s === "object" ? s : null;
+    } catch (e) { return null; }
+  }
+
+  // Load: saved inputs first, then link params on top (params are never saved until you change something).
+  var saved = readSaved();
+  if (saved) applyValues(function (k) { return saved[k]; });
   (function () {
     var p = new URLSearchParams(window.location.search);
-    if (p.has("income")) incomeInput.value = p.get("income");
+    applyValues(function (k) { return p.has(k) ? p.get(k) : undefined; });
   })();
 
-  [incomeInput, tNeeds, tWants, tSavings, aNeeds, aWants, aSavings].forEach(function (el) {
-    if (el) { el.addEventListener("input", calculate); el.addEventListener("change", calculate); }
+  NAMES.forEach(function (k) {
+    var el = FIELDS[k];
+    el.addEventListener("input", calculate); el.addEventListener("change", calculate);
+    el.addEventListener("input", save); el.addEventListener("change", save);
   });
+
+  var resetBtn = document.getElementById("reset-inputs");
+  resetBtn.addEventListener("click", function () {
+    var changed = NAMES.some(function (k) { return FIELDS[k].value !== FIELDS[k].defaultValue; });
+    // A link can show the example while your own saved numbers sit in storage: those would be lost too.
+    var stored = readSaved();
+    if (stored) changed = changed || NAMES.some(function (k) { var v = clean(FIELDS[k], stored[k]); return v !== null && v !== FIELDS[k].defaultValue; });
+    if (changed && !confirm("Reset to the example numbers? This clears the numbers saved in this browser.")) return;
+    NAMES.forEach(function (k) { FIELDS[k].value = FIELDS[k].defaultValue; });
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    calculate();
+  });
+
+  var copyBtn = document.getElementById("copy-link");
+  var copyStatus = document.getElementById("copy-status");
+  var copyTimer = null;
+  function copied(ok) {
+    copyStatus.textContent = ok ? "Link copied" : "Couldn't copy the link";
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+  }
+  copyBtn.addEventListener("click", function () {
+    var p = new URLSearchParams();
+    NAMES.forEach(function (k) { p.set(k, FIELDS[k].value); });
+    var url = location.origin + location.pathname + "?" + p.toString();
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = url; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      copyBtn.focus();
+      copied(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { copied(true); }, fallback);
+    } else {
+      fallback();
+    }
+  });
+
   calculate();
 });

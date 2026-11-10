@@ -189,9 +189,102 @@ document.addEventListener("DOMContentLoaded", function () {
     renderBreakdown(profit, se, halfSE, deduction, taxable, fed, state, stateRate);
   }
 
+  // ---------- saved inputs + share links ----------
+  // Inputs only (never results). One sanitizer for localStorage and for
+  // ?profit=&status=&state= links; anything invalid is dropped silently.
+  var STORE_KEY = "tynkr-quarterly-tax-estimator-v1";
+  var resetBtn   = document.getElementById("reset-btn");
+  var copyBtn    = document.getElementById("copy-link");
+  var copyStatus = document.getElementById("copy-status");
+  var statusTimer;
+
+  function clampNum(v, lo, hi) {
+    if (typeof v !== "number" && typeof v !== "string") return null;
+    if (String(v).length > 32) return null;
+    // Same grammar a number input accepts: "80,000", "0x1F", "7%" are ignored.
+    if (typeof v === "string" && !/^-?(\d+(\.\d+)?|\.\d+)(e[+-]?\d+)?$/i.test(v)) return null;
+    v = Number(v);
+    return isFinite(v) ? Math.min(Math.max(v, lo), hi) : null;
+  }
+  function sanitize(src) {
+    var s = {};
+    if (!src || typeof src !== "object") return s;
+    var p = clampNum(src.profit, 0, Infinity);
+    var r = clampNum(src.state, 0, 15);
+    if (p !== null) s.profit = p;
+    if (src.status === "single" || src.status === "mfj") s.status = src.status;
+    if (r !== null) s.state = r;
+    return s;
+  }
+  function apply(s) {
+    if (s.profit !== undefined) profitEl.value = s.profit;
+    if (s.status !== undefined) statusEl.value = s.status;
+    if (s.state !== undefined) stateEl.value = s.state;
+  }
+  function current() {
+    return sanitize({ profit: num(profitEl, 0), status: statusEl.value, state: num(stateEl, 0) });
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(current())); } catch (e) {}
+  }
+
+  var DEFAULTS = sanitize({ profit: profitEl.defaultValue, status: "single", state: stateEl.defaultValue });
+
+  // A shared link wins for this view but is not saved until the user edits here.
+  var params = new URLSearchParams(location.search);
+  var fromLink = sanitize({ profit: params.get("profit"), status: params.get("status"), state: params.get("state") });
+  if (Object.keys(fromLink).length) {
+    apply(fromLink);
+  } else {
+    try { apply(sanitize(JSON.parse(localStorage.getItem(STORE_KEY)))); } catch (e) {}
+  }
+
+  resetBtn.addEventListener("click", function () {
+    // a link view shows the link's numbers, not yours: if any are saved, ask before deleting them
+    var hasSaved = false;
+    try { hasSaved = localStorage.getItem(STORE_KEY) !== null; } catch (e) {}
+    if ((hasSaved || JSON.stringify(current()) !== JSON.stringify(DEFAULTS)) &&
+        !confirm("Reset to the example? Your saved numbers in this browser will be cleared.")) return;
+    apply(DEFAULTS);
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  function showStatus(msg) {
+    copyStatus.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    var ok = false;
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    copyBtn.focus();
+    showStatus(ok ? "Link copied" : "Couldn't copy the link");
+  }
+  copyBtn.addEventListener("click", function () {
+    var s = current();
+    var url = location.origin + location.pathname + "?profit=" + encodeURIComponent(s.profit) + "&status=" + s.status + "&state=" + s.state;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { showStatus("Link copied"); },
+        function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  });
+
   [profitEl, statusEl, stateEl].forEach(function (el) {
     el.addEventListener("input", render);
     el.addEventListener("change", render);
+    el.addEventListener("input", save);
+    el.addEventListener("change", save);
   });
 
   render();

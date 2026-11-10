@@ -225,6 +225,26 @@
     margin: 0;
 }
 
+/* ---- Copy link ---- */
+.share-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.share-row .btn {
+    padding: 9px 14px;
+    font-size: 13px;
+}
+
+.share-status {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+}
+
 /* ---- Materials Explorer ---- */
 .materials-explorer-grid {
     display: grid;

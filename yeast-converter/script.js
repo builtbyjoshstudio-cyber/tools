@@ -152,6 +152,54 @@ document.addEventListener("DOMContentLoaded", () => {
     inputUnit.addEventListener("change", calculateConversions);
     inputAmount.addEventListener("input", calculateConversions);
 
+    // Share links: only built when "Copy link" is clicked, never written to the
+    // address bar. They reuse the ?amount=&type=&unit= params read below.
+    const copyLinkBtn = document.getElementById("copy-link-btn");
+    const copyLinkStatus = document.getElementById("copy-link-status");
+    let copyLinkTimer = null;
+
+    function shareParams() {
+        const params = new URLSearchParams();
+        // Keep the typed text when the reader below accepts it as-is; otherwise send
+        // the plain number (short, never negative) so the link can't open on the default.
+        const typed = inputAmount.value;
+        const amount = Math.max(0, parseFloat(typed) || 0);
+        params.set("amount", typed.length <= 32 && parseFloat(typed) === amount ? typed : String(amount));
+        params.set("type", yeastFrom.value);
+        params.set("unit", inputUnit.value);
+        return params.toString();
+    }
+
+    function showCopyLinkStatus(msg) {
+        copyLinkStatus.textContent = msg;
+        clearTimeout(copyLinkTimer);
+        copyLinkTimer = setTimeout(() => copyLinkStatus.textContent = "", 3000);
+    }
+
+    function fallbackCopyLink(text) {
+        const ta = document.createElement("textarea");
+        let ok = false;
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+        document.body.removeChild(ta);
+        copyLinkBtn.focus();
+        showCopyLinkStatus(ok ? "Link copied" : "Couldn't copy the link");
+    }
+
+    copyLinkBtn.addEventListener("click", () => {
+        const url = location.origin + location.pathname + "?" + shareParams();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => showCopyLinkStatus("Link copied"), () => fallbackCopyLink(url));
+        } else {
+            fallbackCopyLink(url);
+        }
+    });
+
     // Parse URL parameters for direct link ingestion
     function parseUrlParameters() {
         const params = new URLSearchParams(window.location.search);
@@ -159,8 +207,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const typeParam = params.get("type");
         const unitParam = params.get("unit");
 
-        if (amountParam && !isNaN(parseFloat(amountParam))) {
+        // Read like typed input: the number field drops anything that isn't a plain
+        // number; negative, non-finite or over-long values are ignored.
+        if (amountParam && amountParam.length <= 32) {
+            const previousAmount = inputAmount.value;
             inputAmount.value = amountParam;
+            const linkedAmount = parseFloat(inputAmount.value);
+            if (!isFinite(linkedAmount) || linkedAmount < 0) {
+                inputAmount.value = previousAmount;
+            }
         }
 
         if (typeParam) {
@@ -176,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const validUnits = ["g", "oz", "tsp", "packet"];
             if (validUnits.includes(unitParam.toLowerCase())) {
                 // Check if unit is valid for current selection
-                if (yeastFrom.value !== "fresh" || (unitParam !== "tsp" && unitParam !== "packet")) {
+                if (yeastFrom.value !== "fresh" || (unitParam.toLowerCase() !== "tsp" && unitParam.toLowerCase() !== "packet")) {
                     inputUnit.value = unitParam.toLowerCase();
                 }
             }

@@ -576,6 +576,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- SHARE LINK: ?task=<task id> ---
+    // Read once on load; anything that is not one of the dropdown's task ids is ignored.
+    // Copy link builds the URL on click only; the address bar is never rewritten.
+    const linkTask = new URLSearchParams(location.search).get('task');
+    if (linkTask && cookwareTasks.some(t => t.id === linkTask)) taskSelect.value = linkTask;
+
+    const copyBtn = document.getElementById('copy-link');
+    const copyStatus = document.getElementById('copy-status');
+    let copyTimer = null;
+    function copied(ok) {
+        copyStatus.textContent = ok ? 'Link copied' : "Couldn't copy the link";
+        clearTimeout(copyTimer);
+        copyTimer = setTimeout(() => { copyStatus.textContent = ''; }, 3000);
+    }
+    copyBtn.addEventListener('click', () => {
+        const url = location.origin + location.pathname + '?' + new URLSearchParams({ task: taskSelect.value }).toString();
+        const fallback = () => {
+            const ta = document.createElement('textarea');
+            ta.value = url;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            let ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(ta);
+            copyBtn.focus();
+            copied(ok);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => copied(true), fallback);
+        } else {
+            fallback();
+        }
+    });
+
     // --- INITIALIZATION ---
     buildMaterialsExplorer();
     buildComparisonMatrix();

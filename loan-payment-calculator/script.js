@@ -184,9 +184,113 @@ document.addEventListener("DOMContentLoaded", function () {
     renderBreakdown(principal, plan.totalInterest, payment, extra, plan.months);
   }
 
+  // ---------- saved inputs + share links ----------
+  // Inputs only (never results). One sanitizer for localStorage and for
+  // ?amount=&apr=&term=&extra= links; anything invalid is dropped silently.
+  var STORE_KEY = "tynkr-loan-payment-calculator-v1";
+  var MAX_AMOUNT = 1e15; // far above any real loan; String() stays plain (no "e+") below 1e21
+  var TERMS = [].map.call(termEl.options, function (o) { return o.value; });
+  var resetBtn   = document.getElementById("reset-btn");
+  var copyBtn    = document.getElementById("copy-link-btn");
+  var copyStatus = document.getElementById("copy-status");
+  var statusTimer;
+
+  function clampNum(v, lo, hi) {
+    if (typeof v !== "number" && typeof v !== "string") return null;
+    if (String(v).length > 32) return null;
+    v = parseFloat(v);
+    return isFinite(v) ? Math.min(Math.max(v, lo), hi) : null;
+  }
+  function sanitize(src) {
+    var s = {};
+    if (!src || typeof src !== "object") return s;
+    var a = clampNum(src.amount, 0, MAX_AMOUNT);
+    var r = clampNum(src.apr, 0, 60);
+    var e = clampNum(src.extra, 0, 1000);
+    if (a !== null) s.amount = a;
+    if (r !== null) s.apr = r;
+    if (TERMS.indexOf(String(src.term)) >= 0) s.term = String(src.term);
+    if (e !== null) s.extra = Math.round(e / 25) * 25; // slider step
+    return s;
+  }
+  function apply(s) {
+    if (s.amount !== undefined) amountEl.value = s.amount;
+    if (s.apr !== undefined) aprEl.value = s.apr;
+    if (s.term !== undefined) termEl.value = s.term;
+    if (s.extra !== undefined) extraEl.value = s.extra;
+  }
+  function current() {
+    return sanitize({ amount: num(amountEl, 0), apr: num(aprEl, 0), term: termEl.value, extra: num(extraEl, 0) });
+  }
+  function save() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(current())); } catch (e) {}
+  }
+
+  var defaultTerm = [].filter.call(termEl.options, function (o) { return o.defaultSelected; })[0];
+  var DEFAULTS = sanitize({ amount: amountEl.defaultValue, apr: aprEl.defaultValue,
+    term: defaultTerm ? defaultTerm.value : termEl.value, extra: extraEl.defaultValue });
+
+  // A shared link wins for this view but is not saved until the user edits here.
+  var params = new URLSearchParams(location.search);
+  var fromLink = sanitize({ amount: params.get("amount"), apr: params.get("apr"),
+    term: params.get("term"), extra: params.get("extra") });
+  if (Object.keys(fromLink).length) {
+    apply(fromLink);
+  } else {
+    try { apply(sanitize(JSON.parse(localStorage.getItem(STORE_KEY)))); } catch (e) {}
+  }
+
+  // On a link view the saved numbers aren't on screen, so check them too.
+  function savedDiffers() {
+    try {
+      var s = sanitize(JSON.parse(localStorage.getItem(STORE_KEY)));
+      return Object.keys(s).length > 0 && JSON.stringify(s) !== JSON.stringify(DEFAULTS);
+    } catch (e) { return false; }
+  }
+  resetBtn.addEventListener("click", function () {
+    if ((JSON.stringify(current()) !== JSON.stringify(DEFAULTS) || savedDiffers()) &&
+        !confirm("Reset to the example loan? Your saved numbers in this browser will be cleared.")) return;
+    apply(DEFAULTS);
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    render();
+  });
+
+  function showStatus(msg) {
+    copyStatus.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+  }
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    var ok = false;
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
+    copyBtn.focus();
+    showStatus(ok ? "Link copied" : "Couldn't copy the link");
+  }
+  copyBtn.addEventListener("click", function () {
+    var s = current();
+    var url = location.origin + location.pathname + "?amount=" + s.amount + "&apr=" + s.apr +
+      "&term=" + s.term + "&extra=" + s.extra;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { showStatus("Link copied"); },
+        function () { fallbackCopy(url); });
+    } else {
+      fallbackCopy(url);
+    }
+  });
+
   [amountEl, aprEl, termEl, extraEl].forEach(function (el) {
     el.addEventListener("input", render);
     el.addEventListener("change", render);
+    el.addEventListener("input", save);
+    el.addEventListener("change", save);
   });
 
   render();

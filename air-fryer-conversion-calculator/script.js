@@ -174,5 +174,57 @@ document.addEventListener("DOMContentLoaded", function () {
     el.addEventListener("change", render);
   });
 
+  // ---------- share link: ?food=&unit=&temp=&time= ----------
+  // Read once on load. Numbers are taken as typed (any value above 0, like render());
+  // a wide sanity cap drops absurd ones, and an empty temp= / time= reopens that field blank.
+  // Copy link builds the URL on click only; the address bar is never rewritten.
+  function linkNum(raw, cap) {
+    if (raw === null) return null;
+    if (raw.trim() === "") return "";
+    var v = Number(raw);
+    return isFinite(v) && v > 0 && v <= cap ? v : null;
+  }
+  var params = new URLSearchParams(location.search);
+  var pFood = params.get("food");
+  if (pFood && Object.prototype.hasOwnProperty.call(FOODS, pFood)) foodEl.value = pFood;
+  var pUnit = (params.get("unit") || "").toUpperCase();
+  if (pUnit === "F" || pUnit === "C") setUnit(pUnit);
+  var pTemp = linkNum(params.get("temp"), 1000);
+  if (pTemp !== null) tempEl.value = pTemp;
+  var pTime = linkNum(params.get("time"), 10000);
+  if (pTime !== null) timeEl.value = pTime;
+
+  var copyBtn = document.getElementById("copy-link");
+  var copyStatus = document.getElementById("copy-status");
+  var copyTimer = null;
+  function copied(ok) {
+    copyStatus.textContent = ok ? "Link copied" : "Couldn't copy the link";
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () { copyStatus.textContent = ""; }, 3000);
+  }
+  copyBtn.addEventListener("click", function () {
+    var p = new URLSearchParams();
+    p.set("food", foodEl.value);
+    p.set("unit", unit);
+    p.set("temp", tempEl.value);
+    p.set("time", timeEl.value);
+    var url = location.origin + location.pathname + "?" + p.toString();
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = url; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      copyBtn.focus();
+      copied(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { copied(true); }, fallback);
+    } else {
+      fallback();
+    }
+  });
+
   render();
 });
