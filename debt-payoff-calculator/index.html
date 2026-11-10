@@ -215,6 +215,21 @@
     .anatomy-row .lbl p { margin:2px 0 0; font-size:12.5px; color:var(--muted); }
     .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
 
+    /* monthly payment plan */
+    .plan-wrap { overflow-x:auto; }
+    .plan-table { width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:13px; }
+    .plan-table caption { text-align:left; font-family:var(--font-ui); font-size:12.5px; color:var(--muted); padding-bottom:8px; }
+    .plan-table th, .plan-table td { padding:8px 10px; border-bottom:1px solid var(--line); text-align:right; white-space:nowrap; }
+    .plan-table thead th { font-size:10.5px; font-weight:500; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); white-space:normal; vertical-align:bottom; }
+    .plan-table th:first-child { text-align:left; padding-left:0; }
+    .plan-table tbody th { font-weight:600; color:var(--ink); }
+    .plan-table tbody th span { display:block; font-size:11px; font-weight:400; color:var(--muted); white-space:normal; }
+    @media (max-width:560px){ .plan-table { font-size:12px; } .plan-table th, .plan-table td { padding:7px 4px; } }
+    .plan-months { margin-top:12px; }
+    .plan-months summary { cursor:pointer; font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); }
+    .plan-months .plan-wrap { max-height:420px; overflow:auto; margin-top:10px; }
+    .plan-months thead th { position:sticky; top:0; background:var(--surface); }
+
     /* comparison table */
     .cmp-row { display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:12px; align-items:center; padding:14px; border:2px solid var(--line); border-radius:var(--r-s); margin-bottom:10px; background:var(--surface-2); }
     .cmp-row.is-current { border-color:var(--accent); }
@@ -360,6 +375,17 @@
       </a>
     </div>
 
+    <!-- MONTHLY PAYMENT PLAN -->
+    <div class="glass" id="plan" style="margin-top:18px;">
+      <div class="role">3. Monthly payment plan</div>
+      <div class="plan-wrap" id="plan-phases" tabindex="0" role="region" aria-label="Payment plan by phase"></div>
+      <p class="note">Each row is a stretch of months where every payment stays the same. A dash means that debt is already paid off.</p>
+      <details class="plan-months" id="plan-details">
+        <summary id="plan-summary">Show every month</summary>
+        <div class="plan-wrap" id="plan-months" tabindex="0" role="region" aria-label="Payments for every month"></div>
+      </details>
+    </div>
+
     <!-- FUNNEL CTA → Ultimate Budget Workbook (interim; swap to a Debt Payoff Workbook later) -->
     <a class="funnel" href="https://builtbyjoshstudio.com/products/ultimate-budget-workbook.html" target="_blank" rel="noopener">
       <div class="eyebrow">Find the extra payment first</div>
@@ -376,7 +402,7 @@
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Compares debt-payoff strategies on your real balances and shows the debt-free date each one produces.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Each debt's balance, rate, and minimum payment, plus the extra you can pay monthly — strategies: avalanche (highest interest first), snowball (smallest balance first), or hybrid.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Time to debt-free, the debt-free date, total interest paid, interest saved vs minimums, and the payoff order.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Time to debt-free, the debt-free date, total interest paid, interest saved vs minimums, the payoff order, and a monthly payment plan showing what to pay on each debt.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>

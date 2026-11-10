@@ -316,6 +316,20 @@
     </div>
   </div>
 
+  <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: left;">
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">When to start thawing</h2>
+    <div class="input-group">
+      <label class="input-label" for="cook-time">Cooking on</label>
+      <input type="datetime-local" id="cook-time" class="form-input">
+    </div>
+    <ul style="font-size: 14px; line-height: 1.6; color: var(--ink); margin: 16px 0 0; padding-left: 20px;">
+      <li>Move to fridge by: <strong id="fridge-start-output">--</strong></li>
+      <li>Start cold-water thaw by: <strong id="water-start-output">--</strong> <span id="water-start-note" style="color: var(--muted);">(cook immediately after)</span></li>
+    </ul>
+    <div id="schedule-warning-container" style="display: none; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
+    </div>
+  </div>
+
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
     <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
@@ -331,7 +345,7 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Backward-schedules food-safe thawing for frozen meat using the USDA refrigerator and cold-water methods.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Protein type (turkey, chicken, beef, pork and more) and weight in pounds.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Protein type (turkey, chicken, beef, pork and more), weight in pounds, and the day and time you plan to cook.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Fridge and cold-water thawing time windows, when to start, and food-safety warnings about the bacterial danger zone.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>

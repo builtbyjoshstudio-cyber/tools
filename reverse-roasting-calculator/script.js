@@ -10,87 +10,108 @@ document.addEventListener('DOMContentLoaded', () => {
     // restTime is set only where the rest is fixed (barbecue cooler holds, fish);
     // every other profile rests by weight in generateTimeline().
     // bands: [from lbs, up to lbs, minutes] at the top of each charted range.
+    // pullAt: the USDA safe minimum internal temperature (FSIS / FoodSafety.gov chart);
+    // barbecue cuts use the probe-tender range of the Perfect Roast Pull Temp Calculator.
+    const PULL_POULTRY = '165°F (74°C) in the thickest part, the USDA safe minimum.';
+    const PULL_WHOLE = '145°F (63°C), the USDA safe minimum for whole cuts, with at least a 3-minute rest.';
+    const PULL_GROUND = '160°F (71°C) in the center, the USDA safe minimum.';
+    const PULL_BBQ = 'around 195-203°F (91-95°C), when a probe slides in with almost no resistance (well past the 145°F (63°C) safe minimum).';
     const roastingData = {
         'turkey': {
             name: 'Turkey (Whole or Breast)',
             // USDA FSIS unstuffed timetable at 325°F: breast 4-6 and 6-8 lb, then whole birds
             bands: [[4, 6, 135], [6, 8, 195], [8, 12, 180], [12, 14, 225], [14, 18, 255], [18, 20, 270], [20, 24, 300]],
-            temp: '325°F (165°C)'
+            temp: '325°F (165°C)',
+            pullAt: PULL_POULTRY
         },
         'chicken': {
             name: 'Chicken (Whole or Pieces)',
             minsPerPound: 20,
-            temp: '375°F (190°C)'
+            temp: '375°F (190°C)',
+            pullAt: PULL_POULTRY
         },
         'duck-goose': {
             name: 'Duck & Goose',
             minsPerPound: 20,
-            temp: '375°F (190°C)'
+            temp: '375°F (190°C)',
+            pullAt: PULL_POULTRY
         },
         'beef-roast': {
             name: 'Beef Roasts (Prime Rib)',
             // USDA chart: bone-in rib roast at 325°F, 23 to 25 min per lb
             minsPerPound: 25,
-            temp: '325°F (165°C)'
+            temp: '325°F (165°C)',
+            pullAt: PULL_WHOLE
         },
         'beef-tri-tip': {
             name: 'Beef Tri-Tip Roast',
             // Beef checkoff oven chart at 425°F, to medium: 1.5-2 lb 40-50 min, 2-3 lb 50-60 min
             bands: [[1.5, 2, 50], [2, 3, 60]],
-            temp: '425°F (220°C)'
+            temp: '425°F (220°C)',
+            pullAt: PULL_WHOLE
         },
         'beef-brisket': {
             name: 'Beef Brisket (Low & Slow)',
             minsPerPound: 60,
             restTime: 120,
-            temp: '250°F (120°C)'
+            temp: '250°F (120°C)',
+            pullAt: PULL_BBQ
         },
         'beef-steak': {
             name: 'Steaks & Chops (Individual)',
             minsPerPound: 25,
-            temp: '225°F (105°C)'
+            temp: '225°F (105°C)',
+            pullAt: PULL_WHOLE
         },
         'pork-shoulder': {
             name: 'Pork Shoulder (Boston Butt)',
             minsPerPound: 45,
             restTime: 60,
-            temp: '350°F (175°C)'
+            temp: '350°F (175°C)',
+            pullAt: PULL_BBQ
         },
         'pork-loin': {
             name: 'Pork Loin Roast',
             minsPerPound: 20,
-            temp: '350°F (175°C)'
+            temp: '350°F (175°C)',
+            pullAt: PULL_WHOLE
         },
         'ham': {
             name: 'Ham (Whole or Half)',
             minsPerPound: 20,
-            temp: '325°F (165°C)'
+            temp: '325°F (165°C)',
+            pullAt: '140°F (60°C) to reheat a fully cooked ham packaged in a USDA-inspected plant (165°F (74°C) for any other cooked ham), or 145°F (63°C) for a fresh or uncooked ham, with at least a 3-minute rest.'
         },
         'lamb': {
             name: 'Lamb Leg or Rack',
             minsPerPound: 20,
-            temp: '325°F (165°C)'
+            temp: '325°F (165°C)',
+            pullAt: PULL_WHOLE
         },
         'ground-meat': {
             name: 'Ground Beef, Pork & Lamb',
             minsPerPound: 20,
-            temp: '350°F (175°C)'
+            temp: '350°F (175°C)',
+            pullAt: PULL_GROUND
         },
         'ground-poultry': {
             name: 'Ground Turkey & Chicken',
             minsPerPound: 20,
-            temp: '350°F (175°C)'
+            temp: '350°F (175°C)',
+            pullAt: PULL_POULTRY
         },
         'game-meat': {
             name: 'Venison & Bison (Lean Game)',
             minsPerPound: 25,
-            temp: '300°F (150°C)'
+            temp: '300°F (150°C)',
+            pullAt: '160°F (71°C) for venison, or 145°F (63°C) for bison with at least a 3-minute rest (USDA safe minimums).'
         },
         'seafood': {
             name: 'Fish & Seafood',
             minsPerPound: 12,
             restTime: 5,
-            temp: '400°F (200°C)'
+            temp: '400°F (200°C)',
+            pullAt: '145°F (63°C) for fish, or when the flesh is no longer translucent and separates easily with a fork.'
         }
     };
 
@@ -120,7 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
             meatWeightInput.disabled = false;
             meatWeightInput.style.opacity = '1';
         }
+        updatePullTempLink();
     });
+
+    // Next Steps hand-off: ?protein=&unit= open the Pull Temp Calculator on the same meat.
+    // It has no tri-tip profile of its own; tri-tip sits under its beef roasts.
+    // Steaks open on its thick-cut size. Game meat is not handed over: that page
+    // has no 160°F venison minimum yet, so it would show a lower pull temp.
+    const pullTempLink = document.getElementById('pipeline-link-pulltemp');
+    function updatePullTempLink() {
+        const params = new URLSearchParams();
+        if (meatTypeInput.value !== 'game-meat') {
+            params.set('protein', meatTypeInput.value === 'beef-tri-tip' ? 'beef-roast' : meatTypeInput.value);
+        }
+        if (meatTypeInput.value === 'beef-steak') params.set('cut', 'thick');
+        params.set('unit', currentUnit === 'metric' ? 'kg' : 'lbs');
+        pullTempLink.href = '../perfect-roast-pull-temp-calculator/?' + params.toString();
+    }
 
     // ---------------------------------------------------------
     // Core Logic
@@ -224,10 +261,14 @@ document.addEventListener('DOMContentLoaded', () => {
             preheatTime = new Date(ovenTime.getTime() - (30 * 60000));
         }
 
+        // Start checking the temperature about three quarters of the way through the charted cook time
+        const checkTime = new Date(ovenTime.getTime() + (Math.round(totalCookTimeMins * 0.75) * 60000));
+        const checkDesc = 'Check the internal temperature in the thickest part, away from bone, and pull as soon as it reaches the pull temp in the next step.';
+
         // Barbecue cuts hold in a cooler, matching the Perfect Roast Pull Temp Calculator
-        const restDesc = restTime >= 60
+        const restDesc = (restTime >= 60
             ? `Pull from oven and hold in an insulated cooler for ${restTime} mins before slicing.`
-            : `Pull from oven and let rest for ${restTime} mins.`;
+            : `Pull from oven and let rest for ${restTime} mins.`) + ` Pull temp: ${data.pullAt}`;
 
         // Render to DOM
         if (hasBuffer) {
@@ -248,12 +289,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="timeline-desc">Main roasting phase: Roast ${weightDesc} ${data.name} for ~${totalCookTimeMins - 15} mins.</div>
                 </li>
                 <li>
-                    <div class="timeline-step">Step 4: Rest</div>
+                    <div class="timeline-step">Step 4: Start Checking Temp</div>
+                    <div class="timeline-time">${formatTime(checkTime, serveTime)}</div>
+                    <div class="timeline-desc">${checkDesc}</div>
+                </li>
+                <li>
+                    <div class="timeline-step">Step 5: Rest</div>
                     <div class="timeline-time">${formatTime(pullTime, serveTime)}</div>
                     <div class="timeline-desc">${restDesc}</div>
                 </li>
                 <li>
-                    <div class="timeline-step">Step 5: Serve</div>
+                    <div class="timeline-step">Step 6: Serve</div>
                     <div class="timeline-time">${formatTime(serveTime, serveTime)}</div>
                     <div class="timeline-desc">Carve and enjoy your perfect ${data.name}!</div>
                 </li>
@@ -271,12 +317,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="timeline-desc">Roast ${weightDesc} ${data.name} for ~${totalCookTimeMins} mins.</div>
                 </li>
                 <li>
-                    <div class="timeline-step">Step 3: Rest</div>
+                    <div class="timeline-step">Step 3: Start Checking Temp</div>
+                    <div class="timeline-time">${formatTime(checkTime, serveTime)}</div>
+                    <div class="timeline-desc">${checkDesc}</div>
+                </li>
+                <li>
+                    <div class="timeline-step">Step 4: Rest</div>
                     <div class="timeline-time">${formatTime(pullTime, serveTime)}</div>
                     <div class="timeline-desc">${restDesc}</div>
                 </li>
                 <li>
-                    <div class="timeline-step">Step 4: Serve</div>
+                    <div class="timeline-step">Step 5: Serve</div>
                     <div class="timeline-time">${formatTime(serveTime, serveTime)}</div>
                     <div class="timeline-desc">Carve and enjoy your perfect ${data.name}!</div>
                 </li>
@@ -298,6 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
             unitMetricBtn.classList.remove('active');
             if (weightLabel) weightLabel.textContent = "Weight (lbs)";
         }
+        updatePullTempLink();
         const items = timelineOutput.querySelectorAll('li');
         if (items.length > 0 && !items[0].classList.contains('placeholder-text')) {
             generateTimeline();
@@ -455,4 +507,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     parseUrlParameters();
+    updatePullTempLink();
 });
