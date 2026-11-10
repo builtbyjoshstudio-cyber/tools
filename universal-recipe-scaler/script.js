@@ -52,6 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     autoResizeInput();
 
+    function esc(s) {
+        return String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
+    }
+
     // Parse string to float
     function parseNumber(str) {
         str = str.trim();
@@ -198,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recipeOutput.innerHTML = ''; // Clear previous output
         
         let hasFractionalEggs = false;
+        let hasVolumetricUnits = false;
 
         const unitRegex = /(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)\s*(cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|kilograms?|kgs?|liters?|litres?|l|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|°?c|celsius|inches|inch|in\.?|cm|centimeters?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b/gi;
         const startNumberRegex = /^(\s*)(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.\d+|\d+)(?!\s*(?:cups?|c\.?|tablespoons?|tbsps?\.?|teaspoons?|tsps?\.?|fluid\s*ounces?|fl\.?\s*oz\.?|ounces?|ozs?\.?|grams?|g\.?|milliliters?|ml\.?|kilograms?|kgs?|liters?|litres?|l|pounds?|lbs?\.?|quarts?|qts?\.?|pints?|pts?\.?|gallons?|gals?\.?|°?f|fahrenheit|inches|inch|in\.?|pinch(?:es)?|dash(?:es)?|cloves?|pieces?)\b)/i;
@@ -208,7 +213,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            let processedLine = line;
+            // The user's text is escaped before any highlight markup is added around amounts
+            let processedLine = esc(line);
             const isEggLine = /\beggs?\b/i.test(line);
             let lineHasFraction = false;
             const densityMatch = useDensity ? findIngredientDensity(line) : null;
@@ -221,14 +227,22 @@ document.addEventListener('DOMContentLoaded', () => {
             let unitMultiplier = currentMultiplier;
 
             // Globally replace all quantities with known units
-            const scaleUnits = (match, originalNumStr, unitStr) => {
+            const scaleUnits = (match, originalNumStr, unitStr, offset, whole) => {
                 let num = parseNumber(originalNumStr);
                 if (isNaN(num)) return match;
 
                 let unit = unitStr.toLowerCase();
                 let isF = /^(°?f|fahrenheit)$/.test(unit);
                 let isIn = /^(inches|inch|in\.?)$/.test(unit);
-                let isC = /^(°?c|celsius)$/.test(unit);
+                // A bare "c" is the cup abbreviation ("1 c broth"); it means Celsius only with a
+                // degree sign, the word "celsius", or when the words just before the amount set up a
+                // temperature ("Roast at 200 C", "Bake 180 C", "350 F / 180 C"). After "to" it takes
+                // 20 or more, so "Heat oil to 180 C" is Celsius but "1 to 2 c broth" and
+                // "reduced to 1 c" stay cups.
+                const before = whole.slice(0, offset);
+                let isC = /^(°c|celsius)$/.test(unit) ||
+                    (unit === 'c' && (/(\b(at|bake|oven|preheat)|\d\s*°?\s*f\W*)\s*$/i.test(before) ||
+                        (num >= 20 && /\bto\s*$/i.test(before))));
                 let isCm = /^(centimeters?|cm\.?)$/.test(unit);
 
                 // Multiplier conditionally applied
@@ -252,9 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 let isQt = /^(quarts?|qts?\.?)$/.test(unit);
                 let isPt = /^(pints?|pts?\.?)$/.test(unit);
                 let isGal = /^(gallons?|gals?\.?)$/.test(unit);
-                let isCup = /^(cups?|c\.?)$/.test(unit);
+                let isCup = !isC && /^(cups?|c\.?)$/.test(unit);
                 let isTbsp = /^(tablespoons?|tbsps?\.?)$/.test(unit);
                 let isTsp = /^(teaspoons?|tsps?\.?)$/.test(unit);
+                if (isCup || isTbsp || isTsp) hasVolumetricUnits = true;
                 let isOz = /^(ounces?|ozs?\.?)$/.test(unit);
                 let isFlOz = /^(fluid\s*ounces?|fl\.?\s*oz\.?)$/.test(unit);
                 let isLb = /^(pounds?|lbs?\.?)$/.test(unit);
@@ -420,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // US cups and spoons can drop to a smaller measure (see toUsVolume)
                 let usVolume = '';
-                if (useFraction) {
+                if (useFraction && !isC) {
                     if (/^(cups?|c\.?)$/i.test(outUnit)) usVolume = 'cup';
                     else if (/^(tablespoons?|tbsps?\.?)$/i.test(outUnit)) usVolume = 'tbsp';
                     else if (/^(teaspoons?|tsps?\.?)$/i.test(outUnit)) usVolume = 'tsp';
@@ -488,8 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
             eggTipBox.style.display = hasFractionalEggs ? 'block' : 'none';
         }
 
-        // Volumetric scaling check
-        const hasVolumetricUnits = /\b(cups?|tsp|tbsp)\b/i.test(text);
+        // Volumetric scaling check (set by scaleUnits for cup/tbsp/tsp amounts)
         if (volumetricWarningBox) {
             volumetricWarningBox.style.display = (currentMultiplier >= 3 && hasVolumetricUnits) ? 'block' : 'none';
         }

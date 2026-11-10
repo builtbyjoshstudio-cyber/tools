@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Determine thawing rates based on specific protein characteristics
         let fridgeRateLbsPerDay = 5.0; // Default: 24 hours per 5 lbs (USDA standard)
         let waterRateHoursPerLb = 0.5; // Default: 30 mins/lb
-        let minFridgeHours = 0; // Floor for small packages, however light
+        let minFridgeHours = 24; // USDA: even small amounts (a pound of ground meat or boneless chicken breasts) need a full day
 
         if (protein === 'turkey' || protein === 'duck-goose') {
             fridgeRateLbsPerDay = 4.0; // Whole dense birds / thick poultry (4 lbs/day)
@@ -155,7 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
             waterRateHoursPerLb = 0.4; // 24 mins/lb
         } else if (protein === 'ground-meat' || protein === 'ground-poultry') {
             fridgeRateLbsPerDay = 5.0; // 5 lbs/day for bulk packs
-            minFridgeHours = 24; // USDA: even a pound of ground meat needs a full day
             waterRateHoursPerLb = 0.5; // 30 mins/lb
         }
 

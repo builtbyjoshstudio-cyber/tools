@@ -152,7 +152,7 @@ A: Much lower than bread. The calculator sets semolina or egg pasta dough to 45%
 URL: https://tools.builtbyjoshstudio.com/meat-thawing-planner/
 What it does: Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings. Free and ad-free.
 Q: How long does it take to thaw meat in the refrigerator?
-A: Roughly 24 hours per 4–5 pounds for whole cuts and birds, though it varies by density and shape. Refrigerator thawing is the safest method because the meat stays at a safe temperature the whole time.
+A: Roughly 24 hours per 4–5 pounds for whole cuts and birds, though it varies by density and shape. Even a pound of ground meat or boneless chicken breasts needs a full day. Refrigerator thawing is the safest method because the meat stays at a safe temperature the whole time.
 Q: Is cold-water thawing safe?
 A: Yes, if done correctly — submerged in cold water that's changed regularly, and cooked immediately after. For large cuts that would sit in water too long, refrigerator thawing is the safer choice.
 Q: Can I thaw meat on the counter?

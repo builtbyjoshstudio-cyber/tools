@@ -108,14 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
     if (underMin) {
       html = '<div class="glass-lite anatomy-row">' +
         '<div class="ix">IRS</div>' +
-        '<div class="lbl"><h4>Under $1,000 for the year</h4><p>Quarterly payments generally aren\'t required; pay with your return.</p></div>' +
+        '<div class="lbl"><h2>Under $1,000 for the year</h2><p>Quarterly payments generally aren\'t required; pay with your return.</p></div>' +
         "<code>" + money(total) + "</code>" +
       "</div>";
     } else {
       html = DUE_DATES.map(function (d) {
         return '<div class="glass-lite anatomy-row">' +
           '<div class="ix">' + d.q + "</div>" +
-          '<div class="lbl"><h4>Due ' + d.due + "</h4><p>" + d.covers + "</p></div>" +
+          '<div class="lbl"><h2>Due ' + d.due + "</h2><p>" + d.covers + "</p></div>" +
           "<code>" + money(quarterly) + "</code>" +
         "</div>";
       }).join("");
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (stateRate > 0) {
       html += '<div class="glass-lite anatomy-row">' +
         '<div class="ix">ST</div>' +
-        '<div class="lbl"><h4>State tax for the year</h4><p>Pay this to your state, not the IRS. Schedules vary (e.g., California is 30/40/0/30% on the same four dates).</p></div>' +
+        '<div class="lbl"><h2>State tax for the year</h2><p>Pay this to your state, not the IRS. Schedules vary (e.g., California is 30/40/0/30% on the same four dates).</p></div>' +
         "<code>" + money(state) + "</code>" +
       "</div>";
     }
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     calcBreak.innerHTML = rows.map(function (row) {
       return '<div class="glass-lite anatomy-row">' +
         '<div class="ix">' + row.ix + "</div>" +
-        '<div class="lbl"><h4>' + row.h + "</h4><p>" + row.p + "</p></div>" +
+        '<div class="lbl"><h2>' + row.h + "</h2><p>" + row.p + "</p></div>" +
         "<code>" + row.code + "</code>" +
       "</div>";
     }).join("");

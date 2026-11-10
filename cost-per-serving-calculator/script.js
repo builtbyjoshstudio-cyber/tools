@@ -342,7 +342,7 @@ function calculate() {
             rowEl.innerHTML = `
                 <div class="ix" style="color: var(--warn); background: color-mix(in oklab, var(--warn) 15%, transparent)">!</div>
                 <div>
-                    <h4>${escapeHtml(item.name)}</h4>
+                    <h2>${escapeHtml(item.name)}</h2>
                     <p class="item-breakdown-details" style="color: var(--warn)">${item.message}</p>
                 </div>
             `;
@@ -350,7 +350,7 @@ function calculate() {
             rowEl.innerHTML = `
                 <div class="ix">$</div>
                 <div>
-                    <h4>${escapeHtml(item.name)}</h4>
+                    <h2>${escapeHtml(item.name)}</h2>
                     <p class="item-breakdown-details">
                         Allocated: <b>$${item.cost.toFixed(2)}</b> &middot; ${escapeHtml(item.leftover)}
                     </p>

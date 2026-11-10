@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
     splitRows.innerHTML = split.map(function (row) {
       return '<div class="glass-lite anatomy-row">' +
         '<div class="ix">' + row.ix + "</div>" +
-        '<div class="lbl"><h4>' + row.h + "</h4><p>" + row.p + "</p></div>" +
+        '<div class="lbl"><h2>' + row.h + "</h2><p>" + row.p + "</p></div>" +
         "<code>" + row.code + "</code>" +
       "</div>";
     }).join("");
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     targetRows.innerHTML = rows.map(function (row) {
       return '<div class="glass-lite anatomy-row">' +
         '<div class="ix">' + row.ix + "</div>" +
-        '<div class="lbl"><h4>' + row.h + "</h4><p>" + row.p + "</p></div>" +
+        '<div class="lbl"><h2>' + row.h + "</h2><p>" + row.p + "</p></div>" +
         "<code>" + row.code + "</code>" +
       "</div>";
     }).join("");
