@@ -28,6 +28,19 @@ function linkWeight(raw) {
     return isFinite(n) && n > 0 ? Math.min(n, MAX_LINK_WEIGHT) : null;
 }
 
+// "Cooking on" is local wall-clock time (the datetime-local value), never parsed as UTC
+function parseCookTime(raw) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/.exec(raw || "");
+    if (!m || +m[4] > 23 || +m[5] > 59) return null;
+    const d = new Date(+m[1], m[2] - 1, +m[3], +m[4], +m[5]);
+    return d.getFullYear() === +m[1] && d.getMonth() === m[2] - 1 && d.getDate() === +m[3] ? d : null;
+}
+
+function cookTimeValue(d) {
+    const p = n => (n < 10 ? "0" : "") + n;
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()) + "T" + p(d.getHours()) + ":" + p(d.getMinutes());
+}
+
 // Ingestion of URL Parameters
 function parseUrlParameters() {
     const params = new URLSearchParams(window.location.search);
@@ -62,6 +75,11 @@ function parseUrlParameters() {
         const linked = linkWeight(weight);
         document.getElementById("meat-weight").value = linked !== null ? linked : 12;
     }
+
+    const cook = params.get('cook');
+    if (cook && parseCookTime(cook)) {
+        document.getElementById("cook-time").value = cook;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -84,6 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const safetyWarningContainer = document.getElementById("safety-warning-container");
     const waterCard = document.getElementById("water-card");
     const seafoodWarningContainer = document.getElementById("seafood-warning-container");
+    const cookTime = document.getElementById("cook-time");
+    const fridgeStartOutput = document.getElementById("fridge-start-output");
+    const waterStartOutput = document.getElementById("water-start-output");
+    const waterStartNote = document.getElementById("water-start-note");
+    const scheduleWarningContainer = document.getElementById("schedule-warning-container");
+    let cookSeeded = false;
 
     // Unit toggle event listeners
     unitImperialBtn.addEventListener("click", () => {
@@ -128,6 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
             waterTimeOutput.textContent = "--";
             safetyWarningContainer.style.display = "none";
             if (seafoodWarningContainer) seafoodWarningContainer.style.display = "none";
+            fridgeStartOutput.textContent = "--";
+            waterStartOutput.textContent = "--";
+            waterStartNote.textContent = "(cook immediately after)";
+            scheduleWarningContainer.style.display = "none";
             return;
         }
 
@@ -196,8 +224,60 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        // Count back from "Cooking on" using the same rounded times shown above
+        const fridgeMs = Math.ceil(fridgeHours) * 3600000;
+        const waterMs = Math.round(waterHours * 60) * 60000;
+        if (!cookSeeded) {
+            cookSeeded = true;
+            if (!parseCookTime(cookTime.value)) cookTime.value = cookTimeValue(seedCookTime(fridgeMs));
+        }
+        updateSchedule(fridgeMs, waterMs, waterHours > 6);
+
         // Update pipeline links in real-time
         updatePipelineLinks(weightInput, currentUnit, protein);
+    }
+
+    // First view: the next Thursday at 2 PM that still leaves the full fridge time
+    function seedCookTime(fridgeMs) {
+        const now = new Date();
+        const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + (11 - now.getDay()) % 7, 14, 0);
+        while (d.getTime() - fridgeMs < now.getTime()) d.setDate(d.getDate() + 7);
+        return d;
+    }
+
+    function formatWhen(d) {
+        return d.toLocaleString("en-US", { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+    }
+
+    function updateSchedule(fridgeMs, waterMs, waterTooLong) {
+        const cook = parseCookTime(cookTime.value);
+        waterStartNote.textContent = waterTooLong
+            ? "(cook immediately after; over 6 hours in water, so the refrigerator is the safer choice)"
+            : "(cook immediately after)";
+        if (!cook) {
+            fridgeStartOutput.textContent = "--";
+            waterStartOutput.textContent = "--";
+            scheduleWarningContainer.style.display = "none";
+            return;
+        }
+        const fridgeStart = new Date(cook.getTime() - fridgeMs);
+        const waterStart = new Date(cook.getTime() - waterMs);
+        const now = Date.now();
+        fridgeStartOutput.textContent = formatWhen(fridgeStart);
+        waterStartOutput.textContent = formatWhen(waterStart);
+
+        // Cold water is always faster than the fridge, so a missed water start means both are missed
+        if (waterStart.getTime() < now) {
+            scheduleWarningContainer.textContent = "⚠️ Both start times have already passed for this cook time. Move your cook time later.";
+        } else if (fridgeStart.getTime() < now && waterTooLong) {
+            scheduleWarningContainer.textContent = "⚠️ The time to move it to the fridge has already passed, and cold water would run over 6 hours at this weight, so the refrigerator is still the safer choice. Move your cook time later if you can.";
+        } else if (fridgeStart.getTime() < now) {
+            scheduleWarningContainer.textContent = `⚠️ The time to move it to the fridge has already passed. Thaw it in cold water instead, starting by ${formatWhen(waterStart)}, and cook it immediately after, or move your cook time later.`;
+        } else {
+            scheduleWarningContainer.style.display = "none";
+            return;
+        }
+        scheduleWarningContainer.style.display = "block";
     }
 
     // Helper to format fridge time
@@ -254,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (weight !== null) params.set('weight', weight);
         params.set('unit', currentUnit);
         params.set('protein', proteinType.value);
+        if (parseCookTime(cookTime.value)) params.set('cook', cookTime.value);
         return params.toString();
     }
 
@@ -291,6 +372,7 @@ document.addEventListener("DOMContentLoaded", () => {
     calculateBtn.addEventListener("click", calculateThawing);
     proteinType.addEventListener("change", calculateThawing);
     meatWeight.addEventListener("input", calculateThawing);
+    cookTime.addEventListener("input", calculateThawing);
 
     // Initial calculation on load
     calculateThawing();

@@ -90,7 +90,7 @@
         "name": "How is a monthly loan payment calculated?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Fixed-rate loans use standard amortization: payment = principal × monthly rate ÷ (1 − (1 + monthly rate)^−months). Early payments are mostly interest; later payments are mostly principal. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, and payoff date."
+          "text": "Fixed-rate loans use standard amortization: payment = principal × monthly rate ÷ (1 − (1 + monthly rate)^−months). Each payment covers that month's interest first and the rest goes to principal, so the interest share is largest at the start and shrinks every month. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, payoff date, and a payment schedule you can read year by year or month by month."
         }
       },
       {
@@ -196,6 +196,18 @@
     .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
 
     .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+
+    /* payment schedule */
+    .schedule { grid-column:1 / -1; min-width:0; margin-top:18px; padding-top:14px; border-top:2px solid var(--line); }
+    .schedule summary { cursor:pointer; font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+    .schedule-scroll { overflow-x:auto; margin-top:12px; }
+    .schedule-table { width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; color:var(--ink); }
+    .schedule-table caption { text-align:left; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding-bottom:8px; }
+    .schedule-table th, .schedule-table td { padding:7px 0 7px 8px; text-align:right; white-space:nowrap; border-bottom:1px solid var(--line); font-weight:400; }
+    .schedule-table th:first-child { text-align:left; padding-left:0; }
+    .schedule-table tbody th { white-space:normal; }
+    .schedule-table thead th { font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); font-weight:600; border-bottom:2px solid var(--line-2); white-space:normal; vertical-align:bottom; }
+    @media (max-width:400px){ .schedule-table th, .schedule-table td { font-size:11px; padding-left:3px; } }
 
     /* funnel CTA */
     .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
@@ -331,6 +343,27 @@
                 text-transform:uppercase; color:var(--accent); text-decoration:none;">
         Juggling several debts, not just one loan? Compare payoff strategies &rarr;
       </a>
+      <details class="schedule" id="schedule">
+        <summary>Show the payment schedule</summary>
+        <div class="schedule-scroll" tabindex="0" role="region" aria-label="Payment schedule by year">
+          <table class="schedule-table">
+            <caption id="schedule-year-caption">Year by year</caption>
+            <thead><tr><th scope="col">Year</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">End balance</th></tr></thead>
+            <tbody id="schedule-years"></tbody>
+          </table>
+        </div>
+        <details class="schedule" id="schedule-months">
+          <summary>Show every month</summary>
+          <div class="schedule-scroll" tabindex="0" role="region" aria-label="Payment schedule by month">
+            <table class="schedule-table">
+              <caption id="schedule-month-caption">Month by month</caption>
+              <thead><tr><th scope="col">Payment</th><th scope="col">Interest</th><th scope="col">Principal</th><th scope="col">Balance</th></tr></thead>
+              <tbody id="schedule-month-rows"></tbody>
+            </table>
+          </div>
+        </details>
+        <p class="note">Each figure is rounded to the cent on its own, so a row can be a cent off when you add it up. A lender that figures interest by the day, or rounds it every month, will show slightly different splits on your statement.</p>
+      </details>
     </div>
 
     <!-- FUNNEL CTA → Ultimate Budget Workbook -->
@@ -349,7 +382,7 @@
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Calculates the real monthly cost of an auto or personal loan, and what extra payments save.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Loan amount, interest rate (APR), term (24 to 84+ months), and an optional extra monthly payment.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Monthly payment, payoff date, total interest, and the interest and time saved by paying extra.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Monthly payment, payoff date, total interest, the interest and time saved by paying extra, and a year-by-year or month-by-month payment schedule.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
@@ -359,7 +392,7 @@
     <!-- PROSE -->
     <section class="prose">
       <h2>How loan payments actually work</h2>
-      <p>Every fixed-rate loan — auto, personal, boat, RV — uses the same amortization math. Your payment is fixed, but what's inside it changes every month: at the start it's mostly interest, and by the end it's mostly principal. That's why extra payments early in the loan save so much more than the same dollars later.</p>
+      <p>Every fixed-rate loan — auto, personal, boat, RV — uses the same amortization math. Your payment is fixed, but what's inside it changes every month: the interest share is largest at the start and shrinks every month, and by the end it's mostly principal. That's why extra payments early in the loan save so much more than the same dollars later.</p>
 
       <h3>The payment formula</h3>
       <p>Payment = principal &times; monthly rate &divide; (1 &minus; (1 + monthly rate)<sup>&minus;months</sup>). The monthly rate is your APR divided by 12. This calculator runs that formula live on your numbers, so you can test a shorter term or a lower rate and see the payment move instantly.</p>
@@ -375,7 +408,7 @@
     <section class="faq">
       <details>
         <summary>How is a monthly loan payment calculated?</summary>
-        <p>Fixed-rate loans use standard amortization: payment = principal &times; monthly rate &divide; (1 &minus; (1 + monthly rate)^&minus;months). Early payments are mostly interest; later payments are mostly principal. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, and payoff date.</p>
+        <p>Fixed-rate loans use standard amortization: payment = principal &times; monthly rate &divide; (1 &minus; (1 + monthly rate)^&minus;months). Each payment covers that month's interest first and the rest goes to principal, so the interest share is largest at the start and shrinks every month. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, payoff date, and a payment schedule you can read year by year or month by month.</p>
       </details>
       <details>
         <summary>How much does paying extra on a loan actually save?</summary>

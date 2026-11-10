@@ -35,6 +35,11 @@ document.addEventListener("DOMContentLoaded", function () {
   var chartEl      = document.getElementById("chart");
   var compareBody  = document.getElementById("compare-body");
   var verdict      = document.getElementById("verdict");
+  var planEl       = document.getElementById("plan");
+  var planPhases   = document.getElementById("plan-phases");
+  var planDetails  = document.getElementById("plan-details");
+  var planSummary  = document.getElementById("plan-summary");
+  var planMonths   = document.getElementById("plan-months");
 
   // ---------- helpers ----------
   function money(n) {
@@ -52,11 +57,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if (mm) parts.push(mm + " mo");
     return parts.join(" ");
   }
+  // one shared formatter: the every-month table formats hundreds of dates per slider tick
+  var monthYear = new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" });
   function futureDate(m) {
     var d = new Date();
     d.setDate(1); // only month/year are shown; avoids end-of-month rollover
     d.setMonth(d.getMonth() + m);
-    return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
+    return monthYear.format(d);
+  }
+  // a payment shows its cents unless it's whole dollars (a final payment, a $37.50 minimum)
+  var payCents = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var payWhole = new Intl.NumberFormat("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+  function pay(n) {
+    var c = Math.round(n * 100);
+    return "$" + (c % 100 ? payCents : payWhole).format(c / 100);
   }
 
   // ---------- debt rows ----------
@@ -117,6 +131,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var fixedBudget = d.reduce(function (s, x) { return s + x.min; }, 0) + extra;
     var month = 0, totalInterest = 0;
     var schedule = [{ month: 0, balance: d.reduce(function (s, x) { return s + x.bal; }, 0) }];
+    // payments[m - 1][i] = what debt i (input order) gets in month m; null once it's paid off
+    var payments = [];
     var MAX = 1200;
 
     function order() {
@@ -137,20 +153,22 @@ document.addEventListener("DOMContentLoaded", function () {
     while (d.some(function (x) { return x.bal > 0.005; }) && month < MAX) {
       month++;
       d.forEach(function (x) {
+        x.paid = x.bal > 0.005 ? 0 : null;
         if (x.bal > 0.005) { var i = x.bal * x.apr; x.bal += i; x.interest += i; totalInterest += i; }
       });
       var active = d.filter(function (x) { return x.bal > 0.005; });
       var budget = noRollover
         ? active.reduce(function (s, x) { return s + x.min; }, 0) + extra
         : fixedBudget;
-      active.forEach(function (x) { var pay = Math.min(x.min, x.bal); x.bal -= pay; budget -= pay; });
+      active.forEach(function (x) { var pay = Math.min(x.min, x.bal); x.bal -= pay; x.paid += pay; budget -= pay; });
       var targets = order();
       for (var k = 0; k < targets.length && budget > 0.005; k++) {
         if (targets[k].bal <= 0.005) continue;
         var pay = Math.min(budget, targets[k].bal);
-        targets[k].bal -= pay; budget -= pay;
+        targets[k].bal -= pay; targets[k].paid += pay; budget -= pay;
       }
       d.forEach(function (x) { if (x.bal <= 0.005 && x.paidMonth === null) x.paidMonth = month; });
+      payments.push(d.map(function (x) { return x.paid; }));
       schedule.push({ month: month, balance: d.reduce(function (s, x) { return s + Math.max(0, x.bal); }, 0) });
       // guard: if budget can't cover interest, balances grow — bail to avoid runaway
       if (month > 2 && schedule[month].balance > schedule[1].balance * 1.5) break;
@@ -161,7 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
       stalled: d.some(function (x) { return x.bal > 0.005; }),
       totalInterest: totalInterest,
       schedule: schedule,
-      payoffOrder: d.map(function (x) { return { name: x.name, month: x.paidMonth, interest: x.interest }; })
+      payments: payments,
+      payoffOrder: d.map(function (x, i) { return { name: x.name, month: x.paidMonth, interest: x.interest, index: i }; })
         .sort(function (a, b) { return (a.month || 1e9) - (b.month || 1e9); })
     };
   }
@@ -199,6 +218,51 @@ document.addEventListener("DOMContentLoaded", function () {
     chartEl.innerHTML = svg;
   }
 
+  // ---------- monthly payment plan (the hero's own simulate() run) ----------
+  var planResult = null;
+  function planRow(label, sub, amounts) {
+    return '<tr><th scope="row">' + label + '<span>' + sub + '</span></th>' +
+      planResult.payoffOrder.map(function (p) {
+        var v = amounts[p.index];
+        return '<td>' + (v === null ? "—" : pay(v)) + '</td>';
+      }).join("") + '</tr>';
+  }
+  // one column per debt, in payoff order, so paid-off debts clear from the left
+  function planTable(caption, firstCol, body) {
+    return '<table class="plan-table"><caption>' + caption + '</caption><thead><tr><th scope="col">' + firstCol + '</th>' +
+      planResult.payoffOrder.map(function (p) { return '<th scope="col">' + escapeHtml(p.name) + '</th>'; }).join("") +
+      '</tr></thead><tbody>' + body + '</tbody></table>';
+  }
+  // a phase = a run of months where every debt gets the same payment, to the cent
+  function renderPhases() {
+    var pm = planResult.payments, body = "", start = 0;
+    function key(m) { return pm[m].map(function (v) { return v === null ? "-" : Math.round(v * 100); }).join(","); }
+    for (var m = 1; m <= pm.length; m++) {
+      if (m < pm.length && key(m) === key(start)) continue;
+      body += start + 1 === m
+        ? planRow("Month " + m, futureDate(m), pm[start])
+        : planRow("Months " + (start + 1) + "–" + m, futureDate(start + 1) + " – " + futureDate(m), pm[start]);
+      start = m;
+    }
+    var name = strategySel.value.charAt(0).toUpperCase() + strategySel.value.slice(1);
+    planPhases.innerHTML = planTable(name + " plan, phase by phase", "Months", body);
+  }
+  // the full month-by-month table is only built while it's open
+  function renderMonths() {
+    if (!planResult || !planDetails.open) { planMonths.innerHTML = ""; return; }
+    planMonths.innerHTML = planTable("Every month", "Month",
+      planResult.payments.map(function (row, i) { return planRow("Month " + (i + 1), futureDate(i + 1), row); }).join(""));
+  }
+  function showPlan(result) {
+    // a plan with no months (every balance under half a cent) hides like no plan
+    planResult = result && result.payments.length ? result : null;
+    planEl.hidden = !planResult;
+    if (!planResult) { planPhases.innerHTML = ""; planMonths.innerHTML = ""; return; }
+    renderPhases();
+    planSummary.textContent = "Show every month (" + planResult.payments.length + ")";
+    renderMonths();
+  }
+
   // ---------- main ----------
   function calculate() {
     var debts = readDebts();
@@ -212,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
       freeDateOut.textContent = "—"; interestOut.textContent = "—"; savedOut.textContent = "—";
       orderList.innerHTML = ""; chartEl.innerHTML = ""; compareBody.innerHTML = "";
       if (verdict) verdict.textContent = "";
+      showPlan(null);
       return;
     }
 
@@ -230,6 +295,7 @@ document.addEventListener("DOMContentLoaded", function () {
       savedOut.textContent = "—";
       orderList.innerHTML = "";
       chartEl.innerHTML = "";
+      showPlan(null);
     } else {
       var saved = baseline.totalInterest - primary.totalInterest;
       var sooner = baseline.months - primary.months;
@@ -257,6 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }).join("");
 
       drawChart(primary, baseline);
+      showPlan(primary);
     }
 
     // comparison table — three strategies
@@ -438,6 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
   addBtn.addEventListener("click", function () { addRow(); onEdit(); });
   extraInput.addEventListener("input", onEdit);
   strategySel.addEventListener("change", onEdit);
+  planDetails.addEventListener("toggle", renderMonths);
   resetBtn.addEventListener("click", function () {
     // a link view shows the link's numbers, not yours: if any are saved, ask before deleting them
     var hasSaved = false;

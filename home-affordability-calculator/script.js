@@ -35,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var downEl   = document.getElementById("down-payment");
   var rateEl   = document.getElementById("rate");
   var rateBub  = document.getElementById("rate-bubble");
+  var hoaEl    = document.getElementById("hoa");
+  var pmiEl    = document.getElementById("pmi");
 
   // Outputs
   var heroPrice = document.getElementById("hero-price");
@@ -71,15 +73,22 @@ document.addEventListener("DOMContentLoaded", function () {
     return Math.min(grossMo * front, grossMo * back - debts);
   }
 
-  // Affordable price: maxPITI = factor*(price - down) + tiMo*price
-  // -> price = (maxPITI + factor*down) / (factor + tiMo)
-  function affordablePrice(piti, down, factor) {
+  // Affordable price: maxPITI - hoa = factor*(price - down) + tiMo*price
+  // -> price = (maxPITI - hoa + factor*down) / (factor + tiMo)
+  // PMI (pmiMo per loan dollar a month) only applies under 20% down, and that
+  // depends on the price: if the PMI-free price is under 20% down, solve again
+  // with PMI in the factor; if PMI pulls the price to 20% down or more, the
+  // most you can buy is exactly 20% down (5x the down payment), PMI-free.
+  function affordablePrice(piti, down, factor, hoa, pmiMo) {
     var tiMo = TI_ANNUAL_RATE / 12;
-    if (piti <= 0) return 0;
+    var budget = piti - hoa;
+    if (budget <= 0) return 0;
     // Cash-constrained regime: if the down payment alone out-buys the formula
     // price, no loan is needed — T&I on the home is the binding limit.
-    if (piti < tiMo * down) return piti / tiMo;
-    return (piti + factor * down) / (factor + tiMo);
+    if (budget < tiMo * down) return budget / tiMo;
+    var price = (budget + factor * down) / (factor + tiMo);
+    if (down * 5 >= price) return price;
+    return Math.max((budget + (factor + pmiMo) * down) / (factor + pmiMo + tiMo), down * 5);
   }
 
   // ---------- main render ----------
@@ -88,12 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var debts = Math.max(num(debtsEl, 0), 0);
     var down = Math.max(num(downEl, 0), 0);
     var apr = Math.min(Math.max(num(rateEl, 6.5), 3), 10);
+    var hoa = Math.max(num(hoaEl, 0), 0);
+    var pmiRate = Math.min(Math.max(num(pmiEl, 0), 0), 2);
 
     rateBub.textContent = apr + "% APR";
 
     var grossMo = income / 12;
     var factor = pmtFactor(apr);
     var tiMo = TI_ANNUAL_RATE / 12;
+    var pmiMo = pmiRate / 100 / 12;
 
     if (income <= 0) {
       heroPrice.textContent = "$0";
@@ -109,9 +121,10 @@ document.addEventListener("DOMContentLoaded", function () {
     var stdBand = BANDS[1];
     var piti = maxPiti(grossMo, debts, stdBand.front, stdBand.back);
 
-    if (piti <= 0) {
+    if (piti <= hoa) {
       heroPrice.textContent = "$0";
-      heroSub.textContent = "Your monthly debts use up the whole 36% budget — paying some down comes before a mortgage.";
+      heroSub.textContent = piti <= 0 ? "Your monthly debts use up the whole 36% budget — paying some down comes before a mortgage."
+        : "Your HOA dues use up the whole monthly housing budget.";
       pitiOut.textContent = "—";
       loanOut.textContent = "—";
       downOut.textContent = "—";
@@ -120,11 +133,13 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    var price = affordablePrice(piti, down, factor);
+    var price = affordablePrice(piti, down, factor, hoa, pmiMo);
     var loan = Math.max(price - down, 0);
     var pAndI = loan * factor;
     var ti = price * tiMo;
-    var actualPiti = pAndI + ti;
+    var hasPmi = down * 5 < price;
+    var pmi = hasPmi ? loan * pmiMo : 0;
+    var actualPiti = pAndI + ti + pmi + hoa;
     var downPct = price > 0 ? Math.min(down / price * 100, 100) : 0;
 
     heroPrice.textContent = money100(price);
@@ -137,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // three budget bands
     bandsEl.innerHTML = BANDS.map(function (b) {
       var bPiti = maxPiti(grossMo, debts, b.front, b.back);
-      var bPrice = affordablePrice(bPiti, down, factor);
+      var bPrice = affordablePrice(bPiti, down, factor, hoa, pmiMo);
       var cur = b.key === "std" ? " is-current" : "";
       return '<div class="glass-lite anatomy-row' + cur + '">' +
         '<div class="ix">' + Math.round(b.front * 100) + "</div>" +
@@ -149,10 +164,14 @@ document.addEventListener("DOMContentLoaded", function () {
     // payment split at the standard price; derive the T&I display from the
     // rounded total so the rows always sum to the total shown
     var pAndIDisp = Math.round(pAndI);
-    var tiDisp = Math.round(actualPiti) - pAndIDisp;
+    var pmiDisp = Math.round(pmi);
+    var hoaDisp = Math.round(hoa);
+    var tiDisp = Math.round(actualPiti) - pAndIDisp - pmiDisp - hoaDisp;
     var split = [
       { ix: "P&amp;I", h: "Principal &amp; interest", p: "On a " + money100(loan) + " loan at " + apr + "%", code: money(pAndIDisp) },
       { ix: "T&amp;I", h: "Property tax &amp; insurance", p: "Est. 1.6%/yr of home value — varies by state", code: money(tiDisp) },
+      { ix: "PMI", h: "Private mortgage insurance", p: hasPmi ? "Est. " + pmiRate + "%/yr of the loan while under 20% down" : "None — 20% or more down", code: money(pmiDisp) },
+      { ix: "HOA", h: "HOA dues", p: hoa > 0 ? "As entered below" : "None entered", code: money(hoaDisp) },
       { ix: "&Sigma;", h: "Total monthly housing", p: Math.round(actualPiti / grossMo * 100) + "% of your gross monthly income", code: money(actualPiti) }
     ];
     splitEl.innerHTML = split.map(function (row) {
@@ -166,12 +185,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ---------- saved inputs + share links ----------
   // Inputs only (never results). One sanitizer for localStorage and for
-  // ?income=&debts=&down=&rate= links; anything invalid is dropped silently.
+  // ?income=&debts=&down=&rate=&hoa=&pmi= links; anything invalid is dropped
+  // silently (and older saves without hoa/pmi keep the page defaults).
   var STORE_KEY = "tynkr-home-affordability-calculator-v1";
   var MAX_AMOUNT = 1e9;
   var resetBtn   = document.getElementById("reset-btn");
   var copyBtn    = document.getElementById("copy-link-btn");
   var copyStatus = document.getElementById("copy-status");
+  var moreEl     = document.getElementById("more-inputs");
   var statusTimer;
 
   function clampNum(v, lo, hi) {
@@ -188,10 +209,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var d = clampNum(src.debts, 0, MAX_AMOUNT);
     var dp = clampNum(src.down, 0, MAX_AMOUNT);
     var r = clampNum(src.rate, 3, 10);
+    var h = clampNum(src.hoa, 0, MAX_AMOUNT);
+    var p = clampNum(src.pmi, 0, 2);
     if (i !== null) s.income = i;
     if (d !== null) s.debts = d;
     if (dp !== null) s.down = dp;
     if (r !== null) s.rate = 3 + Math.round((r - 3) / 0.125) * 0.125; // slider step
+    if (h !== null) s.hoa = h;
+    if (p !== null) s.pmi = p;
     return s;
   }
   function apply(s) {
@@ -199,21 +224,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (s.debts !== undefined) debtsEl.value = s.debts;
     if (s.down !== undefined) downEl.value = s.down;
     if (s.rate !== undefined) rateEl.value = s.rate;
+    if (s.hoa !== undefined) hoaEl.value = s.hoa;
+    if (s.pmi !== undefined) pmiEl.value = s.pmi;
+    // show the HOA & PMI fields whenever they hold something other than the defaults
+    if (s.hoa || (s.pmi !== undefined && s.pmi !== DEFAULTS.pmi)) moreEl.open = true;
   }
   function current() {
-    return sanitize({ income: num(incomeEl, 0), debts: num(debtsEl, 0), down: num(downEl, 0), rate: num(rateEl, 6.5) });
+    return sanitize({ income: num(incomeEl, 0), debts: num(debtsEl, 0), down: num(downEl, 0), rate: num(rateEl, 6.5),
+      hoa: num(hoaEl, 0), pmi: num(pmiEl, 0) });
   }
   function save() {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(current())); } catch (e) {}
   }
 
   var DEFAULTS = sanitize({ income: incomeEl.defaultValue, debts: debtsEl.defaultValue,
-    down: downEl.defaultValue, rate: rateEl.defaultValue });
+    down: downEl.defaultValue, rate: rateEl.defaultValue, hoa: hoaEl.defaultValue, pmi: pmiEl.defaultValue });
 
   // A shared link wins for this view but is not saved until the user edits here.
   var params = new URLSearchParams(location.search);
   var fromLink = sanitize({ income: params.get("income"), debts: params.get("debts"),
-    down: params.get("down"), rate: params.get("rate") });
+    down: params.get("down"), rate: params.get("rate"), hoa: params.get("hoa"), pmi: params.get("pmi") });
   if (Object.keys(fromLink).length) {
     apply(fromLink);
   } else {
@@ -224,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var saved = null; // on a link view the saved numbers aren't the ones shown
     try { saved = JSON.parse(localStorage.getItem(STORE_KEY)); } catch (e) {}
     if ((JSON.stringify(current()) !== JSON.stringify(DEFAULTS) ||
-        (saved !== null && JSON.stringify(sanitize(saved)) !== JSON.stringify(DEFAULTS))) &&
+        (saved !== null && JSON.stringify(sanitize(Object.assign({}, DEFAULTS, saved))) !== JSON.stringify(DEFAULTS))) &&
         !confirm("Reset to the example numbers? Your saved numbers in this browser will be cleared.")) return;
     apply(DEFAULTS);
     try { localStorage.removeItem(STORE_KEY); } catch (e) {}
@@ -253,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
   copyBtn.addEventListener("click", function () {
     var s = current();
     var url = location.origin + location.pathname + "?income=" + s.income + "&debts=" + s.debts +
-      "&down=" + s.down + "&rate=" + s.rate;
+      "&down=" + s.down + "&rate=" + s.rate + "&hoa=" + s.hoa + "&pmi=" + s.pmi;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(function () { showStatus("Link copied"); },
         function () { fallbackCopy(url); });
@@ -262,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  [incomeEl, debtsEl, downEl, rateEl].forEach(function (el) {
+  [incomeEl, debtsEl, downEl, rateEl, hoaEl, pmiEl].forEach(function (el) {
     el.addEventListener("input", render);
     el.addEventListener("change", render);
     el.addEventListener("input", save);

@@ -90,7 +90,7 @@
         "name": "How much house can I afford on my salary?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A common lender guideline is the 28/36 rule: your housing payment (mortgage plus taxes and insurance) should stay under about 28% of gross monthly income, and all debt payments together under about 36%. This calculator applies both limits to your real numbers — income, existing debts, down payment, and rate — and turns them into a price range instead of a single overconfident number."
+          "text": "A common lender guideline is the 28/36 rule: your housing payment (mortgage plus taxes, insurance, and any PMI or HOA dues) should stay under about 28% of gross monthly income, and all debt payments together under about 36%. This calculator applies both limits to your real numbers — income, existing debts, down payment, rate, and HOA dues — and turns them into a price range instead of a single overconfident number."
         }
       },
       {
@@ -106,7 +106,7 @@
         "name": "How does my down payment change what I can afford?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Until your down payment covers the whole price, each extra dollar down raises your price range by a bit less than a dollar — about 83 cents at a 6.5% rate, from 76 cents at 3% to 87 cents at 10%. The rest goes to the extra property tax and insurance on a pricier home, which is why the loan amount dips slightly as your down payment grows. It also helps indirectly: a bigger down payment can mean better rates and, at 20% or more, no private mortgage insurance. This calculator keeps your monthly budget fixed and finds the price where the loan payment plus tax and insurance fit inside it."
+          "text": "Until your down payment covers the whole price, each extra dollar down usually raises your price range by a bit less than a dollar — about 83 cents at a 6.5% rate, from 76 cents at 3% to 87 cents at 10%, slightly more while PMI applies. The rest goes to the extra property tax and insurance on a pricier home, which is why the loan amount usually dips slightly as your down payment grows. Reaching 20% down matters more: below it, most conventional loans add private mortgage insurance (PMI), which this calculator estimates at the rate you enter, so just short of that line each extra dollar down can lift your range by up to $5. A bigger down payment can also mean a better rate. This calculator keeps your monthly budget fixed and finds the price where the loan payment, tax and insurance, PMI, and HOA dues fit inside it."
         }
       },
       {
@@ -186,6 +186,8 @@
     .anatomy-row.is-current { border:2px solid var(--accent); border-radius:var(--r-s); }
 
     .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+    .more-inputs { grid-column:1 / -1; margin-top:16px; padding-top:14px; border-top:2px solid var(--line); }
+    .more-inputs summary { cursor:pointer; font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
 
     /* funnel CTA */
     .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
@@ -299,7 +301,22 @@
 
       <div class="role" style="margin-top:22px;">Inside the monthly payment</div>
       <div class="anatomy-labels" id="payment-split"></div>
-      <p class="note">Estimates only: PMI (usually required under 20% down), HOA dues, and closing costs aren't included, and property tax and insurance vary a lot by state. Lenders also weigh credit score and loan type — treat this as your search range, not a pre-approval.</p>
+
+      <details class="more-inputs" id="more-inputs">
+        <summary>HOA &amp; PMI</summary>
+        <div class="controls-3" style="margin-top:14px;">
+          <div class="input-group">
+            <label class="input-label" for="hoa">HOA dues per month</label>
+            <input type="number" id="hoa" class="form-input" value="0" min="0" step="10" inputmode="numeric">
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="pmi">PMI under 20% down (%/yr of loan)</label>
+            <input type="number" id="pmi" class="form-input" value="0.5" min="0" max="2" step="0.05" inputmode="decimal">
+          </div>
+        </div>
+        <p class="note">PMI is added only when your down payment is under 20% of the price; 0.5% a year is a middle estimate (Freddie Mac puts it at about $30–$70 a month per $100,000 borrowed).</p>
+      </details>
+      <p class="note">Estimates only: closing costs aren't included, your real PMI rate depends on credit score and down payment (FHA and VA loans handle mortgage insurance differently), and property tax and insurance vary a lot by state. Lenders also weigh credit and loan type — treat this as your search range, not a pre-approval.</p>
       <a class="xlink" href="../loan-payment-calculator/"
          style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
                 font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
@@ -323,7 +340,7 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Turns income, debts, and down payment into a realistic home-price range using the 28/36 rule lenders use.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Annual gross household income, monthly debt payments, and down payment saved.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Annual gross household income, monthly debt payments, down payment saved, mortgage rate, plus HOA dues and a PMI rate if they apply.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Conservative, standard, and stretch price ranges, the estimated monthly payment, loan amount, and what your down payment covers.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
@@ -334,7 +351,7 @@
     <!-- PROSE -->
     <section class="prose">
       <h2>How much house you can actually afford</h2>
-      <p>"How much house can I afford" has a real answer, and it isn't the biggest loan someone will approve. It's the price where the monthly payment — mortgage, taxes, and insurance together — fits inside your income with room left for everything else you pay. This calculator runs the same two ratios lenders use and shows the range, not just the ceiling.</p>
+      <p>"How much house can I afford" has a real answer, and it isn't the biggest loan someone will approve. It's the price where the monthly payment — mortgage, taxes, insurance, and any PMI or HOA dues together — fits inside your income with room left for everything else you pay. This calculator runs the same two ratios lenders use and shows the range, not just the ceiling.</p>
 
       <h3>The 28/36 rule, in plain terms</h3>
       <p>Keep housing under about 28% of gross monthly income, and housing plus all other debt payments under about 36%. Whichever limit you hit first sets your budget. That's why the same salary affords very different houses depending on the car payment parked next to it — every monthly debt dollar comes straight out of your housing budget.</p>
@@ -350,7 +367,7 @@
     <section class="faq">
       <details>
         <summary>How much house can I afford on my salary?</summary>
-        <p>A common lender guideline is the 28/36 rule: your housing payment (mortgage plus taxes and insurance) should stay under about 28% of gross monthly income, and all debt payments together under about 36%. This calculator applies both limits to your real numbers — income, existing debts, down payment, and rate — and turns them into a price range instead of a single overconfident number.</p>
+        <p>A common lender guideline is the 28/36 rule: your housing payment (mortgage plus taxes, insurance, and any PMI or HOA dues) should stay under about 28% of gross monthly income, and all debt payments together under about 36%. This calculator applies both limits to your real numbers — income, existing debts, down payment, rate, and HOA dues — and turns them into a price range instead of a single overconfident number.</p>
       </details>
       <details>
         <summary>What is the 28/36 rule?</summary>
@@ -358,7 +375,7 @@
       </details>
       <details>
         <summary>How does my down payment change what I can afford?</summary>
-        <p>Until your down payment covers the whole price, each extra dollar down raises your price range by a bit less than a dollar — about 83 cents at a 6.5% rate, from 76 cents at 3% to 87 cents at 10%. The rest goes to the extra property tax and insurance on a pricier home, which is why the loan amount dips slightly as your down payment grows. It also helps indirectly: a bigger down payment can mean better rates and, at 20% or more, no private mortgage insurance. This calculator keeps your monthly budget fixed and finds the price where the loan payment plus tax and insurance fit inside it.</p>
+        <p>Until your down payment covers the whole price, each extra dollar down usually raises your price range by a bit less than a dollar — about 83 cents at a 6.5% rate, from 76 cents at 3% to 87 cents at 10%, slightly more while PMI applies. The rest goes to the extra property tax and insurance on a pricier home, which is why the loan amount usually dips slightly as your down payment grows. Reaching 20% down matters more: below it, most conventional loans add private mortgage insurance (PMI), which this calculator estimates at the rate you enter, so just short of that line each extra dollar down can lift your range by up to $5. A bigger down payment can also mean a better rate. This calculator keeps your monthly budget fixed and finds the price where the loan payment, tax and insurance, PMI, and HOA dues fit inside it.</p>
       </details>
       <details>
         <summary>Is this home affordability calculator free?</summary>
@@ -385,7 +402,7 @@
   </section>
 
   <footer class="footer">
-    <p>This calculator is for general informational and educational purposes only and is not financial, lending, or real-estate advice. It uses the 28/36 debt-to-income guideline with a 30-year fixed loan and a rough nationwide estimate for property tax and insurance (~1.6% of home value per year); it does not include PMI, HOA dues, closing costs, or loan-type differences, and actual approval depends on credit, documentation, and lender policies. Confirm your numbers with a lender before house hunting. Estimates only.</p>
+    <p>This calculator is for general informational and educational purposes only and is not financial, lending, or real-estate advice. It uses the 28/36 debt-to-income guideline with a 30-year fixed loan and a rough nationwide estimate for property tax and insurance (~1.6% of home value per year); it adds PMI at the rate you enter when the down payment is under 20% and any HOA dues you enter, but does not include closing costs or loan-type differences, and actual approval depends on credit, documentation, and lender policies. Confirm your numbers with a lender before house hunting. Estimates only.</p>
     <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
     <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
     <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>

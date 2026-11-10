@@ -30,6 +30,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var savedOut  = document.getElementById("saved-output");
   var chartEl   = document.getElementById("chart");
   var breakdown = document.getElementById("breakdown");
+  var schedEl   = document.getElementById("schedule");
+  var yearCap   = document.getElementById("schedule-year-caption");
+  var yearRows  = document.getElementById("schedule-years");
+  var monthEl   = document.getElementById("schedule-months");
+  var monthCap  = document.getElementById("schedule-month-caption");
+  var monthRows = document.getElementById("schedule-month-rows");
 
   // ---------- helpers ----------
   function money(n) {
@@ -67,8 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return principal * r / (1 - Math.pow(1 + r, -months));
   }
 
-  // Simulate month by month; returns { months, totalInterest, curve[] }.
+  // Simulate month by month; returns { months, totalInterest, curve[], rows[] }.
   // curve[i] = remaining balance after month i (curve[0] = starting principal).
+  // rows[i] = { interest, principal, balance } for payment i + 1 (the schedule).
   var HARD_CAP = 1201; // > 100 yrs of months; guards degenerate inputs
 
   function simulate(principal, apr, payment, extra) {
@@ -76,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var bal = principal;
     var totalInterest = 0;
     var curve = [bal];
+    var rows = [];
     var m = 0;
     while (bal > 0.005 && m < HARD_CAP) {
       m++;
@@ -87,9 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
       totalInterest += interest;
       bal -= principalPart;
       curve.push(Math.max(bal, 0));
+      rows.push({ interest: interest, principal: principalPart, balance: Math.max(bal, 0) });
     }
     if (m >= HARD_CAP) return null;
-    return { months: m, totalInterest: totalInterest, curve: curve };
+    return { months: m, totalInterest: totalInterest, curve: curve, rows: rows };
   }
 
   // ---------- chart (SVG, two balance curves) ----------
@@ -133,6 +142,60 @@ document.addEventListener("DOMContentLoaded", function () {
     }).join("");
   }
 
+  // ---------- payment schedule (yearly always; monthly only while open) ----------
+  var schedPlan = null;
+  // Shared formatters: same output as money2()/futureDate(), built once for the long monthly table.
+  var centsFmt = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var monthFmt = new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" });
+  function fillRows(tbody, rows) {
+    var frag = document.createDocumentFragment();
+    rows.forEach(function (cells) {
+      var tr = document.createElement("tr");
+      cells.forEach(function (text, i) {
+        var cell = document.createElement(i ? "td" : "th");
+        if (!i) cell.scope = "row";
+        cell.textContent = text;
+        tr.appendChild(cell);
+      });
+      frag.appendChild(tr);
+    });
+    tbody.textContent = "";
+    tbody.appendChild(frag);
+  }
+  function renderMonths() {
+    monthRows.textContent = "";
+    if (!schedPlan || !schedEl.open || !monthEl.open) return;
+    var d = new Date();
+    d.setDate(1); // as futureDate(): step month by month from the 1st
+    fillRows(monthRows, schedPlan.rows.map(function (row, i) {
+      d.setMonth(d.getMonth() + 1);
+      return [(i + 1) + "\u00a0· " + monthFmt.format(d).replace(" ", "\u00a0"), "$" + centsFmt.format(row.interest), "$" + centsFmt.format(row.principal), "$" + centsFmt.format(row.balance)];
+    }));
+  }
+  function renderSchedule(plan, extra) {
+    plan = plan && plan.rows.length ? plan : null;
+    schedPlan = plan;
+    schedEl.hidden = !plan;
+    if (!plan) { yearRows.textContent = ""; renderMonths(); return; }
+    var label = extra > 0 ? "with " + money(extra) + "/mo extra" : "scheduled payments only";
+    yearCap.textContent = "Year by year, " + label;
+    monthCap.textContent = "Month by month, " + label;
+    var years = [];
+    plan.rows.forEach(function (row, i) {
+      var y = years[Math.floor(i / 12)] || (years[Math.floor(i / 12)] = { n: 0, interest: 0, principal: 0 });
+      y.n++;
+      y.interest += row.interest;
+      y.principal += row.principal;
+      y.balance = row.balance;
+    });
+    fillRows(yearRows, years.map(function (y, i) {
+      return [(i + 1) + (y.n < 12 ? " (" + y.n + "\u00a0mo)" : ""), money2(y.interest), money2(y.principal), money2(y.balance)];
+    }));
+    renderMonths();
+  }
+  schedEl.addEventListener("toggle", renderMonths);
+  monthEl.addEventListener("toggle", renderMonths);
+
   // ---------- main render ----------
   function render() {
     var principal = Math.max(num(amountEl, 0), 0);
@@ -151,6 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
       savedOut.textContent = "—";
       chartEl.innerHTML = "";
       breakdown.innerHTML = "";
+      renderSchedule(null, 0);
       return;
     }
 
@@ -164,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
       savedOut.textContent = "—";
       chartEl.innerHTML = "";
       breakdown.innerHTML = "";
+      renderSchedule(null, 0);
       return;
     }
 
@@ -182,6 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     drawChart(plan.curve, base.curve, principal);
     renderBreakdown(principal, plan.totalInterest, payment, extra, plan.months);
+    renderSchedule(plan, extra);
   }
 
   // ---------- saved inputs + share links ----------

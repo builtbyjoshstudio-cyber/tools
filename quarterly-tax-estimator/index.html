@@ -114,7 +114,7 @@
         "name": "Is this quarterly tax estimator accurate?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "It's an estimate built on 2026 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, and the ordinary income brackets. It doesn't know your credits, other income, retirement contributions, or QBI deduction, so treat it as a planning number and confirm with a tax professional."
+          "text": "It's an estimate built on 2026 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, the 20% QBI deduction, and the ordinary income brackets. Add a day job, other income, and withholding in the optional fields. It doesn't know your credits or retirement contributions, and above $201,750 of taxable income ($403,500 joint) it leaves out the QBI deduction beyond the $400 minimum, so treat it as a planning number and confirm with a tax professional."
         }
       }
     ]
@@ -184,6 +184,9 @@
     .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
 
     .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
+    .more-inputs { grid-column:1 / -1; margin-top:16px; padding-top:14px; border-top:2px solid var(--line); }
+    #safe-harbor:not([hidden]) { display:contents; }
+    .more-inputs summary { cursor:pointer; font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
 
     .tool-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:16px; }
     .tool-actions .btn { font-size:13px; padding:10px 16px; }
@@ -271,7 +274,7 @@
           <input type="number" id="state-rate" class="form-input" value="0" min="0" max="15" step="0.1" inputmode="decimal">
         </div>
       </div>
-      <p class="note" style="margin-top:14px;">Net profit = 1099/self-employment income minus business expenses. Uses 2026 federal figures and assumes this is your only income with the standard deduction.</p>
+      <p class="note" style="margin-top:14px;">Net profit = 1099/self-employment income minus business expenses. Uses 2026 federal figures and the standard deduction. Have a paycheck or other income too? Add it under Your payments.</p>
       <div class="tool-actions">
         <button type="button" class="btn" id="reset-btn">Reset to the example</button>
       </div>
@@ -298,9 +301,41 @@
       <div class="role" style="margin-top:22px;">Your payments</div>
       <div class="anatomy-labels" id="due-dates"></div>
 
+      <details class="more-inputs" id="more-inputs">
+        <summary>Day job, withholding &amp; last year's tax (optional)</summary>
+        <div class="controls-3" style="margin-top:14px;">
+          <div class="input-group">
+            <label class="input-label" for="w2-wages">Your W-2 wages for the year</label>
+            <input type="number" id="w2-wages" class="form-input" value="0" min="0" step="1000" inputmode="numeric">
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="other-income">Other income (spouse's pay, interest)</label>
+            <input type="number" id="other-income" class="form-input" value="0" min="0" step="1000" inputmode="numeric">
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="withheld">Federal tax withheld this year</label>
+            <input type="number" id="withheld" class="form-input" value="0" min="0" step="100" inputmode="numeric">
+          </div>
+          <div class="input-group">
+            <label class="input-label" for="last-year-tax">Last year's total tax (2025 Form 1040 line 24, minus refundable credits on lines 27a-30)</label>
+            <input type="number" id="last-year-tax" class="form-input" value="" min="0" step="100" inputmode="numeric" placeholder="Optional">
+          </div>
+          <div class="input-group" style="flex-direction:row; align-items:center; gap:12px;">
+            <input type="checkbox" id="high-agi" style="width:18px; height:18px; cursor:pointer; accent-color:var(--accent);">
+            <label for="high-agi" style="cursor:pointer;">Last year's AGI was over $150,000</label>
+          </div>
+        </div>
+        <p class="note">Your own W-2 wages count toward the $184,500 Social Security cap, so less of your profit gets the 12.4% part of SE tax; a spouse's pay doesn't. Withholding is the year's total from W-2 box 2 (both spouses if filing jointly). Last year's tax unlocks the safe-harbor minimum; leave it blank if you didn't file for 2025.</p>
+      </details>
+
+      <div id="safe-harbor" hidden>
+        <div class="role" style="margin-top:22px;">Penalty-safe minimum per quarter</div>
+        <div class="anatomy-labels" id="safe-harbor-rows"></div>
+      </div>
+
       <div class="role" style="margin-top:22px;">How it's calculated</div>
       <div class="anatomy-labels" id="calc-breakdown"></div>
-      <p class="note">Estimates use 2026 federal figures: 15.3% SE tax on 92.35% of net profit (none if that's under $400; Social Security portion capped at $184,500), the deduction for half of SE tax, the standard deduction, and ordinary income brackets. Credits, other income, retirement contributions, and the QBI deduction aren't modeled.</p>
+      <p class="note">Estimates use 2026 federal figures: 15.3% SE tax on 92.35% of net profit (none if that's under $400; Social Security portion capped at $184,500, less your own W-2 wages), the deduction for half of SE tax, the standard deduction, the 20% QBI deduction (on profit minus half of SE tax, capped at 20% of taxable income, $400 minimum with $1,000+ of business income), and ordinary income brackets. Above $201,750 of taxable income ($403,500 joint) the QBI deduction depends on your business type and wages paid, so only the $400 minimum is used. Other income is taxed at ordinary rates. Credits and retirement contributions aren't modeled.</p>
       <a class="xlink" href="../freelance-rate-calculator/"
          style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
                 font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
@@ -324,8 +359,8 @@
     <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
       <tbody>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Estimates the four quarterly IRS payments a freelancer should plan for.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Expected annual net profit, filing status (single or married filing jointly), and optional state income tax %.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A per-quarter set-aside number, split into self-employment tax and federal income tax, with all four due dates — a planning estimate, not tax advice.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Expected annual net profit, filing status (single or married filing jointly), and optional state income tax %. Optional: your W-2 wages, other income, federal tax withheld, and last year's total tax.</td></tr>
+        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">A per-quarter set-aside number, split into self-employment tax and federal income tax, with all four due dates, plus the penalty-safe minimum when you enter last year's tax — a planning estimate, not tax advice.</td></tr>
         <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded. Your numbers are saved in this browser only, so they're still here next time; Reset clears them, and Copy link puts them in a link only when you click it.</td></tr>
       </tbody>
     </table>
@@ -338,13 +373,13 @@
       <p>When you're self-employed, no employer is quietly sending the IRS a slice of every paycheck — you're the payroll department now. The system expects four estimated payments a year, and the math behind them is less mysterious than it looks: one payroll-style tax, one income tax, divided by four.</p>
 
       <h3>The two taxes in the number</h3>
-      <p>Self-employment tax is the big surprise for new freelancers: 15.3% covering Social Security and Medicare, applied to 92.35% of your net profit — it exists even in years your income tax is small. Federal income tax then stacks on top, calculated after the standard deduction and the deduction for half your SE tax.</p>
+      <p>Self-employment tax is the big surprise for new freelancers: 15.3% covering Social Security and Medicare, applied to 92.35% of your net profit — it exists even in years your income tax is small. Federal income tax then stacks on top, calculated after the standard deduction, the deduction for half your SE tax, and the 20% qualified business income (QBI) deduction.</p>
 
       <h3>A percentage habit beats a lump-sum scramble</h3>
       <p>Divide your estimated annual total by your expected income and you get a set-aside percentage — for many freelancers it lands somewhere between 20% and 30%. Move that slice of every payment you receive into a separate tax account the day it arrives, and the quarterly due dates become transfers instead of emergencies.</p>
 
       <h3>When income is unpredictable, use the safe harbor</h3>
-      <p>If this year is impossible to predict, pay 100% of last year's total tax (110% if you earned over $150k), split across the four dates. That's the IRS safe harbor — hit it and you won't owe an underpayment penalty even if this year ends up bigger.</p>
+      <p>If this year is impossible to predict, pay 100% of last year's total tax (110% if you earned over $150k), split across the four dates. That's the IRS safe harbor — hit it and you won't owe an underpayment penalty even if this year ends up bigger. Enter last year's total tax in the optional fields and the estimator shows that per-quarter minimum next to 90% of this year's estimate.</p>
     </section>
 
     <!-- FAQ -->
@@ -363,7 +398,7 @@
       </details>
       <details>
         <summary>Is this quarterly tax estimator accurate?</summary>
-        <p>It's an estimate built on 2026 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, and the ordinary income brackets. It doesn't know your credits, other income, retirement contributions, or QBI deduction, so treat it as a planning number and confirm with a tax professional.</p>
+        <p>It's an estimate built on 2026 federal figures — the 15.3% self-employment tax on 92.35% of net profit, the deduction for half of SE tax, the standard deduction, the 20% QBI deduction, and the ordinary income brackets. Add a day job, other income, and withholding in the optional fields. It doesn't know your credits or retirement contributions, and above $201,750 of taxable income ($403,500 joint) it leaves out the QBI deduction beyond the $400 minimum, so treat it as a planning number and confirm with a tax professional.</p>
       </details>
     </section>
 
@@ -386,7 +421,7 @@
   </section>
 
   <footer class="footer">
-    <p>This estimator is for general informational and educational purposes only and is not tax, legal, or financial advice. It uses 2026 federal figures, assumes self-employment profit is your only income, applies the standard deduction, and ignores credits, other income, retirement contributions, the QBI deduction, and the additional Medicare tax. State tax is a flat optional rate. Tax law changes and individual situations vary — confirm your numbers with a qualified tax professional before making payments. Estimates only.</p>
+    <p>This estimator is for general informational and educational purposes only and is not tax, legal, or financial advice. It uses 2026 federal figures, applies the standard deduction and a simplified QBI deduction (only the $400 minimum above $201,750 of taxable income, $403,500 joint), taxes any wages or other income you enter at ordinary rates, and ignores credits, retirement contributions, and the additional Medicare tax. State tax is a flat optional rate. Tax law changes and individual situations vary — confirm your numbers with a qualified tax professional before making payments. Estimates only.</p>
     <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
     <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
     <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
