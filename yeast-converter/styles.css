@@ -1,6 +1,20 @@
-/* =========================================================
-   Tynkr Kinetic theme — this tool inherits the shared
-   site stylesheet. All design tokens, components, themes
-   (Light / Mist / Dark) and motion live in ../kinetic.css.
-   ========================================================= */
-@import url("../kinetic.css");
+/* yeast-converter - page styles. Loads after /css/tokens.css, /css/components.css and /css/tools.css.
+   Moved here from the page's <style> block with values converted to Ledger tokens. */
+
+.page.tool-shell { max-width: 920px; padding-top: 28px; }
+.tool-shell .hero { padding-left: 0; padding-right: 0; }
+.net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
+.net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+.net-band h2 .lbl { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent); }
+.net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.net-grid .gear-img-wrapper { height: 120px; }
+
+/* onboarding steps */
+.onboarding-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.step-col h3, .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
+.step-col p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+
+@media (max-width: 760px) {
+  .net-grid { grid-template-columns: 1fr; }
+  .onboarding-steps { grid-template-columns: 1fr; gap: 16px; }
+}

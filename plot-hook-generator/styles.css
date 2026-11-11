@@ -1,1 +1,39 @@
-@import url("../kinetic.css");
+/* plot-hook-generator - page styles. Loads after /css/tokens.css, /css/components.css and /css/tools.css.
+   Moved here from the page's <style> block with values converted to Ledger tokens. */
+
+.page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
+.hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
+.hero p { color:var(--muted); margin:0; max-width:60ch; }
+
+.role { font-family:var(--font-ui); font-weight:600; font-size:12px; letter-spacing:var(--tracking-label); text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+
+/* generate bar */
+.gen-bar { display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom:16px; }
+.gen-bar .input-group { flex:0 1 260px; }
+#generate { font-family:var(--font-display); font-weight:800; font-size:16px; background:var(--accent); color:var(--accent-ink); border:1px solid var(--accent); border-radius:var(--r-s); padding:12px 28px; cursor:pointer; box-shadow:var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
+#generate:hover { transform:translateY(-1px); box-shadow:var(--shadow-lg); }
+
+.anatomy-stage { display:flex; flex-direction:column; gap:10px; padding:20px 22px; margin-bottom:16px; }
+.anatomy-stage .stage-label { font-family:var(--font-ui); font-weight:600; font-size:12px; letter-spacing:var(--tracking-label); text-transform:uppercase; color:var(--muted); }
+.result-line { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; padding:8px 0; border-bottom:1px solid var(--line); }
+.result-line:last-child { border-bottom:0; }
+.result-line .rk { font-family:var(--font-ui); font-weight:600; font-size:10.5px; letter-spacing:var(--tracking-label); text-transform:uppercase; color:var(--accent); flex:0 0 92px; }
+.result-line .rv { font-size:16px; color:var(--ink); line-height:1.5; overflow-wrap:anywhere; }
+.result-line .rv.big { font-family:var(--font-display); font-weight:800; font-size:clamp(24px,4.5vw,36px); line-height:1.15; }
+.result-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; }
+.result-actions .btn { font-size:13px; padding:10px 16px; }
+.copied { color:var(--pos) !important; border-color:var(--pos) !important; }
+
+/* kept list */
+.kept-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:18px 0 10px; }
+.kept-head .role { margin-bottom:0; }
+#clear-kept { font-family:var(--font-ui); font-weight:600; font-size:11px; letter-spacing:var(--tracking-label); text-transform:uppercase; color:var(--muted); background:none; border:0; cursor:pointer;padding:8px 10px; margin:-8px -10px; }
+#clear-kept:hover { color:var(--neg); }
+.kept-item { display:grid; grid-template-columns:1fr auto auto; gap:10px; align-items:center; padding:9px 12px; border:1px solid var(--line); border-radius:var(--r-s); background:var(--surface-2); margin-bottom:7px; font-size:13.5px; }
+.kept-item .kt { color:var(--ink); overflow-wrap:anywhere; }
+.k-btn { width:30px; height:30px; border:1px solid var(--line-2); border-radius:var(--r-s); background:var(--surface); color:var(--muted); font-size:13px; line-height:1; cursor:pointer; transition:color .15s var(--ease), border-color .15s var(--ease); }
+.k-btn:hover { color:var(--accent); border-color:var(--accent); }
+.k-btn.x:hover { color:var(--neg); border-color:var(--neg); }
+.empty-note { border:1px dashed var(--line); border-radius:var(--r-s); padding:14px; text-align:center; color:var(--muted); font-size:12.5px; }
+
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }

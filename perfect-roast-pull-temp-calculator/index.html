@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -128,30 +128,12 @@
     }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/tools.css">
 <link rel="stylesheet" href="styles.css">
 
-<style>
-  /* ---- Tynkr Kinetic tool shell ---- */
-  .tool-nav { max-width: 920px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
-  .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
-  .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
-  .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-  .tn-brand .name b { color: var(--ink); font-weight: 600; }
-  .page.tool-shell { max-width: 920px; padding-top: 28px; }
-  .tool-shell .hero { padding-left: 0; padding-right: 0; }
-  .tool-controls { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
-  .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
-  .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
-  .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-  .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .net-grid .gear-img-wrapper { height: 120px; }
-  @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
-</style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -160,18 +142,17 @@
 </head>
 <body>
 
-<nav class="tool-nav">
-  <div class="tn-left">
+<nav class="nav tk-nav tool-nav">
+  <div class="wrap">
+    <div class="tk-brand">
+      <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+      <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </div>
     <a class="tn-back" href="../">&larr; All tools</a>
-    <span class="tn-brand">
-      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-    </span>
-  </div>
-  <div class="theme-switch" role="group" aria-label="Theme">
-    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    <div class="switch" role="group" aria-label="Theme">
+      <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+      <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+    </div>
   </div>
 </nav>
 
@@ -276,17 +257,17 @@
   <div class="glass anatomy" style="margin-bottom: 24px; text-align: center;">
     <div class="anatomy-stage" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
       <div>
-        <div style="font-family: var(--font-mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Pull From Heat At</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 8px;">Pull From Heat At</div>
         <div id="pull-temp-output" style="font-family: var(--font-display); font-size: 48px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent);">--&deg;F</div>
       </div>
 
       <div>
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Target Final Temp</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 4px;">Target Final Temp</div>
         <div id="target-temp-output" style="font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--ink);">--&deg;F</div>
       </div>
     </div>
 
-    <div id="rest-warning" style="margin-top: 24px; font-family: var(--font-ui); font-size: 13px; color: var(--muted); line-height: 1.5; padding-top: 16px; border-top: 2px solid var(--line);">
+    <div id="rest-warning" style="margin-top: 24px; font-family: var(--font-ui); font-size: 13px; color: var(--muted); line-height: 1.5; padding-top: 16px; border-top: 1px solid var(--line);">
       Chef's Note: Select inputs and calculate to view resting instructions.
     </div>
 
@@ -298,7 +279,7 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
+    <h2 style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-timeline" href="../reverse-roasting-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Planning the whole meal? Build your schedule with the Cooking Timeline Calculator &rarr;</a>
       <a href="../air-fryer-conversion-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Cooking a smaller cut in the air fryer? Convert the oven settings with the Air Fryer Conversion Calculator &rarr;</a>
@@ -306,15 +287,15 @@
   </div>
 
   <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <div class="glass glance glance--flush">
+    <h2>At a glance</h2>
+    <div class="glance__scroll">
+    <table>
       <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Finds the temperature to pull meat from the heat so carryover cooking during the rest lands it exactly on your target doneness.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Meat type (turkey to venison), cut/size (whole bird, thick steak, thin cut, brisket, duck breast), cooking method/environment (standard, high heat, low &amp; slow), and desired final doneness (rare through well done, or the USDA-safe 145°F for pork and fish, 160°F for ground meat and 165°F for poultry; 140°F to reheat a fully cooked ham).</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">The pull temperature, the expected temperature rise during rest, and the final serving temperature.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th>What it does</th><td>Finds the temperature to pull meat from the heat so carryover cooking during the rest lands it exactly on your target doneness.</td></tr>
+        <tr><th>Inputs</th><td>Meat type (turkey to venison), cut/size (whole bird, thick steak, thin cut, brisket, duck breast), cooking method/environment (standard, high heat, low &amp; slow), and desired final doneness (rare through well done, or the USDA-safe 145°F for pork and fish, 160°F for ground meat and 165°F for poultry; 140°F to reheat a fully cooked ham).</td></tr>
+        <tr><th>Outputs</th><td>The pull temperature, the expected temperature rise during rest, and the final serving temperature.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
     </div>
@@ -326,7 +307,7 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Meat keeps cooking after it leaves the oven. The outer layers are hotter than the center, and that stored heat keeps migrating inward while the roast rests — a process called carryover cooking. Depending on the size of the cut and how hot you cooked it, the internal temperature can climb anywhere from 2°F to 15°F after you pull it. If you wait until the thermometer reads your target, you'll overshoot it by the time you carve.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">This calculator works backward from that. You tell it the final doneness you want, the cut size, and the cooking method, and it gives you the temperature to pull at so the meat coasts up to your target during the rest. Larger cuts and high-heat methods carry over more; thin cuts and low-and-slow methods carry over less. Always confirm the final number with a calibrated thermometer, and follow USDA minimums for poultry, ground meat, and pork.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is carryover cooking?</h3>
@@ -395,17 +376,17 @@
   </div>
 </section>
 
-<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
+<footer class="footer" style="text-align: center; font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
   <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> These timelines and temperatures are estimated guidelines. Actual cooking times vary significantly based on oven calibration, starting meat temperature, and resting environment. For food safety, always verify the final internal temperature of the meat with a calibrated digital thermometer before serving.</p>
   <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
   <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
-  <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
-    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  <nav aria-label="More from Built by Josh Studio" class="studio-links">
+    <span>More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a>
   </nav>
 </footer>
 

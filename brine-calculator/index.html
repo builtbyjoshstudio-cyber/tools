@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8">
 <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -151,66 +151,12 @@
     }
     </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/tools.css">
 <link rel="stylesheet" href="styles.css">
 
-<style>
-  /* ---- Tool shell (built on Kinetic tokens; NO glass overrides) ---- */
-  .tool-nav {
-    max-width: 920px; margin: 0 auto; padding: 26px 28px 0;
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px; flex-wrap: wrap;
-  }
-  .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .tn-back {
-    font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-    letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink);
-    text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s);
-    padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow);
-    display: inline-flex; align-items: center; gap: 8px;
-    transition: transform .15s var(--ease), box-shadow .15s var(--ease);
-  }
-  .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
-  .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
-  .tn-brand .name {
-    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--muted);
-  }
-  .tn-brand .name b { color: var(--ink); font-weight: 600; }
-
-  .page.tool-shell { max-width: 920px; padding-top: 28px; }
-  .tool-shell .hero { padding-left: 0; padding-right: 0; }
-
-  .tool-controls {
-    display: flex; justify-content: flex-start; gap: 14px;
-    flex-wrap: wrap; margin-bottom: 22px;
-  }
-
-  /* ---- Network band (demoted from sidebar to footer band) ---- */
-  .net-band { max-width: 920px; margin: 64px auto 0; padding: 0 28px; }
-  .net-band h2 {
-    font-family: var(--font-display); font-weight: 800; font-size: 20px;
-    letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px;
-    border-bottom: 2px solid var(--line-2);
-    display: flex; align-items: baseline; gap: 12px;
-  }
-  .net-band h2 .lbl {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
-  }
-  .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .net-grid .gear-img-wrapper { height: 120px; }
-
-  @media (max-width: 760px) {
-    .net-grid { grid-template-columns: 1fr; }
-  }
-  /* ---- Reference tables ---- */
-  .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .ref-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
-  .ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
-</style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -219,18 +165,17 @@
 </head>
 <body>
 
-<nav class="tool-nav">
-  <div class="tn-left">
+<nav class="nav tk-nav tool-nav">
+  <div class="wrap">
+    <div class="tk-brand">
+      <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+      <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </div>
     <a class="tn-back" href="../">&larr; All tools</a>
-    <span class="tn-brand">
-      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-    </span>
-  </div>
-  <div class="theme-switch" role="group" aria-label="Theme">
-    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    <div class="switch" role="group" aria-label="Theme">
+      <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+      <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+    </div>
   </div>
 </nav>
 
@@ -348,18 +293,18 @@
   <div class="glass anatomy" style="margin-bottom: 24px;">
     <div class="anatomy-stage" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center;">
       <div>
-        <div style="font-family: var(--font-mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Salt Required</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 8px;">Salt Required</div>
         <div id="salt-volume-output" style="font-family: var(--font-display); font-size: 40px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent);">-- Tbsp</div>
         <div id="salt-weight-output" style="font-family: var(--font-mono); font-size: 14px; color: var(--muted); margin-top: 4px;">-- g</div>
       </div>
 
       <div id="water-section">
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Water Required</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 4px;">Water Required</div>
         <div id="water-output" style="font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--ink);">--</div>
       </div>
 
       <div id="sugar-section" style="display: none;">
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Sugar Required</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 4px;">Sugar Required</div>
         <div id="sugar-output" style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--ink);">-- g</div>
       </div>
     </div>
@@ -382,8 +327,8 @@
       </div>
     </div>
 
-    <div id="timer-container" style="display: none; margin-top: 24px; padding-top: 24px; border-top: 2px solid var(--line); text-align: center;">
-      <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Active Brine Timer</div>
+    <div id="timer-container" style="display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); text-align: center;">
+      <div style="font-family: var(--font-ui); font-weight:600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 8px;">Active Brine Timer</div>
       <div id="live-timer-display" style="font-family: var(--font-display); font-size: 34px; font-weight: 800; color: var(--ink); letter-spacing: 1px;">00:00:00</div>
       <button id="stop-timer-btn" class="btn" style="margin-top: 14px; border-color: var(--neg); color: var(--neg);">Stop Timer</button>
     </div>
@@ -395,8 +340,8 @@
       <span id="copy-link-status" role="status" style="position: absolute; top: 100%; left: 0; right: 0; font-family: var(--font-mono); font-size: 12px; line-height: 2; color: var(--muted); text-align: center;"></span>
     </div>
 
-    <div style="margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--line); text-align: center;">
-      <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); text-align: center;">
+      <h2 style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
       <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
         <a id="pipeline-link-thawing" href="../meat-thawing-planner/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to thaw it first? Use the Meat Thawing Planner &rarr;</a>
         <a id="pipeline-link-roast" href="../perfect-roast-pull-temp-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Ready to cook? Find your exact target pull temperature &rarr;</a>
@@ -405,15 +350,15 @@
   </div>
 
   <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <div class="glass glance glance--flush">
+    <h2>At a glance</h2>
+    <div class="glance__scroll">
+    <table>
       <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Calculates wet- and dry-brine quantities — salt, water, optional sugar — plus a recommended brining time window, from your protein and its weight.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Protein type (12 options, whole turkey to fish), weight in lbs or kg, wet or dry method, salt type (4 densities), brine strength, standard-gradient or equilibrium method, optional sugar.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Salt in tablespoons and grams, water volume (wet brine), sugar amount, a brining-time recommendation, and a live brining timer.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th>What it does</th><td>Calculates wet- and dry-brine quantities — salt, water, optional sugar — plus a recommended brining time window, from your protein and its weight.</td></tr>
+        <tr><th>Inputs</th><td>Protein type (12 options, whole turkey to fish), weight in lbs or kg, wet or dry method, salt type (4 densities), brine strength, standard-gradient or equilibrium method, optional sugar.</td></tr>
+        <tr><th>Outputs</th><td>Salt in tablespoons and grams, water volume (wet brine), sugar amount, a brining-time recommendation, and a live brining timer.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
     </div>
@@ -425,12 +370,12 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Brining seasons meat all the way through and helps it hold on to moisture during cooking, so a lean turkey breast or pork chop comes out juicier and more evenly seasoned. A wet brine submerges the meat in saltwater; a dry brine rubs salt directly onto the surface and lets it draw moisture in over time.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Both rely on getting the salt ratio right for the weight of meat — too little does nothing, too much makes it inedibly salty. This calculator works out the salt, water, and optional sugar for your protein and weight, and adjusts for the fact that different salt brands have very different densities by volume.</p>
 
-    <h2 id="dry-brine" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Dry brine calculator</h2>
+    <h2 id="dry-brine" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line-2);">Dry brine calculator</h2>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">A dry brine skips the water: you rub salt straight onto the surface, and it pulls moisture out and then back in, seasoned. For a dry brine the calculator sets the salt at about 1% of the meat's weight — adjustable to 0.75% for a lighter cure or 1.25% for a stronger one — and shows that amount by weight and by volume for your salt type, since coarse, table, and sea salts differ a lot by the spoonful. Switch to Dry, enter the protein and weight, and you get the exact salt to scatter on. Best for crisp-skinned poultry and steaks you rest uncovered in the fridge.</p>
-    <h2 id="wet-brine" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Wet brine calculator</h2>
+    <h2 id="wet-brine" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line-2);">Wet brine calculator</h2>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">A wet brine dissolves salt in water and submerges the meat. The calculator uses about 0.6 liters of water per pound of meat (at least 2 liters), enough to keep it submerged, then salts that water to roughly 5% for a standard brine (4% light, 6% strong) — or, if you pick the equilibrium (EQ) method, targets 1.5% of the combined meat-and-water weight, which is much harder to over-salt on a long soak. It returns the salt (weight and volume), the water amount, and optional sugar, all scaled to your protein and weight. Best for lean cuts like turkey breast and pork chops that dry out easily.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Brine formula and salt by weight</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line-2);">Brine formula and salt by weight</h2>
 
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Every number the calculator returns comes from three ratios:</p>
 
@@ -454,7 +399,7 @@
 
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Salt is listed in grams because a tablespoon is not a fixed amount of salt: coarse flaky kosher salt weighs about 8 g per tablespoon and table salt about 18 g. Pick your salt type in the calculator and it converts the weight to spoons for that salt.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What's the difference between a wet brine and a dry brine?</h3>
@@ -535,17 +480,17 @@
   </div>
 </section>
 
-<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
+<footer class="footer" style="text-align: center; font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
   <p style="margin-bottom: 8px;">Disclaimer: These measurements are guidelines. Adjust for personal taste and always verify food safety practices.</p>
   <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
   <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
-  <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
-    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  <nav aria-label="More from Built by Josh Studio" class="studio-links">
+    <span>More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a>
   </nav>
 </footer>
 

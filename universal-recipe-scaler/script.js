@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Theme (Light / Mist / Dark) handled globally by ../kinetic.js
+    // Theme (Light / Dark) handled globally by ../kinetic.js
 
     const recipeInput = document.getElementById('recipe-input');
     const recipeOutput = document.getElementById('recipe-output');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -153,44 +153,12 @@
     <meta name="twitter:description" content="Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings. Free, ad-free.">
     <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/dough-hydration-calculator/og-preview.jpg">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/tools.css">
     <link rel="stylesheet" href="styles.css">
 
-    <style>
-      /* ---- Tynkr Kinetic tool shell ---- */
-      .tool-nav { max-width: 920px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
-      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
-      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
-      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-      .tn-brand .name b { color: var(--ink); font-weight: 600; }
-      .page.tool-shell { max-width: 920px; padding-top: 28px; }
-      .tool-shell .hero { padding-left: 0; padding-right: 0; }
-      .tool-controls { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
-      .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
-      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
-      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-      .net-grid .gear-img-wrapper { height: 120px; }
-
-      /* onboarding steps */
-      .onboarding-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-      .step-col h3, .step-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 15px; margin: 0 0 6px; color: var(--ink); }
-      .step-col p { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
-      .ix svg { width: 18px; height: 18px; display: block; }
-
-      @media (max-width: 760px) {
-        .net-grid { grid-template-columns: 1fr; }
-        .onboarding-steps { grid-template-columns: 1fr; gap: 16px; }
-      }
-      /* ---- Reference tables ---- */
-      .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-      .ref-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
-      .ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
-    </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -199,18 +167,17 @@
 </head>
 <body>
 
-<nav class="tool-nav">
-  <div class="tn-left">
+<nav class="nav tk-nav tool-nav">
+  <div class="wrap">
+    <div class="tk-brand">
+      <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+      <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </div>
     <a class="tn-back" href="../">&larr; All tools</a>
-    <span class="tn-brand">
-      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-    </span>
-  </div>
-  <div class="theme-switch" role="group" aria-label="Theme">
-    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    <div class="switch" role="group" aria-label="Theme">
+      <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+      <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+    </div>
   </div>
 </nav>
 
@@ -307,7 +274,7 @@
   <div class="glass anatomy" style="margin-bottom: 24px;">
     <div class="anatomy-stage" style="display: flex; align-items: center; justify-content: center; padding: 24px 24px 3rem;">
       <div style="text-align: center;">
-        <div style="font-family: var(--font-mono); font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Total Yield</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 8px;">Total Yield</div>
         <div id="total-yield-output" style="font-family: var(--font-display); font-size: 56px; font-weight: 800; color: var(--accent); line-height: 1; letter-spacing: -0.03em;">35.3 oz</div>
       </div>
     </div>
@@ -350,9 +317,9 @@
       </div>
     </div>
 
-    <div id="egg-note-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; color: var(--accent); line-height: 1.5; padding: 12px; border: 2px solid var(--line-2); border-radius: var(--r-s); background: var(--surface-2);"></div>
+    <div id="egg-note-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; color: var(--accent); line-height: 1.5; padding: 12px; border: 1px solid var(--line-2); border-radius: var(--r-s); background: var(--surface-2);"></div>
 
-    <div id="absorbency-warning-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);"></div>
+    <div id="absorbency-warning-container" style="display: none; grid-column: 1 / -1; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 1px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);"></div>
 
     <div style="grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
       <button type="button" id="copy-link-btn" class="btn" aria-label="Copy link to these numbers">Copy link</button>
@@ -361,7 +328,7 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
+    <h2 style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-pan" href="../pan-swap-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Need to scale? Adjust your dough to a specific baking pan size with the Pan Swap Calculator &rarr;</a>
       <a href="../yeast-converter/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Swapping yeast types? Get the amount right with the Yeast Converter &rarr;</a>
@@ -369,7 +336,7 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px;">
-    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Build Your Dough</h2>
+    <h2 style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--accent); margin-top: 0; margin-bottom: 18px;">How to Build Your Dough</h2>
     <div class="onboarding-steps">
       <div class="step-col">
         <h3>1. Choose Your Style</h3>
@@ -387,15 +354,15 @@
   </div>
 
   <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <div class="glass glance glance--flush">
+    <h2>At a glance</h2>
+    <div class="glance__scroll">
+    <table>
       <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Calculates bread, pizza, and pasta dough by baker's percentages, with flour-absorbency guardrails.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Flour type (all-purpose to rye, spelt and more), a baking-style preset (Neapolitan pizza, sourdough boule, and others) or custom percentages, calculation mode (target dough weight or target flour mass), and the target weight.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Flour, water, salt (and starter where relevant) by weight, the hydration percentage, and structural warnings when a combination will misbehave.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th>What it does</th><td>Calculates bread, pizza, and pasta dough by baker's percentages, with flour-absorbency guardrails.</td></tr>
+        <tr><th>Inputs</th><td>Flour type (all-purpose to rye, spelt and more), a baking-style preset (Neapolitan pizza, sourdough boule, and others) or custom percentages, calculation mode (target dough weight or target flour mass), and the target weight.</td></tr>
+        <tr><th>Outputs</th><td>Flour, water, salt (and starter where relevant) by weight, the hydration percentage, and structural warnings when a combination will misbehave.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
     </div>
@@ -408,10 +375,10 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">This calculator works in that direction: set your target hydration and the batch size you want — either a total dough weight or a flour weight — and it returns the exact flour, water, salt, and yeast by weight. Salt and yeast are set as their own baker's percentages of the flour, the same way a written formula would express them. For alkaline noodle doughs it swaps yeast for kansui, and for egg pasta it offers an egg-for-water conversion, since those doughs are built differently from leavened bread.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Hydration isn't a free dial, though — every flour has a practical absorption range. A lean all-purpose flour turns slack and sticky pushed much past 65%, Tipo 00 has a lower ceiling than high-gluten bread flour, and noodle doughs stay deliberately stiff, often under 48%, so they can be rolled and cut. The calculator flags when your target falls outside the workable range for the flour you've chosen, so you can adjust before you mix rather than discovering it with your hands in the bowl.</p>
 
-    <h2 id="pasta-dough" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Pasta dough calculator</h2>
+    <h2 id="pasta-dough" style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line-2);">Pasta dough calculator</h2>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Pasta dough runs much drier than bread. Pick &ldquo;Semolina / Egg Pasta Flour&rdquo; and the calculator snaps hydration to 45% — the low-water range fresh pasta needs to roll thin and cut into clean strands — and drops the yeast, since pasta is unleavened. Enter your target flour or total-dough weight and it returns the flour, water, and salt (2%) by baker's percentage. For traditional egg pasta it also shows an egg conversion: swap the water weight for whole eggs at about 50g (1.8 oz) each, so the recipe tells you roughly how many eggs to use. Push hydration past about 48% and it warns you — above that, the dough turns too soft to hold a noodle's bite.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Dough hydration chart by style</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line-2);">Dough hydration chart by style</h2>
 
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">These are the starting points behind the calculator&#39;s presets, shown for 1,000 g of flour. Salt is 2% of the flour in every case; leavened doughs add yeast at 1%.</p>
 
@@ -436,7 +403,7 @@
 
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">For 1,000 g of sourdough at 72%, the percentages add up to 175 (100 flour + 72 water + 2 salt + 1 yeast). That gives 571 g flour, 411 g water, 11 g salt, and 6 g yeast, which is exactly what the calculator returns in Target Total Dough Weight mode.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">What is dough hydration?</h3>
@@ -517,17 +484,17 @@
   </div>
 </section>
 
-<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
+<footer class="footer" style="text-align: center; font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
   <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> Hydration ratios and flour absorption rates vary depending on ambient humidity, brand processing, and milling precision. Adjust flour or water by small amounts during mixing to achieve target gluten structure.</p>
   <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
   <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
-  <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
-    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  <nav aria-label="More from Built by Josh Studio" class="studio-links">
+    <span>More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a>
   </nav>
 </footer>
 

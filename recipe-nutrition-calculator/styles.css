@@ -1,3 +1,6 @@
+/* recipe-nutrition-calculator - page styles. Loads after /css/tokens.css, /css/components.css and /css/tools.css.
+   Moved here from the page's <style> block with values converted to Ledger tokens. */
+
 /* ---- Recipe Nutrition Calculator Custom Styling ---- */
 
 .recipe-workarea {
@@ -26,7 +29,7 @@
     font-size: 13.5px;
     line-height: 1.5;
     background: var(--surface);
-    border: 2px solid var(--line-2);
+    border: 1px solid var(--line-2);
 }
 .disclaimer-banner .icon {
     font-size: 18px;
@@ -46,7 +49,7 @@
     height: 14px;
     border-radius: 7px;
     background: var(--surface-2);
-    border: 2px solid var(--line-2);
+    border: 1px solid var(--line-2);
     overflow: hidden;
     display: flex;
 }
@@ -111,7 +114,7 @@
 }
 .review-warning-item .action-btn {
     font-size: 11px;
-    font-family: var(--font-mono);
+    font-family: var(--font-ui); font-weight:600;
     text-transform: uppercase;
     color: var(--accent);
     text-decoration: underline;
@@ -127,13 +130,12 @@
     color: #000 !important; /* Always black text */
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     border: 2px solid #000 !important;
-    box-shadow: 6px 6px 0 var(--shadow) !important;
+    box-shadow: var(--shadow) !important;
 }
 
-[data-theme="dark"] .label-card,
-[data-theme="mist"] .label-card {
+[data-theme="cosmic"] .label-card {
     /* Ensure shadows and outlines look correct in dark modes */
-    box-shadow: 6px 6px 0 rgba(0,0,0,0.5) !important;
+    box-shadow: var(--shadow) !important;
 }
 
 .label-wrapper {
@@ -230,3 +232,12 @@
     padding-top: 8px;
     color: #555 !important;
 }
+
+.page.tool-shell { max-width: 1100px; padding-top: 28px; }
+.tool-shell .hero { padding-left: 0; padding-right: 0; }
+.net-band { max-width: 1100px; margin: 56px auto 0; padding: 0 28px; }
+.net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+.net-band h2 .lbl { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent); }
+.net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.net-grid .gear-img-wrapper { height: 120px; }
+@media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }

@@ -19,7 +19,7 @@ function getToolUrl(toolId, params = {}) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
+    // Theme (Light / Dark) is handled globally by ../kinetic.js
 
     // State Variables
     let currentUnit = 'oz'; // 'oz' (imperial) or 'g' (metric)

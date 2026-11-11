@@ -17,7 +17,7 @@ const G_PER_TSP = 3.1;
 const G_PER_PACKET = 7.0;
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
+    // Theme (Light / Dark) is handled globally by ../kinetic.js
 
     // DOM Elements
     const inputAmount = document.getElementById("input-amount");

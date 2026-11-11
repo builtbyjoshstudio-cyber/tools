@@ -21,6 +21,7 @@
     radial-gradient(30% 30% at 55% 60%, var(--nebula-3), transparent 60%); }
 [data-theme="cosmic"] :is(.card, .panel, .glass, .glass-panel, .faq details) { background: rgba(18,20,58,.72); border-color: var(--line-2); }
 [data-theme="cosmic"] .card__foot { background: rgba(26,29,77,.7); }
+@media print { [data-theme="cosmic"] body::before { display: none; } }
 
 /* --- top bar: wordmark + line tag, theme switch ---------------------------- */
 .tk-nav { position: static; }
@@ -148,6 +149,7 @@ button.glass-lite { background: var(--surface) !important; color: var(--ink) !im
 
 /* --- form fields: the Ledger input ---------------------------------------------------------- */
 .input-group { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.grid-2 > .input-group { min-width: 0; }   /* a field in a two-column grid row may shrink below its intrinsic width (invoice form at phone width) */
 .input-group label, .input-label { font-size: var(--text-small); font-weight: 600; color: var(--ink); }
 .form-input, .input-group input, .input-group select, textarea { width: 100%; padding: 11px 14px; border: 1px solid var(--line-2); border-radius: var(--r-s); background: var(--surface); color: var(--ink); font-family: var(--font-ui); font-size: var(--text-ui); outline: none; box-shadow: inset 0 1px 2px rgba(39,52,63,.05); transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
 .form-input:focus, .input-group input:focus, .input-group select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
@@ -165,11 +167,11 @@ input[type="range"].form-input-range::-moz-range-thumb { width: 20px; height: 20
 
 /* --- shared blocks the tool pages repeat ------------------------------------------------------ */
 .note { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.5; }
-.tool-shell .prose { margin-top: 40px; max-width: none; font-size: var(--text-body); }
-.tool-shell .prose h2 { font-size: clamp(24px, 4vw, 32px); margin: 0 0 12px; }
-.tool-shell .prose h3 { font-size: 18px; margin: 26px 0 6px; }
-.tool-shell .prose p { line-height: 1.6; margin: 0 0 12px; max-width: 70ch; }
-.tool-shell .faq { margin-top: 30px; }
+.prose { margin-top: 40px; max-width: none; font-size: var(--text-body); }
+.prose h2 { font-size: clamp(24px, 4vw, 32px); margin: 0 0 12px; }
+.prose h3 { font-size: 18px; margin: 26px 0 6px; }
+.prose p { line-height: 1.6; margin: 0 0 12px; max-width: 70ch; color: var(--ink-2); }
+.faq { margin-top: 30px; }
 .tool-shell .faq details p { max-width: 70ch; margin: 0; }
 .funnel { display: block; margin-top: 22px; padding: 20px 22px; border: var(--hair); border-radius: var(--r); background: var(--surface-2); color: inherit; box-shadow: var(--shadow); transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
 .funnel:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--line-2); }
