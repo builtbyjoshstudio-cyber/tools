@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Tynkr Tools & Co - "Ledger" layouts for tools.builtbyjoshstudio.com
+   Loads after tokens.css and components.css. Those two files are copied
+   byte-identical from builtbyjoshstudio.com: change them there, then copy.
+   This file holds only what the tools site adds on top.
+   ========================================================================== */
+
+/* --- theme wipe (kinetic.js setTheme) -------------------------------------- */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { z-index: 1; }
+::view-transition-old(root) { z-index: 0; }
+
+/* --- top bar: wordmark + line tag, theme switch ---------------------------- */
+.tk-nav { position: static; }
+.tk-brand { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
+.tk-brand .line-tag { padding-left: var(--space-4); border-left: var(--rule); white-space: nowrap; }
+
+/* --- hub: hero panel with chips and a stats row ---------------------------- */
+.hub { padding-top: var(--space-8); }
+.hub-hero { padding: var(--space-12); }
+.hub-hero h1 { max-width: 16ch; margin-bottom: var(--space-5); }
+.hub-hero > p { font-size: var(--text-lead); color: var(--muted); max-width: 58ch; margin: 0; }
+.hub-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-6); }
+.hub-stats { grid-template-columns: repeat(3, 1fr); margin-top: var(--space-8); }
+.hub-stats .stat { background: var(--surface-2); box-shadow: none; }
+
+/* --- hub: numbered section title -------------------------------------------- */
+.section-title { display: flex; align-items: center; gap: var(--space-3); margin: var(--space-16) 0 var(--space-6); }
+.section-title .num { display: inline-grid; place-items: center; min-width: 32px; height: 32px; padding: 0 10px; border-radius: var(--r-s); background: var(--accent-soft); color: var(--accent); font-family: var(--font-mono); font-size: var(--text-label); font-weight: 500; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.section-title .rule { flex: 1; margin: 0; }
+
+/* --- hub: tool cards ---------------------------------------------------------- */
+.hub .card__body { padding: var(--space-6) var(--space-6) var(--space-5); }
+.hub .card__body .icon-tile { margin-bottom: var(--space-3); }
+.hub .card__body p { max-width: none; }
+.card-arrow { color: var(--accent); font-size: 1rem; letter-spacing: 0; transition: transform var(--t-fast) var(--ease); }
+a.card:hover .card-arrow { transform: translateX(4px); }
+
+/* --- footer: a tinted band, not the main site's navy block -------------------- */
+.tk-foot { margin-top: var(--section-pad); padding: var(--space-12) 0 var(--space-8); background: var(--surface-2); border-top: var(--hair); }
+.tk-foot__cols { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: var(--space-8); padding-bottom: var(--space-8); border-bottom: var(--rule); }
+.tk-foot__brand p { font-size: var(--text-small); color: var(--muted); max-width: 32ch; margin: var(--space-3) 0 0; }
+.tk-foot h4 { font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
+.tk-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); font-size: var(--text-small); }
+.tk-foot ul a { color: var(--ink-2); font-weight: 400; }
+.tk-foot ul a:hover { color: var(--accent); text-decoration: none; }
+.tk-foot__bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2) var(--space-6); padding-top: var(--space-5); font-size: var(--text-label); color: var(--muted); }
+.tk-foot__bar a { color: var(--ink); }
+
+/* --- responsive ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .hub-hero { padding: var(--space-8); }
+  .section-title { margin-top: var(--space-12); }
+  .tk-foot__cols { grid-template-columns: 1fr 1fr; }
+  .tk-foot__brand { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .tk-nav { height: auto; padding: var(--space-3) 0; }
+  .tk-nav .wrap { gap: var(--space-3); }
+  .tk-nav .switch button { padding: 6px 10px; }
+  .tk-brand { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .tk-brand .line-tag { padding-left: 34px; border-left: 0; }
+  .hub { padding-top: var(--space-5); }
+  .hub-hero { padding: var(--space-6) var(--space-5); }
+  .hub-stats { gap: var(--space-2); }
+  .hub-stats .stat { padding: var(--space-3); }
+  .hub-stats .stat b { font-size: 1.625rem; }
+  .hub-stats .stat span { font-size: var(--text-label); }
+  .tk-foot__cols { grid-template-columns: 1fr; }
+}
