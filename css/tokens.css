@@ -1,0 +1,209 @@
+/* ==========================================================================
+   Built by Josh Studio — "Ledger" tokens
+   Light-first, white and Payne's gray, one steel blue; a Payne's-gray dark for the apps and a cosmic edition for the zodiac. Linked by every page.
+   Default is light; data-theme="slate" (or "dark") is the apps' and tools' dark theme,
+   data-theme="cosmic" the zodiac pages. Token names follow Kinetic v5 so
+   nothing breaks; old --bbj-* / --tynkr-* names are aliased at the end.
+   ========================================================================== */
+
+:root, [data-theme="light"] {
+  /* --- ground ------------------------------------------------------------ */
+  --canvas:      #ffffff;   /* page */
+  --surface:     #ffffff;   /* cards (edge + shadow separate them) */
+  --surface-2:   #f2f5f7;   /* inset, cool Payne's tint */
+  --surface-3:   #e6ebef;
+  --ink:         #27343f;   /* Payne's gray, deep. 12.7:1 on white */
+  --ink-2:       #34434f;   /* body text */
+  --muted:       #637282;   /* secondary text, 4.9:1 on white */
+  --line:        #dde3e8;
+  --line-2:      #c6cfd7;
+
+  /* --- brand blue --------------------------------------------------------- */
+  --accent:      #38627f;   /* steel blue, Payne's lifted toward action. 6.5:1 on white */
+  --accent-ink:  #ffffff;
+  --accent-soft: #e4edf4;
+  --accent-deep: #27343f;   /* Payne's gray — hero panels, footer */
+  --accent-2:    #b5731e;   /* warm brass: the highlighted phrase at display size (4:1, large text only), covers, markers */
+
+  /* --- status --------------------------------------------------------------- */
+  --pos:         #1e7a55;   /* 5.3:1 on white */
+  --pos-soft:    #e3f3ec;
+  --neg:         #b93a3a;   /* 5.6:1 on white */
+  --neg-soft:    #fdeaea;
+
+  /* --- shadow: real, soft, two layers ------------------------------------- */
+  --shadow:      0 1px 2px rgba(39,52,63,.06), 0 8px 24px -8px rgba(39,52,63,.14);
+  --shadow-lg:   0 2px 4px rgba(39,52,63,.06), 0 24px 48px -16px rgba(39,52,63,.2);
+
+  /* --- type ------------------------------------------------------------------ */
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-ui:      "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body:    var(--font-ui);
+
+  --text-display: clamp(2.75rem, 5.4vw, 4.75rem);
+  --text-h1:      clamp(2.25rem, 3.8vw, 3.25rem);
+  --text-h2:      2rem;
+  --text-h3:      1.25rem;
+  --text-h4:      1.0625rem;
+  --text-lead:    1.1875rem;
+  --text-body:    1rem;
+  --text-ui:      0.9375rem;
+  --text-small:   0.875rem;
+  --text-label:   0.75rem;
+
+  --leading-display: 1.02;
+  --leading-heading: 1.15;
+  --leading-body:    1.6;
+  --tracking-display: -0.03em;
+  --tracking-heading: -0.02em;
+  --tracking-label:   0.04em;
+
+  --weight-display: 800;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+
+  /* --- space ------------------------------------------------------------------- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-7: 28px; --space-8: 32px;
+  --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-24: 96px;
+  --container-max: 1200px;
+  --measure: 66ch;
+  --gutter: 24px;
+  --section-pad: 88px;
+
+  /* --- shape -------------------------------------------------------------------- */
+  --r:      12px;   /* cards, media */
+  --r-s:    8px;    /* inputs, buttons, chips */
+  --r-lg:   20px;   /* hero panels */
+  --r-pill: 999px;  /* badges only */
+  --rule:   1px solid var(--line-2);
+  --hair:   1px solid var(--line);
+
+  /* --- motion --------------------------------------------------------------------- */
+  --ease:   cubic-bezier(.2, .7, .2, 1);
+  --t-fast: .15s;
+  --t-base: .25s;
+}
+
+[data-theme="dark"], [data-theme="slate"] {
+  /* Payne's gray, dark: the apps' and tools' dark theme */
+  --canvas:      #1e2a35;
+  --surface:     #263440;
+  --surface-2:   #2e3d4a;
+  --surface-3:   #374756;
+  --ink:         #f2f5f7;
+  --ink-2:       #e6ebef;
+  --muted:       #a3b1bf;   /* 6.7:1 on canvas */
+  --line:        #34434f;
+  --line-2:      #46586a;
+  --accent:      #9cc3e3;   /* steel lifted: 7.9:1 on canvas */
+  --accent-ink:  #1e2a35;
+  --accent-soft: #2e3d4a;
+  --accent-deep: #141d25;
+  --accent-2:    #e0a95a;
+  --pos:         #6fd3a0;
+  --pos-soft:    #1e3a2d;
+  --neg:         #ff9494;
+  --neg-soft:    #4a2525;
+  --shadow:      0 1px 2px rgba(0,0,0,.25), 0 8px 24px -8px rgba(0,0,0,.45);
+  --shadow-lg:   0 2px 4px rgba(0,0,0,.25), 0 24px 48px -16px rgba(0,0,0,.55);
+}
+
+[data-theme="cosmic"] {
+  /* the zodiac edition: deep indigo, gold signal, nebula and stars (see .cosmos in components.css) */
+  --canvas:      #090a1a;
+  --surface:     #12143a;
+  --surface-2:   #1a1d4d;
+  --surface-3:   #23276a;
+  --ink:         #f3f0ff;
+  --ink-2:       #e6e2ff;
+  --muted:       #a9a6cf;   /* 8.5:1 on canvas */
+  --line:        #272a5c;
+  --line-2:      #3a3e7a;
+  --accent:      #f2c76b;   /* gold: 12.3:1 on canvas */
+  --accent-ink:  #1a1200;
+  --accent-soft: #3a2f12;
+  --accent-deep: #05061a;
+  --accent-2:    #f2c76b;
+  --pos:         #7fe0b0;
+  --pos-soft:    #163a2c;
+  --neg:         #ff9a9a;
+  --neg-soft:    #4a2030;
+  --nebula-1:    rgba(118, 78, 220, .38);   /* NEW: violet */
+  --nebula-2:    rgba(236, 96, 160, .18);   /* NEW: magenta */
+  --nebula-3:    rgba(242, 199, 107, .10);  /* NEW: gold */
+  --shadow:      0 1px 2px rgba(0,0,0,.3), 0 8px 24px -8px rgba(0,0,0,.5);
+  --shadow-lg:   0 2px 4px rgba(0,0,0,.3), 0 24px 48px -16px rgba(0,0,0,.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0s; --t-base: 0s; }
+}
+
+/* --- old names keep resolving (extend from your current tokens.css) ------ */
+:root {
+  --bbj-canvas: var(--canvas);   --tynkr-canvas: var(--canvas);
+  --bbj-surface: var(--surface); --tynkr-surface: var(--surface);
+  --bbj-surface-2: var(--surface-2); --tynkr-surface-2: var(--surface-2);
+  --bbj-ink: var(--ink);         --tynkr-ink: var(--ink);
+  --bbj-muted: var(--muted);     --tynkr-muted: var(--muted);
+  --bbj-line: var(--line);       --tynkr-line: var(--line);
+  --bbj-line-2: var(--line-2);   --tynkr-line-2: var(--line-2);
+  --bbj-accent: var(--accent);   --tynkr-accent: var(--accent);
+  --bbj-accent-2: var(--accent); --tynkr-accent-2: var(--accent);
+  --bbj-shadow: var(--shadow);   --tynkr-shadow: var(--shadow);
+  --bbj-font-display: var(--font-display); --tynkr-font-display: var(--font-display);
+  --bbj-font-ui: var(--font-ui);           --tynkr-font-ui: var(--font-ui);
+  --bbj-font-mono: var(--font-mono);       --tynkr-font-mono: var(--font-mono);
+  /* names the previous tokens.css defined that the list above lacks */
+  --bbj-bg: var(--canvas);       --tynkr-bg: var(--canvas);
+  --bbj-text: var(--ink);        --tynkr-text: var(--ink);
+  --bbj-border: var(--line);     --tynkr-border: var(--line);
+  --tynkr-orange: var(--accent);
+  --body-read: var(--ink-2);
+  --nav-border: var(--line);
+}
+
+/* --- fonts: self-hosted, preloaded. One variable file (+ italic if you use it). --- */
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("../fonts/PlusJakartaSans-Variable.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+/* JetBrains Mono: the existing self-hosted files, unchanged. */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/css/fonts/jetbrains-mono-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/css/fonts/jetbrains-mono-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/css/fonts/jetbrains-mono-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/css/fonts/jetbrains-mono-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
