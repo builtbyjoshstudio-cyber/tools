@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -161,34 +161,12 @@
     <meta name="twitter:description" content="Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings. Free and ad-free.">
     <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/meat-thawing-planner/og-preview.jpg">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/tools.css">
     <link rel="stylesheet" href="styles.css">
 
-    <style>
-      /* ---- Tynkr Kinetic tool shell ---- */
-      .tool-nav { max-width: 920px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
-      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
-      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
-      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-      .tn-brand .name b { color: var(--ink); font-weight: 600; }
-      .page.tool-shell { max-width: 920px; padding-top: 28px; }
-      .tool-shell .hero { padding-left: 0; padding-right: 0; }
-      .tool-controls { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
-      .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
-      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
-      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-      .net-grid .gear-img-wrapper { height: 120px; }
-      @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
-      /* ---- Reference tables ---- */
-      .ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-      .ref-table th { text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 2px solid var(--line-2); }
-      .ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18)); }
-    </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -197,18 +175,17 @@
 </head>
 <body>
 
-<nav class="tool-nav">
-  <div class="tn-left">
+<nav class="nav tk-nav">
+  <div class="wrap">
+    <div class="tk-brand">
+      <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+      <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </div>
     <a class="tn-back" href="../">&larr; All tools</a>
-    <span class="tn-brand">
-      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-    </span>
-  </div>
-  <div class="theme-switch" role="group" aria-label="Theme">
-    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    <div class="switch" role="group" aria-label="Theme">
+      <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+      <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+    </div>
   </div>
 </nav>
 
@@ -279,7 +256,7 @@
       <h2>Refrigerator Thawing</h2>
       <p style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">The safest thawing method. Keeps protein out of the bacterial danger zone.</p>
       <div style="margin-bottom: 20px; text-align: center;">
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Estimated Time</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 4px;">Estimated Time</div>
         <div id="fridge-time-output" style="font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent);">--</div>
       </div>
       <ul style="font-size: 13px; line-height: 1.6; color: var(--muted);">
@@ -293,7 +270,7 @@
       <h2>Cold Water Thawing</h2>
       <p style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">Faster thawing. Requires active water management and immediate cooking.</p>
       <div style="margin-bottom: 20px; text-align: center;">
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px;">Estimated Time</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label); margin-bottom: 4px;">Estimated Time</div>
         <div id="water-time-output" style="font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent);">--</div>
       </div>
       <ul style="font-size: 13px; line-height: 1.6; color: var(--muted); margin-bottom: 16px;">
@@ -302,11 +279,11 @@
         <li><strong>Must cook immediately</strong> after thawing is complete.</li>
       </ul>
 
-      <div id="safety-warning-container" style="display: none; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
+      <div id="safety-warning-container" style="display: none; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 1px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
       </div>
     </div>
 
-    <div id="seafood-warning-container" style="display: none; grid-column: 1 / -1; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
+    <div id="seafood-warning-container" style="display: none; grid-column: 1 / -1; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 1px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
       &#9888; Critical Seafood Safety: If your seafood is vacuum-sealed, you MUST puncture or remove the packaging completely before thawing in the refrigerator or cold water to eliminate the risk of lethal anaerobic botulism bacteria growth.
     </div>
 
@@ -326,12 +303,12 @@
       <li>Move to fridge by: <strong id="fridge-start-output">--</strong></li>
       <li>Start cold-water thaw by: <strong id="water-start-output">--</strong> <span id="water-start-note" style="color: var(--muted);">(cook immediately after)</span></li>
     </ul>
-    <div id="schedule-warning-container" style="display: none; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 2px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
+    <div id="schedule-warning-container" style="display: none; margin-top: 16px; font-family: var(--font-ui); font-size: 13px; font-weight: 500; color: var(--neg); line-height: 1.5; padding: 12px; border: 1px dashed color-mix(in oklab, var(--neg) 40%, transparent); border-radius: var(--r-s); background: color-mix(in oklab, var(--neg) 8%, transparent);">
     </div>
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h2 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
+    <h2 style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h2>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-brine" href="../brine-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Thaw complete? Calculate your salt ratio with the Brine Calculator &rarr;</a>
       <a id="pipeline-link-reverse" href="../reverse-roasting-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Ready to schedule? Plan your cooking timeline backward with the Cooking Timeline Calculator &rarr;</a>
@@ -339,15 +316,15 @@
   </div>
 
   <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <div class="glass glance glance--flush">
+    <h2>At a glance</h2>
+    <div class="glance__scroll">
+    <table>
       <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Backward-schedules food-safe thawing for frozen meat using the USDA refrigerator and cold-water methods.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Protein type (turkey, chicken, beef, pork and more), weight in pounds, and the day and time you plan to cook.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Fridge and cold-water thawing time windows, when to start, and food-safety warnings about the bacterial danger zone.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th>What it does</th><td>Backward-schedules food-safe thawing for frozen meat using the USDA refrigerator and cold-water methods.</td></tr>
+        <tr><th>Inputs</th><td>Protein type (turkey, chicken, beef, pork and more), weight in pounds, and the day and time you plan to cook.</td></tr>
+        <tr><th>Outputs</th><td>Fridge and cold-water thawing time windows, when to start, and food-safety warnings about the bacterial danger zone.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
     </div>
@@ -359,7 +336,7 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Thawing time comes down to two safe methods, and they work at very different speeds. Refrigerator thawing is the slowest but safest — the meat stays below 40°F the entire time, so it never enters the bacterial "danger zone." As a rule of thumb it takes about 24 hours for every 5 pounds, though dense whole birds like turkey run a little slower and lean fish a little faster. Small packages still take a minimum: a full day for poultry, roasts, game, and ground meat, and overnight (12 hours) for steaks, chops, and fish. Cold-water thawing is much quicker — roughly 30 minutes per pound — but the meat must be in a leak-proof bag, fully submerged, with the water changed every 30 minutes to keep it cold. This calculator gives you both estimates side by side, adjusted for the specific protein you choose, so you can pick the method that fits your timeline.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Speed isn't the only factor — safety sets the real limits. Cold-water thawing demands attention, and for large cuts it can run long enough that the surface drifts into unsafe temperatures before the center is done, which is why the tool steers you back to the refrigerator past a certain size. Vacuum-sealed fish and seafood carry a separate risk: the packaging must be opened before thawing to avoid anaerobic bacteria. Whichever method you use, the food should be cooked promptly once thawed, and counter thawing is never safe. For the full official guidance, see the USDA's <a href="https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/big-thaw-safe-defrosting-methods" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; font-weight: 600;">Big Thaw — Safe Defrosting Methods</a>.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 2px solid var(--line-2);">Turkey thawing time by weight</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px; padding-top: 16px; border-top: 1px solid var(--line-2);">Turkey thawing time by weight</h2>
 
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">A whole turkey thaws at about 4 pounds per day in the refrigerator, or about 36 minutes per pound in cold water changed every 30 minutes:</p>
 
@@ -395,7 +372,7 @@
 
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">Meat thawed in the refrigerator keeps for another day or two before cooking. Meat thawed in cold water should be cooked right away.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How long does it take to thaw meat in the refrigerator?</h3>
@@ -480,17 +457,17 @@
   </div>
 </section>
 
-<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
+<footer class="footer" style="text-align: center; font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 40px; line-height: 1.6; max-width: 640px; margin-left: auto; margin-right: auto;">
   <p style="margin-bottom: 8px;"><strong>Disclaimer:</strong> Thawing times are estimations. Always ensure the internal temperature of the meat remains below 40&deg;F during thawing to prevent bacterial growth. Use a food thermometer to verify that the protein has reached safe internal cooking temperatures before consumption.</p>
   <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
   <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
-  <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
-    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  <nav aria-label="More from Built by Josh Studio" class="studio-links">
+    <span>More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a>
   </nav>
 </footer>
 

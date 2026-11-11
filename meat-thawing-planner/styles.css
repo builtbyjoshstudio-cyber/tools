@@ -1,7 +1,16 @@
-/* =========================================================
-   Tynkr Kinetic theme — this tool now inherits the shared
-   site stylesheet. All design tokens, components, themes
-   (Light / Mist / Dark) and motion live in ../kinetic.css.
-   Old per-tool glass styles intentionally replaced.
-   ========================================================= */
-@import url("../kinetic.css");
+/* meat-thawing-planner - page styles. Loads after /css/tokens.css, /css/components.css and /css/tools.css.
+   Moved here from the page's <style> block with values converted to Ledger tokens. */
+
+.page.tool-shell { max-width: 920px; padding-top: 28px; }
+.tool-shell .hero { padding-left: 0; padding-right: 0; }
+.tool-controls { display: flex; justify-content: flex-start; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+.net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
+.net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
+.net-band h2 .lbl { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent); }
+.net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.net-grid .gear-img-wrapper { height: 120px; }
+@media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
+/* ---- Reference tables ---- */
+.ref-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ref-table th { text-align: left; font-family: var(--font-ui); font-weight:600; font-size: 11px; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line-2); }
+.ref-table td { padding: 8px 12px 8px 0; line-height: 1.5; color: var(--ink); border-bottom: 1px solid var(--line); }

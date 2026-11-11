@@ -10,6 +10,18 @@
 ::view-transition-new(root) { z-index: 1; }
 ::view-transition-old(root) { z-index: 0; }
 
+/* --- dark = the zodiac edition from the main site (data-theme="cosmic" in tokens.css):
+       indigo ground, gold signal, the nebula glow fixed behind the page, translucent sheets.
+       No star field. kinetic.js sets the attribute when the visitor picks Dark. ------------- */
+[data-theme="cosmic"] body { position: relative; isolation: isolate; }
+[data-theme="cosmic"] body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(55% 45% at 72% 18%, var(--nebula-1), transparent 62%),
+    radial-gradient(40% 38% at 18% 78%, var(--nebula-2), transparent 62%),
+    radial-gradient(30% 30% at 55% 60%, var(--nebula-3), transparent 60%); }
+[data-theme="cosmic"] :is(.card, .panel, .glass, .glass-panel, .faq details) { background: rgba(18,20,58,.72); border-color: var(--line-2); }
+[data-theme="cosmic"] .card__foot { background: rgba(26,29,77,.7); }
+
 /* --- top bar: wordmark + line tag, theme switch ---------------------------- */
 .tk-nav { position: static; }
 .tk-brand { display: flex; align-items: center; gap: var(--space-4); min-width: 0; }
@@ -70,4 +82,261 @@ a.card:hover .card-arrow { transform: translateX(4px); }
   .hub-stats .stat b { font-size: 1.625rem; }
   .hub-stats .stat span { font-size: var(--text-label); }
   .tk-foot__cols { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   TOOL PAGES
+   The 34 tools keep their markup and class names (their scripts build and
+   query by them). This layer is the old shared stylesheet re-drawn in Ledger:
+   same selectors and layout, new skin. Each tool's own rules live in its
+   <tool>/styles.css, which loads after this file.
+   ========================================================================== */
+
+/* --- tokens the tools use that Ledger does not define ---------------------------- */
+:root { --warn: #8a5a0b; --r-xs: 6px; --text: var(--ink); --text-soft: var(--muted); }
+[data-theme="cosmic"] { --warn: #e0b85a; }
+
+/* --- element defaults: the tools were built without heading margins or a text measure --- */
+:where(.tool-shell, .net-band) :is(h1, h2, h3, h4) { margin: 0; color: inherit; }
+:where(.tool-shell, .net-band, .footer) p { max-width: none; margin: 1em 0; color: inherit; }
+/* links that are whole cards or rows keep the text colour of what they wrap */
+a.anatomy-row, a.glass, a.glass-lite, .gear-item, .funnel { color: inherit; font-weight: 400; }
+a.anatomy-row:hover, a.glass:hover, a.glass-lite:hover, .gear-item:hover { text-decoration: none; }
+
+/* --- top bar on a tool page: the back link sits between the brand and the switch -------- */
+.tk-nav .tn-back { margin-left: auto; padding: 8px 12px; border-radius: var(--r-s); font-size: var(--text-small); font-weight: 500; color: var(--muted); white-space: nowrap; }
+.tk-nav .tn-back:hover { color: var(--ink); background: var(--surface-2); text-decoration: none; }
+
+/* --- page shell ------------------------------------------------------------------------- */
+.page { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 48px 28px 80px; }
+.net-band { max-width: 920px; margin: 48px auto 0; padding: 0 24px; }
+.wash, .grain { display: none !important; }
+
+/* --- surfaces: every stacked panel is a Ledger panel ------------------------------------ */
+.glass, .glass-panel { position: relative; background: var(--surface); border: var(--hair); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: 24px 26px; }
+.glass > * { position: relative; z-index: 1; }
+.glass-lite { position: relative; background: var(--surface-2); border: var(--hair); border-radius: var(--r-s); }
+
+/* --- hero (tool header panel) -------------------------------------------------------------- */
+.hero { display: flex; align-items: flex-start; gap: 28px; flex-wrap: wrap; padding: 40px 40px 36px; margin-bottom: 28px; }
+.hero.glass { gap: 24px; }
+.hero h1 { font-size: clamp(34px, 5vw, 52px); letter-spacing: var(--tracking-display); line-height: 1; margin: 0 0 14px; }
+.hero .meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+.hero .meta .pill, .hero .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 0; border-radius: var(--r-pill); background: var(--surface-2); color: var(--muted); font-weight: 600; }
+.hero .meta .pill.live, .hero .pill.live { background: var(--accent-soft); color: var(--accent); }
+.hero p { font-size: 16px; color: var(--muted); max-width: 64ch; margin: 0; }
+
+/* --- segmented unit toggle: same look as the theme switch --------------------------------- */
+.tynkr-unit-toggle-wrapper { display: inline-flex; gap: 0; padding: 3px; margin-left: 0; border: var(--hair); border-radius: var(--r-s); background: var(--surface-2); }
+.tynkr-unit-btn { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 0; border-radius: 6px; background: transparent; color: var(--muted); cursor: pointer; font-family: var(--font-ui); font-size: var(--text-small); font-weight: 500; }
+.tynkr-unit-btn:hover { color: var(--ink); }
+.tynkr-unit-btn.active { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+
+/* --- buttons: .btn comes from components.css; these are the tools' other button names ------ */
+.primary-btn, .action-btn, .affiliate-btn, .scale-btn, button.glass-lite { font-family: var(--font-ui); font-weight: 600; letter-spacing: -0.005em; cursor: pointer; border-radius: var(--r-s); box-shadow: var(--shadow); transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.btn.primary, .primary-btn, .affiliate-btn, .scale-btn.active { background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); }
+.btn.primary:hover, .primary-btn:hover, .affiliate-btn:hover, .gear-item:hover .affiliate-btn { background: #2f5470; border-color: #2f5470; color: #fff; }
+[data-theme="cosmic"] .btn.primary:hover, [data-theme="cosmic"] .primary-btn:hover, [data-theme="cosmic"] .affiliate-btn:hover, [data-theme="cosmic"] .gear-item:hover .affiliate-btn { background: #ffd98a; border-color: #ffd98a; color: #1a1200; }
+.primary-btn { padding: 13px 22px; font-size: 15px; }
+.primary-btn:hover, .action-btn:hover, .scale-btn:hover, button.glass-lite:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.action-btn { flex: 1; padding: 12px 16px; font-size: 14px; background: var(--surface); color: var(--ink); border: 1px solid var(--line-2); }
+.action-btn:hover, .scale-btn:hover { background: var(--surface-2); }
+.affiliate-btn { width: 100%; margin-top: 12px; padding: 11px 14px; font-size: 13px; text-align: center; }
+button.glass-lite { background: var(--surface) !important; color: var(--ink) !important; border: 1px solid var(--line-2) !important; }
+.scale-buttons { display: flex; gap: 8px; }
+.scale-btn { padding: 9px 16px; font-size: 14px; background: var(--surface); color: var(--ink); border: 1px solid var(--line-2); }
+
+/* --- form fields: the Ledger input ---------------------------------------------------------- */
+.input-group { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.input-group label, .input-label { font-size: var(--text-small); font-weight: 600; color: var(--ink); }
+.form-input, .input-group input, .input-group select, textarea { width: 100%; padding: 11px 14px; border: 1px solid var(--line-2); border-radius: var(--r-s); background: var(--surface); color: var(--ink); font-family: var(--font-ui); font-size: var(--text-ui); outline: none; box-shadow: inset 0 1px 2px rgba(39,52,63,.05); transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
+.form-input:focus, .input-group input:focus, .input-group select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+select.form-input, .input-group select { appearance: none; -webkit-appearance: none; cursor: pointer; }
+select.form-input option, select.form-input optgroup, .input-group select option, .input-group select optgroup { background-color: var(--surface); color: var(--ink); }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type=number] { -moz-appearance: textfield; }
+input[type="range"].form-input-range { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; padding: 0; margin: 10px 0; border: 0; border-radius: 99px; background: var(--surface-3); box-shadow: none; outline: none; }
+input[type="range"].form-input-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); box-shadow: var(--shadow); cursor: pointer; transition: transform var(--t-fast) var(--ease); }
+input[type="range"].form-input-range::-webkit-slider-thumb:hover { transform: scale(1.12); }
+input[type="range"].form-input-range::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); cursor: pointer; }
+
+/* --- panel label ------------------------------------------------------------------------------ */
+.type-card .role, .role { display: inline-block; margin-bottom: 16px; font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent); }
+
+/* --- shared blocks the tool pages repeat ------------------------------------------------------ */
+.note { font-size: 13px; color: var(--muted); margin-top: 16px; line-height: 1.5; }
+.tool-shell .prose { margin-top: 40px; max-width: none; font-size: var(--text-body); }
+.tool-shell .prose h2 { font-size: clamp(24px, 4vw, 32px); margin: 0 0 12px; }
+.tool-shell .prose h3 { font-size: 18px; margin: 26px 0 6px; }
+.tool-shell .prose p { line-height: 1.6; margin: 0 0 12px; max-width: 70ch; }
+.tool-shell .faq { margin-top: 30px; }
+.tool-shell .faq details p { max-width: 70ch; margin: 0; }
+.funnel { display: block; margin-top: 22px; padding: 20px 22px; border: var(--hair); border-radius: var(--r); background: var(--surface-2); color: inherit; box-shadow: var(--shadow); transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease); }
+.funnel:hover { text-decoration: none; transform: translateY(-2px); box-shadow: var(--shadow-lg); border-color: var(--line-2); }
+.funnel .eyebrow { margin-bottom: 8px; }
+.funnel h2, .funnel h3 { margin: 0 0 6px; font-size: 21px; color: var(--ink); }
+.funnel p { margin: 0; color: var(--muted); font-size: 14.5px; max-width: 60ch; }
+.funnel .go { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: var(--text-small); font-weight: 600; color: var(--accent); }
+
+/* "At a glance" fact table */
+.glance { margin: 18px 0 24px; padding: 20px 24px; text-align: left; }
+.glance--flush { margin-top: 0; }
+.glance h2 { font-size: 20px; margin: 0 0 12px; }
+.glance__scroll { overflow-x: auto; }
+.glance table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.glance th { padding: 10px 14px 10px 0; border-bottom: var(--hair); text-align: left; vertical-align: top; white-space: nowrap; font-size: 11px; font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); }
+.glance td { padding: 10px 0; border-bottom: var(--hair); line-height: 1.55; color: var(--ink); }
+.glance tr:last-child th, .glance tr:last-child td { border-bottom: 0; }
+
+/* network rows under a tool */
+.net-band .section-title { margin: 0; font-size: clamp(20px, 3vw, 26px); }
+.net-rows { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 16px; }
+.net-rows a, .net-rows a:hover { text-decoration: none; }
+
+/* --- tool footer: disclaimer and legal line, plain (not the main site's navy block) ----------- */
+.footer { max-width: 920px; margin: 30px auto 0; padding: 24px; background: none; border-top: var(--hair); color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+.footer p { color: var(--muted); }
+.footer a { color: var(--ink); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.footer a:hover { color: var(--accent); text-decoration: underline; }
+.studio-links { max-width: 720px; margin: 22px auto 0; padding-top: 16px; border-top: var(--hair); display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 8px 16px; font-size: 11px; }
+.studio-links span { font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; }
+.studio-links a, .studio-links a:hover { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* --- result panels, compare columns, sidebar cards, recipe and timeline blocks:
+   the old shared rules with values converted to Ledger tokens (layout unchanged) --- */
+/* ===========================================================
+   ANATOMY / RESULT PANELS
+   =========================================================== */
+.anatomy {
+  display: grid; grid-template-columns: 1fr minmax(0,1fr); gap: 22px;
+  padding: 24px 24px 28px;
+}
+.anatomy-stage {
+  position: relative; border: 1px solid var(--line-2); border-radius: var(--r-s);
+  background:
+    repeating-linear-gradient(0deg, color-mix(in oklab, var(--line) 60%, transparent) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--line) 60%, transparent) 0 1px, transparent 1px 26px),
+    var(--surface-2) !important;
+}
+.anatomy-labels { display: flex; flex-direction: column; gap: 14px; }
+.anatomy-row {
+  padding: 14px 16px; display: grid; grid-template-columns: 38px minmax(0,1fr) auto;
+  gap: 14px; align-items: center;
+  border: 1px solid var(--line); border-radius: var(--r-s); background: var(--surface-2);
+  transition: transform .15s var(--ease), border-color .15s var(--ease);
+}
+.anatomy-row:hover { transform: translateX(4px); border-color: var(--line-2); }
+.anatomy-row .ix {
+  width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+  background: var(--accent-soft); color: var(--accent);
+  font-family: var(--font-mono); font-size: 14px; font-weight: 600;
+}
+.anatomy-row h2, .anatomy-row h3, .anatomy-row h4 { font-family: var(--font-ui); font-size: 13.5px; font-weight: 700; margin: 0 0 2px; }
+.anatomy-row p { font-size: 12px; color: var(--muted); margin: 0; }
+.anatomy-row code {
+  font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  background: transparent; color: var(--ink); padding: 0; white-space: nowrap;
+}
+
+/* ===========================================================
+   COMPARE COLUMNS (meat-thawing)
+   =========================================================== */
+.compare { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; }
+.compare .col { padding: 22px 24px 26px; border-radius: var(--r-s); }
+.compare .col.yes { border: 1px solid var(--accent); }
+.compare .col.no  { border: 1px dashed color-mix(in oklab, var(--neg) 55%, var(--line-2)); }
+.compare h2, .compare h3 { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; margin: 0 0 12px; }
+.compare .col.yes h2, .compare .col.yes h3 { color: var(--accent); }
+.compare .col.no h2, .compare .col.no h3 { color: var(--neg); }
+.compare ul { list-style: none; padding: 0; margin: 0; }
+.compare li { padding: 9px 0; font-size: 14px; color: var(--ink); border-bottom: 1px solid var(--line); }
+.compare li:last-child { border-bottom: 0; }
+.compare li::before { display: inline-block; width: 20px; font-family: var(--font-mono); font-weight: 600; }
+.compare .yes li::before { content: "+"; color: var(--accent); }
+.compare .no li::before { content: "x"; color: var(--neg); }
+
+/* details quick-ref (pan-swap) */
+details.glass-lite { background: var(--surface-2); border: 1px solid var(--line-2); }
+details.glass-lite summary { font-family: var(--font-display); }
+
+/* ===========================================================
+   SIDEBAR — Featured Network
+   =========================================================== */
+.sidebar { display: flex; flex-direction: column; gap: 1.25rem; height: fit-content; }
+.sidebar h2 {
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 800;
+  border-bottom: 1px solid var(--line-2); padding-bottom: 0.5rem; margin: 0 0 0.5rem;
+}
+.gear-item {
+  display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem;
+  border: 1px solid var(--line-2); border-radius: var(--r); background: var(--surface);
+  box-shadow: var(--shadow); text-decoration: none; color: inherit; overflow: hidden;
+  transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+}
+.gear-item:hover { transform:translateY(-1px); box-shadow: var(--shadow-lg); background: var(--surface); }
+.gear-img-wrapper {
+  height: 150px; width: 100%; border-radius: var(--r-s); position: relative; overflow: hidden;
+  border: 1px solid var(--line-2);
+}
+.gear-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gear-img-wrapper::after { content: none; }
+.gear-info h3, .gear-info h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--ink); margin: 0 0 0.25rem; }
+.gear-info p { font-size: 0.85rem; color: var(--muted); line-height: 1.45; margin: 0; }
+.calculator-section, .scaler-section { display: flex; flex-direction: column; gap: 2rem; }
+.controls-card { padding: 1.5rem; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center; }
+.custom-scale { display: flex; gap: 1rem; align-items: flex-end; }
+.input-group input[type="number"] { width: 90px; text-align: center; }
+.recipe-workarea { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.input-area { display: flex; flex-direction: column; gap: 0.5rem; }
+.input-area label { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+textarea { height: 400px; resize: vertical; line-height: 1.6; }
+.output-area { padding: 1.5rem; }
+.output-area h2 {
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; margin: 0 0 1rem;
+  border-bottom: 1px solid var(--line-2); padding-bottom: 0.5rem;
+}
+.scaled-results { white-space: pre-wrap; font-size: 1.05rem; line-height: 1.6; }
+.scaled-results .highlight {
+  color: var(--accent-ink) !important; font-weight: 700;
+  background: var(--accent); padding: 1px 6px; border-radius: 5px;
+}
+.placeholder-text { color: var(--muted); font-style: italic; }
+.tips-section { padding: 1.5rem; }
+.tips-section h2 {
+  font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; margin: 0 0 1rem;
+  border-bottom: 1px solid var(--line-2); padding-bottom: 0.5rem;
+}
+.action-buttons { display: flex; gap: 1rem; margin-top: 1.5rem; border-top: 1px solid var(--line); padding-top: 1.5rem; }
+.recipe-line { display: flex; align-items: flex-start; gap: 0.8rem; cursor: pointer; margin-bottom: 0.5rem; padding: 0.2rem 0; }
+.recipe-line.fractional-egg-row { border-left: 3px solid var(--accent); padding-left: 0.8rem; background: var(--surface-2); border-radius: 6px; }
+.recipe-line input[type="checkbox"] { margin-top: 0.35rem; cursor: pointer; accent-color: var(--accent); width: 17px; height: 17px; }
+.recipe-line .recipe-text { flex: 1; transition: opacity .2s, text-decoration .2s; }
+.recipe-line input[type="checkbox"]:checked + .recipe-text { text-decoration: line-through; opacity: 0.5; }
+
+/* timeline (reverse roasting) */
+.timeline-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin: 0 0 1.5rem; padding: 0; }
+.timeline-list li { display: flex; flex-direction: column; background: var(--surface-2); border: 1px solid var(--line-2); padding: 1rem 1.1rem; border-radius: var(--r-s); }
+.timeline-list li.placeholder-text { align-items: center; color: var(--muted); font-style: italic; background: transparent; border: 1px dashed var(--line); }
+.timeline-step { font-family: var(--font-ui); font-size: 0.78rem; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--accent); font-weight: 600; margin-bottom: 0.25rem; }
+.timeline-time { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.2rem; }
+.timeline-desc { font-size: 0.95rem; color: var(--muted); }
+.disclaimer { font-size: 0.82rem; color: var(--muted); text-align: center; margin: 1.5rem auto 0.5rem; max-width: 800px; }
+
+/* --- responsive (tool pages) -------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .recipe-workarea { grid-template-columns: 1fr; }
+  .controls-card { flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 880px) {
+  .compare, .anatomy { grid-template-columns: 1fr; }
+  .hero { flex-direction: column; padding: 30px 26px; }
+}
+@media (max-width: 560px) {
+  .tk-nav .wrap { flex-wrap: wrap; }
+  .tk-nav .tn-back { order: 3; flex-basis: 100%; margin-left: 0; padding: 4px 0; }
+}
+
+/* keep the fluid-height behavior the tools rely on */
+.glass, .glass-panel, .anatomy, .compare, .col, .type-card, .anatomy-stage, .anatomy-labels, .output-area, .controls-card {
+  height: auto; max-height: none; overflow: visible;
 }
