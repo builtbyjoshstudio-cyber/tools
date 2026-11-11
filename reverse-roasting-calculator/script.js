@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------------------------------------------------------
     // Theme Management
     // ---------------------------------------------------------
-    // Theme (Light / Mist / Dark) handled globally by ../kinetic.js
+    // Theme (Light / Dark) handled globally by ../kinetic.js
 
     // ---------------------------------------------------------
     // Data Dictionary

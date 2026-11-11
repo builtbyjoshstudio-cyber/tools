@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -117,30 +117,12 @@
     }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-    <link rel="stylesheet" href="../kinetic.css">
+    <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/tools.css">
     <link rel="stylesheet" href="styles.css">
 
-    <style>
-      /* ---- Tool shell modifications ---- */
-      .tool-nav { max-width: 1100px; margin: 0 auto; padding: 26px 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-      .tn-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-      .tn-back { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 2px solid var(--line-2); border-radius: var(--r-s); padding: 8px 13px; box-shadow: 3px 3px 0 var(--shadow); display: inline-flex; align-items: center; gap: 8px; transition: transform .15s var(--ease), box-shadow .15s var(--ease); }
-      .tn-back:hover { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--shadow); }
-      .tn-brand { display: inline-flex; align-items: center; gap: 10px; }
-      .tn-brand .name { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
-      .tn-brand .name b { color: var(--ink); font-weight: 600; }
-      .page.tool-shell { max-width: 1100px; padding-top: 28px; }
-      .tool-shell .hero { padding-left: 0; padding-right: 0; }
-      .net-band { max-width: 1100px; margin: 56px auto 0; padding: 0 28px; }
-      .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 2px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
-      .net-band h2 .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-      .net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-      .net-grid .gear-img-wrapper { height: 120px; }
-      @media (max-width: 760px) { .net-grid { grid-template-columns: 1fr; } }
-    </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -149,18 +131,17 @@
 </head>
 <body>
 
-<nav class="tool-nav">
-  <div class="tn-left">
+<nav class="nav tk-nav tool-nav">
+  <div class="wrap">
+    <div class="tk-brand">
+      <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+      <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
+    </div>
     <a class="tn-back" href="../">&larr; All tools</a>
-    <span class="tn-brand">
-      <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-      <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-    </span>
-  </div>
-  <div class="theme-switch" role="group" aria-label="Theme">
-    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+    <div class="switch" role="group" aria-label="Theme">
+      <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+      <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+    </div>
   </div>
 </nav>
 
@@ -267,8 +248,8 @@
         </div>
 
         <!-- Custom Active List -->
-        <div id="custom-active-container" style="display: none; margin-top: 18px; padding-top: 14px; border-top: 2px solid var(--line);">
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px;">Active Custom Ingredients</div>
+        <div id="custom-active-container" style="display: none; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);">
+          <div style="font-family: var(--font-ui); font-weight:600; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px;">Active Custom Ingredients</div>
           <div id="custom-active-list" style="display: flex; flex-direction: column; gap: 8px;"></div>
         </div>
       </div>
@@ -279,7 +260,7 @@
         <div id="ambiguous-warnings" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px;"></div>
         
         <div id="unmatched-container" style="display: none;">
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px;">Unmatched Lines (Not Calculated)</div>
+          <div style="font-family: var(--font-ui); font-weight:600; font-size: 11px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px;">Unmatched Lines (Not Calculated)</div>
           <ul id="unmatched-list" style="padding-left: 18px; font-size: 13px; line-height: 1.5; color: var(--muted); margin: 0;"></ul>
         </div>
       </div>
@@ -292,12 +273,12 @@
       <div class="glass type-card" style="margin-bottom: 24px; padding: 20px;">
         <div class="role" style="margin-bottom: 14px;">Nutrition Summary (<span id="summary-mode-title">Per Serving</span>)</div>
         
-        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 2px solid var(--line);">
-          <div style="font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Estimated Calories</div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line);">
+          <div style="font-family: var(--font-ui); font-weight:600; font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: var(--tracking-label);">Estimated Calories</div>
           <div id="stat-calories" style="font-family: var(--font-display); font-size: 42px; font-weight: 800; color: var(--accent); line-height: 1;">0</div>
         </div>
 
-        <div style="font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.05em;">Macro Calorie Splits (4-4-9 kcal/g)</div>
+        <div style="font-family: var(--font-ui); font-weight:600; font-size: 11.5px; color: var(--muted); text-transform: uppercase; margin-bottom: 12px; letter-spacing: var(--tracking-label);">Macro Calorie Splits (4-4-9 kcal/g)</div>
         
         <div class="macro-chart-container">
           <div class="macro-ratio-bar">
@@ -307,15 +288,15 @@
           </div>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px;">
             <div style="border-left: 3px solid #3b82f6; padding-left: 8px;">
-              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase;">Protein</div>
+              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-ui); font-weight:600; text-transform: uppercase;">Protein</div>
               <div id="label-protein-kcal" style="font-size: 15px; font-weight: 700;">0 kcal (0%)</div>
             </div>
             <div style="border-left: 3px solid #10b981; padding-left: 8px;">
-              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase;">Carbs</div>
+              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-ui); font-weight:600; text-transform: uppercase;">Carbs</div>
               <div id="label-carbs-kcal" style="font-size: 15px; font-weight: 700;">0 kcal (0%)</div>
             </div>
             <div style="border-left: 3px solid #f59e0b; padding-left: 8px;">
-              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase;">Fat</div>
+              <div style="font-size: 11px; color: var(--muted); font-family: var(--font-ui); font-weight:600; text-transform: uppercase;">Fat</div>
               <div id="label-fat-kcal" style="font-size: 15px; font-weight: 700;">0 kcal (0%)</div>
             </div>
           </div>
@@ -381,7 +362,7 @@
   </div>
 
   <div class="glass" style="margin-bottom: 24px; padding: 24px; text-align: center;">
-    <h3 style="font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
+    <h3 style="font-family: var(--font-ui); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: var(--tracking-label); color: var(--muted); margin: 0 0 14px;">Next Steps for Your Cook</h3>
     <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
       <a id="pipeline-link-scaler" href="../universal-recipe-scaler/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want to convert weights or change portions? Use the Universal Recipe Scaler &rarr;</a>
       <a id="pipeline-link-cost" href="../cost-per-serving-calculator/" style="color: var(--accent); text-decoration: none; font-weight: 600;">Want to price your recipe? Calculate unit economics with the Cost Per Serving Calculator &rarr;</a>
@@ -389,15 +370,15 @@
   </div>
 
   <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <div class="glass glance glance--flush">
+    <h2>At a glance</h2>
+    <div class="glance__scroll">
+    <table>
       <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Estimates per-serving nutrition for any recipe from its ingredient list.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Recipe servings and each ingredient's name and weight in grams; macro entry per 100 g or for the full weight (calories, protein, carbs, fat, fiber, sodium).</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Per-serving calories and macro split plus an Estimated Nutrition Facts label, with gaps flagged where an ingredient needs manual numbers.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
+        <tr><th>What it does</th><td>Estimates per-serving nutrition for any recipe from its ingredient list.</td></tr>
+        <tr><th>Inputs</th><td>Recipe servings and each ingredient's name and weight in grams; macro entry per 100 g or for the full weight (calories, protein, carbs, fat, fiber, sodium).</td></tr>
+        <tr><th>Outputs</th><td>Per-serving calories and macro split plus an Estimated Nutrition Facts label, with gaps flagged where an ingredient needs manual numbers.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded.</td></tr>
       </tbody>
     </table>
     </div>
@@ -409,7 +390,7 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Calculating recipe nutrition is an essential tool for meal prepping and recipe formulation, but it's important to treat the outputs as estimates. Whole foods vary significantly in calorie density depending on soil conditions, climate, brand processing variations, and moisture level changes during cooking. For example, raw grains double or triple in weight when cooked because they absorb water, which has zero calories but dilutes the nutrient density per gram.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">To ensure the best possible calculations, always specify whether you are measuring dry ingredients or cooked ingredients (such as dry rice vs cooked rice), and make sure that you parse line weights correctly. Unmatched items should be manually entered using custom inputs to capture brand-specific nutrition labels correctly.</p>
 
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 2px solid var(--line-2);">Frequently Asked Questions</h2>
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Why does raw vs cooked state matter for rice and meats?</h3>
@@ -474,16 +455,16 @@
   </div>
 </section>
 
-<footer class="footer" style="text-align: center; font-family: var(--font-mono); font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
+<footer class="footer" style="text-align: center; font-size: 11px; color: var(--muted); padding: 32px 20px; margin-top: 48px; line-height: 1.6; max-width: 720px; margin-left: auto; margin-right: auto;">
   <p style="margin-bottom: 12px;">These tools provide estimates for planning purposes. Always use a food thermometer to confirm doneness, and follow current USDA food-safety guidance for cooking, thawing, and storing food.</p>
   <p style="margin: 0;">&copy; 2026 Built by Josh Studio LLC. All rights reserved. Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
-  <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
-    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+  <nav aria-label="More from Built by Josh Studio" class="studio-links">
+    <span>More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a>
   </nav>
 </footer>
 

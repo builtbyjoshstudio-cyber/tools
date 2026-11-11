@@ -1,1 +1,73 @@
-@import url("../kinetic.css");
+/* freelance-rate-calculator - page styles. Loads after /css/tokens.css, /css/components.css and /css/tools.css.
+   Moved here from the page's <style> block with values converted to Ledger tokens. */
+
+.page.tool-shell { max-width: 920px; margin: 0 auto; padding: 24px; }
+.hero h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.02; margin: 0 0 10px; }
+.hero p { color: var(--muted); margin: 0; max-width: 60ch; }
+
+.tool-controls { margin: 22px 0 8px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 18px; }
+@media (min-width: 720px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+.role {
+  font-family: var(--font-ui); font-weight:600; font-size: 12px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+}
+
+.anatomy-stage {
+  display: flex; flex-direction: column; gap: 4px;
+  padding-bottom: 18px; margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.anatomy-stage .stage-label {
+  font-family: var(--font-ui); font-weight:600; font-size: 12px; letter-spacing: var(--tracking-label);
+  text-transform: uppercase; color: var(--muted);
+}
+.anatomy-stage .stage-value {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(40px, 8vw, 64px); line-height: 1; color: var(--accent);
+}
+.anatomy-stage .stage-sub { font-size: 14px; color: var(--muted); }
+
+.anatomy-labels { display: flex; flex-direction: column; gap: 10px; }
+.anatomy-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 14px;
+}
+.anatomy-row .ix {
+  flex: 0 0 auto; width: 34px; height: 34px; border-radius: var(--r-s);
+  display: grid; place-items: center;
+  border: 1px solid var(--line-2); color: var(--ink);
+  font-family: var(--font-mono); font-size: 13px;
+}
+.anatomy-row .lbl { flex: 1 1 auto; min-width: 0; }
+.anatomy-row .lbl h2, .anatomy-row .lbl h3, .anatomy-row .lbl h4 { margin: 0; font-size: 15px; }
+.anatomy-row .lbl p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
+.anatomy-row code {
+  font-family: var(--font-mono); font-size: 16px; color: var(--ink);
+  white-space: nowrap;
+}
+.anatomy-row.is-accent code { color: var(--accent); }
+.anatomy-row.is-pos code { color: var(--pos); }
+
+.tool-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+.tool-actions .btn { font-size: 13px; padding: 10px 16px; }
+.copy-status { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+.net-band { max-width: 920px; margin: 64px auto 0; padding: 0 28px; }
+.net-band h2 {
+  font-family: var(--font-display); font-weight: 800; font-size: 20px;
+  letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-2);
+  display: flex; align-items: baseline; gap: 12px;
+}
+.net-band h2 .lbl {
+  font-family: var(--font-ui); font-size: 11px; font-weight: 600;
+  letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent);
+}
+.net-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.net-grid .gear-img-wrapper { height: 120px; }
+@media (max-width: 760px) {
+  .net-grid { grid-template-columns: 1fr; }
+}

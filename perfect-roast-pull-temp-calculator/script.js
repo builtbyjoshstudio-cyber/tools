@@ -1,4 +1,4 @@
-// Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
+// Theme (Light / Dark) is handled globally by ../kinetic.js
 // — unified 3-mode switch with View-Transition wipe.
 
 // DOM Elements

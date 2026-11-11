@@ -18,7 +18,7 @@ function getToolUrl(toolId, params = {}) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Theme (Light / Mist / Dark) is handled globally by ../kinetic.js
+    // Theme (Light / Dark) is handled globally by ../kinetic.js
 
     // Inputs
     const brineTypeWetBtn = document.getElementById("brine-type-wet");

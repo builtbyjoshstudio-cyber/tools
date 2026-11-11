@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -133,88 +133,12 @@
   <meta name="twitter:description" content="Real profit per sale after platform fees — margin, markup, break-even, and the price for your target margin. Free, ad-free.">
   <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/profit-margin-calculator/og-preview.jpg">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/tools.css">
   <link rel="stylesheet" href="styles.css">
 
-  <style>
-    /* ===== Tool-local shell (mirrors house tools) ===== */
-    .tool-nav { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; max-width:920px; margin:0 auto; padding:22px 24px 0; }
-    .tn-left { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
-    .tn-back { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r-s); padding:8px 12px; background:var(--surface); box-shadow:3px 3px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
-    .tn-back:hover { transform:translate(2px,2px); box-shadow:1px 1px 0 var(--shadow); }
-    .tn-brand { display:inline-flex; align-items:center; gap:9px; }
-    .tn-brand .name { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; color:var(--muted); }
-    .tn-brand .name b { color:var(--ink); }
-
-    .page.tool-shell { max-width:920px; margin:0 auto; padding:24px; }
-
-    .hero.glass { display:flex; gap:24px; align-items:flex-start; }
-    .hero .meta { display:flex; gap:12px; align-items:center; flex-wrap:wrap; font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
-    .hero .pill { display:inline-flex; align-items:center; gap:6px; border:2px solid var(--line-2); border-radius:999px; padding:4px 10px; color:var(--ink); }
-    .hero .pill.live { color:var(--accent); }
-    .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
-    .hero p { color:var(--muted); margin:0; max-width:60ch; }
-
-    .role { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
-
-    .controls-4 { display:grid; grid-template-columns:1fr; gap:18px; }
-    @media (min-width:620px){ .controls-4 { grid-template-columns:repeat(2,1fr); } }
-    @media (min-width:860px){ .controls-4 { grid-template-columns:repeat(4,1fr); } }
-    .controls-extra { margin-top:18px; }
-    .tool-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
-    .tool-status { font-family:var(--font-mono); font-size:12px; letter-spacing:.04em; color:var(--muted); }
-
-    /* hero readout */
-    .anatomy-stage { display:flex; flex-direction:column; gap:4px; padding-bottom:18px; margin-bottom:18px; border-bottom:2px solid var(--line); }
-    .anatomy-stage .stage-label { font-family:var(--font-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-    .anatomy-stage .stage-value { font-family:var(--font-display); font-weight:800; font-size:clamp(40px,8vw,64px); line-height:1; color:var(--accent); }
-    .anatomy-stage .stage-sub { font-size:14px; color:var(--muted); max-width:62ch; }
-
-    .stat-trio { display:grid; grid-template-columns:1fr; gap:10px; }
-    @media (min-width:560px){ .stat-trio { grid-template-columns:repeat(3,1fr); } }
-    .stat-cell { padding:14px 16px; }
-    .stat-cell .k { font-family:var(--font-mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
-    .stat-cell .v { font-family:var(--font-display); font-weight:800; font-size:22px; }
-    .stat-cell.pos .v { color:var(--pos); }
-    .stat-cell.neg .v { color:var(--neg); }
-
-    .anatomy-labels { display:flex; flex-direction:column; gap:10px; }
-    .anatomy-row { display:flex; align-items:center; gap:14px; padding:12px 14px; }
-    .anatomy-row .ix { flex:0 0 auto; width:34px; height:34px; border-radius:var(--r-s); display:grid; place-items:center; border:2px solid var(--line-2); color:var(--ink); font-family:var(--font-mono); font-size:13px; }
-    .anatomy-row .lbl { flex:1 1 auto; min-width:0; }
-    .anatomy-row .lbl h2, .anatomy-row .lbl h3, .anatomy-row .lbl h4 { margin:0; font-size:15px; }
-    .anatomy-row .lbl p { margin:2px 0 0; font-size:12.5px; color:var(--muted); }
-    .anatomy-row code { font-family:var(--font-mono); font-size:14px; color:var(--ink); white-space:nowrap; }
-
-    .note { font-size:13px; color:var(--muted); margin-top:16px; line-height:1.5; }
-
-    /* funnel CTA */
-    .funnel { margin-top:22px; display:block; text-decoration:none; border:2px solid var(--line-2); border-radius:var(--r); background:var(--surface-2); padding:20px 22px; box-shadow:6px 6px 0 var(--shadow); transition:transform .15s var(--ease), box-shadow .15s var(--ease); }
-    .funnel:hover { transform:translate(3px,3px); box-shadow:2px 2px 0 var(--shadow); }
-    .funnel .eyebrow { font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
-    .funnel h2, .funnel h3 { margin:0 0 6px; font-size:21px; color:var(--ink); }
-    .funnel p { margin:0; color:var(--muted); font-size:14.5px; max-width:60ch; }
-    .funnel .go { display:inline-flex; align-items:center; gap:8px; margin-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:.04em; text-transform:uppercase; color:var(--ink); }
-
-    .prose { margin-top:40px; }
-    .prose h2 { font-size:clamp(24px,4vw,32px); margin:0 0 12px; }
-    .prose h3 { font-size:18px; margin:26px 0 6px; }
-    .prose p { color:var(--muted); line-height:1.6; margin:0 0 12px; max-width:70ch; }
-
-    .faq { margin-top:30px; }
-    .faq details { border-bottom:2px solid var(--line); padding:14px 0; }
-    .faq summary { cursor:pointer; font-family:var(--font-display); font-weight:700; font-size:17px; color:var(--ink); list-style:none; }
-    .faq summary::-webkit-details-marker { display:none; }
-    .faq summary::after { content:"+"; float:right; color:var(--muted); font-family:var(--font-mono); }
-    .faq details[open] summary::after { content:"–"; }
-    .faq p { color:var(--muted); line-height:1.6; margin:10px 0 0; max-width:70ch; }
-
-    .net-band { max-width:920px; margin:48px auto 0; padding:0 24px; }
-    .footer { max-width:920px; margin:30px auto 0; padding:24px; font-size:12.5px; color:var(--muted); line-height:1.6; }
-    .footer a { color:var(--ink); }
-  </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -223,18 +147,17 @@
 </head>
 <body>
 
-  <nav class="tool-nav">
-    <div class="tn-left">
+  <nav class="nav tk-nav tool-nav">
+    <div class="wrap">
+      <div class="tk-brand">
+        <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+        <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
+      </div>
       <a class="tn-back" href="../money/">&larr; All tools</a>
-      <span class="tn-brand">
-        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-      </span>
-    </div>
-    <div class="theme-switch" role="group" aria-label="Theme">
-      <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-      <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-      <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
+      <div class="switch" role="group" aria-label="Theme">
+        <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+        <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+      </div>
     </div>
   </nav>
 
@@ -310,7 +233,7 @@
       <p class="note">Required price = (cost + fixed fee) &divide; (1 &minus; fee% &minus; target margin%). Percentage fees scale with price, which is why the required price climbs faster than the margin target.</p>
       <a class="xlink" href="../invoice-generator/"
          style="display:inline-flex; align-items:center; gap:8px; margin-top:14px;
-                font-family:var(--font-mono); font-size:12px; letter-spacing:.03em;
+                font-family:var(--font-ui); font-weight:600; font-size:12px; letter-spacing:var(--tracking-label);
                 text-transform:uppercase; color:var(--accent); text-decoration:none;">
         Selling custom work? Bill it with the invoice generator &rarr;
       </a>
@@ -325,15 +248,15 @@
     </a>
 
   <!-- AT A GLANCE (P2-c) -->
-  <div class="glass" style="margin-top: 18px; margin-bottom: 24px; padding: 20px 24px; text-align: left;">
-    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">At a glance</h2>
-    <div style="overflow-x: auto;">
-    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+  <div class="glass glance">
+    <h2>At a glance</h2>
+    <div class="glance__scroll">
+    <table>
       <tbody>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">What it does</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Shows what a sale really leaves a seller after platform fees, and the price that hits a target margin.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Inputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Cost per unit, selling price, platform fees as % of price, and any fixed fee per sale.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap; border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Outputs</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink); border-bottom: 1px solid var(--line, rgba(128,128,128,0.18));">Profit per sale, profit margin, markup on cost (before fees), break-even price, and the exact price for your target margin.</td></tr>
-        <tr><th style="text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 10px 14px 10px 0; vertical-align: top; white-space: nowrap;">Cost &amp; privacy</th><td style="padding: 10px 0; line-height: 1.55; color: var(--ink);">Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded. Your numbers are saved in this browser only; Reset clears them.</td></tr>
+        <tr><th>What it does</th><td>Shows what a sale really leaves a seller after platform fees, and the price that hits a target margin.</td></tr>
+        <tr><th>Inputs</th><td>Cost per unit, selling price, platform fees as % of price, and any fixed fee per sale.</td></tr>
+        <tr><th>Outputs</th><td>Profit per sale, profit margin, markup on cost (before fees), break-even price, and the exact price for your target margin.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs entirely in your browser — nothing is uploaded. Your numbers are saved in this browser only; Reset clears them.</td></tr>
       </tbody>
     </table>
     </div>
@@ -377,14 +300,14 @@
   </main>
 
   <section class="net-band">
-    <h2 class="section-title" style="font-size:clamp(20px,3vw,26px);"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
-    <div style="display:grid; grid-template-columns:1fr; gap:10px; margin-top:16px;">
-      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener" style="text-decoration:none;">
+    <h2 class="section-title"><span class="num">&#8599;</span>Network<span class="rule"></span></h2>
+    <div class="net-rows">
+      <a class="glass-lite anatomy-row" href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">
         <div class="ix">JS</div>
         <div class="lbl"><h3>Josh Studio</h3><p>Workbooks, templates &amp; the Creator OS line</p></div>
         <code>&rarr;</code>
       </a>
-      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener" style="text-decoration:none;">
+      <a class="glass-lite anatomy-row" href="https://tynkrtoolsco.substack.com/" target="_blank" rel="noopener">
         <div class="ix">SS</div>
         <div class="lbl"><h3>Substack</h3><p>Notes on tools, money &amp; building solo</p></div>
         <code>&rarr;</code>
@@ -395,13 +318,13 @@
   <footer class="footer">
     <p>This calculator is for general informational and educational purposes only and is not financial, pricing, or tax advice. Platform fees vary by marketplace, plan, and payment method, and taxes on your profit are not included. Confirm fee rates against your platform's current fee schedule. Estimates only.</p>
     <p><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 · Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</p>
-    <nav aria-label="More from Built by Josh Studio" style="max-width:720px;margin:22px auto 0;padding-top:16px;border-top:1px solid var(--line,rgba(128,128,128,.2));display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;align-items:baseline;font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;font-size:11px;letter-spacing:.05em;">
-    <span style="text-transform:uppercase;letter-spacing:.14em;opacity:.85;">More from the studio:</span>
-    <a href="https://builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Built by Josh Studio</a>
-    <a href="https://tynkr.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tynkr apps</a>
-    <a href="https://tools.builtbyjoshstudio.com/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Kitchen tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/money/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Money tools</a>
-    <a href="https://tools.builtbyjoshstudio.com/tabletop/" style="color:inherit;text-decoration:none;opacity:.9;border-bottom:1px solid currentColor;">Tabletop tools</a>
+    <nav aria-label="More from Built by Josh Studio" class="studio-links">
+    <span>More from the studio:</span>
+    <a href="https://builtbyjoshstudio.com/">Built by Josh Studio</a>
+    <a href="https://tynkr.builtbyjoshstudio.com/">Tynkr apps</a>
+    <a href="https://tools.builtbyjoshstudio.com/">Kitchen tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/money/">Money tools</a>
+    <a href="https://tools.builtbyjoshstudio.com/tabletop/">Tabletop tools</a>
   </nav>
 </footer>
 
