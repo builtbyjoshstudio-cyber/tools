@@ -2,12 +2,12 @@
    TYNKR SERVICE WORKER — offline support for tools.builtbyjoshstudio.com
    · HTML and same-origin CSS/JS: network-first, so markup and the code that
      styles it always ship from the same deploy; the cache is the offline fallback
-   · Images and Google Fonts: stale-while-revalidate
+   · Images and fonts (self-hosted): stale-while-revalidate
    · Anything else (analytics, other origins) is left to the browser
    Registered from kinetic.js. Bump CACHE_VERSION to drop stale caches.
    ========================================================= */
 (function () {
-  var CACHE_VERSION = 'v2';
+  var CACHE_VERSION = 'v3';
   var PAGES = 'tynkr-pages-' + CACHE_VERSION;
   var ASSETS = 'tynkr-assets-' + CACHE_VERSION;
   var KEEP = [PAGES, ASSETS];
@@ -15,10 +15,12 @@
   /* Smallest shell that can still render offline: the kitchen hub — which is
      also the manifest start_url — plus the CSS and JS every page shares. */
   var SHELL_PAGES = ['/'];
-  var SHELL_ASSETS = ['/kinetic.css', '/kinetic.js'];
+  var SHELL_ASSETS = [
+    '/css/tokens.css', '/css/components.css', '/css/tools.css', '/kinetic.js',
+    '/fonts/PlusJakartaSans-Variable.woff2', '/css/fonts/jetbrains-mono-500-latin.woff2'
+  ];
 
   var CODE = /\.(css|js)$/;
-  var FONT_HOSTS = /^fonts\.(googleapis|gstatic)\.com$/;
 
   self.addEventListener('install', function (e) {
     e.waitUntil(
@@ -62,8 +64,7 @@
     return caches.open(ASSETS).then(function (cache) {
       return cache.match(req).then(function (hit) {
         var fresh = fetch(req).then(function (res) {
-          // opaque = a no-cors font stylesheet; still usable, so keep it
-          if (res && (res.ok || res.type === 'opaque')) cache.put(req, res.clone());
+          if (res && res.ok) cache.put(req, res.clone());
           return res;
         }).catch(function () { return hit || Response.error(); });
         if (hit) { e.waitUntil(fresh); return hit; }
@@ -78,14 +79,14 @@
       '<!doctype html><html lang="en"><meta charset="utf-8">' +
       '<meta name="viewport" content="width=device-width,initial-scale=1">' +
       '<title>Offline &mdash; Tynkr Tools &amp; Co</title>' +
-      '<body style="margin:0;background:#0c0c0f;color:#e8e8ea;' +
+      '<body style="margin:0;background:#ffffff;color:#27343f;' +
       'font:16px/1.6 system-ui,-apple-system,sans-serif">' +
       '<main style="max-width:34rem;margin:0 auto;padding:3rem 1.5rem">' +
       '<h1 style="font-size:1.5rem;margin:0 0 .75rem">You are offline</h1>' +
       '<p style="margin:0 0 1.5rem;opacity:.85">This page has not been opened on this ' +
       'device yet, so there is no saved copy to show. Tools you have already used ' +
       'still work offline.</p>' +
-      '<p style="margin:0"><a href="/" style="color:inherit">Go to the tools home page</a></p>' +
+      '<p style="margin:0"><a href="/" style="color:#38627f">Go to the tools home page</a></p>' +
       '</main>',
       { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
     );
@@ -100,6 +101,6 @@
 
     if (req.mode === 'navigate') { e.respondWith(networkFirst(e, req, PAGES)); return; }
     if (sameOrigin && CODE.test(url.pathname)) { e.respondWith(networkFirst(e, req, ASSETS)); return; }
-    if (sameOrigin || FONT_HOSTS.test(url.hostname)) { e.respondWith(staleWhileRevalidate(e, req)); }
+    if (sameOrigin) { e.respondWith(staleWhileRevalidate(e, req)); }
   });
 })();
