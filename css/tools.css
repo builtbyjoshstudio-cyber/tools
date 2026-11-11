@@ -36,6 +36,9 @@
 .card-arrow { color: var(--accent); font-size: 1rem; letter-spacing: 0; transition: transform var(--t-fast) var(--ease); }
 a.card:hover .card-arrow { transform: translateX(4px); }
 
+/* --- 404: the requested path ---------------------------------------------------- */
+#nf-path { font-family: var(--font-mono); font-size: .9em; word-break: break-all; }
+
 /* --- footer: a tinted band, not the main site's navy block -------------------- */
 .tk-foot { margin-top: var(--section-pad); padding: var(--space-12) 0 var(--space-8); background: var(--surface-2); border-top: var(--hair); }
 .tk-foot__cols { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: var(--space-8); padding-bottom: var(--space-8); border-bottom: var(--rule); }
