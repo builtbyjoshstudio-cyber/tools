@@ -9,7 +9,10 @@
 (function () {
   var doc = document, root = doc.documentElement;
   var ORDER = ['light', 'dark'];
+  // Dark is the zodiac edition's palette from the main site (tokens.css "cosmic"), without the star field
+  var ATTR = { light: 'light', dark: 'cosmic' };
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function current() { return root.getAttribute('data-theme') === 'cosmic' ? 'dark' : 'light'; }
 
   /* ---- restore saved theme (back-compatible across old keys) ---- */
   function savedTheme() {
@@ -20,8 +23,7 @@
       if (s === 'mist') return 'light';           // Mist was retired with the Kinetic skin
       if (s && ORDER.indexOf(s) > -1) return s;
     } catch (e) {}
-    var cur = root.getAttribute('data-theme');
-    return ORDER.indexOf(cur) > -1 ? cur : 'light';
+    return current();
   }
 
   function syncButtons(theme) {
@@ -46,7 +48,7 @@
 
   // save = true only when the visitor picked the theme; the default is never written
   function applyTheme(theme, save) {
-    root.setAttribute('data-theme', theme);
+    root.setAttribute('data-theme', ATTR[theme]);
     if (save) {
       try {
         localStorage.setItem('themePref', theme);
@@ -84,8 +86,7 @@
     var single = doc.getElementById('theme-toggle');
     if (single && !single.hasAttribute('data-set-theme')) {
       single.addEventListener('click', function (e) {
-        var cur = root.getAttribute('data-theme') || 'light';
-        var next = ORDER[(ORDER.indexOf(cur) + 1) % ORDER.length];
+        var next = ORDER[(ORDER.indexOf(current()) + 1) % ORDER.length];
         setTheme(next, e);
       });
     }
