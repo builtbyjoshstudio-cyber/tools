@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -35,9 +35,7 @@
     <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/money/">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- JSON-LD WebApplication schema -->
     <script type="application/ld+json">
@@ -101,186 +99,11 @@
 }
 </script>
 
-    <!-- Shared Kinetic design system -->
-    <link rel="stylesheet" href="../kinetic.css">
+    <!-- Ledger design system: tokens and components are shared with builtbyjoshstudio.com -->
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/tools.css">
 
-    <style>
-        /* ---- Landing-only components (built on Kinetic tokens from kinetic.css) ---- */
-        .lp-hero {
-            background: var(--surface);
-            border: 2px solid var(--line-2);
-            border-radius: var(--r);
-            box-shadow: 8px 8px 0 var(--shadow);
-            padding: 52px 48px;
-            margin-bottom: 52px;
-        }
-        .lp-hero-top {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            gap: 24px; flex-wrap: wrap; margin-bottom: 30px;
-        }
-        .lp-brand { display: inline-flex; align-items: center; gap: 12px; }
-        .lp-brand .name {
-            font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em;
-            text-transform: uppercase; color: var(--muted);
-        }
-        .lp-brand .name b { color: var(--ink); font-weight: 600; }
-        .lp-hero h1 {
-            font-family: var(--font-display); font-weight: 800;
-            font-size: clamp(40px, 7vw, 78px); line-height: 0.92;
-            letter-spacing: -0.04em; margin: 0 0 20px; text-wrap: balance; max-width: 16ch;
-        }
-        .lp-hero h1 .em { color: var(--accent); }
-        .lp-hero p {
-            font-size: clamp(16px, 2vw, 19px); color: var(--muted);
-            max-width: 58ch; margin: 0; font-weight: 500; line-height: 1.55;
-        }
-        .lp-hero-body {
-            display: grid; grid-template-columns: minmax(0,1fr) auto;
-            gap: 40px; align-items: end;
-        }
-        .lp-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
-        .lp-chip {
-            font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-            color: var(--ink); background: var(--surface-2);
-            border: 2px solid var(--line-2); padding: 6px 12px; border-radius: 7px;
-        }
-
-        /* ---- Hero instrument readout (anchor) ---- */
-        .lp-readout {
-            border: 2px solid var(--line-2); border-radius: var(--r-s);
-            background: var(--surface-2); box-shadow: 5px 5px 0 var(--shadow);
-            padding: 20px 22px; min-width: 224px;
-        }
-        .lp-readout-top {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 14px; padding-bottom: 16px; margin-bottom: 4px;
-            border-bottom: 2px solid var(--line);
-        }
-        .lp-readout-top .lbl {
-            font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
-            letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
-        }
-        .lp-readout .kx-signal { height: 22px; }
-        .lp-readout .kx-signal i { width: 4px; }
-        .lp-stat {
-            display: flex; align-items: baseline; justify-content: space-between;
-            gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line);
-        }
-        .lp-stat:last-child { border-bottom: 0; padding-bottom: 0; }
-        .lp-stat .v {
-            font-family: var(--font-display); font-weight: 800; font-size: 30px;
-            line-height: 1; letter-spacing: -0.03em; color: var(--ink);
-            font-variant-numeric: tabular-nums;
-        }
-        .lp-stat:first-of-type .v { color: var(--accent); }
-        .lp-stat .k {
-            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-            letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-            text-align: right;
-        }
-
-        .section-title {
-            font-family: var(--font-display); font-weight: 800;
-            font-size: clamp(24px, 4vw, 36px); letter-spacing: -0.03em; line-height: 1;
-            color: var(--ink); margin: 8px 0 26px;
-            display: flex; align-items: baseline; gap: 14px;
-        }
-        .section-title .num {
-            font-family: var(--font-mono); font-size: 14px; font-weight: 600;
-            color: var(--accent); letter-spacing: 0.1em;
-        }
-        .section-title .rule {
-            flex: 1; height: 0; border-top: 2px solid var(--line-2);
-            position: relative; top: -6px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 22px;
-        }
-        .card {
-            position: relative;
-            background: var(--surface);
-            border: 2px solid var(--line-2);
-            border-radius: var(--r);
-            box-shadow: 6px 6px 0 var(--shadow);
-            padding: 26px 26px 22px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            text-decoration: none; color: inherit;
-            transition: transform .15s var(--ease), box-shadow .15s var(--ease);
-        }
-        .card:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow); }
-        .card-icon {
-            width: 46px; height: 46px; border-radius: 11px;
-            display: grid; place-items: center;
-            background: var(--surface-2); border: 2px solid var(--line-2);
-            margin-bottom: 16px; color: var(--accent);
-            transition: background .15s var(--ease), color .15s var(--ease);
-        }
-        .card-icon svg { width: 25px; height: 25px; display: block; }
-        .card:hover .card-icon { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-        .card-title {
-            font-family: var(--font-display); font-weight: 700; font-size: 21px;
-            letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 8px; color: var(--ink);
-        }
-        .card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
-        .card-footer {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-top: 20px; padding-top: 14px; border-top: 2px solid var(--line);
-            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
-        }
-        .card-arrow { font-size: 16px; transition: transform .2s var(--ease); }
-        .card:hover .card-arrow { transform: translateX(5px); }
-
-        .lp-foot {
-            margin-top: 72px; border-top: 2px solid var(--line-2); padding-top: 36px;
-        }
-        .lp-foot-cols {
-            display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 32px;
-            margin-bottom: 38px;
-        }
-        .lp-foot-brand .lp-brand { margin-bottom: 14px; }
-        .lp-foot-brand p {
-            font-size: 13.5px; color: var(--muted); line-height: 1.6; margin: 0; max-width: 30ch;
-        }
-        .lp-foot-col h4 {
-            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-            letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-            margin: 0 0 14px;
-        }
-        .lp-foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
-        .lp-foot-col a {
-            font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 500;
-            display: inline-flex; align-items: flex-start; gap: 8px;
-            transition: color .15s var(--ease);
-        }
-        .lp-foot-col a::before {
-            content: ""; width: 5px; height: 5px; background: var(--accent-2);
-            border-radius: 1px; flex-shrink: 0; margin-top: 7px;
-        }
-        .lp-foot-col a:hover { color: var(--accent); }
-        .lp-foot-bar {
-            display: flex; align-items: center; justify-content: space-between; gap: 16px;
-            flex-wrap: wrap; padding-top: 22px; border-top: 2px solid var(--line);
-            font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); line-height: 1.6;
-        }
-        .lp-foot-bar a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent-2); padding-bottom: 1px; }
-        .lp-foot-bar a:hover { color: var(--accent); }
-
-        @media (max-width: 860px) {
-            .lp-hero-body { grid-template-columns: 1fr; gap: 30px; }
-            .lp-readout { min-width: 0; }
-            .lp-foot-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
-            .lp-foot-brand { grid-column: 1 / -1; }
-        }
-        @media (max-width: 600px) {
-            .lp-hero { padding: 34px 24px; }
-            .grid { grid-template-columns: 1fr; }
-            .lp-foot-cols { grid-template-columns: 1fr; }
-        }
-    </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -289,180 +112,173 @@
 </head>
 <body>
 
-    <div class="page">
-        <header class="lp-hero">
-            <div class="lp-hero-top">
-                <div class="lp-brand">
-                    <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-                    <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-                </div>
-                <div class="theme-switch" role="group" aria-label="Theme">
-                    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-                    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-                    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
-                </div>
+    <header class="nav tk-nav">
+        <div class="wrap">
+            <div class="tk-brand">
+                <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+                <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
             </div>
-            <div class="lp-hero-body">
-                <div class="lp-hero-main">
-                    <h1>Ad-free <span class="em">money</span> calculators.</h1>
-                    <p>Twelve free, ad-free money and business tools — take-home pay, freelance rates, quarterly taxes, debt payoff, budgeting, savings goals, loans, home affordability, invoicing, and pricing. No signup, runs entirely in your browser.</p>
-                    <div class="lp-chips">
-                        <span class="lp-chip">Free forever</span>
-                        <span class="lp-chip">No ads</span>
-                        <span class="lp-chip">No signup</span>
-                        <span class="lp-chip">Local-first</span>
-                        <span class="lp-chip">Light / Mist / Dark</span>
-                    </div>
-                </div>
-                <aside class="lp-readout" aria-hidden="true">
-                    <div class="lp-readout-top">
-                        <span class="lbl">Live</span>
-                        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-                    </div>
-                    <div class="lp-stat"><span class="v">12</span><span class="k">Tools</span></div>
-                    <div class="lp-stat"><span class="v">$0</span><span class="k">Forever</span></div>
-                    <div class="lp-stat"><span class="v">00</span><span class="k">Ads &middot; Signups</span></div>
-                </aside>
+            <div class="switch" role="group" aria-label="Theme">
+                <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+                <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
+    <main class="wrap hub">
+        <div class="panel hub-hero">
+            <h1 class="display">Ad-free <span class="hi">money</span> calculators.</h1>
+            <p>Twelve free, ad-free money and business tools — take-home pay, freelance rates, quarterly taxes, debt payoff, budgeting, savings goals, loans, home affordability, invoicing, and pricing. No signup, runs entirely in your browser.</p>
+            <div class="hub-chips">
+                <span class="chip">Free forever</span>
+                <span class="chip">No ads</span>
+                <span class="chip">No signup</span>
+                <span class="chip">Local-first</span>
+                <span class="chip">Light / Dark</span>
+            </div>
+            <div class="stats hub-stats" aria-hidden="true">
+                <div class="stat"><b>12</b><span>Tools</span></div>
+                <div class="stat"><b>$0</b><span>Forever</span></div>
+                <div class="stat"><b>00</b><span>Ads &middot; Signups</span></div>
+            </div>
+        </div>
+
             <h2 class="section-title"><span class="num">01</span>Money &amp; Business<span class="rule"></span></h2>
-            <div class="grid">
+            <div class="grid grid--3">
                 <a href="../freelance-rate-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 1v22"></path>
                                 <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Freelance Rate Calculator</h3>
-                        <p class="card-desc">Find the hourly rate you need to hit your income goal after self-employment tax, expenses, and non-billable time — and see your real take-home.</p>
+                        <h3>Freelance Rate Calculator</h3>
+                        <p>Find the hourly rate you need to hit your income goal after self-employment tax, expenses, and non-billable time — and see your real take-home.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Rate &amp; Take-Home Math</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../debt-payoff-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 17l5-5 4 4 8-8"></path>
                                 <path d="M17 8h4v4"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Debt Payoff Calculator</h3>
-                        <p class="card-desc">Compare the snowball, avalanche, and hybrid methods side by side. See your debt-free date and watch how an extra payment saves months and thousands in interest.</p>
+                        <h3>Debt Payoff Calculator</h3>
+                        <p>Compare the snowball, avalanche, and hybrid methods side by side. See your debt-free date and watch how an extra payment saves months and thousands in interest.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Snowball vs Avalanche</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../budget-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 12a9 9 0 1 1-9-9v9z"></path>
                                 <path d="M12 3a9 9 0 0 1 9 9h-9z"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Budget Calculator</h3>
-                        <p class="card-desc">See the 50/30/20 ideal next to what you actually spend — and exactly where you're over and what to fix. Adjustable targets for any cost of living.</p>
+                        <h3>Budget Calculator</h3>
+                        <p>See the 50/30/20 ideal next to what you actually spend — and exactly where you're over and what to fix. Adjustable targets for any cost of living.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>50/30/20 vs Actual</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../invoice-generator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M6 2h9l5 5v15H6z"></path>
                                 <path d="M15 2v5h5"></path>
                                 <path d="M9 13h6M9 17h6"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Invoice Generator</h3>
-                        <p class="card-desc">Make a professional invoice with your own 16:9 letterhead or business name, line items, and tax — then print or save as PDF. No signup, nothing uploaded.</p>
+                        <h3>Invoice Generator</h3>
+                        <p>Make a professional invoice with your own 16:9 letterhead or business name, line items, and tax — then print or save as PDF. No signup, nothing uploaded.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Letterhead &middot; Print to PDF</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../loan-payment-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="19" y1="5" x2="5" y2="19"></line>
                                 <circle cx="6.5" cy="6.5" r="2.5"></circle>
                                 <circle cx="17.5" cy="17.5" r="2.5"></circle>
                             </svg>
                         </span>
-                        <h3 class="card-title">Loan Payment Calculator</h3>
-                        <p class="card-desc">See the real monthly payment for any auto or personal loan — plus total interest, your payoff date, and how much paying a little extra each month saves.</p>
+                        <h3>Loan Payment Calculator</h3>
+                        <p>See the real monthly payment for any auto or personal loan — plus total interest, your payoff date, and how much paying a little extra each month saves.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Payment &middot; Interest &middot; Payoff</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../compound-interest-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="6" y1="20" x2="6" y2="14"></line>
                                 <line x1="12" y1="20" x2="12" y2="9"></line>
                                 <line x1="18" y1="20" x2="18" y2="4"></line>
                             </svg>
                         </span>
-                        <h3 class="card-title">Compound Interest Calculator</h3>
-                        <p class="card-desc">Watch a starting amount plus monthly contributions grow. See your final balance, how much is pure growth, and the year your money starts out-earning your deposits.</p>
+                        <h3>Compound Interest Calculator</h3>
+                        <p>Watch a starting amount plus monthly contributions grow. See your final balance, how much is pure growth, and the year your money starts out-earning your deposits.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Growth Over Time</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../emergency-fund-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Emergency Fund Calculator</h3>
-                        <p class="card-desc">Size your emergency fund from your real essential expenses — see how covered you are today and the exact date you'll be fully funded at your savings pace.</p>
+                        <h3>Emergency Fund Calculator</h3>
+                        <p>Size your emergency fund from your real essential expenses — see how covered you are today and the exact date you'll be fully funded at your savings pace.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>3&ndash;6 Month Safety Net</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../savings-goal-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <circle cx="12" cy="12" r="6"></circle>
                                 <circle cx="12" cy="12" r="2"></circle>
                             </svg>
                         </span>
-                        <h3 class="card-title">Savings Goal Calculator</h3>
-                        <p class="card-desc">Name the number and get the date you'll hit it — interest counted — plus what to save per month to arrive in 1, 2, or 3 years.</p>
+                        <h3>Savings Goal Calculator</h3>
+                        <p>Name the number and get the date you'll hit it — interest counted — plus what to save per month to arrive in 1, 2, or 3 years.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Date &amp; Monthly Math</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../quarterly-tax-estimator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="4" width="18" height="18" rx="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
@@ -470,75 +286,73 @@
                                 <line x1="3" y1="10" x2="21" y2="10"></line>
                             </svg>
                         </span>
-                        <h3 class="card-title">Quarterly Tax Estimator</h3>
-                        <p class="card-desc">Estimate your four IRS payments from expected profit — self-employment tax plus federal income tax, with every due date. Built for freelancers.</p>
+                        <h3>Quarterly Tax Estimator</h3>
+                        <p>Estimate your four IRS payments from expected profit — self-employment tax plus federal income tax, with every due date. Built for freelancers.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>SE Tax &middot; Due Dates</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../profit-margin-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.83z"></path>
                                 <line x1="7" y1="7" x2="7.01" y2="7"></line>
                             </svg>
                         </span>
-                        <h3 class="card-title">Profit Margin Calculator</h3>
-                        <p class="card-desc">See what a sale really leaves you after platform fees — margin, markup, break-even, and the exact price that hits your target margin.</p>
+                        <h3>Profit Margin Calculator</h3>
+                        <p>See what a sale really leaves you after platform fees — margin, markup, break-even, and the exact price that hits your target margin.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Margin &middot; Fees &middot; Price</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../home-affordability-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 10.5L12 3l9 7.5"></path>
                                 <path d="M5 9.5V21h14V9.5"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Home Affordability Calculator</h3>
-                        <p class="card-desc">See how much house your income actually supports — the 28/36 rule turned into conservative, standard, and stretch price ranges with your real payment.</p>
+                        <h3>Home Affordability Calculator</h3>
+                        <p>See how much house your income actually supports — the 28/36 rule turned into conservative, standard, and stretch price ranges with your real payment.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>28/36 Rule &middot; Price Range</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../take-home-pay-calculator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="2" y="6" width="20" height="12" rx="2"></rect>
                                 <circle cx="12" cy="12" r="2.5"></circle>
                             </svg>
                         </span>
-                        <h3 class="card-title">Take-Home Pay Calculator</h3>
-                        <p class="card-desc">See what your salary actually pays after federal tax, Social Security, Medicare, and your 401(k) — per paycheck and per month. Budget on the real number.</p>
+                        <h3>Take-Home Pay Calculator</h3>
+                        <p>See what your salary actually pays after federal tax, Social Security, Medicare, and your 401(k) — per paycheck and per month. Budget on the real number.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Gross &rarr; Net Paycheck</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
             </div>
-        </main>
+    </main>
 
-        <footer class="lp-foot">
-            <div class="lp-foot-cols">
-                <div class="lp-foot-brand">
-                    <div class="lp-brand">
-                        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-                        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-                    </div>
+    <footer class="tk-foot">
+        <div class="wrap">
+            <div class="tk-foot__cols">
+                <div class="tk-foot__brand">
+                    <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
                     <p>Free, ad-free, local-first money &amp; business calculators. No signup, no tracking — everything runs in your browser.</p>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Money &amp; Business</h4>
                     <ul>
                         <li><a href="../freelance-rate-calculator/">Freelance Rate</a></li>
@@ -555,7 +369,7 @@
                         <li><a href="../take-home-pay-calculator/">Take-Home Pay</a></li>
                     </ul>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Kitchen</h4>
                     <ul>
                         <li><a href="../">All cooking tools</a></li>
@@ -564,7 +378,7 @@
                         <li><a href="../universal-recipe-scaler/">Recipe Scaler</a></li>
                     </ul>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Tabletop &amp; RPG</h4>
                     <ul>
                         <li><a href="../tabletop/">All tabletop tools</a></li>
@@ -575,7 +389,7 @@
                         <li><a href="../random-table-roller/">Table Roller</a></li>
                     </ul>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Network</h4>
                     <ul>
                         <li><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Josh Studio</a></li>
@@ -586,12 +400,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="lp-foot-bar">
+            <div class="tk-foot__bar">
                 <span><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 &middot; All rights reserved.</span>
                 <span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <script src="../kinetic.js" defer></script>
 </body>

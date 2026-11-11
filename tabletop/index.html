@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8">
     <script>if(location.protocol.indexOf("http")===0&&/\/index\.html$/i.test(location.pathname))location.replace(location.pathname.slice(0,-10)+location.search+location.hash);</script>
@@ -35,9 +35,7 @@
     <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/tabletop/">
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="/fonts/PlusJakartaSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- JSON-LD WebApplication schema -->
     <script type="application/ld+json">
@@ -101,186 +99,11 @@
 }
 </script>
 
-    <!-- Shared Kinetic design system -->
-    <link rel="stylesheet" href="../kinetic.css">
+    <!-- Ledger design system: tokens and components are shared with builtbyjoshstudio.com -->
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/tools.css">
 
-    <style>
-        /* ---- Landing-only components (built on Kinetic tokens from kinetic.css) ---- */
-        .lp-hero {
-            background: var(--surface);
-            border: 2px solid var(--line-2);
-            border-radius: var(--r);
-            box-shadow: 8px 8px 0 var(--shadow);
-            padding: 52px 48px;
-            margin-bottom: 52px;
-        }
-        .lp-hero-top {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            gap: 24px; flex-wrap: wrap; margin-bottom: 30px;
-        }
-        .lp-brand { display: inline-flex; align-items: center; gap: 12px; }
-        .lp-brand .name {
-            font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em;
-            text-transform: uppercase; color: var(--muted);
-        }
-        .lp-brand .name b { color: var(--ink); font-weight: 600; }
-        .lp-hero h1 {
-            font-family: var(--font-display); font-weight: 800;
-            font-size: clamp(40px, 7vw, 78px); line-height: 0.92;
-            letter-spacing: -0.04em; margin: 0 0 20px; text-wrap: balance; max-width: 16ch;
-        }
-        .lp-hero h1 .em { color: var(--accent); }
-        .lp-hero p {
-            font-size: clamp(16px, 2vw, 19px); color: var(--muted);
-            max-width: 58ch; margin: 0; font-weight: 500; line-height: 1.55;
-        }
-        .lp-hero-body {
-            display: grid; grid-template-columns: minmax(0,1fr) auto;
-            gap: 40px; align-items: end;
-        }
-        .lp-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
-        .lp-chip {
-            font-family: var(--font-mono); font-size: 12px; font-weight: 600;
-            color: var(--ink); background: var(--surface-2);
-            border: 2px solid var(--line-2); padding: 6px 12px; border-radius: 7px;
-        }
-
-        /* ---- Hero instrument readout (anchor) ---- */
-        .lp-readout {
-            border: 2px solid var(--line-2); border-radius: var(--r-s);
-            background: var(--surface-2); box-shadow: 5px 5px 0 var(--shadow);
-            padding: 20px 22px; min-width: 224px;
-        }
-        .lp-readout-top {
-            display: flex; align-items: center; justify-content: space-between;
-            gap: 14px; padding-bottom: 16px; margin-bottom: 4px;
-            border-bottom: 2px solid var(--line);
-        }
-        .lp-readout-top .lbl {
-            font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
-            letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted);
-        }
-        .lp-readout .kx-signal { height: 22px; }
-        .lp-readout .kx-signal i { width: 4px; }
-        .lp-stat {
-            display: flex; align-items: baseline; justify-content: space-between;
-            gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line);
-        }
-        .lp-stat:last-child { border-bottom: 0; padding-bottom: 0; }
-        .lp-stat .v {
-            font-family: var(--font-display); font-weight: 800; font-size: 30px;
-            line-height: 1; letter-spacing: -0.03em; color: var(--ink);
-            font-variant-numeric: tabular-nums;
-        }
-        .lp-stat:first-of-type .v { color: var(--accent); }
-        .lp-stat .k {
-            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-            letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
-            text-align: right;
-        }
-
-        .section-title {
-            font-family: var(--font-display); font-weight: 800;
-            font-size: clamp(24px, 4vw, 36px); letter-spacing: -0.03em; line-height: 1;
-            color: var(--ink); margin: 8px 0 26px;
-            display: flex; align-items: baseline; gap: 14px;
-        }
-        .section-title .num {
-            font-family: var(--font-mono); font-size: 14px; font-weight: 600;
-            color: var(--accent); letter-spacing: 0.1em;
-        }
-        .section-title .rule {
-            flex: 1; height: 0; border-top: 2px solid var(--line-2);
-            position: relative; top: -6px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 22px;
-        }
-        .card {
-            position: relative;
-            background: var(--surface);
-            border: 2px solid var(--line-2);
-            border-radius: var(--r);
-            box-shadow: 6px 6px 0 var(--shadow);
-            padding: 26px 26px 22px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            text-decoration: none; color: inherit;
-            transition: transform .15s var(--ease), box-shadow .15s var(--ease);
-        }
-        .card:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 var(--shadow); }
-        .card-icon {
-            width: 46px; height: 46px; border-radius: 11px;
-            display: grid; place-items: center;
-            background: var(--surface-2); border: 2px solid var(--line-2);
-            margin-bottom: 16px; color: var(--accent);
-            transition: background .15s var(--ease), color .15s var(--ease);
-        }
-        .card-icon svg { width: 25px; height: 25px; display: block; }
-        .card:hover .card-icon { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-        .card-title {
-            font-family: var(--font-display); font-weight: 700; font-size: 21px;
-            letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 8px; color: var(--ink);
-        }
-        .card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
-        .card-footer {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-top: 20px; padding-top: 14px; border-top: 2px solid var(--line);
-            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
-        }
-        .card-arrow { font-size: 16px; transition: transform .2s var(--ease); }
-        .card:hover .card-arrow { transform: translateX(5px); }
-
-        .lp-foot {
-            margin-top: 72px; border-top: 2px solid var(--line-2); padding-top: 36px;
-        }
-        .lp-foot-cols {
-            display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 32px;
-            margin-bottom: 38px;
-        }
-        .lp-foot-brand .lp-brand { margin-bottom: 14px; }
-        .lp-foot-brand p {
-            font-size: 13.5px; color: var(--muted); line-height: 1.6; margin: 0; max-width: 30ch;
-        }
-        .lp-foot-col h4 {
-            font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-            letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-            margin: 0 0 14px;
-        }
-        .lp-foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; }
-        .lp-foot-col a {
-            font-size: 13.5px; color: var(--ink); text-decoration: none; font-weight: 500;
-            display: inline-flex; align-items: flex-start; gap: 8px;
-            transition: color .15s var(--ease);
-        }
-        .lp-foot-col a::before {
-            content: ""; width: 5px; height: 5px; background: var(--accent-2);
-            border-radius: 1px; flex-shrink: 0; margin-top: 7px;
-        }
-        .lp-foot-col a:hover { color: var(--accent); }
-        .lp-foot-bar {
-            display: flex; align-items: center; justify-content: space-between; gap: 16px;
-            flex-wrap: wrap; padding-top: 22px; border-top: 2px solid var(--line);
-            font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); line-height: 1.6;
-        }
-        .lp-foot-bar a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--accent-2); padding-bottom: 1px; }
-        .lp-foot-bar a:hover { color: var(--accent); }
-
-        @media (max-width: 860px) {
-            .lp-hero-body { grid-template-columns: 1fr; gap: 30px; }
-            .lp-readout { min-width: 0; }
-            .lp-foot-cols { grid-template-columns: 1fr 1fr; gap: 28px; }
-            .lp-foot-brand { grid-column: 1 / -1; }
-        }
-        @media (max-width: 600px) {
-            .lp-hero { padding: 34px 24px; }
-            .grid { grid-template-columns: 1fr; }
-            .lp-foot-cols { grid-template-columns: 1fr; }
-        }
-    </style>
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -289,49 +112,42 @@
 </head>
 <body>
 
-    <div class="page">
-        <header class="lp-hero">
-            <div class="lp-hero-top">
-                <div class="lp-brand">
-                    <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-                    <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-                </div>
-                <div class="theme-switch" role="group" aria-label="Theme">
-                    <button data-set-theme="light"><span class="sw" style="background:#f1eee6"></span>Light</button>
-                    <button data-set-theme="mist"><span class="sw" style="background:#d4d9dc"></span>Mist</button>
-                    <button data-set-theme="dark" class="on"><span class="sw" style="background:#0c0c0f"></span>Dark</button>
-                </div>
+    <header class="nav tk-nav">
+        <div class="wrap">
+            <div class="tk-brand">
+                <a class="wordmark" href="/">Built <em>by</em> Josh Studio</a>
+                <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
             </div>
-            <div class="lp-hero-body">
-                <div class="lp-hero-main">
-                    <h1>Ad-free <span class="em">tabletop</span> tools.</h1>
-                    <p>Ten free, ad-free tools for the game table — trackers and rollers for running the session, a campaign journal that keeps every NPC name, and generators for the names, taverns, hooks, and loot you need mid-sentence. Works with any system. No signup, runs entirely in your browser.</p>
-                    <div class="lp-chips">
-                        <span class="lp-chip">Free forever</span>
-                        <span class="lp-chip">No ads</span>
-                        <span class="lp-chip">No signup</span>
-                        <span class="lp-chip">Local-first</span>
-                        <span class="lp-chip">System-agnostic</span>
-                    </div>
-                </div>
-                <aside class="lp-readout" aria-hidden="true">
-                    <div class="lp-readout-top">
-                        <span class="lbl">Live</span>
-                        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-                    </div>
-                    <div class="lp-stat"><span class="v">10</span><span class="k">Tools</span></div>
-                    <div class="lp-stat"><span class="v">$0</span><span class="k">Forever</span></div>
-                    <div class="lp-stat"><span class="v">00</span><span class="k">Ads &middot; Signups</span></div>
-                </aside>
+            <div class="switch" role="group" aria-label="Theme">
+                <button type="button" data-set-theme="light" aria-pressed="true">Light</button>
+                <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
+    <main class="wrap hub">
+        <div class="panel hub-hero">
+            <h1 class="display">Ad-free <span class="hi">tabletop</span> tools.</h1>
+            <p>Ten free, ad-free tools for the game table — trackers and rollers for running the session, a campaign journal that keeps every NPC name, and generators for the names, taverns, hooks, and loot you need mid-sentence. Works with any system. No signup, runs entirely in your browser.</p>
+            <div class="hub-chips">
+                <span class="chip">Free forever</span>
+                <span class="chip">No ads</span>
+                <span class="chip">No signup</span>
+                <span class="chip">Local-first</span>
+                <span class="chip">System-agnostic</span>
+            </div>
+            <div class="stats hub-stats" aria-hidden="true">
+                <div class="stat"><b>10</b><span>Tools</span></div>
+                <div class="stat"><b>$0</b><span>Forever</span></div>
+                <div class="stat"><b>00</b><span>Ads &middot; Signups</span></div>
+            </div>
+        </div>
+
             <h2 class="section-title"><span class="num">01</span>Run the Table<span class="rule"></span></h2>
-            <div class="grid">
+            <div class="grid grid--3">
                 <a href="../initiative-tracker/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="10" y1="6" x2="21" y2="6"></line>
                                 <line x1="10" y1="12" x2="21" y2="12"></line>
@@ -339,17 +155,17 @@
                                 <path d="M3 4l4 2-4 2z"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Initiative Tracker</h3>
-                        <p class="card-desc">Run combat from one screen — turn order, rounds, HP, and conditions for every combatant. Your encounter saves itself in the browser, so it's still there next session.</p>
+                        <h3>Initiative Tracker</h3>
+                        <p>Run combat from one screen — turn order, rounds, HP, and conditions for every combatant. Your encounter saves itself in the browser, so it's still there next session.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Turns &middot; Rounds &middot; Conditions</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../dice-roller/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="3" width="18" height="18" rx="4"></rect>
                                 <circle cx="8.2" cy="8.2" r="1"></circle>
@@ -359,49 +175,49 @@
                                 <circle cx="15.8" cy="15.8" r="1"></circle>
                             </svg>
                         </span>
-                        <h3 class="card-title">Dice Roller</h3>
-                        <p class="card-desc">Every die from d4 to d100, full notation like 3d6+2 and 4d6 keep-highest-3, advantage and disadvantage one tap away, and a roll history that survives the session.</p>
+                        <h3>Dice Roller</h3>
+                        <p>Every die from d4 to d100, full notation like 3d6+2 and 4d6 keep-highest-3, advantage and disadvantage one tap away, and a roll history that survives the session.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Notation &middot; Adv/Dis &middot; History</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../session-notes/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"></path>
                                 <path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Session Notes &amp; NPC Log</h3>
-                        <p class="card-desc">A campaign journal that remembers what the table forgets — session log, a searchable NPC name list, and loot tracking. Saves in your browser, exports to Markdown.</p>
+                        <h3>Session Notes &amp; NPC Log</h3>
+                        <p>A campaign journal that remembers what the table forgets — session log, a searchable NPC name list, and loot tracking. Saves in your browser, exports to Markdown.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Sessions &middot; NPCs &middot; Loot</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../wargame-score-tracker/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
                                 <line x1="4" y1="22" x2="4" y2="15"></line>
                             </svg>
                         </span>
-                        <h3 class="card-title">Wargame Score Tracker</h3>
-                        <p class="card-desc">Two players, one score sheet — primary points by battle round, your own secondaries, command points, and a running total that settles arguments. Saves mid-game.</p>
+                        <h3>Wargame Score Tracker</h3>
+                        <p>Two players, one score sheet — primary points by battle round, your own secondaries, command points, and a running total that settles arguments. Saves mid-game.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Rounds &middot; VP &middot; CP</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../random-table-roller/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="3" y="3" width="7" height="7" rx="1"></rect>
                                 <rect x="14" y="3" width="7" height="7" rx="1"></rect>
@@ -410,114 +226,112 @@
                                 <circle cx="17.5" cy="17.5" r="1"></circle>
                             </svg>
                         </span>
-                        <h3 class="card-title">Random Table Roller</h3>
-                        <p class="card-desc">Paste any list and it becomes a rollable table — weighted ranges, no-repeat batches, and a saved library of your own d20s and d100s.</p>
+                        <h3>Random Table Roller</h3>
+                        <p>Paste any list and it becomes a rollable table — weighted ranges, no-repeat batches, and a saved library of your own d20s and d100s.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Paste &middot; Weight &middot; Roll</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
             </div>
 
-            <h2 class="section-title" style="margin-top:52px;"><span class="num">02</span>Generators<span class="rule"></span></h2>
-            <div class="grid">
+            <h2 class="section-title"><span class="num">02</span>Generators<span class="rule"></span></h2>
+            <div class="grid grid--3">
                 <a href="../character-name-generator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="4 7 4 4 20 4 20 7"></polyline>
                                 <line x1="9" y1="20" x2="15" y2="20"></line>
                                 <line x1="12" y1="4" x2="12" y2="20"></line>
                             </svg>
                         </span>
-                        <h3 class="card-title">Character Name Generator</h3>
-                        <p class="card-desc">Six original names per click in four styles — flowing, guttural, short, or noble — with a keep list for the good ones. All invented, no borrowed lore.</p>
+                        <h3>Character Name Generator</h3>
+                        <p>Six original names per click in four styles — flowing, guttural, short, or noble — with a keep list for the good ones. All invented, no borrowed lore.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Six per click &middot; Four styles</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../npc-generator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </span>
-                        <h3 class="card-title">NPC Generator</h3>
-                        <p class="card-desc">A whole person in one click — name, job, quirk, motivation, and a secret to detonate later. One more tap files them in your session notes.</p>
+                        <h3>NPC Generator</h3>
+                        <p>A whole person in one click — name, job, quirk, motivation, and a secret to detonate later. One more tap files them in your session notes.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Name &middot; Quirk &middot; Secret</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../tavern-generator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 10.5L12 3l9 7.5"></path>
                                 <path d="M5 9.5V21h14V9.5"></path>
                                 <path d="M9 21v-6h6v6"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Tavern Generator</h3>
-                        <p class="card-desc">The whole establishment in one click — the name on the sign, the feel of the room, a patron worth talking to, tonight's rumor, and the menu.</p>
+                        <h3>Tavern Generator</h3>
+                        <p>The whole establishment in one click — the name on the sign, the feel of the room, a patron worth talking to, tonight's rumor, and the menu.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Sign &middot; Rumor &middot; Menu</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../plot-hook-generator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
                             </svg>
                         </span>
-                        <h3 class="card-title">Plot Hook Generator</h3>
-                        <p class="card-desc">One-line session starters with the twist attached — a job, a problem, a door, and the reason it's never that simple. Keep the ones that itch.</p>
+                        <h3>Plot Hook Generator</h3>
+                        <p>One-line session starters with the twist attached — a job, a problem, a door, and the reason it's never that simple. Keep the ones that itch.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Hook + Twist &middot; One click</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
                 <a href="../loot-generator/" class="card">
-                    <div class="card-header">
-                        <span class="card-icon">
+                    <div class="card__body">
+                        <span class="icon-tile">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 8v13H3V8"></path>
                                 <path d="M1 3h22v5H1z"></path>
                                 <path d="M10 12h4"></path>
                             </svg>
                         </span>
-                        <h3 class="card-title">Loot Generator</h3>
-                        <p class="card-desc">Treasure with texture instead of stat blocks — the object, the odd detail, and the history that turns last week's loot into next week's plot.</p>
+                        <h3>Loot Generator</h3>
+                        <p>Treasure with texture instead of stat blocks — the object, the odd detail, and the history that turns last week's loot into next week's plot.</p>
                     </div>
-                    <div class="card-footer">
+                    <div class="card__foot">
                         <span>Flavor first &middot; No stats</span>
                         <span class="card-arrow">→</span>
                     </div>
                 </a>
             </div>
-        </main>
+    </main>
 
-        <footer class="lp-foot">
-            <div class="lp-foot-cols">
-                <div class="lp-foot-brand">
-                    <div class="lp-brand">
-                        <span class="kx-signal"><i></i><i></i><i></i><i></i></span>
-                        <span class="name"><b>TYNKR TOOLS</b> &amp; CO</span>
-                    </div>
+    <footer class="tk-foot">
+        <div class="wrap">
+            <div class="tk-foot__cols">
+                <div class="tk-foot__brand">
+                    <span class="line-tag"><b>TYNKR TOOLS</b> &amp; CO</span>
                     <p>Free, ad-free, local-first tabletop tools. No signup, no tracking — everything runs in your browser.</p>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Tabletop &amp; RPG</h4>
                     <ul>
                         <li><a href="../initiative-tracker/">Initiative Tracker</a></li>
@@ -532,7 +346,7 @@
                         <li><a href="../loot-generator/">Loot Generator</a></li>
                     </ul>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Kitchen</h4>
                     <ul>
                         <li><a href="../">All cooking tools</a></li>
@@ -541,7 +355,7 @@
                         <li><a href="../universal-recipe-scaler/">Recipe Scaler</a></li>
                     </ul>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Money &amp; Business</h4>
                     <ul>
                         <li><a href="../money/">All money tools</a></li>
@@ -550,7 +364,7 @@
                         <li><a href="../take-home-pay-calculator/">Take-Home Pay</a></li>
                     </ul>
                 </div>
-                <div class="lp-foot-col">
+                <div class="tk-foot__col">
                     <h4>Network</h4>
                     <ul>
                         <li><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Josh Studio</a></li>
@@ -561,12 +375,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="lp-foot-bar">
+            <div class="tk-foot__bar">
                 <span><a href="https://builtbyjoshstudio.com" target="_blank" rel="noopener">Built by Josh Studio LLC</a> &middot; © 2026 &middot; All rights reserved.</span>
                 <span>Tynkr Tools &amp; Co and <a href="https://littleacrelearning.com" target="_blank" rel="noopener">Little Acre Learning</a> are brands of Built by Josh Studio LLC.</span>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <script src="../kinetic.js" defer></script>
 </body>
