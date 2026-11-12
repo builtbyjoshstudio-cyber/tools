@@ -221,6 +221,11 @@ input[type="range"].form-input-range::-moz-range-thumb { width: 20px; height: 20
     var(--surface-2) !important;
 }
 .anatomy-labels { display: flex; flex-direction: column; gap: 14px; }
+/* Money-tool result panels (headline marked up as .stage-label / .stage-value): their parts were written to stack,
+   so one column at every width - the two-column grid above is for the kitchen tools' stage + list pairs.
+   The headline box also gets the padding it never had. */
+.anatomy:has(> .anatomy-stage > .stage-label) { grid-template-columns: minmax(0, 1fr); }
+.anatomy > .anatomy-stage:has(> .stage-label) { padding: 18px 20px; margin-bottom: 0; }
 .anatomy-row {
   padding: 14px 16px; display: grid; grid-template-columns: 38px minmax(0,1fr) auto;
   gap: 14px; align-items: center;

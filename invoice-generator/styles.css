@@ -3,7 +3,7 @@
 
 .page.tool-shell { max-width:1180px; margin:0 auto; padding:24px; }
 
-.hero.glass { margin-top:22px; }
+.hero.glass { margin-top:22px; display:block; }  /* this hero has no inner wrapper, so stack its label row, title and intro */
 .hero h1 { font-size:clamp(34px,5vw,52px); line-height:1.02; margin:0 0 10px; }
 .hero p { color:var(--muted); margin:0; max-width:64ch; }
 

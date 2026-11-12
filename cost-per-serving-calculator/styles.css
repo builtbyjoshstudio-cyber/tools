@@ -153,7 +153,6 @@
 }
 
 .page.tool-shell { max-width: 920px; padding-top: 28px; }
-.tool-shell .hero { padding-left: 0; padding-right: 0; }
 
 .tool-controls {
   display: flex; justify-content: flex-start; gap: 14px;
