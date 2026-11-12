@@ -14,11 +14,11 @@
 - [Brine Calculator](https://tools.builtbyjoshstudio.com/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
 - [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines.
 - [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
-- [Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings.
-- [Meat Thawing Time Calculator](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings.
-- [Pan Swap Calculator](https://tools.builtbyjoshstudio.com/pan-swap-calculator/): Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings.
+- [Bread & Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Bread hydration calculator for bread, pizza, and pasta dough. Enter your flour and get water, salt, and yeast by baker's percentage.
+- [Turkey & Meat Thawing Time Calculator](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): How long to thaw a turkey, chicken, roast, or steaks: enter the weight and get safe fridge and cold-water thawing times from USDA guidance.
+- [Baking Pan Conversion Calculator](https://tools.builtbyjoshstudio.com/pan-swap-calculator/): Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning.
 - [Perfect Roast Pull Temp Calculator](https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
-- [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label.
+- [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label.
 - [Pork Roast Cooking Time Calculator](https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
 - [Universal Recipe Scaler](https://tools.builtbyjoshstudio.com/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
 - [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards.
@@ -29,7 +29,7 @@
 - [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year.
 - [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side.
 - [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded.
-- [Freelance Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after tax, expenses, and non-billable time.
+- [Freelance Hourly Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after tax, expenses, and non-billable time.
 - [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
 - [Free Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded.
 - [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves.
@@ -69,6 +69,7 @@ Every tool is free, ad-free, runs entirely in the browser (local-first; nothing 
 ### Air Fryer Conversion Calculator
 URL: https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/
 What it does: Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius. Free, ad-free, no signup.
+Example: An oven recipe at 400°F for 30 minutes becomes 375°F for about 24 minutes in an air fryer: 25 degrees lower and 20% less time. Open the basket for a first check at 16 minutes.
 Q: How do I convert an oven recipe to an air fryer?
 A: The standard rule: lower the temperature by about 25°F (15°C) and cut the cook time by about 20%. So a recipe that calls for 400°F for 30 minutes becomes roughly 375°F for 24 minutes in the air fryer. Different foods deviate from the rule a little — frozen foods and vegetables finish faster, large roasts need gentler heat — which is what this calculator adjusts for.
 Q: Why do air fryers cook faster than ovens?
@@ -88,7 +89,7 @@ What it does: Calculate wet or dry brines for turkey, chicken, pork, and more. G
 Q: What's the difference between a wet brine and a dry brine?
 A: A wet brine dissolves salt in water and submerges the meat; a dry brine applies salt directly to the surface. Dry brining is less messy and crisps skin better; wet brining adds the most moisture. This tool calculates both.
 Q: How much salt do I need to brine a turkey?
-A: It depends on the meat's weight and your salt brand — flaky kosher salt and fine table salt have very different densities by volume. Enter your weight and salt type for an exact amount.
+A: For a 10-pound turkey in a standard wet brine, about 300 g of coarse kosher salt in 6 liters (6.3 quarts) of water, brined for about 10 hours. The amount scales with the bird's weight, and salt brands differ a lot by volume, so weigh the salt or pick your salt type in the calculator.
 Q: How long should I brine meat?
 A: For a wet brine, about an hour per pound for whole birds, chicken pieces and roasts, never under 30 minutes, with chicken capped at 4 hours and turkey, duck and goose at 24 hours. Steaks, chops and seafood are timed by the piece, not the pack: 30 minutes to 1 hour for steaks and chops, 15 to 30 minutes for fish and seafood. Ground meat isn't wet brined. A dry brine takes 1 to 2 hours per pound (at least 1 hour, with turkey, chicken, duck and goose capped at 24 hours), and an equilibrium brine at least as long as a standard one, up to 2 days.
 Q: Can I brine pre-seasoned or "enhanced" meat?
@@ -113,6 +114,7 @@ A: It is highly recommended to avoid commercial aerosol sprays. They contain pro
 ### Cost Per Serving Calculator
 URL: https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/
 What it does: Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.
+Example: Cost per serving = total cost ÷ number of servings. A box of crackers costs $2.59 and has 24 servings: $0.11 per serving. A recipe costs $12 and yields 6 servings: $2.00 per serving. Beef at $6 per pound, 6 ounces per serving: $2.25 per serving. Potatoes at $1.60 per pound, 8 ounces per serving: $0.80 per serving.
 Q: How do you calculate cost per serving?
 A: Add up the cost of the exact portion of each ingredient you used, then divide the total by the number of servings the recipe makes. The tricky part is converting from the package you bought to the amount you used, which this calculator does automatically.
 Q: What is a waste allowance and why does it matter?
@@ -132,7 +134,8 @@ A: Yes. It works for any recipe: enter each ingredient's amount used, pack size,
 
 ### Dough Hydration Calculator
 URL: https://tools.builtbyjoshstudio.com/dough-hydration-calculator/
-What it does: Calculate dough hydration and baker's percentages for bread, pizza, and pasta. Get flour, water, and salt by weight with absorbency warnings. Free, ad-free.
+What it does: Bread hydration calculator for bread, pizza, and pasta dough. Enter your flour and get water, salt, and yeast by baker's percentage. Free, no ads, no signup.
+Example: For 35.3 oz of dough at 72% hydration with 2% salt and 1% yeast: 20.2 oz of flour, 14.5 oz of water, 0.40 oz of salt and 0.20 oz of yeast.
 Q: What is dough hydration?
 A: Hydration is the weight of water in a dough expressed as a percentage of the flour weight. A 70% hydration dough has 700g of water for every 1000g of flour. Higher hydration generally means a more open, airy crumb.
 Q: What is baker's percentage?
@@ -150,7 +153,7 @@ A: Much lower than bread. The calculator sets semolina or egg pasta dough to 45%
 
 ### Meat Thawing Planner
 URL: https://tools.builtbyjoshstudio.com/meat-thawing-planner/
-What it does: Calculate safe meat thawing times for turkey, chicken, beef, and pork using USDA fridge and cold-water methods, with food-safety warnings. Free and ad-free.
+What it does: How long to thaw a turkey, chicken, roast, or steaks: enter the weight and get safe fridge and cold-water thawing times from USDA guidance. Free, no ads.
 Q: How long does it take to thaw meat in the refrigerator?
 A: Roughly 24 hours per 4–5 pounds for whole cuts and birds, though it varies by density and shape. Even a pound of ground meat or boneless chicken breasts needs a full day. Refrigerator thawing is the safest method because the meat stays at a safe temperature the whole time.
 Q: Is cold-water thawing safe?
@@ -170,7 +173,7 @@ A: About one day in the refrigerator for every 4 pounds, so 3 days for a 12-poun
 
 ### Pan Swap Calculator
 URL: https://tools.builtbyjoshstudio.com/pan-swap-calculator/
-What it does: Instantly convert cake recipes between muffin, Bundt, round, square, and rectangular pans. Get exact multipliers and bake-time warnings. Free and ad-free.
+What it does: Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning. Free and ad-free.
 Q: How do I convert a recipe to a different pan size?
 A: Compare the volume of the two pans (footprint times depth) — the ratio tells you how to scale the batter. A pan that holds twice as much needs roughly twice the batter. This tool calculates the exact multiplier for you.
 Q: Why does pan depth matter?
@@ -194,7 +197,10 @@ A: Yes, but poultry must still reach a safe final internal temperature of 165°F
 
 ### Recipe Nutrition Calculator
 URL: https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/
-What it does: Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label. Free, ad-free, local-first.
+What it does: Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label. Free, no ads, no signup.
+Example: The loaded example, pancakes for four, comes to 335 calories per serving: 35 from protein, 183 from carbohydrate and 115 from fat.
+Q: How do you calculate the nutrition facts for a recipe?
+A: Add up the calories and macros of every ingredient for the amount you used, then divide each total by the number of servings. Calories follow the 4-4-9 rule: 4 per gram of protein, 4 per gram of carbohydrate and 9 per gram of fat.
 Q: Why does raw vs cooked state matter for rice and meats?
 A: Ingredients undergo massive moisture changes when cooked. 100g of dry jasmine rice absorbs water and expands to become roughly 250g of cooked rice. If you enter '100g rice' but cook it, the dry rice will yield nearly triple the calories of cooked rice for the same weight. Be specific with 'cooked' or 'dry' in your entries.
 Q: How are macro calorie splits calculated?
@@ -208,7 +214,7 @@ What it does: Pork roast cooking time, worked backward from dinner — enter a p
 Q: What is a reverse cooking timeline?
 A: Instead of working forward from when you start, you work backward from when you want to eat. You set your target dinner time and the tool schedules each step — prep, roasting, and resting — so everything finishes together.
 Q: How do I know when to start cooking?
-A: Enter your protein, its weight, and your target serving time. The tool calculates total cook time from the weight, adds resting and prep buffers, and tells you the exact time to begin.
+A: Work backward from the time you want to eat: subtract the resting time, then the roasting time (minutes per pound times the weight), then the prep. Enter the cut, its weight and your dinner time and the calculator does that subtraction and gives you clock times.
 Q: How long should meat rest after roasting?
 A: It depends on size — small cuts need only a few minutes, large roasts benefit from 20–40 minutes. Barbecue cuts hold longer: the timeline keeps a pork shoulder in an insulated cooler for 1 hour and a brisket for 2 hours before slicing. Resting lets juices redistribute and accounts for carryover cooking.
 Q: Are these cooking times exact?
@@ -237,6 +243,7 @@ A: Usually yes for volume-dependent steps but not always proportionally. A doubl
 ### Yeast Converter
 URL: https://tools.builtbyjoshstudio.com/yeast-converter/
 What it does: Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.
+Example: One 7 g packet of active dry yeast equals 5.6 g of instant yeast or 16.8 g of fresh yeast.
 Q: What's the difference between active dry, instant, and fresh yeast?
 A: They're the same organism at different moisture levels. Instant yeast is the most concentrated and finely milled, active dry has more moisture and slightly less potency by weight, and fresh (or "cake") yeast is mostly water — so you need progressively more of each to get the same rise. That's why you can't swap them one-for-one.
 Q: How do I substitute instant yeast for active dry?
@@ -290,6 +297,7 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 ### Emergency Fund Calculator
 URL: https://tools.builtbyjoshstudio.com/emergency-fund-calculator/
 What it does: Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded. Free, ad-free, no signup.
+Example: If your essential expenses run $3,500 a month, a 3-month fund is $10,500. With $1,000 already saved you have $9,500 to go, and at $300 a month you are fully funded in 2 years 8 months.
 Q: How big should my emergency fund be?
 A: The standard advice is 3–6 months of essential expenses — rent or mortgage, food, utilities, insurance, minimum debt payments. Lean toward 3 if you have a stable job and a second household income; lean toward 6 or more if your income is variable, you're self-employed, or one income supports the household. This calculator uses your real expenses, not a generic rule of thumb.
 Q: Should I count all my spending or just essentials?
@@ -302,6 +310,7 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 ### Freelance Rate Calculator
 URL: https://tools.builtbyjoshstudio.com/freelance-rate-calculator/
 What it does: Calculate the freelance hourly rate you need to hit your income goal — after tax, expenses, and non-billable time. Free, ad-free.
+Example: To take home $60,000 with $6,000 of business expenses and 25% set aside for tax, you need $86,000 of revenue. At 25 billable hours a week for 48 weeks you have 1,200 hours to sell, so the minimum rate is $86,000 ÷ 1,200 = about $72 an hour.
 Q: How do I calculate my freelance hourly rate?
 A: Start with your target take-home income, set aside tax on top of it (self-employment tax plus federal and state income tax, commonly 25–30% of profit), add your annual business expenses, then divide the total by your realistic billable hours per year. Billable hours are lower than working hours because admin, marketing, and downtime aren't billable. This calculator does all of that and shows the floor rate you need to charge.
 Q: Why is my freelance rate higher than an equivalent salary?
@@ -314,6 +323,8 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your n
 ### Home Affordability Calculator
 URL: https://tools.builtbyjoshstudio.com/home-affordability-calculator/
 What it does: See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges. Free, ad-free, no signup.
+Example: With $85,000 of gross household income, $500 of monthly debt payments, $30,000 down and a 6.5% 30-year mortgage, the 28/36 rule allows a housing payment of about $1,983 a month (28% of $7,083). That supports a home of about $270,800, with a conservative figure of $244,500 and a stretch figure of $297,100.
+By household income (with $500 monthly debts, $30,000 down, 6.5% over 30 years; home price, monthly payment): $50,000: $150,000, $958. $60,000: $186,100, $1,300. $75,000: $241,900, $1,750. $100,000: $314,200, $2,333. $125,000: $386,400, $2,917. $150,000: $458,700, $3,500. $200,000: $603,300, $4,667.
 Q: How much house can I afford on my salary?
 A: A common lender guideline is the 28/36 rule: your housing payment (mortgage plus taxes, insurance, and any PMI or HOA dues) should stay under about 28% of gross monthly income, and all debt payments together under about 36%. This calculator applies both limits to your real numbers — income, existing debts, down payment, rate, and HOA dues — and turns them into a price range instead of a single overconfident number.
 Q: What is the 28/36 rule?
@@ -374,6 +385,7 @@ A: It's an estimate built on 2026 federal figures — the 15.3% self-employment 
 ### Savings Goal Calculator
 URL: https://tools.builtbyjoshstudio.com/savings-goal-calculator/
 What it does: See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years. Free, ad-free, no signup.
+Example: Starting with $500 and adding $250 a month at 4% APY, you reach $10,000 in 3 years: $9,500 of your own money and about $598 of interest. To get there in 2 years you would save $379 a month; in 1 year, $776.
 Q: How do I figure out how much to save each month for a goal?
 A: Divide what you still need by the months until your deadline, then adjust slightly down for any interest your savings earns. This calculator does it precisely — enter your goal and see the required monthly amount for 1, 2, and 3-year timelines, or set your own monthly pace and get the exact date you'll arrive.
 Q: Does savings account interest really matter for a goal?
@@ -386,6 +398,8 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 ### Take-Home Pay Calculator
 URL: https://tools.builtbyjoshstudio.com/take-home-pay-calculator/
 What it does: See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month. Free, ad-free, no signup.
+Example: On a $60,000 salary paid every two weeks, filing single with 5% going to a 401(k) and no state income tax, each gross paycheck is $2,307.69. Take off $115.38 for the 401(k), $179.23 of federal income tax, $143.08 of Social Security and $33.46 of Medicare, and $1,836.54 lands in your account. That is about $3,979 a month, or $47,750 a year, on 2026 federal figures.
+By salary (single, paid every two weeks, 5% to a 401(k), no state income tax, 2026 federal figures; per paycheck, per year): $40,000: $1,252.31, $32,560. $50,000: $1,544.44, $40,155. $60,000: $1,836.54, $47,750. $75,000: $2,256.44, $58,668. $100,000: $2,895.38, $75,280. $125,000: $3,534.33, $91,893. $150,000: $4,157.35, $108,091.
 Q: How is take-home pay calculated from salary?
 A: Start with gross pay, subtract pre-tax retirement contributions, then subtract federal income tax (2026 brackets after the standard deduction), Social Security (6.2% up to the annual wage cap), Medicare (1.45%, plus 0.9% on wages over $200,000), and any state income tax. What's left is your net — this calculator shows it per paycheck and per month.
 Q: Why is my paycheck so much smaller than my salary?
