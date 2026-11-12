@@ -129,11 +129,18 @@ a.card:hover { text-decoration: none; transform: translateY(-2px); box-shadow: v
 .sparkle { color: var(--accent); font-size: .9em; }
 
 /* --- richness: grid texture, tinted bands, drawn product mocks, book covers ------ */
+/* The grid began as a layer behind the home hero (.texture). It is now the ground of every light page: a faint 32px
+   grid on the canvas that fades toward the left and right edges. Cards, panels, bands and footers sit on top of it.
+   Zodiac pages (cosmic / .cosmos) keep their sky, and print gets plain paper. */
 .texture { position: relative; }
-.texture::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 32px 32px; opacity: .6;
-  -webkit-mask-image: radial-gradient(70% 80% at 50% 30%, #000 40%, transparent 100%); mask-image: radial-gradient(70% 80% at 50% 30%, #000 40%, transparent 100%); }
+@media screen {
+  :root:not([data-theme="cosmic"]) body:not(.cosmos) {
+    background-image:
+      linear-gradient(90deg, var(--canvas), transparent 24%, transparent 76%, var(--canvas)),
+      linear-gradient(color-mix(in srgb, var(--line) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--line) 60%, transparent) 1px, transparent 1px);
+    background-size: 100% 100%, 32px 32px, 32px 32px; }
+}
 .band { background: var(--surface-2); border-top: var(--hair); border-bottom: var(--hair); padding-bottom: var(--section-pad); }
 .hi--warm { color: var(--accent-2); }
 .mock { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 10px; color: var(--ink); box-shadow: var(--shadow); text-align: left; }
