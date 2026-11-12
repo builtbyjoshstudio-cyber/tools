@@ -2,7 +2,6 @@
    Moved here from the page's <style> block with values converted to Ledger tokens. */
 
 .page.tool-shell { max-width: 920px; padding-top: 28px; }
-.tool-shell .hero { padding-left: 0; padding-right: 0; }
 .net-band { max-width: 920px; margin: 56px auto 0; padding: 0 28px; }
 .net-band h2 { font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin: 0 0 18px; padding-bottom: 12px; border-bottom: 1px solid var(--line-2); display: flex; align-items: baseline; gap: 12px; }
 .net-band h2 .lbl { font-family: var(--font-ui); font-size: 11px; font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--accent); }

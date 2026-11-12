@@ -14,13 +14,16 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function current() { return root.getAttribute('data-theme') === 'cosmic' ? 'dark' : 'light'; }
 
-  /* ---- restore saved theme (back-compatible across old keys) ---- */
+  /* ---- restore the visitor's own choice ----
+     Kept in this browser's localStorage only: not a cookie, never sent anywhere.
+     The old skin wrote a theme for every visitor (keys in OLD_KEYS), so those values are not
+     choices; they are ignored and cleared, and everyone opens light until they pick Dark. */
+  var KEY = 'tynkr-theme-choice';
+  var OLD_KEYS = ['themePref', 'tynkr-theme', 'tynkr-kinetic-theme'];
   function savedTheme() {
     try {
-      var s = localStorage.getItem('themePref') ||
-              localStorage.getItem('tynkr-theme') ||
-              localStorage.getItem('tynkr-kinetic-theme');
-      if (s === 'mist') return 'light';           // Mist was retired with the Kinetic skin
+      OLD_KEYS.forEach(function (k) { localStorage.removeItem(k); });
+      var s = localStorage.getItem(KEY);
       if (s && ORDER.indexOf(s) > -1) return s;
     } catch (e) {}
     return current();
@@ -50,11 +53,7 @@
   function applyTheme(theme, save) {
     root.setAttribute('data-theme', ATTR[theme]);
     if (save) {
-      try {
-        localStorage.setItem('themePref', theme);
-        localStorage.setItem('tynkr-theme', theme);
-        localStorage.setItem('tynkr-kinetic-theme', theme);
-      } catch (e) {}
+      try { localStorage.setItem(KEY, theme); } catch (e) {}
     }
     syncButtons(theme);
   }
