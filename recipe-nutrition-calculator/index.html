@@ -13,19 +13,19 @@
       gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
     </script>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Paste ingredients to calculate per-serving calories, macronutrients, and generate an Estimated Nutrition Facts label. Free, ad-free, local-first.">
+    <meta name="description" content="Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label. Free, no ads, no signup.">
     <meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta property="og:title" content="Recipe Nutrition Calculator | Free Meal Planning Utility">
+    <meta property="og:title" content="Recipe Nutrition Calculator | Calories &amp; Macros Per Serving">
     <meta property="og:type" content="website">
     <meta property="og:description" content="Estimate recipe calories and macros. Features dynamic ingredient parsing, custom overrides, unmatched item review, and a local-first browser layout.">
     <meta property="og:image" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/og-preview.jpg">
     <meta property="og:url" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/">
-    <meta name="twitter:title" content="Recipe Nutrition Calculator | Free Meal Planning Utility">
+    <meta name="twitter:title" content="Recipe Nutrition Calculator | Calories &amp; Macros Per Serving">
     <meta name="twitter:description" content="Estimate recipe calories and macros. Features dynamic ingredient parsing, custom overrides, unmatched item review, and a local-first browser layout.">
     <meta name="twitter:image" content="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/og-preview.jpg">
-    <title>Recipe Nutrition Calculator | Free Meal Planning Utility</title>
+    <title>Recipe Nutrition Calculator | Calories &amp; Macros Per Serving</title>
     <link rel="canonical" href="https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/" />
     <script type="application/ld+json">
     {
@@ -89,6 +89,14 @@
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you calculate the nutrition facts for a recipe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Add up the calories and macros of every ingredient for the amount you used, then divide each total by the number of servings. Calories follow the 4-4-9 rule: 4 per gram of protein, 4 per gram of carbohydrate and 9 per gram of fat."
+          }
+        },
         {
           "@type": "Question",
           "name": "Why does raw vs cooked state matter for rice and meats?",
@@ -390,8 +398,15 @@
     <p style="margin-bottom: 12px; line-height: 1.6; color: var(--ink);">Calculating recipe nutrition is an essential tool for meal prepping and recipe formulation, but it's important to treat the outputs as estimates. Whole foods vary significantly in calorie density depending on soil conditions, climate, brand processing variations, and moisture level changes during cooking. For example, raw grains double or triple in weight when cooked because they absorb water, which has zero calories but dilutes the nutrient density per gram.</p>
     <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">To ensure the best possible calculations, always specify whether you are measuring dry ingredients or cooked ingredients (such as dry rice vs cooked rice), and make sure that you parse line weights correctly. Unmatched items should be manually entered using custom inputs to capture brand-specific nutrition labels correctly.</p>
 
+    <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 12px;">A worked example: pancakes for four</h2>
+    <p style="margin-bottom: 24px; line-height: 1.6; color: var(--ink);">The loaded example, pancakes for four, comes to 335 calories per serving: 35 from protein, 183 from carbohydrate and 115 from fat.</p>
+
     <h2 style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; margin-top: 0; margin-bottom: 16px; padding-top: 16px; border-top: 1px solid var(--line-2);">Frequently Asked Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 18px;">
+      <div>
+        <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">How do you calculate the nutrition facts for a recipe?</h3>
+        <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Add up the calories and macros of every ingredient for the amount you used, then divide each total by the number of servings. Calories follow the 4-4-9 rule: 4 per gram of protein, 4 per gram of carbohydrate and 9 per gram of fat.</p>
+      </div>
       <div>
         <h3 style="font-family: var(--font-ui); font-weight: 700; font-size: 14px; margin: 0 0 6px; color: var(--ink);">Why does raw vs cooked state matter for rice and meats?</h3>
         <p style="margin: 0; line-height: 1.5; font-size: 13px; color: var(--muted);">Ingredients undergo massive moisture changes when cooked. 100g of dry jasmine rice absorbs water and expands to become roughly 250g of cooked rice. If you enter '100g rice' but cook it, the dry rice will yield nearly triple the calories of cooked rice for the same weight. Be specific with 'cooked' or 'dry' in your entries.</p>
