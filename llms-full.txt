@@ -174,6 +174,7 @@ A: About one day in the refrigerator for every 4 pounds, so 3 days for a 12-poun
 ### Pan Swap Calculator
 URL: https://tools.builtbyjoshstudio.com/pan-swap-calculator/
 What it does: Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning. Free and ad-free.
+Example: Moving a recipe from an 8-inch round pan to a 9-inch round pan of the same depth takes 1.27 times the batter: the pan volume goes from 100.5 to 127.2 cubic inches. The depth is the same, so the bake time stays about the same.
 Q: How do I convert a recipe to a different pan size?
 A: Compare the volume of the two pans (footprint times depth) — the ratio tells you how to scale the batter. A pan that holds twice as much needs roughly twice the batter. This tool calculates the exact multiplier for you.
 Q: Why does pan depth matter?
@@ -186,6 +187,7 @@ A: Often, yes. A shallower pan bakes faster, a deeper one slower. The tool flags
 ### Perfect Roast Pull Temp
 URL: https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/
 What it does: Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
+Example: For a large beef roast in a standard 350°F oven, aiming for medium-rare at 135°F, pull it from the heat at 128°F. Carryover cooking during the rest brings it the rest of the way.
 Q: What is carryover cooking?
 A: Carryover cooking is the continued rise in a roast's internal temperature after it's removed from the heat, caused by residual heat moving from the hot outer layers toward the cooler center. It typically adds 2–15°F depending on the cut's size and the cooking temperature.
 Q: How many degrees does meat rise while resting?
@@ -231,6 +233,7 @@ A: In a 325°F (163°C) oven, the USDA chart gives 15 to 18 minutes per pound fo
 ### Universal Recipe Scaler
 URL: https://tools.builtbyjoshstudio.com/universal-recipe-scaler/
 What it does: Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
+Example: The loaded example is meatloaf for four. At 2x, 1 1/2 lb of ground beef becomes 3 lb, 1/3 cup of milk becomes 2/3 cup and 2 eggs become 4, while the oven stays at 350°F.
 Q: How do you scale a recipe up or down?
 A: Multiply every ingredient quantity by the same factor — doubling a recipe means multiplying each amount by two. The tricky part is keeping the ratios consistent and rounding to amounts you can actually measure, which this tool handles automatically.
 Q: Can I convert a recipe between metric and imperial?
@@ -259,6 +262,7 @@ A: The amounts are matched for equivalent rising power, but the timing can diffe
 ### Budget Calculator
 URL: https://tools.builtbyjoshstudio.com/budget-calculator/
 What it does: A 50/30/20 budget calculator comparing the ideal split to what you actually spend — see where you're over and what to fix. Free, ad-free, no signup.
+Example: On $4,000 of monthly take-home pay, the 50/30/20 targets are $2,000 for needs, $1,200 for wants and $800 for savings. If you actually spend $2,480 on needs and $1,080 on wants and put $320 to savings, needs are 12 points over target, savings are 12 points under, and $120 is not assigned to anything.
 Q: What is the 50/30/20 budget rule?
 A: The 50/30/20 rule splits your after-tax income into 50% for needs, 30% for wants, and 20% for savings and debt repayment. It was popularized by Elizabeth Warren in the 2005 book All Your Worth. It's a starting framework, not a law — this calculator lets you adjust the percentages to fit your situation.
 Q: How is this different from other 50/30/20 calculators?
@@ -273,6 +277,7 @@ A: Yes. It is completely free, has no ads, requires no signup, and runs entirely
 ### Compound Interest Calculator
 URL: https://tools.builtbyjoshstudio.com/compound-interest-calculator/
 What it does: See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year. Free, ad-free, no signup.
+Example: Starting with $1,000 and adding $200 a month at an 8% annual return, you have $309,008 after 30 years. You put in $73,000 and growth adds $236,008, which is 76% of the balance. Growth passes your own contributions around year 16.
 Q: How does compound interest work?
 A: Compound interest means you earn returns on your returns. Each period, growth is calculated on the whole balance — original money plus everything it has already earned. Early on the effect looks small; over decades it becomes the majority of the balance. The chart above shows exactly when growth overtakes your own contributions.
 Q: What return rate should I use?
@@ -285,6 +290,7 @@ A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothin
 ### Debt Payoff Calculator
 URL: https://tools.builtbyjoshstudio.com/debt-payoff-calculator/
 What it does: See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side. Free, ad-free, no signup.
+Example: Take a $6,000 credit card at 24.99%, a $9,000 student loan at 5.5% and a $1,500 medical bill at 0%, with minimums of $150, $110 and $40, plus $150 extra a month. Avalanche clears them in 3 years 8 months with $3,123 of interest. Snowball takes 3 years 9 months and $3,739, so avalanche saves $617 here. Compared with paying minimums only, the avalanche plan finishes 4 years 11 months sooner and saves $6,168 of interest.
 Q: What's the difference between the snowball and avalanche methods?
 A: Snowball pays the smallest balance first for quick wins; avalanche pays the highest interest rate first to save the most money. Both pay minimums on everything else and roll each cleared debt's payment into the next. This tool runs both, plus a hybrid, so you see the exact difference for your debts.
 Q: Which debt payoff method is best?
@@ -349,6 +355,7 @@ A: Click Print, then choose 'Save as PDF' as the destination in your browser's p
 ### Loan Payment Calculator
 URL: https://tools.builtbyjoshstudio.com/loan-payment-calculator/
 What it does: See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves. Free, ad-free, no signup.
+Example: A $25,000 loan at 7.5% APR over 60 months costs $500.95 a month. Over the five years you pay $5,057 of interest, $30,057 in all.
 Q: How is a monthly loan payment calculated?
 A: Fixed-rate loans use standard amortization: payment = principal × monthly rate ÷ (1 − (1 + monthly rate)^−months). Each payment covers that month's interest first and the rest goes to principal, so the interest share is largest at the start and shrinks every month. This calculator runs that formula on your numbers and shows the full picture — payment, total interest, payoff date, and a payment schedule you can read year by year or month by month.
 Q: How much does paying extra on a loan actually save?
