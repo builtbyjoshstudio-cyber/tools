@@ -2,6 +2,8 @@
    Moved here from the page's <style> block with values converted to Ledger tokens. */
 
 .page.tool-shell { max-width: 920px; padding-top: 28px; }
+/* the result box holds left-aligned step text, so it needs inner padding (its inline style sets none) */
+.anatomy > .anatomy-stage { padding: 20px 22px; }
 
 .tool-controls {
   display: flex; justify-content: flex-start; gap: 14px;
