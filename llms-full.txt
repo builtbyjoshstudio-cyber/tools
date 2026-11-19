@@ -1,6 +1,6 @@
 # Tynkr Tools & Co - Free Browser Tools
 
-> Free, local-first browser tools by [Built by Josh Studio](https://builtbyjoshstudio.com/) under the Tynkr Tools & Co brand. Every tool runs entirely in the browser - no signup, no email, no ads, no data collection. Three hubs: kitchen & cooking, money & business, tabletop & RPG.
+> Free, local-first browser tools by [Built by Josh Studio](https://builtbyjoshstudio.com/) under the Tynkr Tools & Co brand. Every tool runs entirely in the browser - no signup, no email, no ads, nothing you type is collected. Three hubs: kitchen & cooking, money & business, tabletop & RPG.
 
 ## Hubs
 
