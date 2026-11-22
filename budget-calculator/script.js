@@ -5,7 +5,7 @@
    ============================================================ */
 
 var TYNKR_REGISTRY = {
-  hub: "../index.html",
+  hub: "../money/",
   "freelance-rate-calculator": "../freelance-rate-calculator/index.html",
   "debt-payoff-calculator": "../debt-payoff-calculator/index.html",
   "budget-calculator": "../budget-calculator/index.html"

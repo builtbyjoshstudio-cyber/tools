@@ -5,7 +5,7 @@
 
 /* Cross-tool deep-link registry (house pattern). Add finance tools here as they ship. */
 var TYNKR_REGISTRY = {
-  hub: "../index.html",
+  hub: "../money/",
   "freelance-rate-calculator": "../freelance-rate-calculator/index.html"
   // "debt-payoff-calculator": "../debt-payoff-calculator/index.html",
 };

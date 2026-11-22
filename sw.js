@@ -7,13 +7,14 @@
    Registered from kinetic.js. Bump CACHE_VERSION to drop stale caches.
    ========================================================= */
 (function () {
-  var CACHE_VERSION = 'v6';
+  var CACHE_VERSION = 'v7';
   var PAGES = 'tynkr-pages-' + CACHE_VERSION;
   var ASSETS = 'tynkr-assets-' + CACHE_VERSION;
   var KEEP = [PAGES, ASSETS];
 
-  /* Smallest shell that can still render offline: the kitchen hub — which is
-     also the manifest start_url — plus the CSS and JS every page shares. */
+  /* Smallest shell that can still render offline: the front page (the directory of
+     the tool collections) — which is also the manifest start_url — plus the CSS and
+     JS every page shares. */
   var SHELL_PAGES = ['/'];
   var SHELL_ASSETS = [
     '/css/tokens.css', '/css/components.css', '/css/tools.css', '/kinetic.js',

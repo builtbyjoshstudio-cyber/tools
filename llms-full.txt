@@ -4,24 +4,24 @@
 
 ## Hubs
 
-- [Kitchen & cooking tools](https://tools.builtbyjoshstudio.com/): All kitchen calculators.
+- [Kitchen & cooking tools](https://cooking.builtbyjoshstudio.com/tools/): All kitchen calculators, now on Josh & Jordan's Kitchen (cooking.builtbyjoshstudio.com).
 - [Money & business tools](https://tools.builtbyjoshstudio.com/money/): All personal-finance and small-business calculators.
 - [Tabletop & RPG tools](https://tools.builtbyjoshstudio.com/tabletop/): All game-night tools.
 
-## Kitchen & cooking
+## Kitchen & cooking (on cooking.builtbyjoshstudio.com)
 
-- [Air Fryer Conversion Calculator](https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/): Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius.
-- [Brine Calculator](https://tools.builtbyjoshstudio.com/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
-- [Cookware & Pan Guide](https://tools.builtbyjoshstudio.com/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines.
-- [Cost Per Serving Calculator](https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/): Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
-- [Bread & Dough Hydration Calculator](https://tools.builtbyjoshstudio.com/dough-hydration-calculator/): Bread hydration calculator for bread, pizza, and pasta dough. Enter your flour and get water, salt, and yeast by baker's percentage.
-- [Turkey & Meat Thawing Time Calculator](https://tools.builtbyjoshstudio.com/meat-thawing-planner/): How long to thaw a turkey, chicken, roast, or steaks: enter the weight and get safe fridge and cold-water thawing times from USDA guidance.
-- [Baking Pan Conversion Calculator](https://tools.builtbyjoshstudio.com/pan-swap-calculator/): Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning.
-- [Perfect Roast Pull Temp Calculator](https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
-- [Recipe Nutrition Calculator](https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/): Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label.
-- [Pork Roast Cooking Time Calculator](https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
-- [Universal Recipe Scaler](https://tools.builtbyjoshstudio.com/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
-- [Yeast Converter](https://tools.builtbyjoshstudio.com/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards.
+- [Air Fryer Conversion Calculator](https://cooking.builtbyjoshstudio.com/tools/air-fryer-conversion-calculator/): Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius.
+- [Brine Calculator](https://cooking.builtbyjoshstudio.com/tools/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
+- [Cookware & Pan Guide](https://cooking.builtbyjoshstudio.com/tools/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines.
+- [Cost Per Serving Calculator](https://cooking.builtbyjoshstudio.com/tools/cost-per-serving-calculator/): Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
+- [Bread & Dough Hydration Calculator](https://cooking.builtbyjoshstudio.com/tools/dough-hydration-calculator/): Bread hydration calculator for bread, pizza, and pasta dough. Enter your flour and get water, salt, and yeast by baker's percentage.
+- [Turkey & Meat Thawing Time Calculator](https://cooking.builtbyjoshstudio.com/tools/meat-thawing-planner/): How long to thaw a turkey, chicken, roast, or steaks: enter the weight and get safe fridge and cold-water thawing times from USDA guidance.
+- [Baking Pan Conversion Calculator](https://cooking.builtbyjoshstudio.com/tools/pan-swap-calculator/): Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning.
+- [Perfect Roast Pull Temp Calculator](https://cooking.builtbyjoshstudio.com/tools/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
+- [Recipe Nutrition Calculator](https://cooking.builtbyjoshstudio.com/tools/recipe-nutrition-calculator/): Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label.
+- [Pork Roast Cooking Time Calculator](https://cooking.builtbyjoshstudio.com/tools/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
+- [Universal Recipe Scaler](https://cooking.builtbyjoshstudio.com/tools/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
+- [Yeast Converter](https://cooking.builtbyjoshstudio.com/tools/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards.
 
 ## Money & business
 
@@ -54,7 +54,7 @@
 ## Beyond the tools
 
 - [Built by Josh Studio](https://builtbyjoshstudio.com/): The parent studio - Notion templates, spreadsheet workbooks, guided planners, zodiac art.
-- [Nước Mắm — A Vietnamese Family Cookbook](https://builtbyjoshstudio.com/nuoc-mam-cookbook.html): A 56-page Vietnamese family cookbook by the same cook behind the kitchen tools — $3.99 ebook (EPUB + PDF) or Kindle; $7.99 paperback on Amazon.
+- [Nước Mắm — A Vietnamese Family Cookbook](https://cooking.builtbyjoshstudio.com/cookbook/): A 56-page Vietnamese family cookbook by the same cook behind the kitchen tools — $3.99 ebook (EPUB + PDF) or Kindle; $7.99 paperback on Amazon.
 - [Tynkr desktop apps](https://tynkr.builtbyjoshstudio.com/): Privacy-first Windows desktop apps (coming soon).
 - [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables.
 
@@ -64,10 +64,10 @@
 Every tool is free, ad-free, runs entirely in the browser (local-first; nothing is uploaded), needs no signup, and keeps state in the browser's local storage where it saves anything. Published by Built by Josh Studio LLC under the Tynkr Tools & Co brand; questions to josh@builtbyjoshstudio.com.
 
 
-## Kitchen & cooking
+## Kitchen & cooking (on cooking.builtbyjoshstudio.com)
 
 ### Air Fryer Conversion Calculator
-URL: https://tools.builtbyjoshstudio.com/air-fryer-conversion-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/air-fryer-conversion-calculator/
 What it does: Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius. Free, ad-free, no signup.
 Example: An oven recipe at 400°F for 30 minutes becomes 375°F for about 24 minutes in an air fryer: 25 degrees lower and 20% less time. Open the basket for a first check at 16 minutes.
 Q: How do I convert an oven recipe to an air fryer?
@@ -84,7 +84,7 @@ Q: Is this air fryer conversion calculator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere or stored.
 
 ### Brine Calculator
-URL: https://tools.builtbyjoshstudio.com/brine-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/brine-calculator/
 What it does: Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
 Q: What's the difference between a wet brine and a dry brine?
 A: A wet brine dissolves salt in water and submerges the meat; a dry brine applies salt directly to the surface. Dry brining is less messy and crisps skin better; wet brining adds the most moisture. This tool calculates both.
@@ -102,7 +102,7 @@ Q: How much salt do I use for a dry brine per pound?
 A: About 1% of the meat's weight, which is roughly 4.5 g of salt per pound. That is about one and a half teaspoons of coarse flaky kosher salt but only three quarters of a teaspoon of table salt, which is why weighing the salt is more reliable than measuring by the spoon.
 
 ### Cookware & Pan Guide
-URL: https://tools.builtbyjoshstudio.com/cookware-pan-guide/
+URL: https://cooking.builtbyjoshstudio.com/tools/cookware-pan-guide/
 What it does: Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines. Free, ad-free, local-first.
 Q: Why does acid safety matter in pan selection?
 A: Acidic foods like tomatoes, wine, lemon juice, or vinegar dissolve tiny amounts of reactive metals. In bare cast iron or carbon steel, long contact strips the polymerized seasoning layer and introduces metallic off-flavors to the food. Stainless steel and enameled cast iron are non-reactive (inert) and are always safe for acidic cooking.
@@ -112,7 +112,7 @@ Q: Can I use aerosol cooking sprays on nonstick pans?
 A: It is highly recommended to avoid commercial aerosol sprays. They contain propellants and emulsifiers (like lecithin) that carbonize at moderate temperatures, bonding chemically to the nonstick surface. This forms a sticky, burnt residue that cannot be washed off, permanently ruining the pan's release properties. Use small amounts of butter or high-smoke-point liquid oils instead.
 
 ### Cost Per Serving Calculator
-URL: https://tools.builtbyjoshstudio.com/cost-per-serving-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/cost-per-serving-calculator/
 What it does: Free cost per serving calculator. Enter what you used, the pack size, and the pack price to get total recipe cost and price per serving. No signup, no ads.
 Example: Cost per serving = total cost ÷ number of servings. A box of crackers costs $2.59 and has 24 servings: $0.11 per serving. A recipe costs $12 and yields 6 servings: $2.00 per serving. Beef at $6 per pound, 6 ounces per serving: $2.25 per serving. Potatoes at $1.60 per pound, 8 ounces per serving: $0.80 per serving.
 Q: How do you calculate cost per serving?
@@ -133,7 +133,7 @@ Q: Can I use it as a recipe cost calculator for a bakery or small food business?
 A: Yes. It works for any recipe: enter each ingredient's amount used, pack size, and pack price, set the number of servings or pieces the batch makes, and it returns the batch cost and the cost of each one. It is free, and nothing you enter leaves your browser.
 
 ### Dough Hydration Calculator
-URL: https://tools.builtbyjoshstudio.com/dough-hydration-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/dough-hydration-calculator/
 What it does: Bread hydration calculator for bread, pizza, and pasta dough. Enter your flour and get water, salt, and yeast by baker's percentage. Free, no ads, no signup.
 Example: For 35.3 oz of dough at 72% hydration with 2% salt and 1% yeast: 20.2 oz of flour, 14.5 oz of water, 0.40 oz of salt and 0.20 oz of yeast.
 Q: What is dough hydration?
@@ -152,7 +152,7 @@ Q: What hydration is fresh pasta dough?
 A: Much lower than bread. The calculator sets semolina or egg pasta dough to 45% and leaves out the yeast, and it warns once you push past about 48%, where the dough turns too soft to roll thin and cut cleanly.
 
 ### Meat Thawing Planner
-URL: https://tools.builtbyjoshstudio.com/meat-thawing-planner/
+URL: https://cooking.builtbyjoshstudio.com/tools/meat-thawing-planner/
 What it does: How long to thaw a turkey, chicken, roast, or steaks: enter the weight and get safe fridge and cold-water thawing times from USDA guidance. Free, no ads.
 Q: How long does it take to thaw meat in the refrigerator?
 A: Roughly 24 hours per 4–5 pounds for whole cuts and birds, though it varies by density and shape. Even a pound of ground meat or boneless chicken breasts needs a full day. Refrigerator thawing is the safest method because the meat stays at a safe temperature the whole time.
@@ -172,7 +172,7 @@ Q: How long does it take to thaw a turkey?
 A: About one day in the refrigerator for every 4 pounds, so 3 days for a 12-pound turkey, 4 days for 16 pounds, and 5 days for 20 pounds. In cold water changed every 30 minutes it takes about 36 minutes per pound, but past 6 hours the refrigerator is the safer choice.
 
 ### Pan Swap Calculator
-URL: https://tools.builtbyjoshstudio.com/pan-swap-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/pan-swap-calculator/
 What it does: Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning. Free and ad-free.
 Example: Moving a recipe from an 8-inch round pan to a 9-inch round pan of the same depth takes 1.27 times the batter: the pan volume goes from 100.5 to 127.2 cubic inches. The depth is the same, so the bake time stays about the same.
 Q: How do I convert a recipe to a different pan size?
@@ -185,7 +185,7 @@ Q: Will the baking time change when I swap pans?
 A: Often, yes. A shallower pan bakes faster, a deeper one slower. The tool flags when a swap pushes batter into a notably deeper or shallower setup so you know to check doneness early or extend the time.
 
 ### Perfect Roast Pull Temp
-URL: https://tools.builtbyjoshstudio.com/perfect-roast-pull-temp-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/perfect-roast-pull-temp-calculator/
 What it does: Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
 Example: For a large beef roast in a standard 350°F oven, aiming for medium-rare at 135°F, pull it from the heat at 128°F. Carryover cooking during the rest brings it the rest of the way.
 Q: What is carryover cooking?
@@ -198,7 +198,7 @@ Q: Does carryover cooking apply to poultry?
 A: Yes, but poultry must still reach a safe final internal temperature of 165°F. The calculator enforces that minimum rather than letting carryover bring you below it.
 
 ### Recipe Nutrition Calculator
-URL: https://tools.builtbyjoshstudio.com/recipe-nutrition-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/recipe-nutrition-calculator/
 What it does: Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label. Free, no ads, no signup.
 Example: The loaded example, pancakes for four, comes to 335 calories per serving: 35 from protein, 183 from carbohydrate and 115 from fat.
 Q: How do you calculate the nutrition facts for a recipe?
@@ -211,7 +211,7 @@ Q: Does this calculator check for food regulations?
 A: No. This calculator is strictly for home cooks, meal planning, and testing estimates. It is not compliant with official FDA labeling regulations and should not be used to produce commercial labels.
 
 ### Pork Roast Cooking Time Calculator
-URL: https://tools.builtbyjoshstudio.com/reverse-roasting-calculator/
+URL: https://cooking.builtbyjoshstudio.com/tools/reverse-roasting-calculator/
 What it does: Pork roast cooking time, worked backward from dinner — enter a pork loin, shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
 Q: What is a reverse cooking timeline?
 A: Instead of working forward from when you start, you work backward from when you want to eat. You set your target dinner time and the tool schedules each step — prep, roasting, and resting — so everything finishes together.
@@ -231,7 +231,7 @@ Q: How long do you cook a ham per pound?
 A: In a 325°F (163°C) oven, the USDA chart gives 15 to 18 minutes per pound for a fully cooked whole bone-in ham and 18 to 24 for a half, or 18 to 20 and 22 to 25 for a ham labelled cook before eating. This calculator plans on 20 minutes per pound. Reheat a fully cooked ham to 140°F (60°C), and cook a cook-before-eating or fresh ham to 145°F (63°C) with a 3-minute rest.
 
 ### Universal Recipe Scaler
-URL: https://tools.builtbyjoshstudio.com/universal-recipe-scaler/
+URL: https://cooking.builtbyjoshstudio.com/tools/universal-recipe-scaler/
 What it does: Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
 Example: The loaded example is meatloaf for four. At 2x, 1 1/2 lb of ground beef becomes 3 lb, 1/3 cup of milk becomes 2/3 cup and 2 eggs become 4, while the oven stays at 350°F.
 Q: How do you scale a recipe up or down?
@@ -244,7 +244,7 @@ Q: Does scaling change cooking times?
 A: Usually yes for volume-dependent steps but not always proportionally. A doubled cake batter in a bigger pan bakes longer; a doubled sauce may simmer about the same. Use times as a starting point and judge by doneness.
 
 ### Yeast Converter
-URL: https://tools.builtbyjoshstudio.com/yeast-converter/
+URL: https://cooking.builtbyjoshstudio.com/tools/yeast-converter/
 What it does: Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards. Free, ad-free.
 Example: One 7 g packet of active dry yeast equals 5.6 g of instant yeast or 16.8 g of fresh yeast.
 Q: What's the difference between active dry, instant, and fresh yeast?
