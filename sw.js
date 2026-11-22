@@ -7,7 +7,7 @@
    Registered from kinetic.js. Bump CACHE_VERSION to drop stale caches.
    ========================================================= */
 (function () {
-  var CACHE_VERSION = 'v7';
+  var CACHE_VERSION = 'v8';
   var PAGES = 'tynkr-pages-' + CACHE_VERSION;
   var ASSETS = 'tynkr-assets-' + CACHE_VERSION;
   var KEEP = [PAGES, ASSETS];
@@ -22,6 +22,22 @@
   ];
 
   var CODE = /\.(css|js)$/;
+
+  /* The data bridge (migrate.html) and its temporary test page are never cached. A worker from before v8 may
+     still have stored a copy: drop it from every tynkr- cache, on activate and whenever the bridge is requested. */
+  var BRIDGE = /^\/migrate(-test)?(\.html)?$/;
+  function purgeBridge() {
+    return caches.keys().then(function (keys) {
+      return Promise.all(keys.filter(function (k) { return k.indexOf('tynkr-') === 0; }).map(function (k) {
+        return caches.open(k).then(function (c) {
+          return c.keys().then(function (reqs) {
+            return Promise.all(reqs.filter(function (r) { return BRIDGE.test(new URL(r.url).pathname); })
+              .map(function (r) { return c.delete(r); }));
+          });
+        });
+      }));
+    });
+  }
 
   self.addEventListener('install', function (e) {
     e.waitUntil(
@@ -38,7 +54,7 @@
         return Promise.all(keys.map(function (k) {
           if (k.indexOf('tynkr-') === 0 && KEEP.indexOf(k) < 0) return caches.delete(k);
         }));
-      }).then(function () { return self.clients.claim(); })
+      }).then(purgeBridge).then(function () { return self.clients.claim(); })
     );
   });
 
@@ -99,6 +115,9 @@
 
     var url = new URL(req.url);
     var sameOrigin = url.origin === self.location.origin;
+
+    // The data bridge (and its temporary test page) must never be cached or answered from a cache.
+    if (sameOrigin && BRIDGE.test(url.pathname)) { e.waitUntil(purgeBridge()); return; }
 
     if (req.mode === 'navigate') { e.respondWith(networkFirst(e, req, PAGES)); return; }
     if (sameOrigin && CODE.test(url.pathname)) { e.respondWith(networkFirst(e, req, ASSETS)); return; }

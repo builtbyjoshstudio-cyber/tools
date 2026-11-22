@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Built by Josh Studio</title>
+</head>
+<body>
+<script>
+/* Data bridge for tools that moved to another builtbyjoshstudio.com subdomain.
+
+   Tool data saved in this browser on tools.builtbyjoshstudio.com stays here when a tool moves (browser storage
+   belongs to one origin). The moved tool loads this page in a hidden frame, or opens it in a small window when
+   a visitor presses "Bring my data from the old address", and asks for its keys.
+
+   Rules:
+   - Answers only a request from one of the allowed origins below, and only from the window that framed or
+     opened this page.
+   - Returns only that origin's allow-listed keys, and only those the request names.
+   - Replies with postMessage to that exact origin, never "*".
+   - Reads only. Never writes or deletes anything here.
+   - No analytics, no other scripts, noindex, not in the sitemap; sw.js does not cache or answer this page. */
+(function () {
+  'use strict';
+  var ALLOWED = {
+    'https://cooking.builtbyjoshstudio.com': [
+      'tynkr-cost-per-serving-calculator-v1', 'savedNutritionRecipe', 'savedCustomIngredients', 'savedRecipe',
+      'bbj-migrate-test'   // TEMPORARY: the hand-test pages; remove with migrate-test.html
+    ]
+  };
+  var framed = window.parent !== window;
+  var peer = framed ? window.parent : window.opener;
+  if (!peer) return;
+
+  window.addEventListener('message', function (e) {
+    var keys = Object.prototype.hasOwnProperty.call(ALLOWED, e.origin) ? ALLOWED[e.origin] : null;
+    if (!keys || e.source !== peer) return;
+    var req = e.data;
+    if (!req || req.type !== 'bbj-migrate-request' || !Array.isArray(req.keys)) return;
+    var data = {};
+    req.keys.forEach(function (k) {
+      if (typeof k !== 'string' || keys.indexOf(k) === -1) return;
+      try { var v = localStorage.getItem(k); if (v !== null) data[k] = v; } catch (err) { /* storage blocked */ }
+    });
+    peer.postMessage({ type: 'bbj-migrate-data', id: req.id, data: data }, e.origin);
+    if (!framed) setTimeout(function () { window.close(); }, 50);
+  });
+
+  // Say "ready" to the peer. One message per allowed origin, each addressed to that exact origin: the browser
+  // delivers only the one that matches the peer's actual origin and drops the rest.
+  Object.keys(ALLOWED).forEach(function (origin) {
+    try { peer.postMessage({ type: 'bbj-migrate-ready' }, origin); } catch (err) { /* peer gone */ }
+  });
+})();
+</script>
+</body>
+</html>
