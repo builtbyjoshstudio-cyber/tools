@@ -6,7 +6,7 @@
 
 - [Kitchen & cooking tools](https://cooking.builtbyjoshstudio.com/tools/): All kitchen calculators, now on Josh & Jordan's Kitchen (cooking.builtbyjoshstudio.com).
 - [Money & business tools](https://tools.builtbyjoshstudio.com/money/): All personal-finance and small-business calculators.
-- [Tabletop & RPG tools](https://tools.builtbyjoshstudio.com/tabletop/): All game-night tools.
+- [Tabletop & RPG tools](https://writing.builtbyjoshstudio.com/tabletop/): Game-night tools, now on J.S. Warden's site (writing.builtbyjoshstudio.com).
 
 ## Kitchen & cooking (on cooking.builtbyjoshstudio.com)
 
@@ -38,18 +38,18 @@
 - [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years.
 - [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month.
 
-## Tabletop & RPG
+## Tabletop & RPG (on writing.builtbyjoshstudio.com)
 
-- [Character Name Generator](https://tools.builtbyjoshstudio.com/character-name-generator/): Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click.
-- [Dice Roller](https://tools.builtbyjoshstudio.com/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included.
-- [Initiative Tracker](https://tools.builtbyjoshstudio.com/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions.
-- [Loot Generator](https://tools.builtbyjoshstudio.com/loot-generator/): Generate flavorful, system-free treasure — objects with texture and history, no rules text.
-- [NPC Generator](https://tools.builtbyjoshstudio.com/npc-generator/): Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes.
-- [Plot Hook Generator](https://tools.builtbyjoshstudio.com/plot-hook-generator/): Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG.
-- [Random Table Roller](https://tools.builtbyjoshstudio.com/random-table-roller/): Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables.
-- [Session Notes & NPC Log](https://tools.builtbyjoshstudio.com/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown.
-- [Tavern Generator](https://tools.builtbyjoshstudio.com/tavern-generator/): Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and the menu.
-- [Wargame Score Tracker](https://tools.builtbyjoshstudio.com/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game.
+- [Character Name Generator](https://writing.builtbyjoshstudio.com/tabletop/character-name-generator/): Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click.
+- [Dice Roller](https://writing.builtbyjoshstudio.com/tabletop/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included.
+- [Initiative Tracker](https://writing.builtbyjoshstudio.com/tabletop/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions.
+- [Loot Generator](https://writing.builtbyjoshstudio.com/tabletop/loot-generator/): Generate flavorful, system-free treasure — objects with texture and history, no rules text.
+- [NPC Generator](https://writing.builtbyjoshstudio.com/tabletop/npc-generator/): Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes.
+- [Plot Hook Generator](https://writing.builtbyjoshstudio.com/tabletop/plot-hook-generator/): Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG.
+- [Random Table Roller](https://writing.builtbyjoshstudio.com/tabletop/random-table-roller/): Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables.
+- [Session Notes & NPC Log](https://writing.builtbyjoshstudio.com/tabletop/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown.
+- [Tavern Generator](https://writing.builtbyjoshstudio.com/tabletop/tavern-generator/): Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and the menu.
+- [Wargame Score Tracker](https://writing.builtbyjoshstudio.com/tabletop/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game.
 
 ## Beyond the tools
 
@@ -419,10 +419,10 @@ Q: Is this take-home pay calculator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your numbers are saved in this browser only, so they're still here next time; nothing is uploaded. Reset clears them.
 
 
-## Tabletop & RPG
+## Tabletop & RPG (on writing.builtbyjoshstudio.com)
 
 ### Character Name Generator
-URL: https://tools.builtbyjoshstudio.com/character-name-generator/
+URL: https://writing.builtbyjoshstudio.com/tabletop/character-name-generator/
 What it does: Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click, keep the good ones. Free, ad-free.
 Q: Are these names from any published game or setting?
 A: No. Every name is assembled on the spot from invented syllable pools written for this tool — nothing is drawn from any publisher's setting, novel, or name list. If a generated name resembles an existing character, it's coincidence.
@@ -432,7 +432,7 @@ Q: Is this name generator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your kept names are stored only on your own device.
 
 ### Dice Roller
-URL: https://tools.builtbyjoshstudio.com/dice-roller/
+URL: https://writing.builtbyjoshstudio.com/tabletop/dice-roller/
 What it does: Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included. Free, ad-free, no signup.
 Q: What dice notation does this roller support?
 A: Standard tabletop notation: NdX for dice (3d6), modifiers (+2, -1), multiple terms (2d6+1d8+3), and keep-highest or keep-lowest (4d6kh3, 2d20kl1). The quick buttons build the same expressions for you, so you never have to type if you don't want to.
@@ -444,7 +444,7 @@ Q: Is this dice roller free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your roll history is stored only on your own device.
 
 ### Initiative Tracker
-URL: https://tools.builtbyjoshstudio.com/initiative-tracker/
+URL: https://writing.builtbyjoshstudio.com/tabletop/initiative-tracker/
 What it does: Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions. Free, ad-free, no signup.
 Q: Does this initiative tracker work for games other than D&D?
 A: Yes. It tracks names, initiative values, hit points, rounds, and conditions — the pieces almost every tabletop RPG shares — without assuming any ruleset. Use it for D&D, Pathfinder, Call of Cthulhu, or any homebrew system.
@@ -456,7 +456,7 @@ Q: Is this initiative tracker free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Nothing you enter is sent anywhere; your encounter is stored only on your own device.
 
 ### Loot Generator
-URL: https://tools.builtbyjoshstudio.com/loot-generator/
+URL: https://writing.builtbyjoshstudio.com/tabletop/loot-generator/
 What it does: Generate flavorful, system-free treasure in one click — objects with texture and history, no rules text. Perfect for any tabletop RPG. Free, ad-free.
 Q: Why doesn't the loot have stats or prices?
 A: Deliberately — every table and system prices treasure differently, and rules text belongs to your rulebook. The generator handles description, texture, and history; you assign the mechanics your game needs, if any.
@@ -466,7 +466,7 @@ Q: Is this loot generator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept loot is stored only on your own device.
 
 ### NPC Generator
-URL: https://tools.builtbyjoshstudio.com/npc-generator/
+URL: https://writing.builtbyjoshstudio.com/tabletop/npc-generator/
 What it does: Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes. Free, ad-free, any system.
 Q: Does this work with D&D, Pathfinder, or other systems?
 A: Yes — the NPCs are system-free: no stats, no rules text, just character. They drop into D&D, Pathfinder, Call of Cthulhu, or any homebrew game unchanged. Game names are mentioned here only to describe compatibility.
@@ -476,7 +476,7 @@ Q: Is this NPC generator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept NPCs are stored only on your own device.
 
 ### Plot Hook Generator
-URL: https://tools.builtbyjoshstudio.com/plot-hook-generator/
+URL: https://writing.builtbyjoshstudio.com/tabletop/plot-hook-generator/
 What it does: Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG. One click, keep the good ones. Free, ad-free.
 Q: Are these hooks from published adventures?
 A: No — every hook and twist is original invented content written for this generator. If one resembles a published adventure, that's coincidence; the combinations are assembled randomly in your browser.
@@ -486,7 +486,7 @@ Q: Is this plot hook generator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept hooks are stored only on your own device.
 
 ### Random Table Roller
-URL: https://tools.builtbyjoshstudio.com/random-table-roller/
+URL: https://writing.builtbyjoshstudio.com/tabletop/random-table-roller/
 What it does: Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables. Free, ad-free, no signup.
 Q: What format can I paste tables in?
 A: Almost anything line-based. Plain lines get auto-numbered in order (twenty lines becomes a d20 table). Lines that start with a number ('7: a broken cart') keep that number, and ranges ('01-05: nothing happens') become weighted entries — the wider the range, the more likely the result. You can mix all three styles in one paste. Percentile numbering works too: 00 counts as 100 (as in 96-00), a d10's 0 counts as 10, and a table that counts from zero (00-09 through 90-99) moves up one so every entry keeps its odds.
@@ -498,7 +498,7 @@ Q: Is this table roller free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your tables stay on your own device.
 
 ### Session Notes & NPC Log
-URL: https://tools.builtbyjoshstudio.com/session-notes/
+URL: https://writing.builtbyjoshstudio.com/tabletop/session-notes/
 What it does: Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown. Free, ad-free, no signup.
 Q: Where are my campaign notes stored?
 A: In your browser's local storage, on your own device. Nothing is uploaded anywhere and there's no account. That also means clearing your browser data erases them — use Back up journal now and then to download a .json copy you own, which Restore backup loads back in here, in another browser, or on another device.
@@ -510,7 +510,7 @@ Q: Is this campaign journal free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Your notes stay on your own device.
 
 ### Tavern Generator
-URL: https://tools.builtbyjoshstudio.com/tavern-generator/
+URL: https://writing.builtbyjoshstudio.com/tabletop/tavern-generator/
 What it does: Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and what's on the menu. Free, ad-free.
 Q: Are these tavern names and rumors from published adventures?
 A: No — every name, patron, rumor, and menu line is original invented content written for this generator. Nothing is drawn from any publisher's adventures or settings, so nothing will collide with your campaign's canon.
@@ -520,7 +520,7 @@ Q: Is this tavern generator free?
 A: Yes — free, no ads, no signup, and it runs entirely in your browser. Kept taverns are stored only on your own device.
 
 ### Wargame Score Tracker
-URL: https://tools.builtbyjoshstudio.com/wargame-score-tracker/
+URL: https://writing.builtbyjoshstudio.com/tabletop/wargame-score-tracker/
 What it does: Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game. Free, ad-free, no signup.
 Q: Does this work for Warhammer 40,000, Age of Sigmar, or other miniature games?
 A: Yes — it's system-agnostic. It tracks the numbers nearly every miniature wargame shares: victory points by battle round, named secondary objectives you type yourself, command points, and a round counter. Nothing is tied to any publisher's missions or rules, so it works for any game, edition, or homebrew scenario.

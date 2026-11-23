@@ -7,7 +7,7 @@
    Registered from kinetic.js. Bump CACHE_VERSION to drop stale caches.
    ========================================================= */
 (function () {
-  var CACHE_VERSION = 'v8';
+  var CACHE_VERSION = 'v9';
   var PAGES = 'tynkr-pages-' + CACHE_VERSION;
   var ASSETS = 'tynkr-assets-' + CACHE_VERSION;
   var KEEP = [PAGES, ASSETS];
