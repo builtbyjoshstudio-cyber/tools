@@ -56,7 +56,7 @@ a.card:hover .card-arrow { transform: translateX(4px); }
 .tk-foot { margin-top: var(--section-pad); padding: var(--space-12) 0 var(--space-8); background: var(--surface-2); border-top: var(--hair); }
 .tk-foot__cols { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: var(--space-8); padding-bottom: var(--space-8); border-bottom: var(--rule); }
 .tk-foot__brand p { font-size: var(--text-small); color: var(--muted); max-width: 32ch; margin: var(--space-3) 0 0; }
-.tk-foot h4 { font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); margin-bottom: var(--space-3); }
+.tk-foot h4, .tk-foot__head { font-size: var(--text-label); font-weight: 600; letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--muted); margin: 0 0 var(--space-3); }
 .tk-foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); font-size: var(--text-small); }
 .tk-foot ul a { color: var(--ink-2); font-weight: 400; }
 .tk-foot ul a:hover { color: var(--accent); text-decoration: none; }
@@ -87,7 +87,7 @@ a.card:hover .card-arrow { transform: translateX(4px); }
 
 /* ==========================================================================
    TOOL PAGES
-   The 34 tools keep their markup and class names (their scripts build and
+   The tools keep their markup and class names (their scripts build and
    query by them). This layer is the old shared stylesheet re-drawn in Ledger:
    same selectors and layout, new skin. Each tool's own rules live in its
    <tool>/styles.css, which loads after this file.
@@ -353,4 +353,66 @@ textarea { height: 400px; resize: vertical; line-height: 1.6; }
 /* keep the fluid-height behavior the tools rely on */
 .glass, .glass-panel, .anatomy, .compare, .col, .type-card, .anatomy-stage, .anatomy-labels, .output-area, .controls-card {
   height: auto; max-height: none; overflow: visible;
+}
+
+/* --- Pass 2 GEO tables, quick references, cross-links & hub FAQs --------- */
+.geo-section { margin-top: var(--space-12); padding-top: var(--space-8); border-top: var(--hair); }
+.geo-section--compact { margin-top: var(--space-8); padding-top: var(--space-6); }
+.geo-eyebrow { font-family: var(--font-mono); font-size: var(--text-label); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 var(--space-2); }
+.geo-section h2 { font-family: var(--font-display); font-size: clamp(1.375rem, 2.5vw, 1.875rem); font-weight: 800; line-height: 1.2; color: var(--ink); margin: 0 0 var(--space-3); }
+.geo-section h3 { font-family: var(--font-display); font-size: var(--text-h3); font-weight: 700; line-height: 1.3; color: var(--ink); margin: var(--space-6) 0 var(--space-3); }
+.geo-lead { color: var(--ink-2); font-size: var(--text-body); line-height: var(--leading-body); margin: 0 0 var(--space-5); max-width: 66ch; }
+.geo-table-wrap { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; margin-bottom: var(--space-8); }
+.geo-section--compact .geo-table-wrap { margin-bottom: var(--space-5); }
+.geo-table { width: 100%; border-collapse: collapse; text-align: left; font-size: var(--text-ui); line-height: 1.5; font-variant-numeric: tabular-nums; }
+.geo-table thead th { background: var(--surface-2); color: var(--ink); font-family: var(--font-display); font-size: var(--text-small); font-weight: 700; letter-spacing: .01em; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--line-2); }
+.geo-table tbody tr { border-bottom: var(--hair); background: var(--surface); }
+.geo-table tbody tr:nth-child(even) { background: var(--surface-2); }
+.geo-table tbody tr:last-child { border-bottom: 0; }
+.geo-table th[scope="row"], .geo-table td { padding: var(--space-3) var(--space-4); vertical-align: top; color: var(--ink-2); overflow-wrap: anywhere; }
+.geo-table th[scope="row"] { color: var(--ink); font-weight: 600; }
+.geo-table--kv th[scope="row"] { width: 26%; background: var(--surface-2); color: var(--ink); border-right: var(--hair); }
+.geo-table--kv tbody tr:nth-child(even) { background: var(--surface); }
+.geo-table a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; transition: none; }
+.geo-table a:hover, .geo-table a:focus-visible { text-decoration-thickness: 2px; }
+.geo-table code { font-family: var(--font-mono); font-size: .88em; color: var(--ink); }
+
+.geo-faq { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+.geo-faq details { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); box-shadow: var(--shadow); overflow: hidden; }
+.geo-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-5); font-family: var(--font-display); font-size: var(--text-h4); font-weight: 700; line-height: 1.35; color: var(--ink); background: var(--surface); }
+.geo-faq summary::-webkit-details-marker { display: none; }
+.geo-faq summary::after { content: "+"; flex: 0 0 auto; font-family: var(--font-mono); font-size: 1.15rem; font-weight: 700; color: var(--accent); }
+.geo-faq details[open] summary { background: var(--surface-2); border-bottom: var(--hair); }
+.geo-faq details[open] summary::after { content: "−"; }
+.geo-faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.geo-faq-a { padding: var(--space-4) var(--space-5); background: var(--surface); color: var(--ink-2); font-size: var(--text-body); line-height: var(--leading-body); margin: 0; max-width: none; }
+.geo-faq-a a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; transition: none; }
+
+.geo-related { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.geo-related a { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--r-pill); background: var(--surface); border: 1px solid var(--line-2); color: var(--ink); font-size: var(--text-small); font-weight: 600; text-decoration: none; transition: border-color var(--t-fast) var(--ease); }
+.geo-related a:hover, .geo-related a:focus-visible { border-color: var(--accent); background: var(--surface-2); text-decoration: none; }
+
+@media (max-width: 420px) {
+  .grid-2 > *, .targets .input-group, .targets .form-input { min-width: 0; }
+}
+
+@media (max-width: 720px) {
+  .geo-table-wrap { border: 0; background: transparent; box-shadow: none; overflow: visible; }
+  .geo-table--compare thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .geo-table--compare, .geo-table--compare tbody, .geo-table--compare tr, .geo-table--compare th, .geo-table--compare td { display: block; width: 100%; }
+  .geo-table--compare tbody tr { background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r); padding: var(--space-2) var(--space-4); margin-bottom: var(--space-3); box-shadow: var(--shadow); }
+  .geo-table--compare tbody tr:nth-child(even) { background: var(--surface); }
+  .geo-table--compare tbody tr:last-child { border-bottom: 1px solid var(--line-2); margin-bottom: 0; }
+  .geo-table--compare th[scope="row"], .geo-table--compare td { display: grid; grid-template-columns: minmax(84px, 38%) minmax(0, 1fr); gap: var(--space-2); padding: var(--space-2) 0; border-bottom: var(--hair); }
+  .geo-table--compare tbody tr td:last-child { border-bottom: 0; }
+  .geo-table--compare th[scope="row"] { grid-template-columns: minmax(0, 1fr); font-size: var(--text-h4); background: transparent; color: var(--ink); border-right: 0; }
+  .geo-table--compare td[data-label]::before { content: attr(data-label); font-size: var(--text-label); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); padding-top: 2px; }
+  .geo-table--kv { border: 1px solid var(--line-2); border-radius: var(--r); background: var(--surface); }
+  .geo-table--kv tbody, .geo-table--kv tr, .geo-table--kv th[scope="row"], .geo-table--kv td { display: block; width: 100%; }
+  .geo-table--kv th[scope="row"] { border-right: 0; border-bottom: 0; padding: var(--space-3) var(--space-4) var(--space-1); font-size: var(--text-small); }
+  .geo-table--kv td { padding: var(--space-1) var(--space-4) var(--space-3); }
+}
+
+@media print {
+  .geo-section, .geo-related { display: none !important; }
 }

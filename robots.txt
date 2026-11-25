@@ -2,3 +2,7 @@ User-agent: *
 Allow: /
 
 Sitemap: https://tools.builtbyjoshstudio.com/sitemap.xml
+
+# LLMs
+# https://tools.builtbyjoshstudio.com/llms.txt
+# https://tools.builtbyjoshstudio.com/llms-full.txt

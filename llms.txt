@@ -1,59 +1,57 @@
-# Tynkr Tools & Co - Free Browser Tools
+# Built by Josh Studio — Free Browser Tools (Tynkr Tools & Co)
 
-> Free, local-first browser tools by [Built by Josh Studio](https://builtbyjoshstudio.com/) under the Tynkr Tools & Co brand. Every tool runs entirely in the browser - no signup, no email, no ads, nothing you type is collected. Three hubs: kitchen & cooking, money & business, tabletop & RPG.
+> Free, ad-free, local-first personal finance and small-business web calculators running directly in your browser with zero accounts and zero server uploads.
 
-## Hubs
+## About & Authority
 
-- [Kitchen & cooking tools](https://cooking.builtbyjoshstudio.com/tools/): All kitchen calculators, now on Josh & Jordan's Kitchen (cooking.builtbyjoshstudio.com).
-- [Money & business tools](https://tools.builtbyjoshstudio.com/money/): All personal-finance and small-business calculators.
-- [Tabletop & RPG tools](https://writing.builtbyjoshstudio.com/tabletop/): Game-night tools, now on J.S. Warden's site (writing.builtbyjoshstudio.com).
+- **Legal entity**: Built by Josh Studio LLC, a Kansas limited liability company (Kansas Business ID 10076138), formed in 2026; the studio began in 2025.
+- **Founder**: Josh — solo developer, designer, and support contact (`support@builtbyjoshstudio.com`, answered directly by the founder).
+- **Studio network (five canonical sites)**:
+  - **Money & Business Calculators (this site)**: https://tools.builtbyjoshstudio.com/money/ · Directory: https://tools.builtbyjoshstudio.com/
+  - **Studio Home, Notion Templates, Workbooks, Planners & Zodiac Art**: https://builtbyjoshstudio.com/ (index: https://builtbyjoshstudio.com/llms.txt)
+  - **Tynkr Windows Desktop Apps**: https://tynkr.builtbyjoshstudio.com/ (index: https://tynkr.builtbyjoshstudio.com/llms.txt)
+  - **Cooking, Recipes, Cookbook, Videos & Kitchen Calculators**: https://cooking.builtbyjoshstudio.com/ (tools: https://cooking.builtbyjoshstudio.com/tools/, index: https://cooking.builtbyjoshstudio.com/llms.txt)
+  - **Fiction by J.S. Warden & Tabletop RPG Tools**: https://writing.builtbyjoshstudio.com/ (tabletop tools: https://writing.builtbyjoshstudio.com/tabletop/, index: https://writing.builtbyjoshstudio.com/llms.txt)
+- **Full tool index & FAQs**: https://tools.builtbyjoshstudio.com/llms-full.txt
+- **Privacy policy**: https://builtbyjoshstudio.com/privacy.html (local mirror: https://tools.builtbyjoshstudio.com/privacy/)
 
-## Kitchen & cooking (on cooking.builtbyjoshstudio.com)
+## Hubs on tools.builtbyjoshstudio.com
 
-- [Air Fryer Conversion Calculator](https://cooking.builtbyjoshstudio.com/tools/air-fryer-conversion-calculator/): Convert any oven recipe to air fryer settings — temperature, time, and when to check, tuned by food type. Fahrenheit or Celsius.
-- [Brine Calculator](https://cooking.builtbyjoshstudio.com/tools/brine-calculator/): Calculate wet or dry brines for turkey, chicken, pork, and more. Get precise salt amounts, water ratios, sugar options, and brining time recommendations.
-- [Cookware & Pan Guide](https://cooking.builtbyjoshstudio.com/tools/cookware-pan-guide/): Select the best cookware material and pan shape for any cooking task. Interactive advisor, material explorer, and care guidelines.
-- [Cost Per Serving Calculator](https://cooking.builtbyjoshstudio.com/tools/cost-per-serving-calculator/): Calculate total recipe costs, per-serving unit economics, and waste buffer allowances. Supports dynamic ingredients, pack pricing, and automatic unit conversions.
-- [Bread & Dough Hydration Calculator](https://cooking.builtbyjoshstudio.com/tools/dough-hydration-calculator/): Bread hydration calculator for bread, pizza, and pasta dough. Enter your flour and get water, salt, and yeast by baker's percentage.
-- [Turkey & Meat Thawing Time Calculator](https://cooking.builtbyjoshstudio.com/tools/meat-thawing-planner/): How long to thaw a turkey, chicken, roast, or steaks: enter the weight and get safe fridge and cold-water thawing times from USDA guidance.
-- [Baking Pan Conversion Calculator](https://cooking.builtbyjoshstudio.com/tools/pan-swap-calculator/): Swap one baking pan for another: round, square, rectangular, muffin, or Bundt. Get the ingredient multiplier and a bake-time warning.
-- [Perfect Roast Pull Temp Calculator](https://cooking.builtbyjoshstudio.com/tools/perfect-roast-pull-temp-calculator/): Calculate the exact temperature to pull your roast, steak, or turkey from the oven to account for carryover cooking. A free, ad-free culinary utility.
-- [Recipe Nutrition Calculator](https://cooking.builtbyjoshstudio.com/tools/recipe-nutrition-calculator/): Paste a recipe's ingredients and get calories, protein, carbs, and fat per serving, plus an estimated Nutrition Facts label.
-- [Pork Roast Cooking Time Calculator](https://cooking.builtbyjoshstudio.com/tools/reverse-roasting-calculator/): Pork roast cooking time, worked backward from dinner — enter a pork shoulder, ham, turkey, or beef roast and serve time for an exact oven timeline. Free.
-- [Universal Recipe Scaler](https://cooking.builtbyjoshstudio.com/tools/universal-recipe-scaler/): Instantly scale, multiply, or divide cooking and baking recipes. A free, local-first utility to convert portions and metric measurements with zero ads.
-- [Yeast Converter](https://cooking.builtbyjoshstudio.com/tools/yeast-converter/): Convert yeast measurements between Active Dry, Instant, and Fresh yeast. Convert grams, ounces, teaspoons, and packets with automatic weight guards.
+- [All Free Browser Tools Directory](https://tools.builtbyjoshstudio.com/): Directory linking Money & Business calculators here plus sibling Kitchen and Tabletop tool hubs.
+- [Money & Business Calculators Hub](https://tools.builtbyjoshstudio.com/money/): Personal finance, salary, debt, home affordability, freelance pricing, quarterly taxes, and invoicing utilities.
+- [Kitchen & Cooking Calculators (canonical host)](https://cooking.builtbyjoshstudio.com/tools/): Culinary scalers, hydration, brine, thawing, pan swaps, pull temps, nutrition, and cookware utilities (moved from tools.builtbyjoshstudio.com with permanent redirects).
+- [Tabletop & RPG Tools (canonical host)](https://writing.builtbyjoshstudio.com/tabletop/): Initiative tracker, dice roller, session notes, wargame score tracker, and RPG generators (moved from tools.builtbyjoshstudio.com with permanent redirects).
 
-## Money & business
+## Money & Business Matrix (Verified Client-Side Behavior)
 
-- [Budget Calculator](https://tools.builtbyjoshstudio.com/budget-calculator/): A 50/30/20 budget calculator comparing the ideal split to what you actually spend — see where you're over and what to fix.
-- [Compound Interest Calculator](https://tools.builtbyjoshstudio.com/compound-interest-calculator/): See how a starting amount plus monthly contributions grows with compound interest — total contributed vs. growth, year by year.
-- [Debt Payoff Calculator](https://tools.builtbyjoshstudio.com/debt-payoff-calculator/): See your debt-free date and total interest with snowball, avalanche, and hybrid methods compared side by side.
-- [Emergency Fund Calculator](https://tools.builtbyjoshstudio.com/emergency-fund-calculator/): Find your emergency fund target from your real monthly expenses, see how covered you are today, and get the date you'll be fully funded.
-- [Freelance Hourly Rate Calculator](https://tools.builtbyjoshstudio.com/freelance-rate-calculator/): Calculate the freelance hourly rate you need to hit your income goal — after tax, expenses, and non-billable time.
-- [Home Affordability Calculator](https://tools.builtbyjoshstudio.com/home-affordability-calculator/): See how much house you can afford from your income, debts, and down payment — the 28/36 rule with conservative, standard, and stretch price ranges.
-- [Free Invoice Generator](https://tools.builtbyjoshstudio.com/invoice-generator/): Create an invoice in your browser — add your letterhead, line items, and tax, then print or save as PDF. No signup, nothing uploaded.
-- [Loan Payment Calculator](https://tools.builtbyjoshstudio.com/loan-payment-calculator/): See your monthly payment, total interest, and payoff date for any auto or personal loan — and how much an extra payment saves.
-- [Profit Margin Calculator for Sellers](https://tools.builtbyjoshstudio.com/profit-margin-calculator/): See your real profit per sale after platform fees — margin, markup, break-even price, and the exact price for your target margin.
-- [Quarterly Tax Estimator for Freelancers](https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/): Estimate your quarterly self-employment tax payments — SE tax plus federal income tax from your expected profit, with all four due dates.
-- [Savings Goal Calculator](https://tools.builtbyjoshstudio.com/savings-goal-calculator/): See exactly when you'll hit a savings goal at your monthly pace — with interest counted — plus what to save per month to hit it in 1, 2, or 3 years.
-- [Take-Home Pay Calculator](https://tools.builtbyjoshstudio.com/take-home-pay-calculator/): See what your salary actually pays after federal tax, Social Security, Medicare, and 401(k) — per paycheck and per month.
+| Calculator | Key Outputs & Math | Browser Storage & Export | URL |
+|---|---|---|---|
+| Budget Calculator | Custom 50/30/20 target buckets vs. actual spend gaps | localStorage (`tynkr-budget-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/budget-calculator/ |
+| Compound Interest Calculator | Monthly compounding, Rule of 72, crossover year, SVG curve | localStorage (`tynkr-compound-interest-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/compound-interest-calculator/ |
+| Debt Payoff Calculator | Snowball vs. Avalanche vs. Hybrid (up to 10 debts, 1,200 months) | localStorage (`tynkr-debt-payoff-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/debt-payoff-calculator/ |
+| Emergency Fund Calculator | 1–12 month essential reserve target & 0%-interest date timeline | localStorage (`tynkr-emergency-fund-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/emergency-fund-calculator/ |
+| Freelance Rate Calculator | Minimum hourly rate from target net, expenses, tax %, billable hrs | localStorage (`tynkr-freelance-rate-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/freelance-rate-calculator/ |
+| Home Affordability Calculator | 28/36 DTI Conservative/Standard/Stretch ranges, 30-yr fixed, 1.6% T&I, HOA/PMI | localStorage (`tynkr-home-affordability-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/home-affordability-calculator/ |
+| Invoice Generator | 16:9 local logo, dynamic line items, 0–100% discount, tax %, multi-currency | In-memory only · Print / Save as PDF (no localStorage, no Copy link) | https://tools.builtbyjoshstudio.com/invoice-generator/ |
+| Loan Payment Calculator | Fixed-rate payment, extra-payment savings, yearly/monthly schedule | localStorage (`tynkr-loan-payment-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/loan-payment-calculator/ |
+| Profit Margin Calculator | Net profit, margin, markup on cost, break-even & target price after fees | localStorage (`tynkr-profit-margin-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/profit-margin-calculator/ |
+| Quarterly Tax Estimator | 2026 federal tax, SE tax ($184,500 SS cap), 20% QBI, 2025 safe harbor, 4 due dates | localStorage (`tynkr-quarterly-tax-estimator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/quarterly-tax-estimator/ |
+| Savings Goal Calculator | Monthly APY compounding (0–15%) completion date + 1/2/3-yr monthly pace | localStorage (`tynkr-savings-goal-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/savings-goal-calculator/ |
+| Take-Home Pay Calculator | 2026 brackets, FICA (SS + Medicare + 0.9% surtax >$200k), 401(k) cap $24,500 | localStorage (`tynkr-take-home-pay-calculator-v1`) + Copy link | https://tools.builtbyjoshstudio.com/take-home-pay-calculator/ |
 
-## Tabletop & RPG (on writing.builtbyjoshstudio.com)
+## Tynkr Tools & Co — Windows Desktop Apps (Coming Soon)
 
-- [Character Name Generator](https://writing.builtbyjoshstudio.com/tabletop/character-name-generator/): Generate original fantasy character names in four styles — flowing, guttural, short, or noble. Six fresh names per click.
-- [Dice Roller](https://writing.builtbyjoshstudio.com/tabletop/dice-roller/): Roll d4 to d100 with full dice notation — 3d6+2, 4d6 keep highest 3, advantage and disadvantage. Roll history included.
-- [Initiative Tracker](https://writing.builtbyjoshstudio.com/tabletop/initiative-tracker/): Track turn order, rounds, HP, and conditions for any tabletop RPG combat — D&D, Pathfinder, or any system. Saves between sessions.
-- [Loot Generator](https://writing.builtbyjoshstudio.com/tabletop/loot-generator/): Generate flavorful, system-free treasure — objects with texture and history, no rules text.
-- [NPC Generator](https://writing.builtbyjoshstudio.com/tabletop/npc-generator/): Generate a complete NPC in one click — name, occupation, quirk, motivation, and a secret. Sends straight to your session notes.
-- [Plot Hook Generator](https://writing.builtbyjoshstudio.com/tabletop/plot-hook-generator/): Generate one-line adventure hooks with a built-in twist — session starters for any tabletop RPG.
-- [Random Table Roller](https://writing.builtbyjoshstudio.com/tabletop/random-table-roller/): Paste or build your own random tables — d20 taverns, d100 loot — then roll on them with one tap. Weighted ranges, saved tables.
-- [Session Notes & NPC Log](https://writing.builtbyjoshstudio.com/tabletop/session-notes/): Keep session notes, NPC names, and loot for your TTRPG campaign — saved in your browser between sessions, exportable to Markdown.
-- [Tavern Generator](https://writing.builtbyjoshstudio.com/tabletop/tavern-generator/): Generate a complete fantasy tavern in one click — name, atmosphere, a patron worth talking to, tonight's rumor, and the menu.
-- [Wargame Score Tracker](https://writing.builtbyjoshstudio.com/tabletop/wargame-score-tracker/): Track victory points, command points, secondaries, and battle rounds for two players in any miniature wargame. Saves mid-game.
+Privacy-first, local-first Windows software where user data stays on disk (no cloud, no accounts, no subscriptions; pay-once model via Microsoft Store): https://tynkr.builtbyjoshstudio.com/
 
-## Beyond the tools
+- [Tynkr Ledger — Personal Finance OS](https://tynkr.builtbyjoshstudio.com/ledger/): Budgeting, transactions, bills, debt payoff, and net worth on your own disk.
+- [Tynkr Vault — Second Brain OS](https://tynkr.builtbyjoshstudio.com/vault/): Local-first Markdown notes, tasks, and fast fuzzy search.
+- [Tynkr Hearth — Homebuyer OS](https://tynkr.builtbyjoshstudio.com/hearth/): Mortgage math, down payment saving, cash-to-close estimates, roadmap, and document checklist.
+- [Tynkr Forge — Small Business OS](https://tynkr.builtbyjoshstudio.com/forge/): Client CRM, invoicing, purchase orders, contracts, expenses, and proposals.
+- [Tynkr Inkpress — Book Formatting](https://tynkr.builtbyjoshstudio.com/inkpress/): Turn a manuscript into an EPUB 3 ebook, KDP print PDF, and author-site web page on Windows — no cloud, no accounts, no subscriptions.
 
-- [Built by Josh Studio](https://builtbyjoshstudio.com/): The parent studio - Notion templates, spreadsheet workbooks, guided planners, zodiac art.
-- [Nước Mắm — A Vietnamese Family Cookbook](https://cooking.builtbyjoshstudio.com/cookbook/): A 56-page Vietnamese family cookbook by the same cook behind the kitchen tools — $3.99 ebook (EPUB + PDF) or Kindle; $7.99 paperback on Amazon.
-- [Tynkr desktop apps](https://tynkr.builtbyjoshstudio.com/): Privacy-first Windows desktop apps (coming soon).
-- [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables.
+## Beyond the Tools
+
+- [Built by Josh Studio](https://builtbyjoshstudio.com/): Notion Creator OS templates ($19.99 / $68.99 stack), 23-tab Ultimate Budget & 15-tab Home Buying Workbooks ($22.99 Excel + Google Sheets), Guided Series print planners, free Lite editions, and zodiac digital art bundles.
+- [Josh & Jordan's Kitchen & Nước Mắm Cookbook](https://cooking.builtbyjoshstudio.com/): *Nước Mắm: Simple Vietnamese Home Cooking* ($3.99 digital / $7.99 paperback) alongside no-talking videos filmed as tight method cuts and minimally cut full-process sessions at normal speed.
+- [J.S. Warden Writing & Interactive Fiction](https://writing.builtbyjoshstudio.com/): *Overlayed Echoes*, *Ebonspire Chronicles*, companion dispatches, and tabletop utilities.
+- [Little Acre Learning](https://littleacrelearning.com/): Children's books and printables — a separate brand of Built by Josh Studio LLC.
