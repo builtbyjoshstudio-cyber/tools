@@ -8,9 +8,11 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gtag('set', 'ads_data_redaction', true);
       gtag('js', new Date());
       var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
-      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0], allow_google_signals: false, allow_ad_personalization_signals: false });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -339,7 +341,7 @@
         <tr><th>What it does</th><td>Finds the hourly rate a freelancer must charge to hit a real income goal after the costs employees never see.</td></tr>
         <tr><th>Inputs</th><td>Target take-home income per year, annual business expenses, billable hours per week, and working weeks per year.</td></tr>
         <tr><th>Outputs</th><td>The minimum hourly rate, plus what any rate actually leaves you after tax and expenses.</td></tr>
-        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs and saves in this browser's local storage — nothing leaves your device.</td></tr>
+        <tr><th>Cost &amp; privacy</th><td>Free, ad-free, no signup. Runs and saves in this browser's local storage — your numbers stay on your device.</td></tr>
       </tbody>
     </table>
     </div>

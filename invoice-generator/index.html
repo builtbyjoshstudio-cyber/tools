@@ -8,9 +8,11 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gtag('set', 'ads_data_redaction', true);
       gtag('js', new Date());
       var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
-      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0], allow_google_signals: false, allow_ad_personalization_signals: false });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -394,7 +396,7 @@
       <h3>Print or save as PDF</h3>
       <p>When it looks right, hit Print and choose "Save as PDF." The editor disappears and only the clean invoice prints, ready to email to your client.</p>
 
-      <h3>Nothing leaves your device</h3>
+      <h3>Your invoice stays on your device</h3>
       <p>Every part of this runs in your browser. Your letterhead image is read locally and never uploaded, and none of your invoice details are stored or sent anywhere. It's the same privacy-first, local approach we believe business tools should take.</p>
     </section>
 

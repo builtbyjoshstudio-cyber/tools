@@ -8,9 +8,11 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gtag('set', 'ads_data_redaction', true);
       gtag('js', new Date());
       var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
-      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0], allow_google_signals: false, allow_ad_personalization_signals: false });
     </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="google-site-verification" content="_XoCr5DyT6qkXM5p-1j2RP2YRCA3l4e0mlP2Y4r7olk" />
@@ -397,7 +399,7 @@
           <tr><th scope="row">Key Assumptions</th><td>Starts from after-tax monthly take-home pay; minimum debt payments stay in Needs while extra debt paydown counts in Savings &amp; Debt.</td></tr>
           <tr><th scope="row">Limits &amp; Ranges</th><td>Target percentages are user-adjustable; numeric dollar inputs clamp at <code>0</code> minimum and up to <code>1,000,000,000</code>.</td></tr>
           <tr><th scope="row">Browser Storage</th><td>Saves inputs automatically in local browser storage under <code>tynkr-budget-calculator-v1</code> (Reset clears stored values).</td></tr>
-          <tr><th scope="row">Sharing / Export</th><td>Supports Copy link query parameters in the browser; nothing is sent to any server.</td></tr>
+          <tr><th scope="row">Sharing / Export</th><td>Supports Copy link query parameters in the browser; your budget numbers aren't sent to a server.</td></tr>
           </tbody>
         </table>
       </div>

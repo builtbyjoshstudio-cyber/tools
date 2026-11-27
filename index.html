@@ -8,9 +8,11 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      gtag('set', 'ads_data_redaction', true);
       gtag('js', new Date());
       var gaKeep = new URLSearchParams(); new URLSearchParams(location.search).forEach(function (v, k) { if (k.indexOf('utm_') === 0) gaKeep.append(k, v); });
-      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0] });
+      gtag('config', 'G-QDSPBB7S9J', { page_location: location.origin + location.pathname + (gaKeep.toString() ? '?' + gaKeep.toString() : ''), page_referrer: document.referrer.split(/[?#]/)[0], allow_google_signals: false, allow_ad_personalization_signals: false });
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Free Kitchen, Money &amp; Tabletop Tools | Built by Josh Studio</title>
